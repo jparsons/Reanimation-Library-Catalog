@@ -29,6 +29,7 @@ namespace :deploy do
     update
     site5::link_public_html
     site5::copy_environment_rb
+    site5::copy_database_yml
     restart
   end
  
@@ -52,7 +53,11 @@ namespace :deploy do
     task :copy_environment_rb do
       run "rm #{current_path}/config/environment.rb; cp #{current_path}/config/environment.rb.deploy  cp #{current_path}/config/environment.rb"
     end
-
+    
+    desc "Copy the deployment database.yml file"
+    task :copy_environment_rb do
+      run "rm #{current_path}/config/database.yml; cp #{current_path}/config/database.yml.deploy  cp #{current_path}/config/database.yml"
+    end
   
   end
 end
