@@ -1,0 +1,26 @@
+<center><p class="one"><%= pagination_links(params[:letter]) %></p></center>
+  <% for item in @items %>
+    <div class="catalog1">
+	  <div class="catalogimage">
+	  <img src="http://reanimationlibrary.org/images/<%=h item.legacy_id%>b_thumb.jpg" />
+	  </div>
+	  <div class="catalog">
+		<h2><%=h item.title %> <%=h item.subtitle %></h2>
+		<p class="one">
+			<span class="catalog-label">Publisher:</span> <%=h item.publisher_name %><%= item.publisher_city.nil? ? "" : "; " + item.publisher_city %><%=h item.publisher_state.nil? ? "" : ", " + item.publisher_state %><br />
+			<span class="catalog-label">Year:</span> <%=h item.copyright %><br />
+			<span class="catalog-label">Pages:</span> <%=h item.extent %><br />
+			<span class="catalog-label">Size:</span> <%=h item.item_size %><br />
+			<span class="catalog-label">Call Number:</span> <%=h item.call_number %><br />
+			<span class="catalog-label">Subject(s):</span>	<%=h item.subjects.map{|s| s.name }.join(", ") %><br />
+			<span class="catalog-label">Library ID:</span> <%=h item.legacy_id %><br />
+			<span class="catalog-label">Collection:</span> <%=h item.collection_name.split(": ")[1] %><br />
+		<p>
+	  </div>
+    </div>
+
+  <% end %>
+
+
+<p><%= link_to_if_user_is_admin "New Item", new_item_path %></p>
+<center><p class="one"><%= pagination_links(params[:letter]) %></p></center>
