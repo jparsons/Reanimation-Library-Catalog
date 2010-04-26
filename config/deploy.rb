@@ -11,10 +11,10 @@ set :user, "andrew"
 
 #Git info
 default_run_options[:pty] = true
-set :repository, "git@github.com:jparsons/Reanimation-Library-Catalog.git"
+set :repository, "git://github.com/jparsons/Reanimation-Library-Catalog.git"
 set :scm, "git"
 set :branch, "master"
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
  
 # This is related to site5 too.
 set :deploy_to, "/home/#{user}/#{application}"
@@ -28,7 +28,7 @@ namespace :deploy do
   task :cold do
     update
     site5::link_public_html
-    site5::copy_environment.rb
+    site5::copy_environment_rb
     restart
   end
  
@@ -49,7 +49,7 @@ namespace :deploy do
     end
     
     desc "Copy the environment.rb file that has the relative_url setting"
-    task :copy_environment.rb do
+    task :copy_environment_rb do
       run "rm #{current_path}/config/environment.rb; cp #{current_path}/config/environment.rb.deploy  cp #{current_path}/config/environment.rb"
     end
 
