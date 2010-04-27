@@ -1,7 +1,7 @@
-require 'nokogiri'
-xml_document = Nokogiri::XML(File.open("#{RAILS_ROOT}/db/legacy/item.xml"))
-
-xml_document.search("ROW").each {|node|
+require 'hpricot'
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/item.xml"))
+xml_document.search("//row").each {|node|
+  puts "hello"
   params = {}
     nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id)
     fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name legacy_id)
@@ -11,7 +11,7 @@ xml_document.search("ROW").each {|node|
         child = node_set.first
         unless child.nil? || child.children.nil?
           unless child.children.first.nil?
-            content = child.children.first.content()
+            content = child.children.first.inner_html()
           end
         end
       end
@@ -19,13 +19,12 @@ xml_document.search("ROW").each {|node|
       params[fields[i].to_sym] = content
       
     end
-    puts params.to_s
     i = Item.create(params)
     subject_node_list = node.search("subject_name")
     unless subject_node_list.nil?
       subjects = subject_node_list.search("DATA")
       subjects.each {|subject_node|
-        s = Subject.find_or_create_by_name(subject_node.content())
+        s = Subject.find_or_create_by_name(subject_node.inner_html())
         i.subjects << s
       }
     end
