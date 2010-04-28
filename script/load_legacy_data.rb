@@ -15,14 +15,14 @@ xml_document.search("//row").each {|node|
       content = elements.inner_html()
     end
     content ||= ""
-    params[fields[i].to_sym] = content
+    params[fields[i].to_sym] = CGI::unescapeHTML(content)
     #puts "#{fields[i]} = #{content}"
       
   end
   i = Item.create(params)
   subjects = node.search("subject_name/data")
   subjects.each {|subject|
-    s = Subject.find_or_create_by_name(subject.inner_html())
+    s = Subject.find_or_create_by_name(CGI::unescapeHTML(subject.inner_html()))
     i.subjects << s
   }
   creators_first = node.search("creator_first/data")
