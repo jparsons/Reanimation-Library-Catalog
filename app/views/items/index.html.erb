@@ -7,6 +7,7 @@
 	  <div class="catalog">
 		<h2><%=h item.title %> <%=h item.subtitle %></h2>
 		<p class="one">
+			<span class="catalog-label">Creator(s):</span> <%= item.creators.map{|c| c.display_name }.join("; ")%><br />
 			<span class="catalog-label">Publisher:</span> <%=h item.publisher_name %><%= item.publisher_city.nil? ? "" : "; " + item.publisher_city %><%=h item.publisher_state.nil? ? "" : ", " + item.publisher_state %><br />
 			<span class="catalog-label">Year:</span> <%=h item.copyright %><br />
 			<span class="catalog-label">Pages:</span> <%=h item.extent %><br />

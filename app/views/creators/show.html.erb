@@ -1,0 +1,12 @@
+<% title "Creator" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @creator.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_creator_path(@creator) %> |
+  <%= link_to "Destroy", @creator, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", creators_path %>
+</p>
