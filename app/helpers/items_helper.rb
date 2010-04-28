@@ -2,9 +2,9 @@ module ItemsHelper
 
  def pagination_links(current_letter=nil)
    if current_letter.nil?
-     string = "1-9 |"
+     string = "1-9 | "
    else 
-     string = link_to("1-9 |", items_path(:letter=>"1-9"))
+     string = link_to("1-9 | ", items_path(:letter=>"1-9"))
    end
    ("A".."Z").to_a.each {|letter|
      if letter_options.include?(letter) && current_letter != letter
