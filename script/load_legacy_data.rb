@@ -25,6 +25,18 @@ xml_document.search("//row").each {|node|
     s = Subject.find_or_create_by_name(subject.inner_html())
     i.subjects << s
   }
+  creators_first = node.search("creator_first/data")
+  creators_last= node.search("creator_last/data")
+  creators_middle = node.search("creator_middle/data")
+  creators_type = node.search("creator_type/data")
+  
+  unless creators_last.blank?
+    creators_last.each_with_index {|c, idx| 
+      c = Creator.create(:last_name => c.inner_html, :first_name => creators_first[idx].inner_html, :middle_name => creators_middle[idx].inner_html, :creator_type => creators_type[idx].inner_html)
+      i.creators << c
+    }
+  end
+
     #unless subjects.nil?
     #  #subjects = subject_node_list.search("data")
     #  subjects.each {|subject_node|
