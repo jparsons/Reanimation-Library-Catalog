@@ -37,7 +37,7 @@ xml_document.search("//row").each {|node|
     }
   end
   
-  if File.exists?(File.exists?("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg"))
+  if File.exists?("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
     i.cover_image = File.read("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
     i.save  
   end
