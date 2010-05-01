@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
   has_and_belongs_to_many :subjects
   has_many :creators, :dependent=>:destroy
+  has_attached_file :cover_image, :styles => { :thumb => "200x200>" }
   
   before_save :create_title_for_alphabetizing
   
