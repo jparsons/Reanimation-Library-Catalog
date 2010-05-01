@@ -36,32 +36,12 @@ xml_document.search("//row").each {|node|
       i.creators << c
     }
   end
+  
+  if File.exists?(File.exists?("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg"))
+    i.cover_image = File.read("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
+    i.save  
+  end
 
-    #unless subjects.nil?
-    #  #subjects = subject_node_list.search("data")
-    #  subjects.each {|subject_node|
-    #    s = Subject.find_or_create_by_name(subject_node.search("data").inner_html())
-    #    i.subjects << s
-    #  }
-    #end
-    
-    
-  
-  #params[:title] = NodeFunctions.get_node(node, "title")
-  #puts params[:title]
-  #params[:subtitle] = 
-  #params[:publisher_name] =
-  #params[:publisher_city] =
-  #params[:publisher_state] = 
-  #params[:publisher_country] =
-  #params[:extent] = 
-  #params[:copyright] = 
-  #params[:item_size] = 
-  #params[:call_number] =
-  #params[:collection_id] =
-  #params[:legacy_id] = 
-  
-  
-  #Item.create(params)
+
   
 }

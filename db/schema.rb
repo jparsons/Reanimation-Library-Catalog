@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100427224453) do
+ActiveRecord::Schema.define(:version => 20100501013845) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20100427224453) do
     t.string   "call_number"
     t.string   "collection_name"
     t.integer  "legacy_id"
+    t.string   "cover_image_file_name"
+    t.string   "cover_image_content_type"
+    t.integer  "cover_image_image_file_size"
+    t.datetime "cover_image_updated_at"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|
