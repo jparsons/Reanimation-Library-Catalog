@@ -39,7 +39,7 @@ xml_document.search("//row").each {|node|
   
   if File.exists?("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
     puts "found one"
-    i.cover_image = File.read("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
+    i.cover_image = File.open("#{RAILS_ROOT}/../../../public_html/images/#{i.legacy_id}b_thumb.jpg")
     i.save!
   end
 
