@@ -2,7 +2,7 @@
   <% for item in @items %>
     <div class="catalog1">
 	  <div class="catalogimage">
-	  <%= link_to(image_tag(item.cover_image.url(:thumb)), item.title) if item.cover_image.exists? %>
+	  <%= image_tag(item.cover_image.url(:thumb))  %>
 	  </div>
 	  <div class="catalog">
 		<h2><%=h item.title %> <%=h item.subtitle %></h2>
