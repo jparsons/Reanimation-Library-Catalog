@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100501013845) do
+ActiveRecord::Schema.define(:version => 20100505021158) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(:version => 20100501013845) do
     t.string   "cover_image_content_type"
     t.integer  "cover_image_image_file_size"
     t.datetime "cover_image_updated_at"
+    t.string   "barcode"
+    t.boolean  "has_marc_record"
+    t.text     "metadata_notes"
+    t.string   "corporate_author"
+    t.string   "isbn_issn"
+    t.integer  "language_id"
+    t.boolean  "is_government_document"
+    t.string   "edition"
+    t.text     "notes"
+    t.string   "series_name"
+    t.boolean  "needs_translation"
+    t.string   "location"
+    t.boolean  "is_marked"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|
@@ -49,10 +62,23 @@ ActiveRecord::Schema.define(:version => 20100501013845) do
     t.integer "subject_id"
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subject_authorities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject_authority_id"
   end
 
   create_table "users", :force => true do |t|
