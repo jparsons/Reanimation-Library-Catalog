@@ -16,7 +16,7 @@ xml_document.search("//row").each {|node|
       content = elements.inner_html()
     end
     content ||= ""
-    params[fields[i].to_sym] = CGI::unescapeHTML(content)
+    params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
     #puts "#{fields[i]} = #{content}"
       
   end
@@ -25,7 +25,7 @@ xml_document.search("//row").each {|node|
   subject_authorities = node.search("subject_authority/data")
   subjects.each_with_index {|subject, i|
     a = SubjectAuthority.find_or_create_by_name(subject_authorities[i].inner_html())
-    s = Subject.find_or_create_by_name_and_subject_authority_id(CGI::unescapeHTML(subject.inner_html()), a.id)
+    s = Subject.find_or_create_by_name_and_subject_authority_id(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), a.id)
     item.subjects << s
   }
   creators_first = node.search("creator_first/data")
