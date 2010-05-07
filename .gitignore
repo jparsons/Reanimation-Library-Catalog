@@ -4,4 +4,3 @@ doc/api
 doc/app
 db/*.sqlite3
 config/database.yml
-config/deploy.rb
