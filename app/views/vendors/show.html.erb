@@ -1,0 +1,44 @@
+<% title "Vendor" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @vendor.name %>
+</p>
+<p>
+  <strong>Street:</strong>
+  <%=h @vendor.street %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%=h @vendor.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%=h @vendor.state %>
+</p>
+<p>
+  <strong>Zip:</strong>
+  <%=h @vendor.zip %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%=h @vendor.country %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%=h @vendor.url %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%=h @vendor.phone %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%=h @vendor.notes %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_vendor_path(@vendor) %> |
+  <%= link_to "Destroy", @vendor, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", vendors_path %>
+</p>

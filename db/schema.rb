@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100505021158) do
+ActiveRecord::Schema.define(:version => 20100511151817) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(:version => 20100505021158) do
     t.datetime "updated_at"
     t.string   "creator_type"
     t.integer  "item_id"
+  end
+
+  create_table "donors", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "organization_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "donors_items", :force => true do |t|
+    t.integer "item_id"
+    t.integer "donor_id"
   end
 
   create_table "items", :force => true do |t|
@@ -55,6 +68,13 @@ ActiveRecord::Schema.define(:version => 20100505021158) do
     t.boolean  "needs_translation"
     t.string   "location"
     t.boolean  "is_marked"
+    t.integer  "vendor_id"
+    t.date     "date_acquired"
+    t.decimal  "price_paid",                  :precision => 8, :scale => 2
+    t.string   "acquisition_type"
+    t.string   "gift_type"
+    t.text     "acquisition_note"
+    t.string   "acquired_for"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|
@@ -90,6 +110,20 @@ ActiveRecord::Schema.define(:version => 20100505021158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "roles",             :default => "--- []"
+  end
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "url"
+    t.string   "phone"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
