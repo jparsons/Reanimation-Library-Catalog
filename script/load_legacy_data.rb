@@ -46,6 +46,8 @@ xml_document.search("//row").each {|node|
     item.save!
   end
 
-
+}
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/acquisitions.xml"))
+xml_document.search("//row").each {|node|
   
 }
