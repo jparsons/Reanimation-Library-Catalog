@@ -47,7 +47,42 @@ xml_document.search("//row").each {|node|
   end
 
 }
-xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/acquisitions.xml"))
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/vendors.xml"))
 xml_document.search("//row").each {|node|
-  
+  params = {}
+  nodes = %w(vendor_name vendor_street vendor_city vendor_state vendor_zip vendor_country vendor_url vendor_phone vendor_notes)
+  fields = %w(name street city state zip country url phone notes)
+  nodes.each_with_index do |name, i|
+    elements = node.search(name+"/data")
+    content = elements.inner_html()
+    if content.blank?
+      elements = node.search(name)
+      content = elements.inner_html()
+    end
+    content ||= ""
+    params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
+    #puts "#{fields[i]} = #{content}"
+      
+  end
+  vendor = Vendor.create(params)
+}
+
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/donors.xml"))
+xml_document.search("//row").each {|node|
+  params = {}
+  nodes = %w(vendor_name vendor_street vendor_city vendor_state vendor_zip vendor_country vendor_url vendor_phone vendor_notes)
+  fields = %w(name street city state zip country url phone notes)
+  nodes.each_with_index do |name, i|
+    elements = node.search(name+"/data")
+    content = elements.inner_html()
+    if content.blank?
+      elements = node.search(name)
+      content = elements.inner_html()
+    end
+    content ||= ""
+    params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
+    #puts "#{fields[i]} = #{content}"
+      
+  end
+  vendor = Vendor.create(params)
 }

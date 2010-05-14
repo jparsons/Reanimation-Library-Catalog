@@ -23,6 +23,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: items
@@ -60,5 +61,12 @@ end
 #  needs_translation           :boolean
 #  location                    :string(255)
 #  is_marked                   :boolean
+#  vendor_id                   :integer
+#  date_acquired               :date
+#  price_paid                  :decimal(8, 2)
+#  acquisition_type            :string(255)
+#  gift_type                   :string(255)
+#  acquisition_note            :text
+#  acquired_for                :string(255)
 #
 
