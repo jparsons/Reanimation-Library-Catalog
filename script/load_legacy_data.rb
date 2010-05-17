@@ -71,11 +71,15 @@ xml_document.search("//row").each {|node|
 }
 
 ## DONORS ## 
-xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/donors.xml"))
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/item_donor.xml"))
 xml_document.search("//row").each {|node|
-  elements = node.search("/donor/data")
-  elements.each {|e|
-    Donor.find_or_create_by_name(e.inner_html())  
+
+  names = node.search("/donor/data")
+  items = node.search("/item_id/data")
+  names.each_with_index {|e, i|
+    item = Item.find_by_legacy_id(items[i].inner_html())
+    donor = Donor.find_or_create_by_name(e.inner_html())
+    item.donors << donor
   }
 }
 
