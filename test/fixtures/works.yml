@@ -1,0 +1,13 @@
+one:
+  title: MyString
+  medium: MyString
+  size: MyString
+  year_created: 1
+  genre: MyString
+
+two:
+  title: MyString
+  medium: MyString
+  size: MyString
+  year_created: 1
+  genre: MyString

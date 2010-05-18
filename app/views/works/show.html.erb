@@ -1,0 +1,28 @@
+<% title "Work" %>
+
+<p>
+  <strong>Title:</strong>
+  <%=h @work.title %>
+</p>
+<p>
+  <strong>Medium:</strong>
+  <%=h @work.medium %>
+</p>
+<p>
+  <strong>Size:</strong>
+  <%=h @work.size %>
+</p>
+<p>
+  <strong>Year Created:</strong>
+  <%=h @work.year_created %>
+</p>
+<p>
+  <strong>Genre:</strong>
+  <%=h @work.genre %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_work_path(@work) %> |
+  <%= link_to "Destroy", @work, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", works_path %>
+</p>
