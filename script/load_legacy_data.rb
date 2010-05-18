@@ -125,3 +125,30 @@ xml_document.search("//row").each {|node|
   end
     
 }
+## ACQUISITIONS ##
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/items_works.xml"))
+xml_document.search("//row").each {|node|
+  
+  legacy_id_node = node.search("/item_id/data")  
+  if legacy_id_node.count == 1
+    legacy_id = legacy_id_node.inner_html()
+    item = Item.find_by_legacy_id(legacy_id)
+    if item 
+      title = node.search("/art_title/data")
+      title.each_with_index {|t, i|
+        title = t.inner_html
+        year_created = node.search("/year_created/data")[i].inner_html
+        genre = node.search("/work_type/data")[i].inner_html
+        medium = node.search("/medium/data")[i].inner_html
+        size = node.search("/size/data")[i].inner_html.gsub(/&quot;/, "\"")
+        w = Work.find(:first, :conditions=>["title=? and year_created=? and medium=? and size=? and genre=?", title, year_created, medium, size, genre])
+        if w.nil?
+          w = Work.create(:title=>title, :genre=>genre, :medium=>medium, :size=>size, :year_created=>year_created)
+        end
+        item.works << w
+      }
+    end
+  end 
+  
+}
+

@@ -1,0 +1,25 @@
+<% title "Works" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Medium</th>
+    <th>Size</th>
+    <th>Year Created</th>
+    <th>Genre</th>
+  </tr>
+  <% for work in @works %>
+    <tr>
+      <td><%=h work.title %></td>
+      <td><%=h work.medium %></td>
+      <td><%=h work.size %></td>
+      <td><%=h work.year_created %></td>
+      <td><%=h work.genre %></td>
+      <td><%= link_to "Show", work %></td>
+      <td><%= link_to "Edit", edit_work_path(work) %></td>
+      <td><%= link_to "Destroy", work, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Work", new_work_path %></p>

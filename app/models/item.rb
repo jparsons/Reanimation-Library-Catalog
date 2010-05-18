@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
+  has_and_belongs_to_many :works
   belongs_to :vendor
   has_many :creators, :dependent=>:destroy
   belongs_to :language

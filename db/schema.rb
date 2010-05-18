@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100517014416) do
+ActiveRecord::Schema.define(:version => 20100518160123) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -81,6 +81,11 @@ ActiveRecord::Schema.define(:version => 20100517014416) do
     t.integer "subject_id"
   end
 
+  create_table "items_works", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "work_id"
+  end
+
   create_table "languages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -124,6 +129,16 @@ ActiveRecord::Schema.define(:version => 20100517014416) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "legacy_id"
+  end
+
+  create_table "works", :force => true do |t|
+    t.string   "title"
+    t.string   "medium"
+    t.string   "size"
+    t.integer  "year_created"
+    t.string   "genre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
