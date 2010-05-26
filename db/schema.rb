@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100518160123) do
+ActiveRecord::Schema.define(:version => 20100525194214) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -32,6 +32,37 @@ ActiveRecord::Schema.define(:version => 20100518160123) do
   create_table "donors_items", :id => false, :force => true do |t|
     t.integer "donor_id"
     t.integer "item_id"
+  end
+
+  create_table "image_subject_authorities", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "image_subjects", :force => true do |t|
+    t.string   "name"
+    t.integer  "image_subject_authority_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "image_subjects_images", :id => false, :force => true do |t|
+    t.integer "image_id"
+    t.integer "image_subject_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "color"
+    t.string   "image_type"
+    t.string   "legacy_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "scan_file_name"
+    t.string   "scan_content_type"
+    t.integer  "scan_file_size"
+    t.integer  "item_id"
+    t.boolean  "is_marked"
   end
 
   create_table "items", :force => true do |t|
@@ -88,6 +119,21 @@ ActiveRecord::Schema.define(:version => 20100518160123) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "series", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "series_parts", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "series_id"
+    t.integer  "position"
+    t.string   "volume_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

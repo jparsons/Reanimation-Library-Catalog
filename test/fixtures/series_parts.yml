@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_id: 1
+  series_id: 1
+  position: 1
+  volume_identifer: MyString
+
+two:
+  item_id: 1
+  series_id: 1
+  position: 1
+  volume_identifer: MyString
