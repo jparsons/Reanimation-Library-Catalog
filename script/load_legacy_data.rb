@@ -175,17 +175,17 @@ xml_document.search("//row").each {|node|
     #puts "#{fields[i]} = #{content}"
       
   end
-  image = Image.create(params)
+  image = DigitalAsset.create(params)
   
   subjects = node.search("/image_subject_name/data")
   authorities = node.search("/imagesubject_authority/data")
   subjects.each_with_index {|s, i|
-    subject = ImageSubject.create(:name=>s.inner_html())
+    subject = DigitalAssetSubject.create(:name=>s.inner_html())
     if authorities[i]
-      authority = ImageSubjectAuthority.find_or_create_by_name(authorities[i].inner_html())
-      subject.image_subject_authority = authority
+      authority = DigitalAssetSubjectAuthority.find_or_create_by_name(authorities[i].inner_html())
+      subject.digital_asset_subject_authority = authority
     end
-    image.image_subjects << subject
+    image.digital_asset_subjects << subject
   }
        
 }
