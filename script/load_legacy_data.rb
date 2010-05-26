@@ -15,6 +15,9 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
+      if content == "<data></data>"
+        content = ""
+      end
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -22,6 +25,7 @@ xml_document.search("//row").each {|node|
       
   end
   item = Item.create(params)
+  puts item.title
   subjects = node.search("subject_name/data")
   subject_authorities = node.search("subject_authority/data")
   subjects.each_with_index {|subject, i|
@@ -79,7 +83,8 @@ xml_document.search("//row").each {|node|
   names.each_with_index {|e, i|
     item = Item.find_by_legacy_id(items[i].inner_html())
     donor = Donor.find_or_create_by_name(e.inner_html())
-    item.donors << donor
+
+    item.donors << donor if item
   }
 }
 
@@ -150,5 +155,58 @@ xml_document.search("//row").each {|node|
     end
   end 
   
+}
+
+## IMAGES ##
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/images.xml"))
+xml_document.search("//row").each {|node|
+  params = {}
+  nodes = %w(images_imagecolor image_marked image_id images_imagetype )
+  fields = %w(color is_marked legacy_id image_type) 
+  nodes.each_with_index do |name, i|
+    elements = node.search(name+"/data")
+    content = elements.inner_html()
+    if content.blank?
+      elements = node.search(name)
+      content = elements.inner_html()
+    end
+    content ||= ""
+    params[fields[i].to_sym] = content
+    #puts "#{fields[i]} = #{content}"
+      
+  end
+  image = Image.create(params)
+  
+  subjects = node.search("/image_subject_name/data")
+  authorities = node.search("/imagesubject_authority/data")
+  subjects.each_with_index {|s, i|
+    subject = ImageSubject.create(:name=>s.inner_html())
+    if authorities[i]
+      authority = ImageSubjectAuthority.find_or_create_by_name(authorities[i].inner_html())
+      subject.image_subject_authority = authority
+    end
+    image.image_subjects << subject
+  }
+       
+}
+
+## SERIES ##
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/serials.xml"))
+xml_document.search("//row").each {|node|
+  serial_title = node.search("/serial_title/data")
+  unless serial_title.inner_html().blank?
+    legacy_ids = node.search("/item_id/data").inner_html()
+    volume_ids = node.search("/serial_number/data").inner_html()
+    
+    s = Series.create(:title=>serial_title.inner_html())
+    legacy_ids.each_with_index {|l_id, i|
+      item = Item.find_by_legacy_id(l_id)
+      if item
+        sp = SeriesPart.create(:item_id=>item.id, :series_id => s.id, :position=>i+1, :volume_identifier=>volume_ids[i])
+      end
+    }
+   
+  end
+
 }
 
