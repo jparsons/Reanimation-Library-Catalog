@@ -6,6 +6,7 @@ class VendorTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: vendors
@@ -22,5 +23,6 @@ end
 #  notes      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  legacy_id  :integer
 #
 
