@@ -190,6 +190,22 @@ xml_document.search("//row").each {|node|
        
 }
 
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/item_images.xml"))
+xml_document.search("//row").each {|node| 
+  puts node.to_s
+  legacy_ids = node.search("/item_id/data")
+  unless legacy_ids.first.nil?
+    legacy_id = legacy_ids.first.inner_html()
+    item = Item.find_by_legacy_id(legacy_id)
+    image_ids = node.search("image_id/data")
+    image_ids.each {|image_node|
+      image = DigitalAsset.find_by_legacy_id(image_node.inner_html())
+      item.digital_assets << image
+  
+    }
+  end
+}
+
 ## SERIES ##
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/serials.xml"))
 xml_document.search("//row").each {|node|
