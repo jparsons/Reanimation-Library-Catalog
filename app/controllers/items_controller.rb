@@ -14,6 +14,8 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    @previous = Item.previous(@item).first
+    @next = Item.next(@item).first
   end
   
   def new
