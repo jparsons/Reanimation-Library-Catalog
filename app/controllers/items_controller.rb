@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
+  #before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
   
   def index
     letter = params[:letter] || "1-9"
