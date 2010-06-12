@@ -1,8 +1,17 @@
-<% form_for @item do |f| %>
+<% nested_form_for @item do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :subtitle %><br />
+    <%= f.text_field :subtitle %>
+  </p>
+  <p>
+	<%= f.fields_for :creators %>
+
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
+  #before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
   
   def index
     letter = params[:letter] || "1-9"
@@ -14,6 +14,8 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    @previous = Item.previous(@item).first
+    @next = Item.next(@item).first
   end
   
   def new

@@ -1,12 +1,50 @@
-<% title "Item" %>
+<div class="about"><h1>Item View</h1> 
+	<div class="about">
+		<% if @previous.nil? %>&lt;previous<% else %><%= link_to "&lt;previous", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next &gt;<% else %><%= link_to "next&gt;", item_path(@next) %><% end %>
+		<div class="catalog3">
+			
+			<div class="catalogimage">
+				<%= image_tag(@item.cover_image.url(:thumb)) %>
+			</div>
+			<div class="catalog">
+				<h2><%= link_to "#{@item.title} #{@item.subtitle}", item_path(@item) %></h2>
+				<p class="one">
+					<span class="catalog-label">Creator(s):</span> <%= @item.creators.map{|c| c.display_name }.join("; ")%><br />
+					<span class="catalog-label">Publisher:</span> <%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state %><br />
+					<span class="catalog-label">Year:</span> <%=h @item.copyright %><br />
+					<span class="catalog-label">Pages:</span> <%=h @item.extent %><br />
+					<span class="catalog-label">Size:</span> <%=h @item.item_size %><br />
+					<span class="catalog-label">Call Number:</span> <%=h @item.call_number %><br />
+					<span class="catalog-label">Subject(s):</span>	<%=h @item.subjects.map{|s| s.name }.join(", ") %><br />
+					<span class="catalog-label">Library ID:</span> <%=h @item.legacy_id %><br />
+					<span class="catalog-label">Collection:</span> <%=h @item.collection_name.split(": ")[1] %><br />
+					<span class="catalog-label">Extent:</span> <%=h @item.extent %><br />
+					<span class="catalog-label">Copyright: </span> <%=h @item.copyright %><br />
+					<span class="catalog-label">Barcode:</span> <%=h @item.barcode %><br />
+					<span class="catalog-label">Has MARC record?:</span> <%=h @item.has_marc_record %><br />
+					<span class="catalog-label">Metadata notes:</span> <%=h @item.metadata_notes %><br />
+					<span class="catalog-label">Corporate author:</span> <%=h @item.corporate_author %><br />
+					<span class="catalog-label">ISBN/ISSN:</span> <%=h @item.isbn_issn %><br />
+					<span class="catalog-label">Language:</span> <%=h @item.language_id.blank? ? '' : item.language.name %><br />
+					<span class="catalog-label">Is government document?:</span> <%=h @item.is_government_document %><br />
+					<span class="catalog-label">Edition:</span> <%=h @item.edition %><br />
+					<span class="catalog-label">Notes:</span> <%=h @item.notes %><br />
+					<span class="catalog-label">Series name:</span> <%=h @item.series_name %><br />
+					<span class="catalog-label">Needs translation?:</span> <%=h @item.needs_translation %><br />
+					<span class="catalog-label">Location:</span> <%=h @item.location %><br />
+					<span class="catalog-label">Vendor:</span> <%=h @item.vendor.blank? ? '' : @item.vendor.name %><br />
+					<span class="catalog-label">Date acquired:</span> <%=h @item.date_acquired.blank? ? "" : @item.date_acquired.strftime("%m/%d/%Y") %><br />
+					<span class="catalog-label">Price paid :</span> <%=h number_to_currency(@item.price_paid) %><br />
+					<span class="catalog-label">Acquisition type:</span> <%=h @item.acquisition_type %><br />
+					<span class="catalog-label">Gift type:</span> <%=h @item.gift_type %><br />
+					<span class="catalog-label">Acquisition notes:</span> <%=h @item.acquisition_note %><br />
+					<span class="catalog-label">Acquired for:</span> <%=h @item.acquired_for %><br />
+					<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %><br />
+					<span class="catalog-label">Digital assets:</span> <%= @item.digital_assets.map {|a| a.id }.join("; ") %><br />
+				<p>
+			</div>
+		</div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%=h @item.title %>
-</p>
 
-<p>
-  <%= link_to "Edit", edit_item_path(@item) %> |
-  <%= link_to "Destroy", @item, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", items_path %>
-</p>
