@@ -3,6 +3,7 @@ class Vendor < ActiveRecord::Base
   attr_accessible :name, :street, :city, :state, :zip, :country, :url, :phone, :notes
 end
 
+
 # == Schema Information
 #
 # Table name: vendors
@@ -19,5 +20,6 @@ end
 #  notes      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  legacy_id  :integer
 #
 
