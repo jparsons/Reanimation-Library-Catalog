@@ -6,6 +6,8 @@
 <meta name="Author" content="?">
 <meta name="Keywords" content="?">
 <meta name="Description" content="?">
+<%= javascript_include_tag 'jquery', 'nested_form' %>
+
 <%= stylesheet_link_tag 'http://reanimationlibrary.org/pages/page.css' %>
 <link href="print.css" type="text/css" rel="stylesheet" media="print">
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
@@ -91,15 +93,9 @@ function rollOff(img1){
 </tr>
 </table>
 </div>
-<div class="about"><center><img  class="header" src="<%= image_path "nav/browsetitle.jpg" %>" width="208" height="20" style="border: none;" alt="browse the catalog by title"></center>
-<div class="about">
-
-
 
 <%= yield %>
 
-
-</div>
-</div></div><div></div>
+</div><div></div>
 </body>
 </html>
