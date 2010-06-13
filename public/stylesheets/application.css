@@ -12,9 +12,6 @@ a img {
   border: none;
 }
 
-a {
-  color: #0000FF;
-}
 
 .clear {
   clear: both;
@@ -82,4 +79,12 @@ a {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
+}
+
+div.subform {
+  border:thin dotted #747474;
+  width:270px;
+}
+div.fields {
+	margin:12px;
 }

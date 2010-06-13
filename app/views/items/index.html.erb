@@ -20,7 +20,7 @@
 					<span class="catalog-label">Call Number:</span> <%=h item.call_number %><br />
 					<span class="catalog-label">Subject(s):</span>	<%=h item.subjects.map{|s| s.name }.join(", ") %><br />
 					<span class="catalog-label">Library ID:</span> <%=h item.legacy_id %><br />
-					<span class="catalog-label">Collection:</span> <%=h item.collection_name.split(": ")[1] %><br />
+					<span class="catalog-label">Collection:</span> <%=h item.collection_name.nil? ? '' : item.collection_name.split(": ")[1] %><br />
 				<p>
 			</div>
 		</div>

@@ -1,0 +1,23 @@
+<div class="subform">
+
+	<div class="fields">
+		<br />
+		<h2>Creator</h2>
+	<p>
+	  <%= f.label :first_name %><br />
+	  <%= f.text_field :first_name %> <br />
+	  <%= f.label :middle_name %><br />
+	  <%= f.text_field :middle_name %> <br />
+	  <%= f.label :last_name %><br />
+	  <%= f.text_field :last_name %> <br />
+	  <%= f.label :name_suffix %><br />
+	  <%= f.text_field :name_suffix %><br />
+	</p>
+	<p>
+	  <%= f.label :type %><br />
+	  <%= f.text_field :creator_type %>
+	</p>
+	<p> <%= remove_child_link "remove this creator", f %></p>
+	<br />
+	</div>
+</div>
