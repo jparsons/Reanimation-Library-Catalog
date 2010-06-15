@@ -88,3 +88,22 @@ div.subform {
 div.fields {
 	margin:12px;
 }
+div#yeild {
+	width:100%;
+}
+div#login {
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#747474;
+	padding-top:20px;
+	padding-bottom:20px;
+	
+	
+}
+label{
+	color:#F56A25;
+}
+div#login>form, div#login>h2{
+	margin-left:20px;
+}
