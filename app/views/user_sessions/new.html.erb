@@ -1,7 +1,6 @@
 <% title "Log in" %>
-
-<p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
-
+<div id="login">
+<h2>Log In </h2>
 <% form_for @user_session do |f| %>
   <%= f.error_messages %>
   <p>
@@ -14,3 +13,4 @@
   </p>
   <p><%= f.submit "Log in" %></p>
 <% end %>
+</div>
