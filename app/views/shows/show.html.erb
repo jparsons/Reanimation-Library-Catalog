@@ -1,0 +1,18 @@
+<p>
+  <b>Start date:</b>
+  <%=h @show.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @show.end_date %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @show.location %>
+</p>
+
+
+<%= link_to 'Edit', edit_show_path(@show) %> |
+<%= link_to 'Back', shows_path %>

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :shows
+
   map.resources :digital_assets
 
   map.resources :works
