@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
+    render :layout => "admin"
   end
   
   def create

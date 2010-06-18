@@ -15,12 +15,13 @@
   </p>
   
   <p>
-	<%= f.label :creators %><br />
-	<% f.fields_for :creators do |creator_form| %>
-	    <%= render :partial => 'creator', :locals => { :f => creator_form } %>
+	<%= f.label :donors %><br />
+	<% f.fields_for :donors do |donor_form| %>
+	    <%= render :partial => 'donor', :locals => { :f => donor_form } %>
 	  <% end %>
-	  <p><%= add_child_link "add a creator", :creators %></p>
-	  <%= new_child_fields_template(f, :creators)%>
+	  <p><%= add_child_link "add a donor", :donors %></p>
+	  <%= new_child_fields_template(f, :donors)%>
   </p>
+
   <p><%= f.submit "Submit" %></p>
 <% end %>
