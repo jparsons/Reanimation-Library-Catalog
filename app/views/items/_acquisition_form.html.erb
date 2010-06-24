@@ -49,6 +49,7 @@ $(document).ready(function(){
   </p>
   <p id="vendor-switch">
 	<a href="" id="vendor-switch-link">... or click here to add a new vendor</a>
+	<%= new_child_fields_template(f, :vendor)%>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
