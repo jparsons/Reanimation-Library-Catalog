@@ -1,0 +1,2 @@
+	<label>select an existing vedndor ...</label><br />
+	<%= select :item,  :vendor_id, Vendor.all.map{|v| ["#{v.name} #{v.city} #{v.state}", v.id]}, {:include_blank=>true} %>

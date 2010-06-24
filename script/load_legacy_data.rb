@@ -6,6 +6,7 @@ Donor.destroy_all
 
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/item.xml"))
 xml_document.search("//row").each {|node|
+  legacy_record_id =  node.attributes["recordid"]
   params = {}
   nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
   fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name legacy_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
@@ -22,10 +23,10 @@ xml_document.search("//row").each {|node|
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
     #puts "#{fields[i]} = #{content}"
-      
+
   end
+  params["legacy_record_id"] = legacy_record_id
   item = Item.create(params)
-  puts item.title
   subjects = node.search("subject_name/data")
   subject_authorities = node.search("subject_authority/data")
   subjects.each_with_index {|subject, i|
@@ -46,7 +47,6 @@ xml_document.search("//row").each {|node|
   end
   
   if File.exists?("#{RAILS_ROOT}/../../../public_html/images/#{item.legacy_id}b_thumb.jpg")
-    puts "found one"
     item.cover_image = File.open("#{RAILS_ROOT}/../../../public_html/images/#{item.legacy_id}b_thumb.jpg")
     item.save!
   end
@@ -56,22 +56,30 @@ xml_document.search("//row").each {|node|
 ## VENDORS ## 
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/vendors.xml"))
 xml_document.search("//row").each {|node|
+  legacy_record_id = node.attributes["recordid"]
   params = {}
-  nodes = %w(vendor_name vendor_street vendor_city vendor_state vendor_zip vendor_country vendor_url vendor_phone vendor_notes vendor_id)
-  fields = %w(name street city state zip country url phone notes legacy_id)
+  nodes = %w(vendor_name vendor_street vendor_city vendor_state vendor_zip vendor_country vendor_url vendor_phone vendor_notes)
+  fields = %w(name street city state zip country url phone notes)
   nodes.each_with_index do |name, i|
     elements = node.search(name+"/data")
     content = elements.inner_html()
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
+      content = "" if content = "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
     #puts "#{fields[i]} = #{content}"
       
   end
-  vendor = Vendor.create(params)
+  puts params[:name]
+  unless params[:name].blank?
+    vendor = Vendor.find_or_create_by_name_and_street_and_city_and_state_and_zip_and_country_and_url_and_phone_and_notes(params[:name], params[:street], params[:city], params[:state], params[:zip], params[:country], params[:url], params[:phone], params[:notes])
+    item = Item.find_by_legacy_record_id(legacy_record_id)
+    item.vendor = vendor
+    item.save
+  end
 }
 
 ## DONORS ## 
@@ -93,9 +101,9 @@ xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/acquisitions.xml"))
 xml_document.search("//row").each {|node|
   legacy_id = ""
   vendor_legacy_id = ""
-  legacy_id_node = node.search("/item_id/data")  
-  if legacy_id_node.count == 1
-    legacy_id = legacy_id_node.inner_html()
+  legacy_record_id = ""
+  legacy_record_id = node.attributes["recordid"] 
+  unless legacy_record_id.empty?
     vendor_id_node = node.search("/vendor_id/data")
     if vendor_id_node.count == 1 
       vendor_legacy_id = vendor_id_node.inner_hml()
@@ -116,7 +124,7 @@ xml_document.search("//row").each {|node|
 
     end
     
-    item = Item.find_by_legacy_id(legacy_id)
+    item = Item.find_by_legacy_record_id(legacy_record_id)
     if item
       item.update_attributes(params)
       if vendor_legacy_id
@@ -192,7 +200,6 @@ xml_document.search("//row").each {|node|
 
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/db/legacy/item_images.xml"))
 xml_document.search("//row").each {|node| 
-  puts node.to_s
   legacy_ids = node.search("/item_id/data")
   unless legacy_ids.first.nil?
     legacy_id = legacy_ids.first.inner_html()

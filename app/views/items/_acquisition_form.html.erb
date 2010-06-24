@@ -1,3 +1,27 @@
+<%- content_for :head do -%>
+<script>
+$(document).ready(function(){
+	$("a#vendor-switch-link").click(function(){
+
+		if ($(this).text() == "... or click here to add a new vendor"){
+		  $(this).text("... or click here to select an existing vendor")
+		  style = 'form';
+		}else {
+		  $(this).text("... or click here to add a new vendor");
+		  style = 'dropdown'	
+		}
+		
+		$.ajax({
+	      url: '<%= new_vendor_path %>?style=' + style, type: 'get', dataType: 'script'
+	    });		
+		
+		return false;
+	})
+	
+})
+</script>
+<%- end -%>
+
 <% form_for @item do |f| %>
   <%= f.error_messages %>
   <p>
@@ -15,16 +39,16 @@
   </p>
   
   <p>
-	<%= f.label :donors, "select an existing donor" %><br />
-	  <%= select_tag "item[donor_ids][]", options_for_select([""] +  Donor.all.map{|d| [d.name, d.id]}), :multiple=>true, :size=>5, :include_blank=>true %>
-	  <p><%= add_child_link "or click here to add a new donor", :donors %></p>
+	<%= f.label :donors, "select from existing donors" %><br />
+	  <%= f.select "donor_ids", Donor.all.map{|d| [d.name, d.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
+	  <p><%= add_child_link "and / or click here to add new donors", :donors %></p>
 	  <%= new_child_fields_template(f, :donors)%>
   </p>
-  <p>
-	<%= f.label :donors, "select an existing vendor" %><br />
-	  <%= select_tag "item[vendor_id]", options_for_select([""] +  Vendor.all.map{|d| [d.name, d.id]}) %>
-	  <p><%= add_child_link "or click here to add a new vendor", :donors %></p>
-	  <%= new_child_fields_template(f, :donors)%>
+  <p id="vendor">
+  <%= render :partial => 'vendor_select' %>
+  </p>
+  <p id="vendor-switch">
+	<a href="" id="vendor-switch-link">... or click here to add a new vendor</a>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

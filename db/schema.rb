@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100615164130) do
+ActiveRecord::Schema.define(:version => 20100622014150) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20100615164130) do
     t.string   "gift_type"
     t.text     "acquisition_note"
     t.string   "acquired_for"
+    t.integer  "legacy_record_id"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|

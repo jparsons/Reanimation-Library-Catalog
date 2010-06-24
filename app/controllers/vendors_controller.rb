@@ -9,6 +9,10 @@ class VendorsController < ApplicationController
   
   def new
     @vendor = Vendor.new
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js { render :layout => false }
+    end
   end
   
   def create
