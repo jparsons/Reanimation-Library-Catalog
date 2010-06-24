@@ -17,7 +17,8 @@ class Item < ActiveRecord::Base
   belongs_to :language
   
   accepts_nested_attributes_for :creators
-  accepts_nested_attributes_for :donors
+  accepts_nested_attributes_for :donors, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
+  
   
   has_attached_file :cover_image, :styles => { :thumb => "200x200>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 

@@ -1,0 +1,5 @@
+<% if params[:style] == "form" %>
+$("p#vendor").html("hello");
+<% else %>
+$("p#vendor").html("<%= escape_javascript(render(:partial=>"items/vendor_select")) %>");
+<% end %>
