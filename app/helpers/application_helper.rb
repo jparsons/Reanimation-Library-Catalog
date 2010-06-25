@@ -11,24 +11,39 @@ module ApplicationHelper
     
   end
   
-  # Methods added to this helper will be available to all templates in the application.
-  def remove_child_link(name, f)
-    f.hidden_field(:_delete) + link_to(name, "javascript:void(0)", :class => "remove_child")
-  end
-
-  def add_child_link(name, association)
-    link_to(name, "javascript:void(0)", :class => "add_child", :"data-association" => association)
-  end
-
-  def new_child_fields_template(form_builder, association, options = {})
-    options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new
-    options[:partial] ||= association.to_s.singularize
-    options[:form_builder_local] ||= :f
-
-    content_tag(:div, :id => "#{association}_fields_template", :style => "display: none") do
-      form_builder.fields_for(association, options[:object], :child_index => "new_#{association}") do |f|
-        render(:partial => options[:partial], :locals => {options[:form_builder_local] => f})
+  def add_subform_link(form_builder, classname)
+    link_to_function "add #{classname} details", :id => "add-#{classname}-entry-link" do |page|
+      form_builder.fields_for classname.pluralize.to_sym, classname.classify.constantize.new, "#{classname}index".to_sym => 'NEW_RECORD' do |f|
+        html = render(:partial => classname, :locals => { :form => f})
+        page << "$('#{classname.pluralize}').insert({bottom: '#{escape_javascript(html)}'.replace(/NEW_RECORD/g, new Date().getTime()) });"
       end
     end
   end
+
+  # copied from http://github.com/ryanb/complex-form-examples
+  def remove_child_link(name, f)
+    f.hidden_field(:_delete, :value=>"0") + link_to_function(name, "remove_fields(this)")
+  end
+  
+   # need to have a way to replace the dropdown with the new child form and vice versa ...
+  
+  def replace_child_link(name, f, method)
+    fields = new_child_fields(f, method)
+    link_to_function(name, h("replace_with_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")
+  end
+ 
+  def add_child_link(name, f, method)
+    fields = new_child_fields(f, method)
+    link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")
+  end
+  
+  def new_child_fields(form_builder, method, options = {})
+    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
+    options[:partial] ||= method.to_s.singularize
+    options[:form_builder_local] ||= :f
+    form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
+      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
+    end
+  end
+  
 end
