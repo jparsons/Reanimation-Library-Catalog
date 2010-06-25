@@ -1,9 +1,4 @@
-<div class="subform">
-
-	<div class="fields">
-		<br />
-		<h2>Vendor</h2>
-	<p>
+	<% f.fields_for :vendor do |vendor_fields| %>
 	  <%= vendor_fields.label :name %><br />
 	  <%= vendor_fields.text_field "name" %> <br />
 	  <%= vendor_fields.label :street %><br />
@@ -18,10 +13,4 @@
 	  <%= vendor_fields.text_field :country %><br />
 	  <%= vendor_fields.label :url %><br />
 	  <%= vendor_fields.text_field :url %><br />
-	
-
-
-	</p>
-	<br />
-	</div>
-</div>
+	<% end %>

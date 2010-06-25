@@ -44,12 +44,12 @@ $(document).ready(function(){
 	  <p><%= add_child_link "and / or click here to add new donors", :donors %></p>
 	  <%= new_child_fields_template(f, :donors)%>
   </p>
+  <% @item.build_vendor unless @item.vendor %>
+
   <p id="vendor">
-  <%= render :partial => 'vendor_select' %>
+<%= render :partial => 'vendor_form', :locals=>{:f=>f} %>
+
   </p>
-  <p id="vendor-switch">
-	<a href="" id="vendor-switch-link">... or click here to add a new vendor</a>
-	<%= new_child_fields_template(f, :vendor)%>
-  </p>
+  <p><a href="" id="vendor-switch-link">... or click here to select an existing vendor</a></p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

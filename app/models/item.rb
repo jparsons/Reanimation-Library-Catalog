@@ -13,11 +13,13 @@ class Item < ActiveRecord::Base
   has_one :series_part
   has_one :series, :through=>:series_part
   belongs_to :vendor
+  #has_one :vendor
   has_many :creators, :dependent=>:destroy
   belongs_to :language
   
-  accepts_nested_attributes_for :creators
+  accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
   accepts_nested_attributes_for :donors, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
+  accepts_nested_attributes_for :vendor
   
   
   has_attached_file :cover_image, :styles => { :thumb => "200x200>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
