@@ -12,6 +12,6 @@ function insert_fields(link, association, content) {
 
 function replace_with_fields(link, association, content){
   $("#"+association).html(content);	
-  $(link).hide
+  $(link).parent().hide();
 }
 
