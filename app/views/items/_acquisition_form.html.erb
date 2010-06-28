@@ -2,7 +2,6 @@
 <script>
 $(document).ready(function(){
 	$("a#vendor-switch-link").click(function(){
-
 		if ($(this).text() == "... or click here to add a new vendor"){
 		  $(this).text("... or click here to select an existing vendor")
 		  style = 'form';
@@ -10,14 +9,11 @@ $(document).ready(function(){
 		  $(this).text("... or click here to add a new vendor");
 		  style = 'dropdown'	
 		}
-		
 		$.ajax({
 	      url: '<%= new_vendor_path %>?style=' + style, type: 'get', dataType: 'script'
-	    });		
-		
+	    });	
 		return false;
 	})
-	
 })
 </script>
 <%- end -%>
@@ -46,15 +42,14 @@ $(document).ready(function(){
   <div id="donors">
   <% f.fields_for :donors do |donor_form| %>
     <%= render :partial => 'donor', :locals => {:f => donor_form} %>
-    <% end %>
-    </div>
-
+  <% end %>
+  </div>
 
   <p><%= f.label :vendor %></p>
   <p id="vendor">
   <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= replace_child_link "... or click here to add new vendor", f, :vendor %></p>
+  <p><%= new_vendor_link "... or click here to add new vendor", f, :vendor %></p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

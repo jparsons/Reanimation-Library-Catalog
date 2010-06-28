@@ -27,8 +27,8 @@ module ApplicationHelper
   
    # need to have a way to replace the dropdown with the new child form and vice versa ...
   
-  def replace_child_link(name, f, method)
-    fields = new_child_fields(f, method)
+  def new_vendor_link(name, f)
+    fields = new_child_fields(f, "vendor")
     link_to_function(name, h("replace_with_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")
   end
  
