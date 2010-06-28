@@ -1,0 +1,39 @@
+<% semantic_form_for @item do |f| %>
+<% f.inputs do %>
+  <%= f.input :title, :label => 'Title' %>
+  <%= f.input :alphabetical_title, :label => 'Alphabetical title' %>
+  <%= f.input :subtitle, :label => 'Subtitle' %>
+  <%= f.input :publisher_name, :label => 'Publisher name' %>
+  <%= f.input :publisher_city, :label => 'Publisher city' %>
+  <%= f.input :publisher_state, :label => 'Publisher state' %>
+  <%= f.input :publisher_country, :label => 'Publisher country' %>
+  <%= f.input :extent, :label => 'Extent' %>
+  <%= f.input :copyright, :label => 'Copyright' %>
+  <%= f.input :item_size, :label => 'Item size' %>
+  <%= f.input :call_number, :label => 'Call number' %>
+  <%= f.input :collection_name, :label => 'Collection name' %>
+  <%= f.input :cover_image_file_name, :label => 'Cover image file name' %>
+  <%= f.input :cover_image_content_type, :label => 'Cover image content type' %>
+  <%= f.input :cover_image_image_file_size, :label => 'Cover image image file size' %>
+  <%= f.input :cover_image_updated_at, :label => 'Cover image updated at' %>
+  <%= f.input :barcode, :label => 'Barcode' %>
+  <%= f.input :has_marc_record, :label => 'Has marc record' %>
+  <%= f.input :metadata_notes, :label => 'Metadata notes' %>
+  <%= f.input :corporate_author, :label => 'Corporate author' %>
+  <%= f.input :isbn_issn, :label => 'Isbn issn' %>
+  <%= f.input :is_government_document, :label => 'Is government document' %>
+  <%= f.input :edition, :label => 'Edition' %>
+  <%= f.input :notes, :label => 'Notes' %>
+  <%= f.input :series_name, :label => 'Series name' %>
+  <%= f.input :needs_translation, :label => 'Needs translation' %>
+  <%= f.input :location, :label => 'Location' %>
+  <%= f.input :is_marked, :label => 'Is marked' %>
+  <%= f.input :date_acquired, :label => 'Date acquired' %>
+  <%= f.input :price_paid, :label => 'Price paid' %>
+  <%= f.input :acquisition_type, :label => 'Acquisition type' %>
+  <%= f.input :gift_type, :label => 'Gift type' %>
+  <%= f.input :acquisition_note, :label => 'Acquisition note' %>
+  <%= f.input :acquired_for, :label => 'Acquired for' %>
+  <%= f.input :cataloging_status, :label => 'Cataloging status' %>
+<% end %>
+<% end %>
