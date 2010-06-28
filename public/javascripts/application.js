@@ -9,8 +9,8 @@ function insert_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
-function replace_with_fields(link, association, content){
+function replace_content(link, association, content){
   $("#"+association).html(content);	
-  $(link).parent().hide();
+  //$(link).parent().hide();
 }
 
