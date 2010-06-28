@@ -28,10 +28,13 @@ module ApplicationHelper
    # need to have a way to replace the dropdown with the new child form and vice versa ...
   
   def new_vendor_link(name, f)
-    fields = new_child_fields(f, "vendor")
-    link_to_function(name, h("replace_with_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")
+    fields = new_child_fields(f, :vendor)
+    link_to_function(name, h("replace_content(this, \"vendor\", \"#{escape_javascript(fields)}\");$(\"#add-vendor-select-link\").show();$(\"#add-vendor-entry-link\").hide();"), :id=> "add-vendor-entry-link", :class=>"add-child-form-link")
   end
- 
+  def vendor_select_link(name, f)
+    select_field = new_select_field(f, :vendor)
+    link_to_function(name, h("replace_content(this, \"vendor\", \"#{escape_javascript(select_field)}\");$(\"#add-vendor-select-link\").hide();$(\"#add-vendor-entry-link\").show();"), :id=> "add-vendor-select-link", :class=>"add-child-select-link", :style=>"display:none")
+  end
   def add_child_link(name, f, method)
     fields = new_child_fields(f, method)
     link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")
@@ -40,6 +43,15 @@ module ApplicationHelper
   def new_child_fields(form_builder, method, options = {})
     options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
     options[:partial] ||= method.to_s.singularize
+    options[:form_builder_local] ||= :f
+    form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
+      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
+    end
+  end
+  
+  def new_select_field(form_builder, method, options={})
+    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
+    options[:partial] ||= method.to_s.singularize + "_select"
     options[:form_builder_local] ||= :f
     form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
       render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })

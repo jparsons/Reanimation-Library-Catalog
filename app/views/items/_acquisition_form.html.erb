@@ -50,6 +50,7 @@ $(document).ready(function(){
   <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= new_vendor_link "... or click here to add new vendor", f, :vendor %></p>
+  <p><%= new_vendor_link "... or click here to add new vendor", f %></p>
+ <p><%= vendor_select_link "... or click here to select an existing vendor", f %></p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

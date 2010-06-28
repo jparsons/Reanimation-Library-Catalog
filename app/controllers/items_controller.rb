@@ -12,6 +12,11 @@ class ItemsController < ApplicationController
 
   end
   
+  def acquired 
+    @items = Item.acquired
+    render :layout=>"admin"
+  end
+  
   def show
     @item = Item.find(params[:id])
     @previous = Item.previous(@item).first
@@ -35,6 +40,7 @@ class ItemsController < ApplicationController
   
   def edit
     @item = Item.find(params[:id])
+    render :layout=> "admin"
   end
   
   def update
