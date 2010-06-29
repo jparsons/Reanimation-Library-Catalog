@@ -14,25 +14,16 @@ $(document).ready(function(){
 	    });	
 		return false;
 	})
+	$("#item_date_acquired").datepicker();
+	$("#item_acquisition_type").autocomplete({
+	    source: <%= ACQUISITION_TYPES.to_json %>
+	});
+	
 })
 </script>
 <%- end -%>
 
-<% form_for @item do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
 
-  <p>
-    <%= f.label :subtitle, "Sub-Title" %><br />
-    <%= f.text_field :subtitle %>
-  </p>
-  <p>
-    <%= f.label :collection %><br />
-    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>	
-  </p>
   <p><%=f.label :donors %></p>
   <p>
 	<%= f.label :donors, "select from existing donors" %><br />
@@ -52,5 +43,15 @@ $(document).ready(function(){
   </p>
   <p><%= new_vendor_link "... or click here to add new vendor", f %></p>
  <p><%= vendor_select_link "... or click here to select an existing vendor", f %></p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+  <p><%= f.label :date_acquired %><br />
+	<%= f.text_field :date_acquired %> </p>
+  <p><%= f.label :acquisition_type %><br />
+  <%= f.text_field :acquisition_type %></p>
+  <p><%= f.label :gift_type %><br />
+	<%= f.text_field :gift_type %></p>
+  <p><%= f.label :acquired_for %><br />
+	<%= f.text_field :acquired_for %></p>
+  <p><%= f.label :acquisition_note %><br />
+	<%= f.text_area :acquisition_note %></p>
+
