@@ -16,7 +16,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
-      content = "" if content = "<data></data>"
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -64,7 +64,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
-      content = "" if content = "<data></data>"
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -115,7 +115,7 @@ xml_document.search("//row").each {|node|
       if content.blank?
         elements = node.search(name)
         content = elements.inner_html()
-        content = "" if content = "<data></data>"
+        content = "" if content == "<data></data>"
       end
       content ||= ""
       params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -176,7 +176,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
-      content = "" if content = "<data></data>"
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content
