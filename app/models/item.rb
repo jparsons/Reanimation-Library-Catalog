@@ -44,6 +44,7 @@ class Item < ActiveRecord::Base
     r = Regexp.new(what_to_remove,true)
     self.alphabetical_title = title.gsub(r, "").strip
   end
+  
 
 end
 
