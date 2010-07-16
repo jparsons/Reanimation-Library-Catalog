@@ -17,6 +17,17 @@ class ItemsController < ApplicationController
     render :layout=>"admin"
   end
   
+  def need_images
+    @items = Item.no_assets
+    render :layout=>"admin"
+  end
+  
+  def process_images
+    d = DigitalAssetIngest.new
+    d.process_digital_assets
+    render :layout=>"admin"
+  end
+  
   def show
     @item = Item.find(params[:id])
     @previous = Item.previous(@item).first

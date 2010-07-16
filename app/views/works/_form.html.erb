@@ -20,5 +20,14 @@
     <%= f.label :genre %><br />
     <%= f.text_field :genre %>
   </p>
+  <p><%=f.label :items %>
+  </p>
+  <div id="items">
+  <% f.fields_for :items do |item_form| %>
+    <%= render :partial => 'item', :locals => {:f => item_form} %>
+  <% end %>
+</div>
+<p><%= add_child_link "click here to add a new creator", f, :creators %>  </p>
+
   <p><%= f.submit %></p>
 <% end %>

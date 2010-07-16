@@ -40,7 +40,7 @@
 					<span class="catalog-label">Acquisition notes:</span> <%=h @item.acquisition_note %><br />
 					<span class="catalog-label">Acquired for:</span> <%=h @item.acquired_for %><br />
 					<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %><br />
-					<span class="catalog-label">Digital assets:</span> <%= @item.digital_assets.map {|a| a.id }.join("; ") %><br />
+					<span class="catalog-label">Digital assets:</span> <%= @item.digital_assets.map {|a| image_tag a.scan.url(:thumb) }.join("  ") %><br />
 				<p>
 			</div>
 		</div>

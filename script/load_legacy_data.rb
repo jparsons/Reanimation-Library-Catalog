@@ -16,9 +16,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
-      if content == "<data></data>"
-        content = ""
-      end
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -66,7 +64,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
-      content = "" if content = "<data></data>"
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -109,7 +107,7 @@ xml_document.search("//row").each {|node|
       vendor_legacy_id = vendor_id_node.inner_hml()
     end
     params = {}
-    nodes = %w(date_acquired price_paid acquisition_type gift_type acquisition_note acquired_for)
+    nodes = %w(date_acquired price_paid acquisitions_type gift_type acquisitions_note acquired_for)
     fields = %w(date_acquired price_paid acquisition_type gift_type acquisition_note acquired_for)
     nodes.each_with_index do |name, i|
       elements = node.search(name+"/data")
@@ -117,6 +115,7 @@ xml_document.search("//row").each {|node|
       if content.blank?
         elements = node.search(name)
         content = elements.inner_html()
+        content = "" if content == "<data></data>"
       end
       content ||= ""
       params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
@@ -177,6 +176,7 @@ xml_document.search("//row").each {|node|
     if content.blank?
       elements = node.search(name)
       content = elements.inner_html()
+      content = "" if content == "<data></data>"
     end
     content ||= ""
     params[fields[i].to_sym] = content
@@ -203,13 +203,16 @@ xml_document.search("//row").each {|node|
   legacy_ids = node.search("/item_id/data")
   unless legacy_ids.first.nil?
     legacy_id = legacy_ids.first.inner_html()
+    
     item = Item.find_by_legacy_id(legacy_id)
+    unless item.nil?
     image_ids = node.search("image_id/data")
     image_ids.each {|image_node|
       image = DigitalAsset.find_by_legacy_id(image_node.inner_html())
       item.digital_assets << image
   
     }
+    end
   end
 }
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628165237) do
+ActiveRecord::Schema.define(:version => 20100705210414) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20100628165237) do
     t.datetime "updated_at"
     t.string   "creator_type"
     t.integer  "item_id"
+  end
+
+  create_table "digital_asset_ingests", :force => true do |t|
+    t.date     "date"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "digital_asset_subject_authorities", :force => true do |t|

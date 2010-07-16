@@ -15,6 +15,7 @@ class Item < ActiveRecord::Base
   named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
   named_scope :previous, lambda { |item| {:conditions => ["alphabetical_title < ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
   named_scope :next, lambda { |item| {:conditions => ["alphabetical_title > ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
+  named_scope :no_assets, {:conditions =>"digital_assets.id is null", :include=>:digital_assets}
   
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
@@ -43,6 +44,7 @@ class Item < ActiveRecord::Base
     r = Regexp.new(what_to_remove,true)
     self.alphabetical_title = title.gsub(r, "").strip
   end
+  
 
 end
 
