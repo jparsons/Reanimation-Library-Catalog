@@ -46,5 +46,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-DIGITAL_ASSET_UPLOADS_DIR = "#{RAILS_ROOT}/public/image_uploads"
+DIGITAL_ASSET_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/image_uploads"
 
