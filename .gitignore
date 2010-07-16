@@ -5,6 +5,6 @@ doc/api
 doc/app
 db/*.sqlite3
 config/database.yml
-public/image_uploads/*
+public/system/image_uploads/*
 public/system/**/*
 db/legacy/*
