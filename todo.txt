@@ -1,3 +1,6 @@
-create forms for works and exhibitions
+add validations to pretty much every form.
 clean up admin layout
 create forms for uploading and cataloging digital assets
+
+done
+x create forms for works and exhibitions

@@ -2,3 +2,10 @@
 h1 {
 	color: #747474;
 }
+
+div#work-items {
+	height:200px;
+	width:500px;
+	overflow:auto;
+	color:#ffffff;
+}
