@@ -78,3 +78,15 @@ class DigitalAssetIngest < ActiveRecord::Base
 
   
 end
+
+# == Schema Information
+#
+# Table name: digital_asset_ingests
+#
+#  id         :integer         not null, primary key
+#  date       :date
+#  status     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
