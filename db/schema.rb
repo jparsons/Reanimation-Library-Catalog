@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100705210414) do
+ActiveRecord::Schema.define(:version => 20100717154027) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -70,6 +70,39 @@ ActiveRecord::Schema.define(:version => 20100705210414) do
   create_table "donors_items", :id => false, :force => true do |t|
     t.integer "donor_id"
     t.integer "item_id"
+  end
+
+  create_table "exhibition_venues", :force => true do |t|
+    t.string   "name"
+    t.string   "address_line_one"
+    t.string   "address_line_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "contact_first_name"
+    t.string   "contact_last_name"
+    t.string   "contact_position"
+    t.string   "contact_email"
+    t.string   "website"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exhibitions", :force => true do |t|
+    t.string   "title"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "exhibition_venue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exhibitions_works", :force => true do |t|
+    t.integer "exhibition_id"
+    t.integer "work_id"
   end
 
   create_table "items", :force => true do |t|
@@ -143,14 +176,6 @@ ActiveRecord::Schema.define(:version => 20100705210414) do
     t.integer  "series_id"
     t.integer  "position"
     t.string   "volume_identifier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "shows", :force => true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

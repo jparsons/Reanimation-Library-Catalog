@@ -35,6 +35,16 @@ module ApplicationHelper
     select_field = new_select_field(f, :vendor)
     link_to_function(name, h("replace_content(this, \"vendor\", \"#{escape_javascript(select_field)}\");$(\"#add-vendor-select-link\").hide();$(\"#add-vendor-entry-link\").show();"), :id=> "add-vendor-select-link", :class=>"add-child-select-link", :style=>"display:none")
   end
+  
+  def new_exhibition_venue_link(name, f)
+    fields = new_child_fields(f, :exhibition_venue)
+    link_to_function(name, h("replace_content(this, \"exhibition-venue\", \"#{escape_javascript(fields)}\");$(\"#add-exhibition-venue-select-link\").show();$(\"#add-exhibition-venue-entry-link\").hide();"), :id=> "add-exhibition-venue-entry-link", :class=>"add-child-form-link")
+  end
+  def exhibition_venue_select_link(name, f)
+    select_field = new_select_field(f, :exhibition_venue)
+    link_to_function(name, h("replace_content(this, \"exhibition-venue\", \"#{escape_javascript(select_field)}\");$(\"#add-exhibition-venue-select-link\").hide();$(\"#add-exhibition-venue-entry-link\").show();"), :id=> "add-exhibition-venue-select-link", :class=>"add-child-select-link", :style=>"display:none")
+  end
+    
   def add_child_link(name, f, method)
     fields = new_child_fields(f, method)
     link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link")

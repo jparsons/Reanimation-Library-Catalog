@@ -1,0 +1,10 @@
+<h1>Editing exhibition</h1>
+
+<% form_for(@exhibition) do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => 'form', :locals=>{:f => f} %>
+
+<% end %>
+
+<%= link_to 'Show', @exhibition %> |
+<%= link_to 'Back', exhibitions_path %>

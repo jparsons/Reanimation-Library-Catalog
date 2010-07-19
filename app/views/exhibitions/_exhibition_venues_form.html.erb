@@ -1,0 +1,30 @@
+<% f.fields_for :exhibition_venue do |exhibition_vendor_fields| %>
+  <%= exhibition_vendor_fields.label :name %><br />
+  <%= exhibition_vendor_fields.text_field "name" %> <br />
+  <%= exhibition_vendor_fields.label :address_line_one %><br />
+  <%= exhibition_vendor_fields.text_field :address_line_one %> <br />
+  <%= exhibition_vendor_fields.label :address_line_two %><br />
+  <%= exhibition_vendor_fields.text_field :address_line_two %> <br />
+  <%= exhibition_vendor_fields.label :city %><br />
+  <%= exhibition_vendor_fields.text_field :city %> <br />
+  <%= exhibition_vendor_fields.label :state %><br />
+  <%= exhibition_vendor_fields.text_field :state %><br />
+  <%= exhibition_vendor_fields.label :zip %><br />
+  <%= exhibition_vendor_fields.text_field :zip %><br />
+  <%= exhibition_vendor_fields.label :country %><br />
+  <%= exhibition_vendor_fields.text_field :country %><br />
+  <%= exhibition_vendor_fields.label :website %><br />
+  <%= exhibition_vendor_fields.text_field :website %><br />
+  <%= exhibition_vendor_fields.label :contact_first_name %><br />
+  <%= exhibition_vendor_fields.text_field :contact_first_name %> <br />
+  <%= exhibition_vendor_fields.label :contact_last_name %><br />
+  <%= exhibition_vendor_fields.text_field :contact_last_name %> <br />
+  <%= exhibition_vendor_fields.label :contact_position %><br />
+  <%= exhibition_vendor_fields.text_field :contact_position %> <br />
+  <%= exhibition_vendor_fields.label :contact_email %><br />
+  <%= exhibition_vendor_fields.text_field :contact_email %> <br />
+  <%= exhibition_vendor_fields.label :contact_phone %><br />
+  <%= exhibition_vendor_fields.text_field :contact_phone %> <br />
+  <%= exhibition_vendor_fields.label :notes %><br />
+  <%= exhibition_vendor_fields.text_area :notes %> <br /> 
+<% end %>

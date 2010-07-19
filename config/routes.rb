@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :shows
+  
+  map.resources :exhibitions
+  
+  map.resources :exhibition_venues
 
   map.resources :digital_assets
 
