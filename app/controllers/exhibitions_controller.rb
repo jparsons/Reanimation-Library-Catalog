@@ -15,7 +15,7 @@ class ExhibitionsController < ApplicationController
 
   # GET /exhibitions/1
   # GET /exhibitions/1.xml
-  def exhibition
+  def show
     @exhibition = Exhibition.find(params[:id])
 
     respond_to do |format|
@@ -60,6 +60,7 @@ class ExhibitionsController < ApplicationController
   # PUT /exhibitions/1
   # PUT /exhibitions/1.xml
   def update
+    params[:exhibition][:work_ids] ||= []  
     @exhibition = Exhibition.find(params[:id])
 
     respond_to do |format|

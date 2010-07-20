@@ -7,3 +7,15 @@ one:
 two:
   date: 2010-07-05
   status: MyString
+
+# == Schema Information
+#
+# Table name: digital_asset_ingests
+#
+#  id         :integer         not null, primary key
+#  date       :date
+#  status     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

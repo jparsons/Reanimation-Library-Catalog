@@ -20,14 +20,16 @@
     <%= f.label :genre %><br />
     <%= f.text_field :genre %>
   </p>
-  <p><%=f.label :items %>
+  <p><%=f.label :items, "Items used for work" %>
   </p>
-  <div id="items">
-  <% f.fields_for :items do |item_form| %>
-    <%= render :partial => 'item', :locals => {:f => item_form} %>
-  <% end %>
-</div>
-<p><%= add_child_link "click here to add a new creator", f, :creators %>  </p>
+  <div id="work-items">
+	 <% for item in Item.find(:all) %>  
+	     <div>  
+	       <%= check_box_tag "work[item_ids][]", item.id, @work.items.include?(item) %>  
+	       <%= item.title %><%= item.subtitle.blank? ? "" : ": #{item.subtitle}" %>  
+	     </div>  
+	 <% end %>
+  </div>
 
   <p><%= f.submit %></p>
 <% end %>

@@ -1,4 +1,6 @@
 class WorksController < ApplicationController
+  layout 'admin'
+  
   def index
     @works = Work.all
   end
@@ -26,6 +28,8 @@ class WorksController < ApplicationController
   end
   
   def update
+    params[:work][:item_ids] ||= []  
+    
     @work = Work.find(params[:id])
     if @work.update_attributes(params[:work])
       flash[:notice] = "Successfully updated work."

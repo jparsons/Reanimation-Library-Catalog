@@ -7,6 +7,7 @@ class ItemTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: items
@@ -51,5 +52,7 @@ end
 #  gift_type                   :string(255)
 #  acquisition_note            :text
 #  acquired_for                :string(255)
+#  legacy_record_id            :integer
+#  cataloging_status           :string(255)
 #
 

@@ -16,7 +16,18 @@
 
   </p>
   <p><%= new_exhibition_venue_link "... or click here to add new venue", f %></p>
- <p><%= exhibition_venue_select_link "... or click here to select an existing venue", f %></p>
+  <p><%= exhibition_venue_select_link "... or click here to select an existing venue", f %></p>
+  
+  <p><%= f.label :works, "Artworks involved in this exhibition"%></p>
+  <div id="exhibition-works">
+	 <% for work in Work.find(:all) %>  
+	     <div>  
+	       <%= check_box_tag "exhibition[work_ids][]", work.id, @exhibition.works.include?(work) %>  
+	       <%= work.title %>
+	     </div>  
+	 <% end %>	
+  </div>
+  
   <p>
     <%= f.submit %>
   </p>

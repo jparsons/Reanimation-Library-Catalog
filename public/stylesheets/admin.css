@@ -1,4 +1,4 @@
- 
+
 h1, h2 {
 	color:#747496;	
 	text-transform:uppercase;
@@ -13,3 +13,11 @@ a:hover{
 label{
 	color:#ffffff;
 }
+
+div#work-items {
+	height:200px;
+	width:500px;
+	overflow:auto;
+	color:#ffffff;
+}
+
