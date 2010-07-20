@@ -1,6 +1,6 @@
 <% title "Log in" %>
 <div id="login">
-<h2>Log In </h2>
+<%= content_tag 'h2', yield(:title) %>
 <% form_for @user_session do |f| %>
   <%= f.error_messages %>
   <p>

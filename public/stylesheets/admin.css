@@ -1,4 +1,15 @@
  
-h1 {
-	color: #747474;
+h1, h2 {
+	color:#747496;	
+	text-transform:uppercase;
+}
+
+a {
+  color:#f56a27;
+}
+a:hover{
+  color:#f3c645;
+}
+label{
+	color:#ffffff;
 }

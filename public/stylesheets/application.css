@@ -36,6 +36,7 @@ a img {
 #flash_notice {
   background-color: #CFC;
   border: solid 1px #6C6;
+  width:300px;
 }
 
 #flash_error {
@@ -48,7 +49,7 @@ a img {
 }
 
 #errorExplanation {
-  width: 400px;
+  width: auto;
   border: 2px solid #CF0000;
   padding: 0px;
   padding-bottom: 12px;
@@ -88,22 +89,27 @@ div.subform {
 div.fields {
 	margin:12px;
 }
-div#yeild {
+div#yield {
 	width:100%;
+	margin-left:57px;
 }
-div#login {
-	width:300px;
+div#login, div#signup {
+	width:265px;
 	margin-left:auto;
 	margin-right:auto;
 	background-color:#1e2935;
 	padding-top:20px;
 	padding-bottom:20px;
 	
-	
+}
+div#signup>p {
+  color:#747474;
+
 }
 label{
 	color:#F56A25;
 }
-div#login>form, div#login>h2{
+div#login>form, div#login>h2, div#signup>form, div#signup>h2, div#signup>p{
 	margin-left:20px;
+	margin-right:20px;
 }

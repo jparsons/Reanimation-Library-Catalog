@@ -82,7 +82,10 @@ function rollOff(img1){
 <tr><td><a href="../pages/catalog.htm" onmouseover="rollOn('nav1','nav1 text'); return true;" onmouseout="rollOff('nav1'); return true;"><img name="nav1" src="<%= image_path "nav/catalog1.jpg" %>" alt="catalog" width="52" height="15" style="border:none"></a></td><td><a href="../pages/about.htm" onmouseover="rollOn('nav2','nav2 text'); return true;" onmouseout="rollOff('nav2'); return true;"><img name="nav2" src="<%= image_path "nav/about.jpg" %>" alt="about" width="44" height="15" style="border:none"></a></td><td><a href="../pages/news.htm" onmouseover="rollOn('nav3','nav3 text'); return true;" onmouseout="rollOff('nav3'); return true;"><img name="nav3" src="<%= image_path "nav/news.jpg" %>" alt="news" width="36" height="15" style="border:none"></a></td><td><a href="../pages/links.htm" onmouseover="rollOn('nav4','nav4 text'); return true;" onmouseout="rollOff('nav4'); return true;"><img name="nav4" src="<%= image_path "nav/links.jpg" %>" alt="links" width="37" height="15" style="border:none"></a></td><td><a href="../pages/participate.htm" onmouseover="rollOn('nav5','nav5 text'); return true;" onmouseout="rollOff('nav5'); return true;"><img name="nav5" src="<%= image_path "nav/participate.jpg" %>" alt="participate" width="70" height="15" style="border:none"></a></td><td><a href="../pages/merch.htm" onmouseover="rollOn('nav6','nav6 text'); return true;" onmouseout="rollOff('nav6'); return true;"><img name="nav6" src="<%= image_path "nav/merch.jpg" %>" alt="merchandise" width="80" height="15" style="border:none"></a></td><td><a href="../pages/contact.htm" onmouseover="rollOn('nav7','nav7 text'); return true;" onmouseout="rollOff('nav7'); return true;"><img name="nav7" src="<%= image_path "nav/contact.jpg" %>" alt="contact" width="57" height="15" style="border:none"></a></td></tr>
 </table></div>
 <p class="navigation"><a href="../index.htm">home</a> > catalog</p>
-<div class="yeild">
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<%- end -%>
+<div id="yield">
 <%= yield %>
 </div>
 </div>

@@ -1,6 +1,7 @@
 <% title "Sign up" %>
-
-<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
+<div id="signup">
+<%= content_tag 'h2', yield(:title) %>
+<p>Already have an account? <br /><%= link_to "Go here to log in", login_path %>.</p>
 
 <% form_for @user do |f| %>
   <%= f.error_messages %>
@@ -22,3 +23,4 @@
   </p>
   <p><%= f.submit "Sign up" %></p>
 <% end %>
+</div>

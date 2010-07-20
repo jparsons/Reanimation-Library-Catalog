@@ -11,13 +11,25 @@ class ApplicationController < ActionController::Base
   
   def admin_required
     unless logged_in? && @current_user.is_administrator?
-      redirect_to root_url
+      if logged_in?
+        flash[:notice] = "You do not have clearance to view this page"
+        redirect_to root_url
+      else
+        flash[:notice] = "You have to log in before you can see that page."
+        redirect_to login_url
+      end
     end
   end
   
   def cataloger_required
     unless logged_in? && (@current_user.is_administrator? || @current_user.is_cataloger?)
-      redirect_to root_url
+      if logged_in?
+        flash[:notice] = "You do not have clearance to view this page"
+        redirect_to root_url
+      else
+        flash[:notice] = "You have to log in before you can see that page."
+        redirect_to login_url
+      end
     end
   end
 end
