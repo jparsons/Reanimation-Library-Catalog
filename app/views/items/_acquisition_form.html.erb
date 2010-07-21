@@ -31,9 +31,7 @@ $(document).ready(function(){
 	  <p><%= add_child_link "... and / or click here to add new donors", f, :donors %></p>
   </p>
   <div id="donors">
-  <% f.fields_for :donors do |donor_form| %>
-    <%= render :partial => 'donor', :locals => {:f => donor_form} %>
-  <% end %>
+
   </div>
 
   <p><%= f.label :vendor %></p>

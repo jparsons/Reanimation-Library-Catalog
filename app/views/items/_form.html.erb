@@ -49,12 +49,17 @@
 <%= render :partial=>'acquisition_form', :locals=>{:f=>f}%>
 <p><%= f.label :subjects %></p>
 <div id="item-subjects">
-  <% for subject in Subject.all(:include=>:subject_authority, :order=>"subject_authorities.name, subjects.name") %>
+  <% for subject in Subject.all(:order=>"authority, name") %>
     <div>  
 	  <%= check_box_tag "item[subject_ids][]", subject.id, @item.subjects.include?(subject) %>  
-	  <%= subject.name %> - <%= subject.subject_authority.name %>
+	  <%= subject.name %> - <%= subject.authority %>
 	</div>  
   <% end %>
+
+</div>
+<p><%= add_child_link "... and / or click here to add new subjects", f, :subjects %></p>
+<div id="subjects">
+
 </div>
 <%= f.submit %>
 <% end %>

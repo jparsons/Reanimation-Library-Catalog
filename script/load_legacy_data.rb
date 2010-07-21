@@ -30,7 +30,7 @@ xml_document.search("//row").each {|node|
   subject_authorities = node.search("subject_authority/data")
   subjects.each_with_index {|subject, i|
     a = SubjectAuthority.find_or_create_by_name(subject_authorities[i].inner_html())
-    s = Subject.find_or_create_by_name_and_subject_authority_id(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), a.id)
+    s = Subject.find_or_create_by_name_and_authority(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), subject_authorities[i].inner_html())
     item.subjects << s
   }
   creators_first = node.search("creator_first/data")
