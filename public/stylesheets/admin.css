@@ -20,4 +20,9 @@ div#work-items {
 	overflow:auto;
 	color:#ffffff;
 }
-
+div#item-subjects {
+	height:200px;
+	width:500px;
+	overflow:auto;
+	color:#ffffff;
+}
