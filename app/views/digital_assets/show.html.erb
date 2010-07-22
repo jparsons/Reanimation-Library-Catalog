@@ -2,27 +2,31 @@
 
 <p>
   <strong>Item:</strong>
-  <%=h @image.item %>
+  <%=h @digital_asset.item.title %>
+</p>
+<p>
+  <strong>Scan:</strong>
+  <%= image_tag(@digital_asset.scan.url(:thumb)) %><br/>
 </p>
 <p>
   <strong>Color:</strong>
-  <%=h @image.color %>
+  <%=h @digital_asset.color %>
 </p>
 <p>
   <strong>Image Type:</strong>
-  <%=h @image.image_type %>
+  <%=h @digital_asset.image_type %>
 </p>
 <p>
   <strong>Legacy:</strong>
-  <%=h @image.legacy_id %>
+  <%=h @digital_asset.legacy_id %>
 </p>
 <p>
   <strong>Is Marked:</strong>
-  <%=h @image.is_marked %>
+  <%=h @digital_asset.is_marked %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_image_path(@image) %> |
-  <%= link_to "Destroy", @image, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", images_path %>
+  <%= link_to "Edit", edit_digital_asset_path(@digital_asset) %> |
+  <%= link_to "Destroy", @digital_asset, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", digital_assets_path %>
 </p>

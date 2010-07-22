@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100721144622) do
+ActiveRecord::Schema.define(:version => 20100722181631) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(:version => 20100721144622) do
 
   create_table "digital_asset_subjects", :force => true do |t|
     t.string   "name"
-    t.integer  "digital_asset_subject_authority_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authority"
   end
 
   create_table "digital_asset_subjects_digital_assets", :id => false, :force => true do |t|
     t.integer "digital_asset_id"
-    t.integer "image_subject_id"
+    t.integer "digital_asset_subject_id"
   end
 
   create_table "digital_assets", :force => true do |t|

@@ -1,9 +1,8 @@
-<% form_for @image do |f| %>
+<% form_for @digital_asset, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :item %><br />
-    <%= f.text_field :item %>
-  </p>
+	<%= f.select :item_id, Item.all(:include=>:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.last_name + ', ' + i.creators.first.first_name}", i.id]}, {:include_blank=>true} %>  </p>
   <p>
     <%= f.label :color %><br />
     <%= f.text_field :color %>
@@ -13,12 +12,29 @@
     <%= f.text_field :image_type %>
   </p>
   <p>
-    <%= f.label :legacy_id %><br />
-    <%= f.text_field :legacy_id %>
-  </p>
-  <p>
     <%= f.label :is_marked %><br />
     <%= f.text_field :is_marked %>
   </p>
+  <p>
+	<%= f.label :image %><br />
+	<% unless @digital_asset.new_record? %>
+	  <%= image_tag(@digital_asset.scan.url(:thumb)) %><br/>
+	<% end %>
+	<p>upload a new cover image<br />
+	<%= f.file_field :scan %></p>
+	<p><%= f.label :subjects %></p>
+	<div id="digital-asset-digital-asset-subjects">
+	  <% for digital_asset_subject in DigitalAssetSubject.all(:order=>"authority, name") %>
+	    <div>  
+		  <%= check_box_tag "digital_asset[digital_asset_subject_ids][]", digital_asset_subject.id, @digital_asset.digital_asset_subjects.include?(digital_asset_subject) %>  
+		  <%= digital_asset_subject.name %>
+		</div>  
+	  <% end %>
+
+	</div>
+	<p><%= add_child_link "... and / or click here to add new subjects", f, :digital_asset_subjects %></p>
+	<div id="digital-asset-subjects">
+
+	</div>
   <p><%= f.submit %></p>
 <% end %>

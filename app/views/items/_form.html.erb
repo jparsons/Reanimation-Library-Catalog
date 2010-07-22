@@ -1,16 +1,16 @@
 <h1>Edit Item</h1>
 
 
-<% form_for @item do |f| %>
-<p><%= f.label :cover_image %></p>
-<%= image_tag(@item.cover_image.url(:thumb)) %><br/>
-<p>upload a new cover image<br />
-<%= f.file_field :cover_image %></p>
+<% form_for @item, :html => { :multipart => true } do |f| %>
 
 <p><%= f.label :title %><br />
 	<%= f.text_field :title %></p>
 <p><%= f.label :subtitle %><br />
 	<%= f.text_field :subtitle %></p>
+	<p><%= f.label :cover_image %></p>
+	<%= image_tag(@item.cover_image.url(:thumb)) %><br/>
+	<p>upload a new cover image<br />
+	<%= f.file_field :cover_image %></p>
   <p>
     <%= f.label :collection %><br />
     <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>	

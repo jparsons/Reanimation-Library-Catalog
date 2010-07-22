@@ -3,6 +3,8 @@ class DigitalAsset < ActiveRecord::Base
   belongs_to :item
   has_and_belongs_to_many :digital_asset_subjects
   
+  accepts_nested_attributes_for :digital_asset_subjects
+  
   
   # need to update these sizes
   has_attached_file :scan,

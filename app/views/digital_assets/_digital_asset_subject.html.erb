@@ -1,0 +1,15 @@
+<div class="subform">
+
+	<div class="fields">
+		<h2>Subject</h2>
+	<p>
+	  <%= f.label :name %><br />
+	  <%= f.text_field :name %> 
+	</p>
+	<p>
+	  <%= f.label :authority %><br />
+	  <%= f.select :authority, DIGITAL_ASSET_SUBJECT_AUTHORITIES %> <br />
+	</p>
+	<p> <%= remove_child_link "remove this subject", f %></p>
+	</div>
+</div>
