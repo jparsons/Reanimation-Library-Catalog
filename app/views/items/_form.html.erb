@@ -1,5 +1,12 @@
 <h1>Edit Item</h1>
+
+
 <% form_for @item do |f| %>
+<p><%= f.label :cover_image %></p>
+<%= image_tag(@item.cover_image.url(:thumb)) %><br/>
+<p>upload a new cover image<br />
+<%= f.file_field :cover_image %></p>
+
 <p><%= f.label :title %><br />
 	<%= f.text_field :title %></p>
 <p><%= f.label :subtitle %><br />
