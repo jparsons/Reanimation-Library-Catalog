@@ -10,7 +10,7 @@ xml_document.search("//row").each {|node|
   legacy_record_id =  node.attributes["recordid"]
   params = {}
   nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
-  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name legacy_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
+  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
   nodes.each_with_index do |name, i|
     elements = node.search(name+"/data")
     content = elements.inner_html()
@@ -45,8 +45,8 @@ xml_document.search("//row").each {|node|
     }
   end
   
-  if File.exists?("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.legacy_id}b.jpg")
-    item.cover_image = File.open("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.legacy_id}b.jpg")
+  if File.exists?("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
+    item.cover_image = File.open("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
     item.save!
   end
 
@@ -88,7 +88,7 @@ xml_document.search("//row").each {|node|
   names = node.search("/donor/data")
   items = node.search("/item_id/data")
   names.each_with_index {|e, i|
-    item = Item.find_by_legacy_id(items[i].inner_html())
+    item = Item.find(items[i].inner_html())
     donor = Donor.find_or_create_by_name(e.inner_html())
 
     item.donors << donor if item
@@ -145,7 +145,7 @@ xml_document.search("//row").each {|node|
   legacy_id_node = node.search("/item_id/data")  
   if legacy_id_node.count == 1
     legacy_id = legacy_id_node.inner_html()
-    item = Item.find_by_legacy_id(legacy_id)
+    item = Item.find(legacy_id)
     if item 
       title = node.search("/art_title/data")
       title.each_with_index {|t, i|

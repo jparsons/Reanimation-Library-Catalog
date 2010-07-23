@@ -1,6 +1,11 @@
 class Item < ActiveRecord::Base
   include AASM
   
+  def attributes_protected_by_default
+      []
+  end
+  
+  
   aasm_column :cataloging_status
   aasm_initial_state :acquired
   
