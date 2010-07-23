@@ -2,7 +2,7 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :item %><br />
-	<%= f.select :item_id, Item.all(:include=>:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.last_name + ', ' + i.creators.first.first_name}", i.id]}, {:include_blank=>true} %>  </p>
+	<%= f.select :item_id, Item.all(:include=>:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.display_name}", i.id]}, {:include_blank=>true} %>  </p>
   <p>
     <%= f.label :color %><br />
     <%= f.text_field :color %>
