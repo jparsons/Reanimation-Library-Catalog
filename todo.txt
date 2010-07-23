@@ -7,3 +7,15 @@ done
 x create forms for works and exhibitions
 add subjects to items
 add ability to add additional subjects from the item form ...
+
+
+Add acquisition info for a new item
+upload (via ftp) images and cover images (or use fancy upload?)
+Batch process images and cover images
+Add full cataloging to items
+Add full cataloging to images
+Manually upload images and cover images
+create exhibitions
+create works
+add search
+add multiple views 
