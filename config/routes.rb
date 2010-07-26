@@ -1,5 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   
+  map.search 'search', :controller=>'search', :action=>'new'
+  
+  
+  map.search_results 'search_results', :controller=>'search', :action=>'show'
+  
   map.resources :exhibitions
   
   map.resources :exhibition_venues
@@ -15,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :languages
 
   map.resources :creators
+  
+  map.resources :subjects
 
   map.resources :items, :collection => { :acquired => :get, :need_images => :get }
 
@@ -22,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.resources :user_sessions
+  
 
   map.resources :users
   

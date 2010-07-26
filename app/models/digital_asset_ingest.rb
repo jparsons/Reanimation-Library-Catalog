@@ -25,7 +25,6 @@ class DigitalAssetIngest < ActiveRecord::Base
       # for each prefix, check to see if you can find the image by id
       item = Item.find_by_id(prefix)
       # if not, try the legacy id
-      item ||= Item.find_by_legacy_id(prefix)
       if item.nil?  # if you don't find a matching item then put the images into a reject folder
         move_to_reject_folder(prefix)
       else  # if you do find one then match and delete all the images
@@ -33,6 +32,24 @@ class DigitalAssetIngest < ActiveRecord::Base
       end
       
     end
+    
+  end
+  
+  def process_cover_images
+    file_list = Dir.glob(File.join(COVER_IMAGE_UPLOADS_DIR, "*.*"))
+    file_list.each do |filename|
+      prefix, suffix = File.basename(filename).scan(/([0-9]*)(.*)/).flatten
+      item = Item.find_by_id(prefix)
+      if item
+        item.cover_image = File.open(filename)
+        item.save!
+        #File.delete(filename)
+        FileUtils.move(filename, File.join(COVER_IMAGE_UPLOADS_DIR, "deletes"))
+      else 
+        FileUtils.move(filename, File.join(COVER_IMAGE_UPLOADS_DIR, "rejects"))
+      end
+    end 
+    
     
   end
 
@@ -48,7 +65,9 @@ class DigitalAssetIngest < ActiveRecord::Base
       asset.scan = file
       asset.save!
       item.digital_assets << asset
-      File.delete(filename)
+      #File.delete(filename)
+      FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/deletes/")
+      
     end
     
   end

@@ -47,4 +47,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 DIGITAL_ASSET_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/image_uploads"
+COVER_IMAGE_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/cover_image_uploads"
 

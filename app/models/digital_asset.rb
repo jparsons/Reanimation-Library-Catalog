@@ -10,9 +10,7 @@ class DigitalAsset < ActiveRecord::Base
   has_attached_file :scan,
     :styles => {
       :thumb=> "100x100#",
-      :small  => "150x150>",
-      :medium => "300x300>",
-      :large =>   "400x400>" }
+      :large =>   "400x00>" }
 end
 
 # == Schema Information

@@ -92,6 +92,21 @@ function rollOff(img1){
 <tr>
 <td><a href="image_archive.htm" onmouseover="rollOn('icon4','icon4 text'); return true;" onmouseout="rollOff('icon4'); return true;"><img name="icon4" src="<%= image_path "nav/imagearchiveicon.jpg" %>" alt="browse the image archive" width="106" height="24" style="border: none;"></a></td>
 </tr>
+<tr>
+<td style="height:20px;">&nbsp;</td>
+</tr>
+<tr>
+<td><%= link_to 'search', search_path %></td>	
+</tr>
+<tr>
+<td><%= link_to 'browse images', digital_assets_path %></td>	
+</tr>
+<tr>
+<td><%= link_to 'browse subjects', subjects_path %></td>	
+</tr>
+<tr>
+<td><%= link_to 'log in', login_path %></td>	
+</tr>
 </table>
 </div>
 

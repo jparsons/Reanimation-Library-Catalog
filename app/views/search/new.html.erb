@@ -1,0 +1,8 @@
+<div id="main-content">
+<h2>Search</h2>
+<% form_tag search_results_path, :method=>:get do %>
+<p>title: <%= text_field_tag 'title' %></p>
+<%= submit_tag 'search' %>
+
+<% end %>
+</div>

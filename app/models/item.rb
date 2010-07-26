@@ -52,6 +52,14 @@ class Item < ActiveRecord::Base
     self.alphabetical_title = title.gsub(r, "").strip
   end
   
+  def self.search(params = {})
+    self.find(:all) do
+      title.contains? params[:title]
+    end
+    
+    
+  end
+  
 
 end
 

@@ -1,25 +1,10 @@
 <% title "Images" %>
-
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Color</th>
-    <th>Image Type</th>
-    <th>Legacy</th>
-    <th>Is Marked</th>
-  </tr>
-  <% for image in @images %>
-    <tr>
-      <td><%=h image.item %></td>
-      <td><%=h image.color %></td>
-      <td><%=h image.image_type %></td>
-      <td><%=h image.legacy_id %></td>
-      <td><%=h image.is_marked %></td>
-      <td><%= link_to "Show", image %></td>
-      <td><%= link_to "Edit", edit_image_path(image) %></td>
-      <td><%= link_to "Destroy", image, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Image", new_image_path %></p>
+<div id="main-content">
+<h2><%= yield(:title) %></h2>
+<p><%= will_paginate @digital_assets %></p>
+<% @digital_assets.each do |asset| %>
+<div class="thumbnail"><%= link_to image_tag(asset.scan.url(:thumb)), digital_asset_path(asset), :class=>"thumbnail" %></div>
+<% end %>
+<br style="clear:both" />
+<p><%= will_paginate @digital_assets %></p>
+</div>

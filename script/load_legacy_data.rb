@@ -25,31 +25,32 @@ xml_document.search("//row").each {|node|
 
   end
   params["legacy_record_id"] = legacy_record_id
-  item = Item.create(params)
-  subjects = node.search("subject_name/data")
-  subject_authorities = node.search("subject_authority/data")
-  subjects.each_with_index {|subject, i|
-    a = SubjectAuthority.find_or_create_by_name(subject_authorities[i].inner_html())
-    s = Subject.find_or_create_by_name_and_authority(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), subject_authorities[i].inner_html())
-    item.subjects << s
-  }
-  creators_first = node.search("creator_first/data")
-  creators_last= node.search("creator_last/data")
-  creators_middle = node.search("creator_middle/data")
-  creators_type = node.search("creator_type/data")
-  
-  unless creators_last.blank?
-    creators_last.each_with_index {|c, idx| 
-      c = Creator.create(:last_name => c.inner_html, :first_name => creators_first[idx].inner_html, :middle_name => creators_middle[idx].inner_html, :creator_type => creators_type[idx].inner_html)
-      item.creators << c
+  unless params[:id].blank?
+    item = Item.create(params)
+    subjects = node.search("subject_name/data")
+    subject_authorities = node.search("subject_authority/data")
+    subjects.each_with_index {|subject, i|
+      s = Subject.find_or_create_by_name_and_authority(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), subject_authorities[i].inner_html())
+      item.subjects << s
     }
-  end
-  
-  if File.exists?("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
-    item.cover_image = File.open("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
-    item.save!
-  end
 
+    creators_first = node.search("creator_first/data")
+    creators_last= node.search("creator_last/data")
+    creators_middle = node.search("creator_middle/data")
+    creators_type = node.search("creator_type/data")
+  
+    unless creators_last.blank?
+      creators_last.each_with_index {|c, idx| 
+        c = Creator.create(:last_name => c.inner_html, :first_name => creators_first[idx].inner_html, :middle_name => creators_middle[idx].inner_html, :creator_type => creators_type[idx].inner_html)
+        item.creators << c
+      }
+    end
+  
+    if File.exists?("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
+      item.cover_image = File.open("#{RAILS_ROOT}/public/system/cover_image_uploads/#{item.id}b.jpg")
+      item.save!
+    end
+  end
 }
 
 ## VENDORS ## 

@@ -1,0 +1,8 @@
+<div id="main-content">
+<h2>Browse the catalog by subject</h2>
+<p><%= will_paginate @subjects %></p>
+<% @subjects.each do |subject| %>
+	<p><%= link_to subject.name, subject_path(subject) %></p>
+<% end %>
+<p><%= will_paginate @subjects %></p>
+</div>

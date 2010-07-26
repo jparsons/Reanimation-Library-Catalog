@@ -1,0 +1,6 @@
+<div id="main-content">
+	<h2><%= link_to "Subjects", subjects_path %> &gt; <%= @subject.name %></h2>
+<% @subject.items.each do |item| %>
+	<%= link_to "#{item.title}#{item.subtitle.blank? ? '' : ' :' + item.subtitle}", item_path(item) %><br />
+<% end %>
+</div>

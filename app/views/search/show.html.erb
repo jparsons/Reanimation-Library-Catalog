@@ -1,0 +1,6 @@
+<div id ="main-content">
+	<h2>Search results</h2>
+<% @items.each do |item| %>
+  <p><%= item.title%><%=  (" : " + item.subtitle) unless item.subtitle.nil? %></p>
+<% end %>
+</div>

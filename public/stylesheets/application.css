@@ -113,3 +113,20 @@ div#login>form, div#login>h2, div#signup>form, div#signup>h2, div#signup>p{
 	margin-left:20px;
 	margin-right:20px;
 }
+div.aboutmenu {
+	height:100%;
+	
+}
+div#main-content{
+	float:left;
+	margin-left:20px;
+	width:620px;
+}
+
+
+div.thumbnail
+{
+float: left;
+width: 100px;
+border: 1px solid #999;
+}
