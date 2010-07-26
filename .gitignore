@@ -6,5 +6,6 @@ doc/app
 db/*.sqlite3
 config/database.yml
 public/system/image_uploads/*
+public/system/cover_image_uploads/*
 public/system/**/*
 db/legacy/*
