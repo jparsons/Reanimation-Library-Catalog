@@ -2,7 +2,7 @@
 add validations to pretty much every form.
 clean up admin layout
 create forms for uploading and cataloging digital assets
-
+add subjects to images ...
 done
 x create forms for works and exhibitions
 add subjects to items

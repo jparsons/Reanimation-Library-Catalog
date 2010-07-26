@@ -2,11 +2,11 @@
 
 <p>
   <strong>Item:</strong>
-  <%=h @digital_asset.item.title %>
+  <%= content_tag "h2", link_to(@digital_asset.item.title, item_path(@digital_asset.item)) %>
 </p>
 <p>
-  <strong>Scan:</strong>
-  <%= image_tag(@digital_asset.scan.url(:thumb)) %><br/>
+  <strong>Scan:</strong><br />
+  <%= image_tag(@digital_asset.scan.url(:large)) %><br/>
 </p>
 <p>
   <strong>Color:</strong>
