@@ -39,8 +39,8 @@ $(document).ready(function(){
   <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= new_vendor_link "... or click here to add new vendor", f %></p>
- <p><%= vendor_select_link "... or click here to select an existing vendor", f %></p>
+  <p><%= new_association_link "... or click here to add new vendor", f, "vendor" %></p>
+ <p><%= association_select_link "... or click here to select an existing vendor", f, "vendor" %></p>
 
   <p><%= f.label :date_acquired %><br />
 	<%= f.text_field :date_acquired %> </p>

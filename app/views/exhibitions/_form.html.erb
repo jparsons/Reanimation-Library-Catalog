@@ -11,12 +11,12 @@
     <%= f.date_select :end_date %>
   </p>
   <p><%= f.label :venue %></p>
-  <p id="exhibition-venue">
+  <p id="exhibition_venue">
   <%= render :partial => 'exhibition_venue_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= new_exhibition_venue_link "... or click here to add new venue", f %></p>
-  <p><%= exhibition_venue_select_link "... or click here to select an existing venue", f %></p>
+  <p><%= new_association_link "... or click here to add new venue", f, "exhibition_venue" %></p>
+  <p><%= association_select_link "... or click here to select an existing venue", f, "exhibition_venue" %></p>
   
   <p><%= f.label :works, "Artworks involved in this exhibition"%></p>
   <div id="exhibition-works">

@@ -24,8 +24,15 @@ module ApplicationHelper
   def remove_child_link(name, f)
     f.hidden_field(:_delete, :value=>"0") + link_to_function(name, "remove_fields(this)")
   end
-  
    # need to have a way to replace the dropdown with the new child form and vice versa ...
+   def new_association_link(name, f, model)
+     fields = new_child_fields(f, model.to_sym)
+     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(fields)}\");$(\"#add-#{model}-select-link\").show();$(\"#add-#{model}-entry-link\").hide();"), :id=> "add-#{model}-entry-link", :class=>"add-child-form-link")
+   end
+   def association_select_link(name, f, model)
+     select_field = new_select_field(f, model.to_sym)
+     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(select_field)}\");$(\"#add-#{model}-select-link\").hide();$(\"#add-#{model}-entry-link\").show();"), :id=> "add-#{model}-select-link", :class=>"add-child-select-link", :style=>"display:none")
+   end 
   
   def new_vendor_link(name, f)
     fields = new_child_fields(f, :vendor)

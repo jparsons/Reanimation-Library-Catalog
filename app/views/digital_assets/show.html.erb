@@ -17,13 +17,10 @@
   <%=h @digital_asset.image_type %>
 </p>
 <p>
-  <strong>Legacy:</strong>
-  <%=h @digital_asset.legacy_id %>
-</p>
-<p>
-  <strong>Is Marked:</strong>
-  <%=h @digital_asset.is_marked %>
-</p>
+  <strong>Subjects:</strong><br />
+  <% @digital_asset.digital_asset_subjects.each do |s| %>
+  <%= s.name %><%= "(#{s.authority})" unless s.authority.blank? %><br />
+  <% end %>
 
 <p>
   <%= link_to "Edit", edit_digital_asset_path(@digital_asset) %> |
