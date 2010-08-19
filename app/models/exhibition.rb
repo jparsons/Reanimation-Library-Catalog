@@ -5,6 +5,7 @@ class Exhibition < ActiveRecord::Base
   accepts_nested_attributes_for :exhibition_venue
   accepts_nested_attributes_for :works
   
+  default_scope :order=>"start_date desc"
 end
 
 

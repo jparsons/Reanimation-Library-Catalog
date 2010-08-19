@@ -1,22 +1,11 @@
-<p>
-  <b>Title:</b>
-  <%=h @exhibition.title %>
+<h2><%= @exhibition.title %></h2>
+<p><strong><%= @exhibition.exhibition_venue.name %></strong></p>
+<p><%= @exhibition.exhibition_venue.address_line_one %><br />
+<%= "#{@exhibition.exhibition_venue.address_line_two}<br />" unless @exhibition.exhibition_venue.address_line_two.blank? %>
+<%= @exhibition.exhibition_venue.city %>,<%= " #{@exhibition.exhibition_venue.state}" unless @exhibition.exhibition_venue.state.blank? %><%= " #{@exhibition.exhibition_venue.zipcode}" unless @exhibition.exhibition_venue.zipcode.blank?  %>
+<%= "<br />#{@exhibition.exhibition_venue.country}" unless @exhibition.exhibition_venue.country.blank? %>
 </p>
-<p>
-  <b>Start date:</b>
-  <%=h @exhibition.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%=h @exhibition.end_date %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%=h @exhibition.exhibition_venue.name %>
-</p>
-
-
-<%= link_to 'Edit', edit_exhibition_path(@exhibition) %> |
-<%= link_to 'Back', exhibitions_path %>
+<h3>Art works in this exhibition</h3>
+<% @exhibition.works.each do |work| %>
+<%= work.title %><br />
+<% end %>

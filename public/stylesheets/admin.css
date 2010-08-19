@@ -19,10 +19,19 @@ div#work-items {
 	width:500px;
 	overflow:auto;
 	color:#ffffff;
+	background-color:#375A82;
+	padding:20px;
+	margin-bottom:12px;
 }
 div#item-subjects {
 	height:200px;
 	width:500px;
 	overflow:auto;
 	color:#ffffff;
+}
+div.content {
+  background-color: #1E3147;
+  width: 832px;
+  margin-right:auto;
+  margin-left:auto;
 }

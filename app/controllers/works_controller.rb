@@ -1,5 +1,4 @@
 class WorksController < ApplicationController
-  layout 'admin'
   
   def index
     @works = Work.all
@@ -11,11 +10,21 @@ class WorksController < ApplicationController
   
   def new
     @work = Work.new
+    render :layout => "admin"
+    5.times { @work.work_images.build }
   end
   
   def create
+    #work_creator_ids = params[:work][:work_creator_ids]
+    #params[:work].delete(:work_creator_ids)
+    
     @work = Work.new(params[:work])
     if @work.save
+      #work_creator_ids += @work.work_creator_ids
+      #logger.debug work_creator_ids
+      #logger.debug work_creator_ids.uniq
+      
+      #@work.update_attribute(:work_creator_ids, work_creator_ids.uniq)
       flash[:notice] = "Successfully created work."
       redirect_to @work
     else
@@ -24,7 +33,8 @@ class WorksController < ApplicationController
   end
   
   def edit
-    @work = Work.find(params[:id])
+    @work = Work.find(params[:id], :include=>[:items])
+    render :layout => "admin"
   end
   
   def update

@@ -14,3 +14,9 @@ function replace_content(link, association, content){
   //$(link).parent().hide();
 }
 
+function remove_field(element, item) {
+  element.up(item).remove();
+}
+
+
+

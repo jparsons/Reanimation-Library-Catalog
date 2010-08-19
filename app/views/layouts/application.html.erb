@@ -6,9 +6,9 @@
 <meta name="Author" content="?">
 <meta name="Keywords" content="?">
 <meta name="Description" content="?">
-<%= javascript_include_tag 'jquery', 'application' %>
+<%= javascript_include_tag 'jquery', 'application', 'jquery.colorbox-min' %>
 
-<%= stylesheet_link_tag 'http://reanimationlibrary.org/pages/page.css', 'application.css' %>
+<%= stylesheet_link_tag 'http://reanimationlibrary.org/pages/page.css', 'application.css', 'colorbox' %>
 <link href="print.css" type="text/css" rel="stylesheet" media="print">
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <%= yield(:head) %>
@@ -96,7 +96,10 @@ function rollOff(img1){
 <td style="height:20px;">&nbsp;</td>
 </tr>
 <tr>
-<td><%= link_to 'search', search_path %></td>	
+<td><%= link_to 'search the catalog', search_path %></td>	
+</tr>
+<tr>
+<td><%= link_to 'browse the catalog by title', items_path %></td>	
 </tr>
 <tr>
 <td><%= link_to 'browse images', digital_assets_path %></td>	
@@ -105,11 +108,20 @@ function rollOff(img1){
 <td><%= link_to 'browse subjects', subjects_path %></td>	
 </tr>
 <tr>
+<td><%= link_to 'exhibitions involving the collection', exhibitions_path %></td>
+</tr>
+<tr>
+<td><%= link_to 'art works made from the collection', works_path %></td>
+</tr>
+	
+<tr>
 <td><%= link_to 'log in', login_path %></td>	
 </tr>
 </table>
 </div>
-
+<%- flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<%- end -%>
 <%= yield %>
 
 </div><div></div>

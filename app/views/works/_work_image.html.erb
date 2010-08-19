@@ -1,0 +1,8 @@
+<div class="work-image">
+  <p>
+  <% form.fields_for :work_images, work_image, :child_index => (work_image.new_record? ? "index_to_replace_with_js" : nil) do |work_image_form| %>    
+    <%= work_image_form.file_field :image %>
+    <%= link_to_function "delete", "remove_field($(this), ('.work-image'))" %><br/>
+  <% end %>
+  </p>
+</div>

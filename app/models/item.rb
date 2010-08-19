@@ -25,7 +25,6 @@ class Item < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
   has_many :digital_assets
-  has_many :creators
   has_one :series_part
   has_one :series, :through=>:series_part
   belongs_to :vendor
@@ -45,6 +44,13 @@ class Item < ActiveRecord::Base
 
   
   before_save :create_title_for_alphabetizing
+  
+  def display_title
+    "#{title}#{subtitle.blank? ? "" : " " + subtitle}"
+  end
+  def display_creator
+    creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "") 
+  end
   
   def create_title_for_alphabetizing
     what_to_remove = REMOVE_FROM_BEGINNING_OF_TITLES.map{|w| "^#{w}" }.join("|")

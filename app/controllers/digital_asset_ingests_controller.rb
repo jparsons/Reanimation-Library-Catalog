@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class DigitalAssetIngestsController < ApplicationController
 
   layout "admin"
   

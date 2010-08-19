@@ -22,7 +22,7 @@ module ApplicationHelper
 
   # copied from http://github.com/ryanb/complex-form-examples
   def remove_child_link(name, f)
-    f.hidden_field(:_delete, :value=>"0") + link_to_function(name, "remove_fields(this)")
+    f.hidden_field(:_destroy, :value=>"0") + link_to_function(name, "remove_fields(this)")
   end
    # need to have a way to replace the dropdown with the new child form and vice versa ...
    def new_association_link(name, f, model)

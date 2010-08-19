@@ -9,7 +9,20 @@ body {
 }
 
 a img {
-  border: none;
+	border:2px solid #ffffff;
+}
+
+a.digital_asset:hover img {
+	border:2px solid #00ff00;
+}
+
+a.digital_asset {
+
+}
+a.digital_asset img {
+	margin-right:12px;
+	margin-bottom:20px;
+	padding:0;
 }
 
 
@@ -89,10 +102,7 @@ div.subform {
 div.fields {
 	margin:12px;
 }
-div#yield {
-	width:100%;
-	margin-left:57px;
-}
+
 div#login, div#signup {
 	width:265px;
 	margin-left:auto;
@@ -121,6 +131,7 @@ div#main-content{
 	float:left;
 	margin-left:20px;
 	width:620px;
+	color:#ffffff;
 }
 
 
@@ -129,4 +140,13 @@ div.thumbnail
 float: left;
 width: 100px;
 border: 1px solid #999;
+}
+// local overrides //
+
+div.catalogimage {
+	width:200px;
+	
+}
+div.catalog {
+	width:390px;
 }

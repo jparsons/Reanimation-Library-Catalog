@@ -1,26 +1,11 @@
-<h1>Listing Exhibitions</h1>
-
-<table>
-  <tr>
-	<th>Title</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Venue</th>
-  </tr>
+<div id="main-content">
+<h1>Exhibitions</h1>
 
 <% @exhibitions.each do |exhibition| %>
-  <tr>
-	<td><%=h exhibition.title %></td>
-    <td><%=h exhibition.start_date %></td>
-    <td><%=h exhibition.end_date %></td>
-    <td><%=h exhibition.venue.name %></td>
-    <td><%= link_to 'Show', exhibition %></td>
-    <td><%= link_to 'Edit', edit_exhibition_path(exhibition) %></td>
-    <td><%= link_to 'Destroy', exhibition, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<h2><%= link_to(exhibition.title, exhibition_path(exhibition)) %></h2>
+<p><%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+<p><strong><%= exhibition.exhibition_venue.name %></strong><br />
+	<%= exhibition.exhibition_venue.city %>,<%= " " + exhibition.exhibition_venue.state unless exhibition.exhibition_venue.state.blank? %> <%= " " + exhibition.exhibition_venue.country unless exhibition.exhibition_venue.country.blank? %>
+</p>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New exhibition', new_exhibition_path %>
+</div>

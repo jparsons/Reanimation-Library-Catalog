@@ -1,12 +1,12 @@
 <% title "Image" %>
+<div id="main-content">
 
 <p>
-  <strong>Item:</strong>
-  <%= content_tag "h2", link_to(@digital_asset.item.title, item_path(@digital_asset.item)) %>
+  <%= image_tag(@digital_asset.scan.url(:large)) %><br/>
 </p>
 <p>
-  <strong>Scan:</strong><br />
-  <%= image_tag(@digital_asset.scan.url(:large)) %><br/>
+  <strong>From the item:</strong>
+  <%= content_tag "h2", link_to("#{@digital_asset.item.title} #{@digital_asset.item.subtitle.blank? ? "" : "<br />" + @digital_asset.item.subtitle}", item_path(@digital_asset.item)) %>
 </p>
 <p>
   <strong>Color:</strong>
@@ -19,11 +19,18 @@
 <p>
   <strong>Subjects:</strong><br />
   <% @digital_asset.digital_asset_subjects.each do |s| %>
-  <%= s.name %><%= "(#{s.authority})" unless s.authority.blank? %><br />
+  <%= s.name %><%= " - #{s.authority}" unless s.authority.blank? %><br />
   <% end %>
+</p>
+<p><strong>Other images from this item:</strong><br /><br />
+<%= @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital_asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
+</p>
 
+<% if logged_in? && current_user.is_administrator? %>
 <p>
   <%= link_to "Edit", edit_digital_asset_path(@digital_asset) %> |
   <%= link_to "Destroy", @digital_asset, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", digital_assets_path %>
 </p>
+<% end %>
+</div>

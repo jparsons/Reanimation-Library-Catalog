@@ -1,13 +1,13 @@
-<div class="about"><h1>Item View</h1> 
-	<div class="about">
-		<% if @previous.nil? %>&lt;previous<% else %><%= link_to "&lt;previous", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next &gt;<% else %><%= link_to "next&gt;", item_path(@next) %><% end %>
+<div id="main-content">
+		<% if @previous.nil? %>&lt; previous item<% else %><%= link_to "&lt; previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item &gt;", item_path(@next) %><% end %>
 		<div class="catalog3">
-			
+			<h1><%= "#{@item.title}" %></h1>
+			<%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
 			<div class="catalogimage">
 				<%= image_tag(@item.cover_image.url(:thumb)) %>
 			</div>
 			<div class="catalog">
-				<h2><%= link_to "#{@item.title} #{@item.subtitle}", item_path(@item) %></h2>
+				
 				<p class="one">
 					<span class="catalog-label">Creator(s):</span> <%= @item.creators.map{|c| c.display_name }.join("; ")%><br />
 					<span class="catalog-label">Publisher:</span> <%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state %><br />
@@ -39,13 +39,12 @@
 					<span class="catalog-label">Gift type:</span> <%=h @item.gift_type %><br />
 					<span class="catalog-label">Acquisition notes:</span> <%=h @item.acquisition_note %><br />
 					<span class="catalog-label">Acquired for:</span> <%=h @item.acquired_for %><br />
-					<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %><br />
-					<span class="catalog-label">Digital assets:</span> <br />
-					<%= @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a)) }.join(" &nbsp; ") %><br />
+					<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %><br /><br />
+					<span class="catalog-label">Images:</span> <br /></br>
+					<%= @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital_asset") }.join(" &nbsp; ") %><br />
 				<p>
 			</div>
 		</div>
   </div>
-</div>
 
 

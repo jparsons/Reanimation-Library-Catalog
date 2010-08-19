@@ -1,8 +1,27 @@
+<% content_for :head do -%>
+<script type="text/javascript">
+  $(document).ready(function() 
+  { 
+   $(".submit_button").click(function(){
+	$("#search_form").submit();
+	return false;
+   });
+  });
+</script>
+<% end %>
 <div id="main-content">
-<h2>Search</h2>
-<% form_tag search_results_path, :method=>:get do %>
-<p>title: <%= text_field_tag 'title' %></p>
-<%= submit_tag 'search' %>
+<h2>Search <%= "Results" unless @items.blank? %></h2>
+<% form_tag search_path, :method=>:get, :id=>"search_form" do %>
+<p>title: <%= text_field_tag 'q', params[:q] %>
+<%= link_to 'search', "", :class=>"submit_button" %></p>
 
+<% end %>
+
+	<% if params[:q] && @items.blank? %>
+	<p>Your search for <em><%= params[:q] %></em> returned no results.</p>
+	<% else %>
+<% @items.each do |item| %>
+  <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}", item_path(item) %></p>
+<% end %>
 <% end %>
 </div>

@@ -1,6 +1,10 @@
 <div id ="main-content">
-	<h2>Search results</h2>
+	<h1>Search results</h1>
+	<% if @items.blank? %>
+	<p>Your search for <em><%= params[:title] %></em> returned no results.</p>
+	<% else %>
 <% @items.each do |item| %>
-  <p><%= item.title%><%=  (" : " + item.subtitle) unless item.subtitle.nil? %></p>
+  <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}"%></p>
+<% end %>
 <% end %>
 </div>
