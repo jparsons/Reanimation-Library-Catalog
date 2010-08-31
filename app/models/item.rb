@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :vendor
   
   
-  has_attached_file :cover_image, :styles => { :thumb => "200x200>", :large =>"400x400>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
+  has_attached_file :cover_image, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
   acts_as_ferret :fields => [ :title, :subtitle, :subject_list ]
   

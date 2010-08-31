@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  #before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
   
   def index
     letter = params[:letter] || "1-9"
@@ -14,18 +14,15 @@ class ItemsController < ApplicationController
   
   def acquired 
     @items = Item.acquired
-    render :layout=>"admin"
   end
   
   def need_images
     @items = Item.no_assets
-    render :layout=>"admin"
   end
   
   def process_images
     d = DigitalAssetIngest.new
     d.process_digital_assets
-    render :layout=>"admin"
   end
   
   def show
@@ -36,7 +33,6 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
-    render :layout => "admin"
   end
   
   def create
@@ -51,7 +47,6 @@ class ItemsController < ApplicationController
   
   def edit
     @item = Item.find(params[:id])
-    render :layout=> "admin"
   end
   
   def update

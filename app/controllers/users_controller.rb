@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   
-  layout "admin"
-  
   before_filter :admin_required, :only=> [:index]
   def new
     @user = User.new

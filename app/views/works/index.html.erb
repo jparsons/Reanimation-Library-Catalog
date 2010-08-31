@@ -1,24 +1,12 @@
-<% title "Works" %>
+<% title "Art works made from the collection" %>
+<h2><%= yield(:title) %></h2>
+<div id="works-list">
+<%= will_paginate @works %>
+<% @works.each do |work| %>
+<div class="work">
+<strong><%= link_to(work.title + " (" + work.year_created.to_s + ")", work_path(work)) %></strong> by <%= work.work_creators.map{|c| c.name }.join(", ") %>
+</div>
+<% end %>
+<%= will_paginate @works %>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Medium</th>
-    <th>Size</th>
-    <th>Year Created</th>
-  </tr>
-  <% for work in @works %>
-    <tr>
-      <td><%=h work.title %></td>
-      <td><%=h work.medium %></td>
-      <td><%=h work.size %></td>
-      <td><%=h work.year_created %></td>
-      <td><%=h work.work_type %></td>
-      <td><%= link_to "Show", work %></td>
-      <td><%= link_to "Edit", edit_work_path(work) %></td>
-      <td><%= link_to "Destroy", work, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Work", new_work_path %></p>

@@ -3,7 +3,6 @@ body {
   font-size: 12px;
   text-align: left;
   font-weight: 100;
-  height: 100%;
   margin-bottom: 1px;
   background-color: #1E3147;
   color:#ffffff;
@@ -14,9 +13,8 @@ a {
  color: #F56A25;
 }
 
-a
-{
-outline: none;
+a {
+  outline: none;
 }
 
 a:hover {
@@ -33,6 +31,10 @@ a.submit-button:hover {
   border:1px solid #F5C544;	
 }
 
+label {
+	font-weight:bold;
+}
+
 /* page layout */ 
 
 div#page {
@@ -40,18 +42,26 @@ div#page {
   margin-right:auto;
   width:940px;
   overflow:auto;
+  min-height:100%;
 }
 div#content {
   float:left;
   width:699px; 
   padding-left:20px;
   border-left: 1px dotted white;
+  min-height:100%;
 }
 div#sidebar-menu {
 	float:left;
 	width:220px;
 	margin-top:20px;
+	min-height:100%;
 	
+}
+
+div.pagination {
+	margin-top:1em;
+	margin-bottom:1em;
 }
 
 /* rails error styles */
@@ -130,18 +140,21 @@ div.item {
 
 }
 div.item-cover-image-thumb {
-	width:200px;
+	width:140px;
 	float:left;
-	margin-right:10px;
+	margin-right:20px;
 }
 div.item-data {
-	width:300px;
+	width:379px;
 	float:left;
+}
+div.item-title {
+	font-weight:bold;
 }
 div.item-cover-image-large{
 	width:auto;
 	float:left;
-	margin-right:10px;	
+	margin-right:20px;	
 }
 
 div.item-data>div {
@@ -149,4 +162,37 @@ div.item-data>div {
 }
 div.item-data>div>span {
 	font-weight:bold;
+}
+a.digital-asset>img{
+	margin-right:16px;
+	margin-bottom:16px;
+	border:2px solid white;
+    
+}
+a.digital-asset>img:hover {
+	border:2px solid #F5C544;
+}
+div#works-list>div.work {
+	margin-bottom:1em;
+}
+
+div.sidebar-admin-menu {
+	margin-top:20px;
+}
+div.admin-link, a.admin-link{
+	font-size:1.5em;
+	margin-bottom:1em;
+}
+div.subform{
+	background-color:#334455;
+	padding:10px;
+	margin-bottom:20px;
+}
+div.scrolling-subform {
+	background-color:#334455;
+	padding:10px;
+	margin-bottom:20px;
+	height:250px;
+	width:300px;
+	overflow:auto;
 }

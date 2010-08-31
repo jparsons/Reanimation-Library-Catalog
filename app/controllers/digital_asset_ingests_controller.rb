@@ -1,6 +1,5 @@
 class DigitalAssetIngestsController < ApplicationController
 
-  layout "admin"
   
   def index
     @ingests = DigitalAssetIngest.all

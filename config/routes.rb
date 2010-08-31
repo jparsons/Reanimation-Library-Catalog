@@ -7,19 +7,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :exhibitions
   
-  map.resources :exhibition_venues
 
   map.resources :digital_assets
 
   map.resources :works
-
-  map.resources :donors
-
-  map.resources :vendors
-
-  map.resources :languages
-
-  map.resources :creators
   
   map.resources :subjects
 

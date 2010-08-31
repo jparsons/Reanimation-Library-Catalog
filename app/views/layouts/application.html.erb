@@ -34,9 +34,20 @@
 	<div class="sidebar-menu-item">
 		<%= link_to 'art works made from the collection', works_path %>
 	</div>
+	<% if logged_in? && current_user.is_administrator? %>
+	<div class="sidebar-admin-menu">
+		<div class="sidebar-menu-item">
+			<%= link_to "add a new item", new_item_path %>
+		</div>		
+		<div class="sidebar-menu-item">
+			<%= link_to 'log out', logout_path %>
+		</div>
+	</div>
+	<% else %>
 	<div class="sidebar-menu-item">
 		<%= link_to 'log in', login_path %>
 	</div>
+	<% end %>
 </div>
 <div id="content">		
 	<%- flash.each do |name, msg| -%>  	

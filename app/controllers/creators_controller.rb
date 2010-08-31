@@ -1,3 +1,0 @@
-class CreatorsController < ApplicationController
-
-end

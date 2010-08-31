@@ -1,8 +1,9 @@
-<div id ="main-content">
-	<h1>Search results</h1>
-	<% if @items.blank? %>
+<% title "Search Results" %>
+<h2><%= yield(:title) %></h2>
+
+<% if @items.blank? %>
 	<p>Your search for <em><%= params[:title] %></em> returned no results.</p>
-	<% else %>
+<% else %>
 <% @items.each do |item| %>
   <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}"%></p>
 <% end %>

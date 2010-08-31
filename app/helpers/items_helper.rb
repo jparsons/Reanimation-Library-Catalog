@@ -2,7 +2,7 @@ module ItemsHelper
 
  def pagination_links(current_letter=nil)
    if current_letter.nil?
-     string = "1-9 | "
+     string = content_tag("span", "1-9 | ", :class=>"current")
    else 
      string = link_to("1-9 | ", items_path(:letter=>"1-9"))
    end
@@ -10,11 +10,11 @@ module ItemsHelper
      if letter_options.include?(letter) && current_letter != letter
        string = string + link_to(letter, items_path(:letter=>letter))
      else
-       string = string + letter
+       string = string + content_tag("span", letter, :class=>"current")
      end
      string = string + " | " unless letter == "Z"
    }
-  return string
+  return content_tag("div", string, :class=>'pagination')
  end
  
  def letter_options

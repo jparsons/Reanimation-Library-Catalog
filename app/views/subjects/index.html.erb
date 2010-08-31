@@ -1,8 +1,7 @@
-<div id="main-content">
-<h2>Browse the catalog by subject</h2>
-<p><%= will_paginate @subjects %></p>
+<% title "Browse the catalog by subject" %>
+<h2><%= yield(:title) %></h2>
+<%= will_paginate @subjects %>
 <% @subjects.each do |subject| %>
 	<p><%= link_to subject.name, subject_path(subject) %></p>
 <% end %>
-<p><%= will_paginate @subjects %></p>
-</div>
+<%= will_paginate @subjects %>

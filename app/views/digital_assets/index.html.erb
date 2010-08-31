@@ -1,10 +1,8 @@
 <% title "Images" %>
-<div id="main-content">
 <h2><%= yield(:title) %></h2>
-<p><%= will_paginate @digital_assets %></p>
+<%= will_paginate @digital_assets %>
 <% @digital_assets.each do |asset| %>
-<%= link_to image_tag(asset.scan.url(:thumb)), digital_asset_path(asset), :class=>"digital_asset" %>
+<%= link_to image_tag(asset.scan.url(:thumb)), digital_asset_path(asset), :class=>"digital-asset" %>
 <% end %>
 <br style="clear:both" />
-<p><%= will_paginate @digital_assets %></p>
-</div>
+<%= will_paginate @digital_assets %>

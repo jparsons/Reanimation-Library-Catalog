@@ -1,11 +1,10 @@
-<div id="main-content">
-<h1>Exhibitions</h1>
+<% title "Exhibitions" %>
+<h2><%= yield(:title) %></h2>
 
 <% @exhibitions.each do |exhibition| %>
 <h2><%= link_to(exhibition.title, exhibition_path(exhibition)) %></h2>
-<p><%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+<p><%= exhibition.start_date.strftime("%m/%d/%Y") %> - <%= exhibition.end_date.strftime("%m/%d/%Y") %></p>
 <p><strong><%= exhibition.exhibition_venue.name %></strong><br />
 	<%= exhibition.exhibition_venue.city %>,<%= " " + exhibition.exhibition_venue.state unless exhibition.exhibition_venue.state.blank? %> <%= " " + exhibition.exhibition_venue.country unless exhibition.exhibition_venue.country.blank? %>
 </p>
 <% end %>
-</div>

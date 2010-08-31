@@ -1,5 +1,3 @@
-<h1>Edit Item</h1>
-
 
 <% form_for @item, :html => { :multipart => true } do |f| %>
 
@@ -8,8 +6,8 @@
 <p><%= f.label :subtitle %><br />
 	<%= f.text_field :subtitle %></p>
 	<p><%= f.label :cover_image %></p>
-	<%= image_tag(@item.cover_image.url(:thumb)) %><br/>
-	<p>upload a new cover image<br />
+	<%= image_tag(@item.cover_image.url(:thumb)) if @item.cover_image.file? %>
+	<p>Upload a new cover image<br />
 	<%= f.file_field :cover_image %></p>
   <p>
     <%= f.label :collection %><br />
@@ -55,7 +53,7 @@
 </div>
 <%= render :partial=>'acquisition_form', :locals=>{:f=>f}%>
 <p><%= f.label :subjects %></p>
-<div id="item-subjects">
+<div id="item-subjects" class="scrolling-subform">
   <% for subject in Subject.all(:order=>"authority, name") %>
     <div>  
 	  <%= check_box_tag "item[subject_ids][]", subject.id, @item.subjects.include?(subject) %>  

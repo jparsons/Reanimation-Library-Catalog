@@ -1,13 +1,12 @@
 <div class="subform">
 
 	<div class="fields">
-		<h2>Donor</h2>
 	<p>
-	  <%= f.label :name %><br />
+	  <%= f.label :name, "Donor name" %><br />
 	  <%= f.text_field :name %> 
 	</p>
 	<p>
-	  <%= f.label :organization_name %><br />
+	  <%= f.label :organization_name, "Donor organization name" %><br />
 	  <%= f.text_field :organization_name %> <br />
 	</p>
 	<p> <%= remove_child_link "remove this donor", f %></p>

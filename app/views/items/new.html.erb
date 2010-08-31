@@ -1,6 +1,6 @@
 
 <% title "New Item Acquisition" %>
-<h1>New Item Acquisition</h1>
+<h2><%= yield(:title) %></h2>
 
 <% form_for @item do |f| %>
   <%= f.error_messages %>

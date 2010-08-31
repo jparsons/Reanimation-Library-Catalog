@@ -1,7 +1,7 @@
 <% form_for @digital_asset, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :item %><br />
+    <%= f.label :item, "From the item" %><br />
 	<%= f.select :item_id, Item.all(:include=>:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.display_name}", i.id]}, {:include_blank=>true} %>  </p>
   <p>
     <%= f.label :color %><br />
@@ -12,10 +12,6 @@
     <%= f.text_field :image_type %>
   </p>
   <p>
-    <%= f.label :is_marked %><br />
-    <%= f.text_field :is_marked %>
-  </p>
-  <p>
 	<%= f.label :image %><br />
 	<% unless @digital_asset.new_record? %>
 	  <%= image_tag(@digital_asset.scan.url(:thumb)) %><br/>
@@ -23,7 +19,7 @@
 	<p>upload a new cover image<br />
 	<%= f.file_field :scan %></p>
 	<p><%= f.label :subjects %></p>
-	<div id="digital-asset-digital-asset-subjects">
+	<div id="digital-asset-digital-asset-subjects" class="scrolling-subform">
 	  <% for digital_asset_subject in DigitalAssetSubject.all(:order=>"authority, name") %>
 	    <div>  
 		  <%= check_box_tag "digital_asset[digital_asset_subject_ids][]", digital_asset_subject.id, @digital_asset.digital_asset_subjects.include?(digital_asset_subject) %>  

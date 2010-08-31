@@ -1,11 +1,7 @@
-<h2>
-	Hello, <%= @current_user.username %>
-</h2>
-<p>
-	<%= link_to 'catalog a new item', new_item_path, :class=>"dashboard" %><br />
-	<%= link_to 'catalog a new work', new_work_path, :class=>"dashboard" %><br />
-	<%= link_to 'catalog a new exhibition', new_exhibition_path, :class=>"dashboard" %><br />
-	
-	<%= link_to 'view a list of items awaiting images / cataloging', acquired_items_path, :class=>"dashboard" %>
-</p>
+<% title "Admin Dashboard" %>
+<h2><%= yield(:title) %></h2>
+<p>Hello, <b><%= @current_user.username %></b>. You are now logged in.</p> 
+<p>Please see use the options in the sidebar menu to add or edit catalog content.</p>
+
+
 

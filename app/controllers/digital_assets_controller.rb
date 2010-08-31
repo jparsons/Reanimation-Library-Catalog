@@ -1,14 +1,11 @@
 class DigitalAssetsController < ApplicationController
-  layout 'admin'
   
   def index
-    @digital_assets = DigitalAsset.all.paginate(:page=>params[:page], :per_page=>50, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
-    render :layout=>'application'
+    @digital_assets = DigitalAsset.all.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
   end
   
   def show
     @digital_asset = DigitalAsset.find(params[:id])
-    render :layout=>'application'
     
   end
   

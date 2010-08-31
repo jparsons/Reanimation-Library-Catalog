@@ -1,22 +1,11 @@
-<% content_for :head do -%>
-<script type="text/javascript">
+<% title "Search Results" %>
+<h2><%= yield(:title) %></h2>
 
-</script>
-<% end %>
-<div id="main-content">
-<h2>Search <%= "Results" unless @items.blank? %></h2>
-<% form_tag search_path, :method=>:get, :id=>"search_form" do %>
-<p>title: <%= text_field_tag 'q', params[:q] %>
-<%= link_to 'search', "", :class=>"submit_button" %></p>
-
-<% end %>
-
-	<% if params[:q] && @items.blank? %>
-	<p>Your search for <em><%= params[:q] %></em> returned no results.</p>
-	<% else %>
-
+<% if @items.blank? %>
+	<p>Your search for <em><%= params[:title] %></em> returned no results.</p>
+<% else %>
 <% @items.each do |item| %>
-  <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}", item_path(item) %></p>
+  <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}", item_path(item, :q=>params[:q] )%></p>
 <% end %>
 <% end %>
 </div>

@@ -1,7 +1,8 @@
 class WorksController < ApplicationController
   
   def index
-    @works = Work.all
+    
+    @works = Work.all.paginate(:page=>params[:page], :per_page=>20, :include=>:work_creators)
   end
   
   def show
@@ -34,7 +35,7 @@ class WorksController < ApplicationController
   
   def edit
     @work = Work.find(params[:id], :include=>[:items])
-    render :layout => "admin"
+
   end
   
   def update

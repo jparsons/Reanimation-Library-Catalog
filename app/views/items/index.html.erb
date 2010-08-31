@@ -1,9 +1,24 @@
-<h2>Browse the catalog by title</h2>
-<div class="pagination-links"><%= pagination_links(params[:letter]) %></div>
+<% title "Browse by Title" %>
+<h2><%= yield(:title) %></h2>
+<%= pagination_links(params[:letter]) %>
   <div id="item-list">
+  <% if logged_in? && current_user.is_administrator? %>
+	  <div class="admin-link">
+	    <%= link_to "Add a new item", new_item_path %><br />
+	  </div> 
+  <% end %>	
   <% for item in @items %>
     <div class="item">
-	  	<div class="item-cover-image-thumb"><%= image_tag(item.cover_image.url(:thumb)) %></div>
+	  	<div class="item-cover-image-thumb">
+	      <% if item.cover_image.file? %><%= image_tag(item.cover_image.url(:thumb)) %><% end %>
+	      <br />
+	      <br />
+	      <% if logged_in? && current_user.is_administrator? %>
+		    <div class="admin-link">
+		      <%= link_to 'Edit this item', edit_item_path(item) %>
+		    </div>
+		  <% end %>
+	    </div>
 	  	<div class="item-data">
 	      <div class="item-title"><%= link_to "#{item.title} #{item.subtitle}", item_path(item) %></div>
       	  <div class="item-creators "><span class="item-label">Creator(s):</span> <%= item.creators.map{|c| c.display_name }.join("; ")%></div>
@@ -15,19 +30,13 @@
 		  <div class="item-subjects"><span class="item-label">Subject(s):</span> <%=h item.subjects.map{|s| s.name }.join(", ") %></div>
 		  <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.legacy_id %></div>
 		  <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name.nil? ? '' : item.collection_name.split(": ")[1] %></div>
-		</div>
-	</div>
-	<% if logged_in? && current_user.is_administrator? %>
-	<div class="admin-links">
-	  <%= link_to 'edit item', edit_item_path(item) %>
-	</div>
-	<% end %>
-  <% end %>
+
+
+	    </div>
+	  </div>
+      <% end %>
+
   </div>
-  <% if logged_in? && current_user.is_administrator? %>
-    <div class="admin-links">
-      <%= link_to "New Item", new_item_path %>
-    </div>
-  <% end %>
- <div class="pagination-links"><%= pagination_links(params[:letter]) %></div>
+
+ <%= pagination_links(params[:letter]) %>
 
