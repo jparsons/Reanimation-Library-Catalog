@@ -17,6 +17,18 @@ function replace_content(link, association, content){
 function remove_field(element, item) {
   element.up(item).remove();
 }
+$(document).ready(function() 
+{ 
+  $(".submit_button").click(function(){
+	  $("#search_form").submit();
+	  return false;
+  });
 
+  $("#q").focus(function(){
+	if ($(this).val() == "search the catalog") {
+		$(this).val('');
+	}
+  });
+});
 
 

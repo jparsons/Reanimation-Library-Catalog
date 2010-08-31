@@ -1,0 +1,1 @@
+What size to make the images? Square image thumbnails or maintain aspect ratio?

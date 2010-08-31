@@ -11,7 +11,7 @@ class DigitalAsset < ActiveRecord::Base
   has_attached_file :scan,
     :styles => {
       :thumb=> "100x100#",
-      :large =>   "400x00>" }
+      :large =>   "400x400>" }
 end
 
 # == Schema Information

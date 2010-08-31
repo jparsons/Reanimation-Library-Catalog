@@ -1,6 +1,10 @@
 class SearchController < ApplicationController
   def new
-    @items = Item.search(params)
+    if params[:q].blank?
+      @items = []
+    else
+      @items = Item.search(params)
+    end
   end
 
   def show

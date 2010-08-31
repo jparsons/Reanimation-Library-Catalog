@@ -1,45 +1,60 @@
 body {
- font-family: arial, sans-serif;
- font-size: 12px;
- text-align: left;
- font-weight: 100;
- height: 100%;
- margin-bottom: 1px;
- background-color: #1E3147;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 100;
+  height: 100%;
+  margin-bottom: 1px;
+  background-color: #1E3147;
+  color:#ffffff;
 }
 
-a img {
-	border:2px solid #ffffff;
+a {
+ text-decoration: none;
+ color: #F56A25;
 }
 
-a.digital_asset:hover img {
-	border:2px solid #00ff00;
+a
+{
+outline: none;
 }
 
-a.digital_asset {
-
-}
-a.digital_asset img {
-	margin-right:12px;
-	margin-bottom:20px;
-	padding:0;
+a:hover {
+ text-decoration:none;
+ color:#F5C544;
 }
 
-
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+a.submit-button {
+ border:1px solid #F56A25;
+ padding:3px;
 }
 
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+a.submit-button:hover {
+  border:1px solid #F5C544;	
 }
+
+/* page layout */ 
+
+div#page {
+  margin-left:auto;
+  margin-right:auto;
+  width:940px;
+  overflow:auto;
+}
+div#content {
+  float:left;
+  width:699px; 
+  padding-left:20px;
+  border-left: 1px dotted white;
+}
+div#sidebar-menu {
+	float:left;
+	width:220px;
+	margin-top:20px;
+	
+}
+
+/* rails error styles */
 
 #flash_notice, #flash_error {
   padding: 5px 8px;
@@ -95,58 +110,43 @@ a.digital_asset img {
   list-style: disc;
 }
 
-div.subform {
-  border:thin dotted #747474;
-  width:270px;
-}
-div.fields {
-	margin:12px;
-}
-
-div#login, div#signup {
-	width:265px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color:#1e2935;
-	padding-top:20px;
-	padding-bottom:20px;
-	
-}
-div#signup>p {
-  color:#747474;
-
-}
-label{
-	color:#F56A25;
-}
-div#login>form, div#login>h2, div#signup>form, div#signup>h2, div#signup>p{
-	margin-left:20px;
-	margin-right:20px;
-}
-div.aboutmenu {
-	height:100%;
-	
-}
-div#main-content{
-	float:left;
-	margin-left:20px;
-	width:620px;
-	color:#ffffff;
+/* sidebar */
+input.sidebar {
+	font-size:.9em;
+	width:120px;
 }
 
 
-div.thumbnail
-{
-float: left;
-width: 100px;
-border: 1px solid #999;
-}
-// local overrides //
 
-div.catalogimage {
+/* item list page */
+div.pagination-links {
+	margin-bottom:20px;
+	clear:both;
+}
+div.item {
+	clear:both;
+	margin-bottom:40px;
+	overflow:auto;
+
+}
+div.item-cover-image-thumb {
 	width:200px;
-	
+	float:left;
+	margin-right:10px;
 }
-div.catalog {
-	width:390px;
+div.item-data {
+	width:300px;
+	float:left;
+}
+div.item-cover-image-large{
+	width:auto;
+	float:left;
+	margin-right:10px;	
+}
+
+div.item-data>div {
+    margin-bottom:.5em;
+}
+div.item-data>div>span {
+	font-weight:bold;
 }

@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "easy_roles", :source=>"http://gemcutter.org"
   config.gem "aasm"
+  config.gem 'acts_as_ferret', :version => '~> 0.4.8'
 
   
   # Only load the plugins named here, in the order given (default is alphabetical).

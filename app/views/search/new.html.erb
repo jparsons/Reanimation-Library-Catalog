@@ -1,12 +1,6 @@
 <% content_for :head do -%>
 <script type="text/javascript">
-  $(document).ready(function() 
-  { 
-   $(".submit_button").click(function(){
-	$("#search_form").submit();
-	return false;
-   });
-  });
+
 </script>
 <% end %>
 <div id="main-content">
@@ -20,6 +14,7 @@
 	<% if params[:q] && @items.blank? %>
 	<p>Your search for <em><%= params[:q] %></em> returned no results.</p>
 	<% else %>
+
 <% @items.each do |item| %>
   <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}", item_path(item) %></p>
 <% end %>
