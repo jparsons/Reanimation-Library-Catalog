@@ -13,7 +13,7 @@ set :user, "andrew"
 default_run_options[:pty] = true
 set :repository, "git://github.com/jparsons/Reanimation-Library-Catalog.git"
 set :scm, "git"
-set :branch, "master"
+set :branch, "generic"
 #set :deploy_via, :remote_cache
  
 # This is related to site5 too.
