@@ -4,8 +4,6 @@
 <% if @items.blank? %>
 	<p>Your search for <em><%= params[:title] %></em> returned no results.</p>
 <% else %>
-<% @items.each do |item| %>
-  <p><%= link_to "#{item.title} #{item.subtitle.blank? ? "" : "<br />" + item.subtitle}"%></p>
-<% end %>
+   <%= render :partial=>"items/item", :collection=>@items%>
 <% end %>
 </div>

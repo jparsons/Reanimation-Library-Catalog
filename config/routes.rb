@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :exhibitions
   
+  map.resources :vendors
 
   map.resources :digital_assets
 
