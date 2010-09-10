@@ -6,7 +6,6 @@ ENV['GEM_PATH'] = '/home/andrew/gems:/usr/lib/ruby/gems/1.8'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -25,6 +24,8 @@ Rails::Initializer.run do |config|
   config.gem "easy_roles", :source=>"http://gemcutter.org"
   config.gem "aasm"
   config.gem 'acts_as_ferret', :version => '~> 0.4.8'
+  config.gem 'ferret'
+
 
   
   # Only load the plugins named here, in the order given (default is alphabetical).
