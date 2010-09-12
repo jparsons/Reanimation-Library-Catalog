@@ -65,8 +65,8 @@ class DigitalAssetIngest < ActiveRecord::Base
       asset.scan = file
       asset.save!
       item.digital_assets << asset
-      #File.delete(filename)
-      FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/deletes/")
+      File.delete(filename)
+      #FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/deletes/")
       
     end
     

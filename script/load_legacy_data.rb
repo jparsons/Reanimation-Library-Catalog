@@ -2,7 +2,6 @@ require 'hpricot'
 
 Item.destroy_all
 Subject.destroy_all
-Donor.destroy_all
 
 
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/item.xml"))
@@ -83,16 +82,20 @@ xml_document.search("//row").each {|node|
 }
 
 ## DONORS ## 
-xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/item_donors.xml"))
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/donors_items.xml"))
 xml_document.search("//row").each {|node|
 
   names = node.search("/donor/data")
-  items = node.search("/item_id/data")
+  items = node.search("/item_id")
   names.each_with_index {|e, i|
-    item = Item.find(items[i].inner_html())
-    donor = Donor.find_or_create_by_name(e.inner_html())
+    #puts item.first.inner_html
+    unless e.inner_html().blank?
+     
+      item = Item.find(items.first.inner_html())
+      donor = Donor.find_or_create_by_name(e.inner_html())
 
-    item.donors << donor if item
+      item.donors << donor if item
+    end
   }
 }
 

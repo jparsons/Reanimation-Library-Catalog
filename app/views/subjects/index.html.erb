@@ -2,6 +2,6 @@
 <h2><%= yield(:title) %></h2>
 <%= will_paginate @subjects %>
 <% @subjects.each do |subject| %>
-	<p><%= link_to subject.name, subject_path(subject) %></p>
+	<p><%= link_to "#{subject.name} (#{pluralize(subject.items.count, "item")})", subject_path(subject) %></p>
 <% end %>
 <%= will_paginate @subjects %>
