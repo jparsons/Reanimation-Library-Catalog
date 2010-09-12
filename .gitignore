@@ -11,3 +11,4 @@ public/system/cover_image_uploads/*
 public/system/**/*
 db/legacy/*
 index/**/*
+public/system/Archive.zip
