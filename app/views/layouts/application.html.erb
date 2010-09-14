@@ -29,10 +29,10 @@
 		<%= link_to 'browse subjects', subjects_path %>
 	</div>
 	<div class="sidebar-menu-item">
-		<%= link_to 'exhibitions involving the collection', exhibitions_path %>
+		<%= link_to 'exhibitions', exhibitions_path %>
 	</div>
 	<div class="sidebar-menu-item">
-		<%= link_to 'art works made from the collection', works_path %>
+		<%= link_to 'art works', works_path %>
 	</div>
 	<% if logged_in? && current_user.is_administrator? %>
 	<div class="sidebar-admin-menu">
