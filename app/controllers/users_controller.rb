@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if User.count < 2
-      @user.add_role 'administrator'
+      @user.role = "administrator"
     end
     if @user.save
       flash[:notice] = "Thank you for signing up! You are now logged in."
