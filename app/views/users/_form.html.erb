@@ -16,9 +16,11 @@
     <%= f.label :password_confirmation, "Confirm Password" %><br />
     <%= f.password_field :password_confirmation %> 
   </p>
+  <% if logged_in? && current_user.is_administrator? %>
   <p>
 	<%= f.label :role, "Authorization level" %><br />
 	<%= f.select :role, USER_ROLES, :include_blank=>true %>
   </p>
+  <% end %>
   <p><%= f.submit %></p>
 <% end %>
