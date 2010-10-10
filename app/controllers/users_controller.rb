@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter {|c| c.send(:require_role, :administrator) }
+  before_filter, :except=>[:new] {|c| c.send(:require_role, :administrator) }
   
   def new
     @user = User.new
