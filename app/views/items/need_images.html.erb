@@ -1,4 +1,4 @@
 <h1>These Items Need Images</h2>
 	<% @items.each do |item| %>
-		<p><%= item.title %><%= item.subtitle.nil? ? "" : ": #{item.subtitle}" %><%= link_to "check for images", item_path(item) %> <%= link_to "continue cataloging", edit_item_path(item) %></p>
+		<p><%= item.title %><%= item.subtitle.nil? ? "" : ": #{item.subtitle}" %>&nbsp;<%= link_to "check for images", item_path(item) %> </p>
 	<% end %>

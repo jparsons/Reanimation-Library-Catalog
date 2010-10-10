@@ -1,7 +1,25 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  easy_roles :roles
+  
+  def method_missing(method)
+    begin
+      super
+    rescue
+      if method.to_s =~ /is_.*\?/
+        return  role.downcase == method.to_s.gsub(/is_(.*)\?/, '\1').downcase
+      else
+        super
+      end
+    end
+  end
+  
+  def in_authentication_group?(roles)
+    roles.include? role
+  end
+ 
+
 end
+
 
 # == Schema Information
 #
@@ -15,6 +33,6 @@ end
 #  password_salt     :string(255)
 #  created_at        :datetime
 #  updated_at        :datetime
-#  roles             :string(255)     default("--- []")
+#  role              :string(255)
 #
 

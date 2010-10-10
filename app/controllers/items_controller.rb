@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :admin_required, :only => [:new, :edit, :create, :update, :destroy]
-  
+ before_filter :only=>[:new, :edit] do |c| c.send(:require_role, :administrator)  end
   def index
     letter = params[:letter] || "1-9"
     if letter == "1-9"

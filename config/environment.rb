@@ -25,6 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "aasm"
   config.gem 'acts_as_ferret', :version => '~> 0.4.8'
   config.gem 'ferret'
+  config.gem 'delayed_job'
 
 
   

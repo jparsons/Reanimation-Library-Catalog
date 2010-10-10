@@ -5,6 +5,11 @@
 </h1><%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
 <div class="item-cover-image-large">
 	<%= image_tag(@item.cover_image.url(:large)) %>
+	<% if logged_in? && current_user.is_administrator? %>
+	    <div class="admin-link">
+	      <%= link_to 'Edit this item', edit_item_path(@item) %>
+	    </div>
+	  <% end %>
 </div>
 <div class="item-data">
 	<div class="item-creators">

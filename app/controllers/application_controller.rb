@@ -9,27 +9,12 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
   
-  def admin_required
-    unless logged_in? && @current_user.is_administrator?
-      if logged_in?
-        flash[:notice] = "You do not have clearance to view this page"
-        redirect_to root_url
-      else
-        flash[:notice] = "You have to log in before you can see that page."
-        redirect_to login_url
-      end
-    end
+  def cataloger_required 
+    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES)
   end
   
-  def cataloger_required
-    unless logged_in? && (@current_user.is_administrator? || @current_user.is_cataloger?)
-      if logged_in?
-        flash[:notice] = "You do not have clearance to view this page"
-        redirect_to root_url
-      else
-        flash[:notice] = "You have to log in before you can see that page."
-        redirect_to login_url
-      end
-    end
+  def require_role(role)
+      logged_in? && current_user.send("is_#{role.to_s}?") ? true : redirect_to(root_url)
   end
+  
 end

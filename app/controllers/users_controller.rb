@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
-  before_filter :admin_required, :only=> [:index]
+  before_filter {|c| c.send(:require_role, :administrator) }
+  
   def new
     @user = User.new
   end
@@ -43,4 +44,6 @@ class UsersController < ApplicationController
     redirect_to users
   
   end
+  
+
 end
