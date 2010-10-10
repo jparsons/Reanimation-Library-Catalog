@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter, :except=>[:new] {|c| c.send(:require_role, :administrator) }
+  before_filter :except=>[:new] do |c| c.send(:require_role, :administrator) end
   
   def new
     @user = User.new
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    if User.all.blank?
+    if User.count < 2
       @user.add_role 'administrator'
     end
     if @user.save
