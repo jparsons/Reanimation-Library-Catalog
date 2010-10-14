@@ -75,11 +75,13 @@ div.pagination {
   background-color: #CFC;
   border: solid 1px #6C6;
   width:300px;
+  color:#1E3147;
 }
 
 #flash_error {
   background-color: #FCC;
   border: solid 1px #C66;
+  color:#1E3147;
 }
 
 .fieldWithErrors {
@@ -93,6 +95,7 @@ div.pagination {
   padding-bottom: 12px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  color:#1E3147;
 }
 
 #errorExplanation h2 {
@@ -102,7 +105,7 @@ div.pagination {
   font-size: 12px;
   margin: 0;
   background-color: #c00;
-  color: #fff;
+  color:#ffffff;
 }
 
 #errorExplanation p {

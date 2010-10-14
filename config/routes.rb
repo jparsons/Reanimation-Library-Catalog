@@ -22,7 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.resources :user_sessions
   
-
+  map.resources :digital_asset_ingests
+  
   map.resources :users
   
   map.admin_dashboard 'dashboard', :controller=>'admin_dashboard', :action=>"index"

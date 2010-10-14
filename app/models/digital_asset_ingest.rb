@@ -1,6 +1,6 @@
 class DigitalAssetIngest < ActiveRecord::Base
-  
-  # add a has_and_belongs_to_many through for items to keep track of which items it ingested images for each time.
+  default_scope :order=>"created_at desc"
+  has_one :process_log 
   
   def process_digital_assets
      # get a list of all of the images in the DIGITAL_ASSET_UPLOADS folder
@@ -8,29 +8,26 @@ class DigitalAssetIngest < ActiveRecord::Base
     
      # if there are no images found, create a status of "no images found" and exit
     if file_list.size == 0 
-      self.status = "No new files found"
+      process_log.log_entries << LogEntry.create!(:message=>"No new files found")
        
     else    # if there are new images found, process them
-      
+      process_log.log_entries << LogEntry.create(:message=>"Found #{file_list.size.to_s} new files")
       # each image will be prefixed with the id or legacy id of an item 
       # so, get a list of all the unique prefixes in the folder
       
       prefixes = unique_prefixes(file_list)     
-      self.status = "New images have been found"
       
-    end
-    
-    self.status = "Adding images"
-    prefixes.each do |prefix|
-      # for each prefix, check to see if you can find the image by id
-      item = Item.find_by_id(prefix)
-      # if not, try the legacy id
-      if item.nil?  # if you don't find a matching item then put the images into a reject folder
-        move_to_reject_folder(prefix)
-      else  # if you do find one then match and delete all the images
-        match_and_delete(item,prefix)
+
+      prefixes.each do |prefix|
+        # for each prefix, check to see if you can find the image by id
+        item = Item.find_by_id(prefix)
+        # if not, try the legacy id
+        if item.nil?  # if you don't find a matching item then put the images into a reject folder
+          move_to_reject_folder(prefix)
+        else  # if you do find one then match and delete all the images
+          match_and_delete(item,prefix)
+        end
       end
-      
     end
     
   end
@@ -66,6 +63,7 @@ class DigitalAssetIngest < ActiveRecord::Base
       asset.save!
       item.digital_assets << asset
       File.delete(filename)
+      process_log.log_entries << LogEntry.new(:message=>"Matched #{filename} with #{item.display_title}")
       #FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/deletes/")
       
     end
@@ -76,7 +74,8 @@ class DigitalAssetIngest < ActiveRecord::Base
     FileUtils.mkdir_p(DIGITAL_ASSET_UPLOADS_DIR + "/rejects/")
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/#{prefix}*.*")
     file_list.each do |filename|
-      # File.move doesn't exist
+
+      process_log.log_entries << LogEntry.new(:message=>"Could not find a match for #{filename}. It has been moved to the rejects folder")
       FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/rejects/")
     end
     

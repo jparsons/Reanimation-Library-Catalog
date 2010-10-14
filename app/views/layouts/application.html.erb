@@ -56,7 +56,10 @@
 		</div>
 		<div class="sidebar-menu-item">
 			<%= link_to "add a new user", new_user_path %>
-		</div>			
+		</div>	
+		<div class="sidebar-menu-item">
+			<%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
+		</div>		
 	</div>
 	<% end %>
 	<% if logged_in? %>

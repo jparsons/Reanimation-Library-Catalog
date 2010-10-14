@@ -1,5 +1,7 @@
 class WorksController < ApplicationController
   
+  before_filter do |c| c.send(:require_group, CATALOGER_ROLES) end
+  
   def index
     
     @works = Work.all.paginate(:page=>params[:page], :per_page=>20, :include=>:work_creators)
@@ -11,7 +13,6 @@ class WorksController < ApplicationController
   
   def new
     @work = Work.new
-    render :layout => "admin"
     5.times { @work.work_images.build }
   end
   

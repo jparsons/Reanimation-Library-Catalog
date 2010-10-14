@@ -10,11 +10,15 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   def cataloger_required 
-    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES)
+    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES) ? true : redirect_to(root_url)
   end
   
   def require_role(role)
       logged_in? && current_user.send("is_#{role.to_s}?") ? true : redirect_to(root_url)
+  end
+  
+  def require_group(group)
+      logged_in? && group.include?(current_user.role) ? true : redirect_to(root_url)
   end
   
 end

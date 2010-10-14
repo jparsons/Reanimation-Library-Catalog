@@ -1,5 +1,11 @@
-<% @digital_asset_ingests.each  do %>
-	
-	
-	
+<% title "Process uploaded images" %>
+<h2><%= yield(:title) %></h2>
+<% form_for @digital_asset_ingest do |f| %>
+<%= f.submit "check for new images and process them"%>
 <% end %>
+<%= will_paginate @digital_asset_ingests %>
+
+<% @digital_asset_ingests.each  do |digital_asset_ingest| %>
+<%= digital_asset_ingest.created_at.strftime("%m/%d/%Y") %><br />
+<% end %>
+<%= will_paginate @digital_asset_ingests %>
