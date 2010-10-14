@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_group(group)
-      logged_in? && group.include?(current_user.role) ? true : redirect_to(root_url)
+      logged_in? && group.include?(current_user.role.downcase) ? true : redirect_to(root_url)
   end
   
 end

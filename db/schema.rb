@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20101014182444) do
     t.integer  "legacy_id"
     t.string   "cover_image_file_name"
     t.string   "cover_image_content_type"
-    t.integer  "cover_image_file_size"
+    t.integer  "cover_image_image_file_size"
     t.datetime "cover_image_updated_at"
     t.string   "barcode"
     t.boolean  "has_marc_record"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20101014182444) do
     t.boolean  "is_marked"
     t.integer  "vendor_id"
     t.date     "date_acquired"
-    t.decimal  "price_paid",               :precision => 8, :scale => 2
+    t.decimal  "price_paid",                  :precision => 8, :scale => 2
     t.string   "acquisition_type"
     t.string   "gift_type"
     t.text     "acquisition_note"
