@@ -6,3 +6,15 @@ class LogEntryTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: log_entries
+#
+#  id             :integer         not null, primary key
+#  process_log_id :integer
+#  message        :text
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+

@@ -17,6 +17,25 @@ function replace_content(link, association, content){
 function remove_field(element, item) {
   element.up(item).remove();
 }
+$(function () {  
+  if ($('.process-log').length > 0) {  
+    setTimeout(update_log_entries, 5000);  
+  }  
+});  
+  
+function update_log_entries() {  
+  process_log_id = $(".process-log").attr("id");
+  after_id = $(".entry:last").attr("id");
+  if (after_id == undefined){
+	after_id = "";
+  } else {
+	after_id = after_id.replace(/entry-/, "");
+  }
+  process_log_id = process_log_id.replace(/process-log-/, "");
+  $.getScript('/log_entries.js?process_log_id=' + process_log_id + '&after_id=' + after_id);  
+  setTimeout(update_log_entries, 5000);  
+}
+
 $(document).ready(function() 
 { 
   $(".submit_button").click(function(){

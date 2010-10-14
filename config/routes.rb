@@ -26,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users
   
+  map.resources :log_entries
+  
   map.admin_dashboard 'dashboard', :controller=>'admin_dashboard', :action=>"index"
 
   # The priority is based upon order of creation: first created -> highest priority.

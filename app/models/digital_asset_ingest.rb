@@ -2,6 +2,11 @@ class DigitalAssetIngest < ActiveRecord::Base
   default_scope :order=>"created_at desc"
   has_one :process_log 
   
+  def has_images_to_process?
+     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/*.*")
+     return file_list.size > 0
+  end
+  
   def process_digital_assets
      # get a list of all of the images in the DIGITAL_ASSET_UPLOADS folder
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/*.*")
@@ -29,6 +34,10 @@ class DigitalAssetIngest < ActiveRecord::Base
         end
       end
     end
+    
+    self.status = "Complete"
+    self.end_time = Time.now()
+    self.save!
     
   end
   
@@ -97,14 +106,16 @@ class DigitalAssetIngest < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: digital_asset_ingests
 #
 #  id         :integer         not null, primary key
-#  date       :date
 #  status     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  start_time :datetime
+#  end_time   :datetime
 #
 

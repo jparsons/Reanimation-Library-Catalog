@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101012230015) do
+ActiveRecord::Schema.define(:version => 20101014182444) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -38,10 +38,11 @@ ActiveRecord::Schema.define(:version => 20101012230015) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "digital_asset_ingests", :force => true do |t|
-    t.date     "date"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "digital_asset_subject_authorities", :force => true do |t|
@@ -139,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20101012230015) do
     t.integer  "legacy_id"
     t.string   "cover_image_file_name"
     t.string   "cover_image_content_type"
-    t.integer  "cover_image_image_file_size"
+    t.integer  "cover_image_file_size"
     t.datetime "cover_image_updated_at"
     t.string   "barcode"
     t.boolean  "has_marc_record"
@@ -156,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20101012230015) do
     t.boolean  "is_marked"
     t.integer  "vendor_id"
     t.date     "date_acquired"
-    t.decimal  "price_paid",                  :precision => 8, :scale => 2
+    t.decimal  "price_paid",               :precision => 8, :scale => 2
     t.string   "acquisition_type"
     t.string   "gift_type"
     t.text     "acquisition_note"
@@ -192,8 +193,6 @@ ActiveRecord::Schema.define(:version => 20101012230015) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "digital_asset_ingest_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
   end
 
   create_table "series", :force => true do |t|

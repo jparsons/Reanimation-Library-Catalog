@@ -16,6 +16,7 @@ class DigitalAsset < ActiveRecord::Base
   default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 end
 
+
 # == Schema Information
 #
 # Table name: digital_assets
@@ -31,5 +32,6 @@ end
 #  scan_file_size    :integer
 #  item_id           :integer
 #  is_marked         :boolean
+#  page              :string(255)
 #
 
