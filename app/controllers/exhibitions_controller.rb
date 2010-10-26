@@ -29,7 +29,7 @@ class ExhibitionsController < ApplicationController
     @exhibition = Exhibition.new
 
     respond_to do |format|
-      format.html { render :layout => 'admin' }
+      format.html
       format.xml  { render :xml => @exhibition }
     end
   end
@@ -37,7 +37,6 @@ class ExhibitionsController < ApplicationController
   # GET /exhibitions/1/edit
   def edit
     @exhibition = Exhibition.find(params[:id])
-    render :layout => 'admin'
   end
 
   # POST /exhibitions

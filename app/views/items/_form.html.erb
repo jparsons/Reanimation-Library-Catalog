@@ -1,4 +1,12 @@
-
+<%- content_for :head do -%>
+<script>
+$(document).ready(function(){
+	$("#item_publisher_name").autocomplete({
+	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.sort.to_json %>
+	});	
+})
+</script>
+<%- end -%>
 <% form_for @item, :html => { :multipart => true } do |f| %>
 
 <p><%= f.label :title %><br />
@@ -29,11 +37,19 @@
 <p><%= f.label :city %><br />
     <%= f.text_field :publisher_city %></p>
 <p><%= f.label :state %><br />
-	<%= f.text_field :publisher_state %></p>
+	<%= f.select :publisher_state, STATES %></p>
 <p><%= f.label :country %><br />
-	<%= f.text_field :publisher_country %></p>	
+	<%= f.select :publisher_country, COUNTRIES %></p>	
 <p><%= f.label :copyright %><br />
 	<%= f.text_field :copyright %></p>
+<p><%= f.label :corporate_author %><br />
+	<%= f.text_field :corporate_author %>
+	</p>
+<p><%= f.label :is_government_document, "Is government document?" %><br />
+	<%= f.select :is_government_document, {"no"=>"false", "yes"=>"true" } %>
+</p>
+
+
 </div>	
 <div id="physical_description">
 	<h2>Physical Description</h2>
@@ -51,6 +67,15 @@
 	<p><%= f.label :isbn_issn, "ISBN / ISSN" %><br />
 		<%= f.text_field :isbn_issn %></p>		
 </div>
+<div id="metadata">
+	<h2>Metadata</h2>
+	<p><%= f.label :has_marc_record, "Has a MARC record?" %><br />
+		<%= f.select :has_marc_record, {"no"=>"false", "yes"=>"true"} %>
+	</p>
+	<p><%= f.label :metadata_notes %><br />
+		<%= f.text_area :metadata_notes %>
+	</p>
+</div>
 <%= render :partial=>'acquisition_form', :locals=>{:f=>f}%>
 <p><%= f.label :subjects %></p>
 <div id="item-subjects" class="scrolling-subform">
@@ -66,5 +91,5 @@
 <div id="subjects">
 
 </div>
-<%= f.submit %>
+<%= f.submit SAVE_TEXT %>&nbsp;&nbsp;<%= f.submit PUBLISH_TEXT %>
 <% end %>

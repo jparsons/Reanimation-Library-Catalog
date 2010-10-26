@@ -18,7 +18,9 @@ $(document).ready(function(){
 	$("#item_acquisition_type").autocomplete({
 	    source: <%= ACQUISITION_TYPES.to_json %>
 	});
-	
+	$("#item_acquired_for").autocomplete({
+	    source: <%= Item.all.map{|i| i.acquired_for}.uniq.to_json %>
+	});	
 })
 </script>
 <%- end -%>
@@ -46,10 +48,11 @@ $(document).ready(function(){
 	<%= f.text_field :date_acquired %> </p>
   <p><%= f.label :acquisition_type %><br />
   <%= f.text_field :acquisition_type %></p>
-  <p><%= f.label :gift_type %><br />
-	<%= f.text_field :gift_type %></p>
+
   <p><%= f.label :acquired_for %><br />
 	<%= f.text_field :acquired_for %></p>
   <p><%= f.label :acquisition_note %><br />
 	<%= f.text_area :acquisition_note %></p>
+  <p><%= f.label :provenance %><br />
+	<%= f.text_field :provenance %></p>
 

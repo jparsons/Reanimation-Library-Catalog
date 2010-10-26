@@ -2,8 +2,8 @@
 <html>
 <head>
 <title><%= yield(:title) || "Catalog" %></title>
-<%= javascript_include_tag 'jquery', 'application', 'jquery.colorbox-min' %>
-<%= stylesheet_link_tag 'application.css', 'colorbox' %>
+<%= javascript_include_tag 'jquery', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min' %>
+<%= stylesheet_link_tag 'application.css', 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <%= yield(:head) %>
 </head>

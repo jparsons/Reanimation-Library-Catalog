@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101014182444) do
+ActiveRecord::Schema.define(:version => 20101021032212) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -157,13 +157,13 @@ ActiveRecord::Schema.define(:version => 20101014182444) do
     t.boolean  "is_marked"
     t.integer  "vendor_id"
     t.date     "date_acquired"
-    t.decimal  "price_paid",                  :precision => 8, :scale => 2
+    t.decimal  "price_paid"
     t.string   "acquisition_type"
-    t.string   "gift_type"
     t.text     "acquisition_note"
     t.string   "acquired_for"
     t.integer  "legacy_record_id"
     t.string   "cataloging_status"
+    t.string   "provenance"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|

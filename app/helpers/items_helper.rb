@@ -21,4 +21,5 @@ module ItemsHelper
    @letter_options_list ||= (Item.all.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
  end
 
+
 end

@@ -22,8 +22,13 @@ xml_document.search("//row").each {|node|
     params[fields[i].to_sym] = content.gsub(/&apos;/, "'").gsub(/&amp;/, "&")
     #puts "#{fields[i]} = #{content}"
 
+    government_document_node = node.search("government_document")
+    if government_document_node && government_document_node.inner_html().downcase == "government document"
+      params[:is_government_document] = true
+    end
   end
   params["legacy_record_id"] = legacy_record_id
+
   unless params[:id].blank?
     item = Item.create(params)
     subjects = node.search("subject_name/data")
@@ -112,8 +117,8 @@ xml_document.search("//row").each {|node|
       vendor_legacy_id = vendor_id_node.inner_hml()
     end
     params = {}
-    nodes = %w(date_acquired price_paid acquisitions_type gift_type acquisitions_note acquired_for)
-    fields = %w(date_acquired price_paid acquisition_type gift_type acquisition_note acquired_for)
+    nodes = %w(date_acquired price_paid acquisitions_type acquisitions_note acquired_for)
+    fields = %w(date_acquired price_paid acquisition_type acquisition_note acquired_for)
     nodes.each_with_index do |name, i|
       elements = node.search(name+"/data")
       content = elements.inner_html()
