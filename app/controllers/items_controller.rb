@@ -46,6 +46,7 @@ class ItemsController < ApplicationController
   
   def edit
     @item = Item.find(params[:id])
+    
   end
   
   def update
@@ -54,15 +55,15 @@ class ItemsController < ApplicationController
     # functionality
 
       
-    subject_ids = params[:item][:subject_ids]
-    params[:item].delete(:subject_ids)
+    #subject_ids = params[:item][:subject_ids]
+    #params[:item].delete(:subject_ids)
     @item = Item.find(params[:id])
     if params[:commit] == SAVE_TEXT
       @item.cataloging_status = "private"
     elsif params[:commit] == PUBLISH_TEXT
       @item.cataloging_status = "published"
     end
-    @item.update_attribute(:subject_ids, subject_ids)
+   # @item.update_attribute(:subject_ids, subject_ids)
     if @item.update_attributes(params[:item])
       flash[:notice] = "Successfully updated item."
       redirect_to @item

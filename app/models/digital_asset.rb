@@ -10,6 +10,7 @@ class DigitalAsset < ActiveRecord::Base
   # need to update these sizes
   has_attached_file :scan,
     :styles => {
+      :mini=> "59x59#",
       :thumb=> "136x136#",
       :large =>   "400x400>" }
       
