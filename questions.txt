@@ -5,3 +5,6 @@ Can acquisition type and work type be constants, or do they need to be added to?
 Which one is the library id?
 
 Should provenance go on the acquisition form or with the metadata?
+
+
+Subjects - should this really be auto complete? If so, how to handle subject authority? 
