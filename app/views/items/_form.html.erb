@@ -2,7 +2,7 @@
 <script>
 $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
-	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.sort.to_json %>
+	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
 	});	
 })
 </script>
