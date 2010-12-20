@@ -4,6 +4,9 @@ $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
 	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
 	});	
+	$("#item_vendor_attributes_city").autocomplete({
+	    source: <%= Vendor.all.map(&:city).uniq.compact.sort.to_json %>
+	});
 })
 </script>
 <%- end -%>

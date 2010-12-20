@@ -8,11 +8,11 @@
 	  <%= f.label :city, "Vendor city" %><br />
 	  <%= f.text_field :city %> <br />
 	  <%= f.label :state, "Vendor state" %><br />
-	  <%= f.text_field :state %><br />
+	  <%= f.select :state, STATES, :include_blank=>true %><br />
 	  <%= f.label :zip, "Vendor zip" %><br />
 	  <%= f.text_field :zip %><br />
 	  <%= f.label :country, "Vendor country" %><br />
-	  <%= f.text_field :country %><br />
+	  <%= f.select :country, COUNTRIES, :include_blank=>true %><br />
 	  <%= f.label :url, "Vendor URL" %><br />
 	  <%= f.text_field :url %><br />
 	
