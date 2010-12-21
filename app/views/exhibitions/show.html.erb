@@ -7,5 +7,5 @@
 </p>
 <h3>Art works in this exhibition</h3>
 <% @exhibition.works.each do |work| %>
-<%= work.title %><br />
+<em><%= work.title %></em> by <%= work.creator_name %><br />
 <% end %>
