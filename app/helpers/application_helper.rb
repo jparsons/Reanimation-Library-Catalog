@@ -25,9 +25,9 @@ module ApplicationHelper
     f.hidden_field(:_destroy, :value=>"0") + link_to_function(name, "remove_fields(this)", :class=>"admin-link")
   end
    # need to have a way to replace the dropdown with the new child form and vice versa ...
-   def new_association_link(name, f, model)
+   def new_association_link(name, f, model, extra_script = "")
      fields = new_child_fields(f, model.to_sym)
-     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(fields)}\");$(\"#add-#{model}-select-link\").show();$(\"#add-#{model}-entry-link\").hide();"), :id=> "add-#{model}-entry-link", :class=>"add-child-form-link admin-link")
+     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(fields)}\");$(\"#add-#{model}-select-link\").show();$(\"#add-#{model}-entry-link\").hide();#{extra_script}"), :id=> "add-#{model}-entry-link", :class=>"add-child-form-link admin-link")
    end
    def association_select_link(name, f, model)
      select_field = new_select_field(f, model.to_sym)

@@ -21,6 +21,9 @@ $(document).ready(function(){
 	$("#item_acquired_for").autocomplete({
 	    source: <%= Item.all.map{|i| i.acquired_for}.uniq.to_json %>
 	});	
+	$("#item_vendor_attributes_city").autocomplete({
+	    source: <%= Vendor.all.map(&:city).uniq.compact.sort.to_json %>
+	});
 })
 </script>
 <%- end -%>
@@ -41,7 +44,7 @@ $(document).ready(function(){
   <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= new_association_link "... or click here to add new vendor", f, "vendor" %></p>
+  <p><%= new_association_link "... or click here to add new vendor", f, "vendor", "$('#item_vendor_attributes_city').autocomplete({ source: #{Vendor.all.map(&:city).uniq.compact.sort.to_json}  });" %></p>
  <p><%= association_select_link "... or click here to select an existing vendor", f, "vendor" %></p>
 
   <p><%= f.label :date_acquired %><br />
