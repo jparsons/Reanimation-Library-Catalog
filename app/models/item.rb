@@ -37,7 +37,6 @@ class Item < ActiveRecord::Base
   belongs_to :vendor
   #has_one :vendor
   has_many :creators, :dependent=>:destroy
-  belongs_to :language
   has_and_belongs_to_many :works
   
   accepts_nested_attributes_for :subjects, :allow_destroy=>true  

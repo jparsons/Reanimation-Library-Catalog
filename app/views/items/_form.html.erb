@@ -4,6 +4,9 @@ $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
 	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
 	});	
+	$("#item_language").autocomplete({
+	    source: <%= Item.all.map(&:language).uniq.compact.sort.to_json %>
+	});
 })
 </script>
 <%- end -%>
@@ -66,6 +69,10 @@ $(document).ready(function(){
 		<%= f.text_field :barcode %></p>
 	<p><%= f.label :isbn_issn, "ISBN / ISSN" %><br />
 		<%= f.text_field :isbn_issn %></p>		
+</div>
+<div id="language">
+	<p><%= f.label :language %><br />
+		<%= f.text_field :language %></p>
 </div>
 <div id="metadata">
 	<h2>Metadata</h2>
