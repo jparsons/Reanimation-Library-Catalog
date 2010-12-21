@@ -13,4 +13,4 @@ db/legacy/*
 index/**/*
 public/system/Archive.zip
 *.doc
-notes.txt
+*.txt
