@@ -72,6 +72,9 @@ $(document).ready(function(){
 	<p><%= f.label :has_marc_record, "Has a MARC record?" %><br />
 		<%= f.select :has_marc_record, {"no"=>"false", "yes"=>"true"} %>
 	</p>
+	<p><%= f.label :needs_translation, "Needs Translation?" %><br />
+		<%= f.select :needs_translation, {"no"=>"false", "yes"=>"true"} %>
+	</p>
 	<p><%= f.label :metadata_notes %><br />
 		<%= f.text_area :metadata_notes %>
 	</p>
