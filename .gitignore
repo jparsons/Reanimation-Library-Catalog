@@ -12,3 +12,4 @@ public/system/**/*
 db/legacy/*
 index/**/*
 public/system/Archive.zip
+*.doc
