@@ -25,9 +25,9 @@ module ApplicationHelper
     f.hidden_field(:_destroy, :value=>"0") + link_to_function(name, "remove_fields(this)", :class=>"admin-link")
   end
    # need to have a way to replace the dropdown with the new child form and vice versa ...
-   def new_association_link(name, f, model, extra_script = "")
+   def new_association_link(name, f, model, additional_javascript = "")
      fields = new_child_fields(f, model.to_sym)
-     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(fields)}\");$(\"#add-#{model}-select-link\").show();$(\"#add-#{model}-entry-link\").hide();#{extra_script}"), :id=> "add-#{model}-entry-link", :class=>"add-child-form-link admin-link")
+     link_to_function(name, h("replace_content(this, \"#{model}\", \"#{escape_javascript(fields)}\");$(\"#add-#{model}-select-link\").show();$(\"#add-#{model}-entry-link\").hide();#{additional_javascript}"), :id=> "add-#{model}-entry-link", :class=>"add-child-form-link admin-link")
    end
    def association_select_link(name, f, model)
      select_field = new_select_field(f, model.to_sym)
@@ -52,9 +52,9 @@ module ApplicationHelper
     link_to_function(name, h("replace_content(this, \"exhibition-venue\", \"#{escape_javascript(select_field)}\");$(\"#add-exhibition-venue-select-link\").hide();$(\"#add-exhibition-venue-entry-link\").show();"), :id=> "add-exhibition-venue-select-link", :class=>"add-child-select-link admin-link", :style=>"display:none")
   end
     
-  def add_child_link(name, f, method)
+  def add_child_link(name, f, method, additional_javascript = "")
     fields = new_child_fields(f, method)
-    link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link admin-link")
+    link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\");#{additional_javascript}"), :id=> "add-#{method.to_s.singularize}-entry-link", :class=>"add-child-form-link admin-link")
   end
   
   def new_child_fields(form_builder, method, options = {})
