@@ -54,6 +54,8 @@ $(document).ready(function(){
 
   <p><%= f.label :acquired_for %><br />
 	<%= f.text_field :acquired_for %></p>
+  <p><%= f.label :price_paid %><br />
+	<%= f.text_field :price_paid, :value=>number_to_currency(@item.price_paid) %></p>
   <p><%= f.label :acquisition_note %><br />
 	<%= f.text_area :acquisition_note %></p>
   <p><%= f.label :provenance %><br />
