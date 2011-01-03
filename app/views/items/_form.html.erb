@@ -7,6 +7,12 @@ $(document).ready(function(){
 	$("#item_language").autocomplete({
 	    source: <%= Item.all.map(&:language).uniq.compact.sort.to_json %>
 	});
+	$("#item_format").autocomplete({
+		source: <%= Item.all.map(&:format).uniq.compact.sort.to_json %>
+	});
+	$("#item_series_name").autocomplete({
+		source: <%= Item.all.map(&:series_name).uniq.compact.sort.to_json %>
+	});
 })
 </script>
 <%- end -%>
@@ -23,6 +29,14 @@ $(document).ready(function(){
   <p>
     <%= f.label :collection %><br />
     <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>	
+  </p>
+  <p>
+    <%= f.label :series %><br />
+    <%= f.text_field :series_name %>	
+  </p>
+  <p>
+    <%= f.label :edition %><br />
+    <%= f.text_field :edition %>	
   </p>
 <p><%=f.label :creators %>
 </p>
@@ -60,6 +74,8 @@ $(document).ready(function(){
 		<%= f.text_field :extent %></p>
 	<p><%= f.label :item_size %><br />
 		<%= f.text_field :item_size %></p>
+	<p><%= f.label :format %><br />
+		<%= f.text_field :format %></p>
 </div>
 <div id="identifiers">
 	<h2>Identifiers</h2>

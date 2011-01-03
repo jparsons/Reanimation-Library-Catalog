@@ -8,8 +8,8 @@ xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/item.x
 xml_document.search("//row").each {|node|
   legacy_record_id =  node.attributes["recordid"]
   params = {}
-  nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
-  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name id barcode metadata_notes corporate_author isbn_issn edition notes series_name location)
+  nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location format)
+  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name id barcode metadata_notes corporate_author isbn_issn edition notes series_name location format)
   nodes.each_with_index do |name, i|
     elements = node.search(name+"/data")
     content = elements.inner_html()

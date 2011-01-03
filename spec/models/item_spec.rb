@@ -14,6 +14,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: items
@@ -61,5 +62,7 @@ end
 #  cataloging_status           :string(255)
 #  provenance                  :string(255)
 #  dedication                  :text
+#  language                    :string(255)
+#  format                      :string(255)
 #
 
