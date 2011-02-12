@@ -1,4 +1,11 @@
 <h1>These Items Need Images</h2>
+  <table id="item-list">
+    <tr>
+      <td class="call-number">Call Number</th><td class="title">Title</th>
+    </tr>
 	<% @items.each do |item| %>
-		<p><%= item.title %><%= item.subtitle.nil? ? "" : ": #{item.subtitle}" %>&nbsp;<%= link_to "check for images", item_path(item) %> </p>
+	  <tr class="<%= cycle("odd", "even") %>">
+	    <td><%= item.call_number.empty? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td>
+	  </tr>
 	<% end %>
+	</table>

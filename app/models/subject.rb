@@ -1,6 +1,7 @@
 class Subject < ActiveRecord::Base
   has_and_belongs_to_many :items
  
+ 
   def to_param  # overridden
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-').downcase}"
   end

@@ -3,6 +3,7 @@ class Creator < ActiveRecord::Base
   def display_name
     last_name + ", " + first_name + (middle_name.blank? ? "" : ", " + middle_name) + " (" + creator_type + ")"
   end
+  
 end
 
 # == Schema Information

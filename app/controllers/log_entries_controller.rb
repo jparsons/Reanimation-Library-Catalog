@@ -5,6 +5,10 @@ class LogEntriesController < ApplicationController
     else
       @log_entries = LogEntry.find(:all, :conditions=>["process_log_id=? and id > ?", params[:process_log_id], params[:after_id]])
     end
+    
+    respond_to do |wants|
+      wants.html {  }
+    end
   end
-  
+
 end

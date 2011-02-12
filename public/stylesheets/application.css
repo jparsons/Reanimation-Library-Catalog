@@ -199,3 +199,21 @@ div.scrolling-subform {
 	width:300px;
 	overflow:auto;
 }
+table#item-list {
+  border-collapse:collapse;
+}
+table#item-list td {
+  padding:5px;
+}
+table#item-list tr.odd {
+  background-color:#334455;
+}
+table#item-list td.call-number {
+  width:115px;
+  text-transform: uppercase;
+  font-weight:bold;
+}
+table#item-list td.title {
+  text-transform: uppercase;
+  font-weight:bold;
+}
