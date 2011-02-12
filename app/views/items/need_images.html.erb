@@ -5,7 +5,7 @@
     </tr>
 	<% @items.each do |item| %>
 	  <tr class="<%= cycle("odd", "even") %>">
-	    <td><%= item.call_number.empty? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td>
+	    <td><%= item.call_number.blank? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td>
 	  </tr>
 	<% end %>
 	</table>
