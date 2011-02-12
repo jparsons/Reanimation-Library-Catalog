@@ -201,6 +201,7 @@ div.scrolling-subform {
 }
 table#item-list {
   border-collapse:collapse;
+  font-size: 12px;
 }
 table#item-list td {
   padding:5px;
