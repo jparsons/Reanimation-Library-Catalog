@@ -8,7 +8,7 @@ $(document).ready(function(){
 	    source: <%= Item.all.map(&:language).uniq.compact.sort.to_json %>
 	});
 	$("#item_format").autocomplete({
-		source: <%= Item.all.map(&:format).uniq.compact.sort.to_json %>
+		source: <%= Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
 	});
 	$("#item_series_name").autocomplete({
 		source: <%= Item.all.map(&:series_name).uniq.compact.sort.to_json %>
@@ -75,7 +75,7 @@ $(document).ready(function(){
 	<p><%= f.label :item_size %><br />
 		<%= f.text_field :item_size %></p>
 	<p><%= f.label :format %><br />
-		<%= f.text_field :format %></p>
+		<%= f.text_field :physical_format %></p>
 </div>
 <div id="identifiers">
 	<h2>Identifiers</h2>
