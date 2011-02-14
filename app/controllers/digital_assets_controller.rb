@@ -29,6 +29,14 @@ class DigitalAssetsController < ApplicationController
     end
   end
   
+  def most_recent
+    @digital_assets = DigitalAsset.most_recent
+    respond_to do |wants|
+      wants.html {   }
+      wants.xml { render :xml=>@digital_assets.to_xml }
+    end   
+  end
+  
   def edit
     @digital_asset = DigitalAsset.find(params[:id], :include=>[:digital_asset_subjects])
   end

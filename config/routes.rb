@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :vendors
 
-  map.resources :digital_assets
+  map.resources :digital_assets, :collection => { :most_recent => :get }
 
   map.resources :works
   
