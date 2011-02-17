@@ -162,9 +162,20 @@ div.item-cover-image-large{
 
 div.item-data>div {
     margin-bottom:.5em;
+    clear:both;
+    overflow:auto;
 }
 div.item-data>div>span {
 	font-weight:bold;
+}
+div.item-content {
+  float:left;
+  width:305px;
+}
+div.item-label {
+  font-weight:bold;
+  float:left;
+  margin-right:.5em;
 }
 a.digital-asset>img{
 	margin-right:16px;

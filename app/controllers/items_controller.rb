@@ -3,10 +3,18 @@ class ItemsController < ApplicationController
  before_filter :only=>[:new, :edit] do |c| c.send(:require_role, :administrator)  end
   def index
     letter = params[:letter] || "1-9"
-    if letter == "1-9"
-      @items = Item.non_alphanumerical
+    if logged_in? && current_user.is_administrator?
+      if letter == "1-9"
+        @items = Item.non_alphanumerical
+      else
+        @items = Item.starting_with letter
+      end
     else
-      @items = Item.starting_with letter
+      if letter == "1-9"
+        @items = Item.non_alphanumerical.published
+      else
+        @items = Item.starting_with(letter).published
+      end
     end
 
   end

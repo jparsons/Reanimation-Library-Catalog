@@ -18,7 +18,11 @@ module ItemsHelper
  end
  
  def letter_options
-   @letter_options_list ||= (Item.all.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
+   if logged_in? && current_user.is_administrator?
+     (Item.all.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
+   else 
+     (Item.published.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
+   end
  end
 
 

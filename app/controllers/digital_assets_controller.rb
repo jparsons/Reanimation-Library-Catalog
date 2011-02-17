@@ -34,6 +34,7 @@ class DigitalAssetsController < ApplicationController
     respond_to do |wants|
       wants.html {   }
       wants.xml { render :xml=>@digital_assets.to_xml }
+      wants.json {render :json=>@digital_assets.to_json }
     end   
   end
   

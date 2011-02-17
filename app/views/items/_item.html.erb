@@ -3,23 +3,11 @@
 	      <% if item.cover_image.file? %><%= link_to(image_tag(item.cover_image.url(:thumb), :class=>"cover-thumb"), item_path(item)) %><% end %>
 	      <br />
 	      <br />
-	      <% if logged_in? && current_user.is_administrator? %>
-		    <div class="admin-link">
-		      <%= link_to 'Edit this item', edit_item_path(item) %>
-		    </div>
-		  <% end %>
 	    </div>
 	  	<div class="item-data">
 	      <div class="item-title"><%= link_to "#{item.title} #{item.subtitle}", item_path(item) %></div>
       	  <div class="item-creators "><span class="item-label">Creator(s):</span> <%= item.creators.map{|c| c.display_name }.join("; ")%></div>
 	  	  <div class="item-publisher"><span class="item-label">Publisher:</span> <%=h item.publisher_name %><%= item.publisher_city.nil? ? "" : "; " + item.publisher_city %><%=h item.publisher_state.nil? ? "" : ", " + item.publisher_state %></div>
-		  <div class="item-copyright"><span class="item-label">Year:</span> <%=h item.copyright %></div>
-		  <div class="item-extent"><span class="item-label">Pages:</span> <%=h item.extent %></div>
-		  <div class="item-size"><span class="item-label">Size:</span> <%=h item.item_size %></div>
-		  <div class="item-callnumber"><span class="item-label">Call Number:</span> <%=h item.call_number %></div>
-		  <div class="item-subjects"><span class="item-label">Subject(s):</span> <%= item.subjects.map{|s| link_to(s.name, subject_path(s)) }.join(", ") %></div>
-		  <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.legacy_id %></div>
-		  <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name.nil? ? '' : item.collection_name.split(": ")[1] %></div>
 
 
 	    </div>

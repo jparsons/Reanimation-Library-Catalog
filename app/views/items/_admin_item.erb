@@ -1,0 +1,26 @@
+<div class="item">
+	<div class="item-cover-image-thumb">
+    <% if admin_item.cover_image.file? %><%= link_to(image_tag(admin_item.cover_image.url(:thumb), :class=>"cover-thumb"), item_path(admin_item)) %><% end %>
+    <br />
+    <br />
+    <% if logged_in? && current_user.is_administrator? %>
+    <div class="admin-link">
+      <%= link_to 'Edit this item', edit_item_path(admin_item) %>
+    </div>
+  <% end %>
+  </div>
+	<div class="item-data">
+    <div class="item-title"><%= link_to "#{admin_item.title} #{admin_item.subtitle}", item_path(admin_item) %></div>
+  	  <div class="item-creators "><div class="item-label">Creator(s):</div> <div class="item-content"><%= admin_item.creators.map{|c| c.display_name }.join("<br />")%></div></div>
+	  <div class="item-publisher"><span class="item-label">Publisher:</span> <%=h admin_item.publisher_name %><%= admin_item.publisher_city.nil? ? "" : "; " + admin_item.publisher_city %><%=h admin_item.publisher_state.nil? ? "" : ", " + admin_item.publisher_state %></div>
+  <div class="item-copyright"><span class="item-label">Year:</span> <%=h admin_item.copyright %></div>
+  <div class="item-extent"><span class="item-label">Pages:</span> <%=h admin_item.extent %></div>
+  <div class="item-size"><span class="item-label">Size:</span> <%=h admin_item.item_size %></div>
+  <div class="item-callnumber"><span class="item-label">Call Number:</span> <%=h admin_item.call_number %></div>
+  <div class="item-subjects"><div class="item-label">Subject(s):</div> <div class="item-content"><%= admin_item.subjects.map{|s| link_to(s.name, subject_path(s)) }.join("<br />") %></div></div>
+  <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h admin_item.legacy_id %></div>
+  <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h admin_item.collection_name.nil? ? '' : admin_item.collection_name.split(": ")[1] %></div>
+
+
+  </div>
+</div>
