@@ -30,11 +30,12 @@ class DigitalAssetsController < ApplicationController
   end
   
   def most_recent
+    ActiveRecord::Base.include_root_in_json = false
     @digital_assets = DigitalAsset.most_recent
     respond_to do |wants|
       wants.html {   }
       wants.xml { render :xml=>@digital_assets.to_xml }
-      wants.json {render :json=>@digital_assets.to_json }
+      wants.json {render :json=>@digital_assets.to_json(:only=>[:id], :methods=>:mini_url ) }
     end   
   end
   

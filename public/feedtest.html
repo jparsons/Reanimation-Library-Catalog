@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>untitled</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="John Parsons">
+	<!-- Date: 2011-02-19 -->
+	<script src="javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+	  getRecentImages();
+	  getRecentItems();
+	});
+  function getRecentImages(){
+    $.getJSON('http://localhost:3000/digital_assets/most_recent.json', function(data) {
+      var items = [];
+      data.sort( randOrd );
+      data = data.slice(0, 9);
+      $.each(data, function(key, val) {
+        items.push('<img id="' + key + '" src="' + val.mini_url + '" alt = "' + key + '" />');
+      });
+
+      $('<div/>', {
+        'class': 'my-new-list',
+        html: items.join('')
+      }).appendTo('body');
+    });
+  }
+  function getRecentItems(){
+    $.getJSON('http://localhost:3000/items/recent.json', function(data) {
+      var items = [];
+
+      $.each(data, function(key, val) {
+      
+        items.push('<div id="' + key + '">' + val.display_title + ', ' + val.display_creator + '</div>');
+      });
+
+      $('<div/>', {
+        'class': 'my-new-list',
+        html: items.join('')
+      }).appendTo('body');
+    });
+  }
+  function randOrd(){
+    return (Math.round(Math.random())-0.5); 
+  }
+	</script>
+
+</head>
+<body>
+
+</body>
+</html>

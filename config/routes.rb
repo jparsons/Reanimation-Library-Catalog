@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :subjects
 
-  map.resources :items, :collection => { :acquired => :get, :need_images => :get }
+  map.resources :items, :collection => { :acquired => :get, :need_images => :get, :recent => :get }
 
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

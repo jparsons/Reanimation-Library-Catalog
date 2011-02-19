@@ -18,6 +18,9 @@ class DigitalAsset < ActiveRecord::Base
   
   named_scope :most_recent, :order=>"created_at DESC", :limit=>30
 
+  def mini_url
+    scan.url(:mini)
+  end
   
 end
 

@@ -115,5 +115,5 @@ $(document).ready(function(){
 <div id="subjects">
 
 </div>
-<%= f.submit SAVE_TEXT %>&nbsp;&nbsp;<%= f.submit PUBLISH_TEXT %>
+<% unless @item.published? %><%= f.submit SAVE_UNPUBLISHED_TEXT %>&nbsp;&nbsp;<%= f.submit PUBLISH_TEXT %><% else %><%= f.submit SAVE_PUBLISHED_TEXT %>&nbsp;&nbsp;<%= f.submit UNPUBLISH_TEXT %><% end %>
 <% end %>

@@ -32,6 +32,16 @@ class ItemsController < ApplicationController
     d.process_digital_assets
   end
   
+  def recent
+    ActiveRecord::Base.include_root_in_json = false
+    @items = Item.published.recent
+    respond_to do |wants|
+      wants.html {   }
+      wants.xml { render :xml=>@items.to_xml }
+      wants.json {render :json=>@items.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
+    end
+  end
+
   def show
     @item = Item.find(params[:id])
     @previous = Item.previous(@item).first
@@ -69,10 +79,10 @@ class ItemsController < ApplicationController
     #subject_ids = params[:item][:subject_ids]
     #params[:item].delete(:subject_ids)
     @item = Item.find(params[:id])
-    if params[:commit] == SAVE_TEXT
-      @item.cataloging_status = "private"
-    elsif params[:commit] == PUBLISH_TEXT
+    if params[:commit] == PUBLISH_TEXT
       @item.cataloging_status = "published"
+    elsif params[:commit] == UNPUBLISH_TEXT
+      @item.cataloging_status = "private"
     end
    # @item.update_attribute(:subject_ids, subject_ids)
     if @item.update_attributes(params[:item])
