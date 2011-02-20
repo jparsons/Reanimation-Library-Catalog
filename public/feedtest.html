@@ -23,10 +23,7 @@
         items.push('<img id="' + key + '" src="' + val.mini_url + '" alt = "' + key + '" />');
       });
 
-      $('<div/>', {
-        'class': 'my-new-list',
-        html: items.join('')
-      }).appendTo('body');
+      $("#recent-images").html(items);
     });
   }
   function getRecentItems(){
@@ -38,10 +35,7 @@
         items.push('<div id="' + key + '">' + val.display_title + ', ' + val.display_creator + '</div>');
       });
 
-      $('<div/>', {
-        'class': 'my-new-list',
-        html: items.join('')
-      }).appendTo('body');
+      $("#recent-acquisitions").html(items);
     });
   }
   function randOrd(){
@@ -51,6 +45,9 @@
 
 </head>
 <body>
-
+<div id="recent-images">
+</div>
+<div id="recent-acquisitions">
+</div>
 </body>
 </html>

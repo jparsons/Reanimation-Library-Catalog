@@ -22,7 +22,7 @@ class DigitalAsset < ActiveRecord::Base
     if ActionController::Base.relative_url_root.empty?
       scan.url(:mini)
     else 
-      ActionController::Base.relative_url_root + "/" + scan.url(:mini)
+      ActionController::Base.relative_url_root + scan.url(:mini)
     end
   end
   
