@@ -19,7 +19,11 @@ class DigitalAsset < ActiveRecord::Base
   named_scope :most_recent, :order=>"created_at DESC", :limit=>30
 
   def mini_url
-    scan.url(:mini)
+    if ActionController::Base.relative_url_root.empty?
+      scan.url(:mini)
+    else 
+      ActionController::Base.relative_url_root + "/" + scan.url(:mini)
+    end
   end
   
 end
