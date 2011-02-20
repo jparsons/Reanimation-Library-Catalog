@@ -9,45 +9,39 @@
 	<meta name="author" content="John Parsons">
 	<!-- Date: 2011-02-19 -->
 	<script src="javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-	  getRecentImages();
-	  getRecentItems();
-	});
-  function getRecentImages(){
-    $.getJSON('http://reanimationlibrary.org/catalog/digital_assets/most_recent.json', function(data) {
-      var items = [];
-      data.sort( randOrd );
-      data = data.slice(0, 9);
-      $.each(data, function(key, val) {
-        items.push('<img id="' + key + '" src="' + val.mini_url + '" alt = "' + key + '" />');
-      });
-
-      $("#recent-images").html(items);
-    });
-  }
-  function getRecentItems(){
-    $.getJSON('http://reanimationlibrary.org/catalog/items/recent.json', function(data) {
-      var items = [];
-
-      $.each(data, function(key, val) {
-      
-        items.push('<div id="' + key + '">' + val.display_title + ', ' + val.display_creator + '</div>');
-      });
-
-      $("#recent-acquisitions").html(items);
-    });
-  }
-  function randOrd(){
-    return (Math.round(Math.random())-0.5); 
-  }
-	</script>
-
+  <script src="javascripts/recent-feed.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css" media="screen">
+    body {
+      font: 12px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+    }
+    #recent-images {
+      width:177px;
+      height:177px;
+      margin-bottom:20px;
+      clear:both;
+    }
+    #recent-images>div>div {
+      width:59px;
+      height:59px;
+      background:#dadada;
+      float:left;
+    }
+    a>img {
+      border:none;
+    }
+    #recent-acquisitions {
+      clear:both;
+      width:177px;
+      height:300px;
+      overflow:auto;
+    }
+    #recent-acquisitions>div>div {
+      margin-bottom:12px;
+    }
+  </style>
 </head>
 <body>
-<div id="recent-images">
-</div>
-<div id="recent-acquisitions">
-</div>
+<div id="recent-images"></div>
+<div id="recent-acquisitions"></div>
 </body>
 </html>
