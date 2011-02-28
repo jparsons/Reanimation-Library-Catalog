@@ -24,6 +24,27 @@ module ItemsHelper
      (Item.published.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
    end
  end
-
+ 
+  def determine_sort_order(field, current_field, current_order)
+    if field == current_field
+      if current_order == "ASC"
+        "DESC"
+      else
+        "ASC"
+      end
+    else
+      "ASC"
+    end
+  end
+  
+  def show_order_image(field, current_field, current_order)
+    if field == current_field
+      if current_order == "DESC"
+        image_tag("desc.png")
+      else
+        image_tag("asc.png")
+      end
+    end
+  end
 
 end

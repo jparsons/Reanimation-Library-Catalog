@@ -1,9 +1,12 @@
 <% title "Search Results" %>
 <h2><%= yield(:title) %></h2>
 
-<% if @items.blank? %>
-	<p>Your search for <em><%= params[:title] %></em> returned no results.</p>
-<% else %>
-    <%= render :partial=>"items/item", :collection=>@items%>
+<% if @items.blank? && params[:q] %>
+	<p>Your search for <em><%= params[:q] %></em> returned no results.</p>
+<% elsif params[:advanced] == "true" %>
+  <%= render :partial=>'advanced' %>
+<% end %>
+<% unless @items.blank? %>
+   <%= render :partial=>"items/item", :collection=>@items%>
 <% end %>
 </div>

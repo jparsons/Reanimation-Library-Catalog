@@ -1,0 +1,11 @@
+<h2>Advanced Search</h2>
+<form method="get" action="<%= search_path %>">
+  <p><label for="search_title">Title: </label><br />
+  <input type="text" name ="title" value="<%= params[:title] %>"/></p>
+  <p><label for="search_title">Subjects: </label><br />
+  <input type="text" name ="subjects" value="<%= params[:subjects] %>"/></p>
+  <p><label for="search_title">Creators: </label><br />
+  <input type="text" name ="creators" value="<%= params[:creators] %>"/></p>
+  <input type="submit" value="search" /> 
+  <input type="hidden" name="advanced" value="true" />
+</form>

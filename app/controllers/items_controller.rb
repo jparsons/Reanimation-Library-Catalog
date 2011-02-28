@@ -20,11 +20,21 @@ class ItemsController < ApplicationController
   end
   
   def acquired 
-    @items = Item.acquired
+    unless params[:sort_by].blank?
+      order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
+    else 
+      order = "call_number ASC"
+    end
+    @items = Item.acquired.all(:order => order)
   end
   
   def need_images
-    @items = Item.no_assets
+    unless params[:sort_by].blank?
+      order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
+    else 
+      order = "call_number ASC"
+    end    
+    @items = Item.no_assets(order)
   end
   
   def process_images

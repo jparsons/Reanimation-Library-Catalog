@@ -9,11 +9,11 @@ class Item < ActiveRecord::Base
   aasm_column :cataloging_status
   aasm_initial_state :acquired
   
-  aasm_state :acquired
+  aasm_state :acquired, :include=>:subjects
   aasm_state :images_added_but_needs_cataloging
   aasm_state :fully_cataloged_but_needs_images
   aasm_state :private
-  aasm_state :published
+  aasm_state :published, :include=>:subjects
   
   aasm_event :publish do
     transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :private, :published]
@@ -27,7 +27,7 @@ class Item < ActiveRecord::Base
   named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
   named_scope :previous, lambda { |item| {:conditions => ["alphabetical_title < ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title desc"} }
   named_scope :next, lambda { |item| {:conditions => ["alphabetical_title > ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
-  named_scope :no_assets, {:conditions =>["digital_assets.id is null AND items.collection_name = ?", "1: Primary"], :include=>:digital_assets, :order=>"call_number"}
+  named_scope :no_assets, lambda{ |order| {:conditions =>["digital_assets.id is null AND items.collection_name = ?", "1: Primary"], :include=>:digital_assets, :order=>(order || "call_number DESC") } }
   named_scope :recent, { :limit=>15, :order => "created_at DESC", :include=>:creators }
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
@@ -48,7 +48,7 @@ class Item < ActiveRecord::Base
   
   has_attached_file :cover_image, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
-  acts_as_ferret :fields => [ :title, :subtitle, :subject_list ]
+  acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list ]
   
   before_save :create_title_for_alphabetizing
   
@@ -69,14 +69,8 @@ class Item < ActiveRecord::Base
     subjects.map{|s| s.name }.join(",")
   end
   
-  def self.search(params = {})
-    if params[:q].blank?
-      self.all
-    else
-      self.find_with_ferret(params[:q])
-    end
-    
-    
+  def self.search(query = "")
+    self.find_with_ferret(query, :include=>[:subjects, :creators])
   end
   
 

@@ -1,14 +1,22 @@
 class SearchController < ApplicationController
   def new
-    if params[:q].blank?
-      @items = []
+    if params[:q]
+       @query = params[:q]
     else
-      @items = Item.search(params)
+       query_parts = []
+       unless params[:title].blank?
+         query_parts << "display_title:(#{params[:title]})"
+       end
+       unless params[:subjects].blank?
+         query_parts << "subject_list:(#{params[:subjects]})"
+       end
+       unless params[:creators].blank?
+         query_parts << "display_creator:(#{params[:creators]})"
+       end
+      @query = query_parts.join(" AND ")
     end
+    @items = Item.search(@query)
   end
 
-  def show
-    @items = Item.search(params)
-  end
 
 end
