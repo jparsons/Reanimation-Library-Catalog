@@ -23,7 +23,7 @@ function getRecentItems(){
 
     $.each(data, function(key, val) {
     
-      items.push('<div id="item_' + key + '"><a href="http://reanimationlibrary.org/catalog/items/' + val.id + '">' + val.display_title + getCreator(val.display_creator) + '</a></div>');
+      items.push('<div id="item_' + key + '"><a href="http://reanimationlibrary.org/catalog/items/' + val.id + '">' + val.display_title + '</a></div>');
     });
 
     $('<div/>', {
