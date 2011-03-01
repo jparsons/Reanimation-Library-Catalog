@@ -12,7 +12,7 @@ function getRecentImages(){
     });
 
     $('<div/>', {
-      'class': 'content',
+      'class': 'recent-images-content',
       html: items.join('')
     }).appendTo('#recent-images');
   });
@@ -27,7 +27,7 @@ function getRecentItems(){
     });
 
     $('<div/>', {
-      'class': 'content',
+      'class': 'recent-items-content',
       html: items.join('')
     }).appendTo('#recent-acquisitions');
   });
