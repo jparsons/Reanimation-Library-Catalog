@@ -8,7 +8,7 @@ function getRecentImages(){
     data.sort( randOrd );
     data = data.slice(0, 9);
     $.each(data, function(key, val) {
-      items.push('<div id="image_' + key + '"><a href="http://reanimationlibrary.org/catalog/digital_assets/' + val.id + '"><img src="http://reanaimationlibrary.org' + val.mini_url + '" alt = "' + key + '" /></a></div>');
+      items.push('<div id="image_' + key + '"><a href="http://reanimationlibrary.org/catalog/digital_assets/' + val.id + '"><img src="http://reanimationlibrary.org' + val.mini_url + '" alt = "' + key + '" /></a></div>');
     });
 
     $('<div/>', {
