@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
     respond_to do |wants|
       wants.html {   }
       wants.xml { render :xml=>@items.to_xml }
-      wants.json {render :json=>@items.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
+      wants.json {render_json @items.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
     end
   end
 
