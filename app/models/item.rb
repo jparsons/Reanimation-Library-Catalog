@@ -48,7 +48,7 @@ class Item < ActiveRecord::Base
   
   has_attached_file :cover_image, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
-  acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types ]
+  acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
   
   before_save :create_title_for_alphabetizing
@@ -79,6 +79,18 @@ class Item < ActiveRecord::Base
   
   def self.search(query = "")
     self.find_with_ferret(query, :include=>[:subjects, :creators])
+  end
+  
+  def is_public_domain
+    is_public_domain?.to_s
+  end
+  
+  def is_public_domain?
+    if copyright.to_i < 1924 || is_government_document?
+      true
+    else
+      false
+    end
   end
   
 

@@ -2,10 +2,20 @@
 <form method="get" action="<%= search_path %>">
   <p><label for="search_title">Title: </label><br />
   <input type="text" name ="title" value="<%= params[:title] %>"/></p>
-  <p><label for="search_title">Subjects: </label><br />
+  <p><label for="subjects">Subjects: </label><br />
   <input type="text" name ="subjects" value="<%= params[:subjects] %>"/></p>
-  <p><label for="search_title">Creators: </label><br />
+  <p><label for="creators">Creators: </label><br />
   <input type="text" name ="creators" value="<%= params[:creators] %>"/></p>
+  <p><label for="copyright">Copyright year: </label><br />
+  <input type="text" name ="copyright" value="<%= params[:copyright] %>"/></p>
+  <p><label for="image_color">Image color: </label><br />
+  <%= select "search", "image_color", DigitalAsset.all.map(&:color).compact.uniq, :include_blank=>true %></p>
+  <p><label for="image_type">Image type: </label><br />
+  <%= select "search", "image_type", DigitalAsset.all.map(&:image_type).compact.uniq, :include_blank=>true %></p>
+
+  <p>  
+    <input type="checkbox" name ="is_public_domain" value="true" <%= 'checked="checked"' unless params[:is_public_domain].blank? %>/> &nbsp;Public Domain Only <br />
+</p>
   <input type="submit" value="search" /> 
   <input type="hidden" name="advanced" value="true" />
 </form>
