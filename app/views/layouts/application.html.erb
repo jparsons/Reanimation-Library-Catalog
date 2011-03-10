@@ -2,22 +2,23 @@
 <html>
 <head>
 <title><%= yield(:title) || "Catalog" %></title>
-<%= javascript_include_tag 'jquery', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min' %>
-<%= stylesheet_link_tag 'http://reanimationlibrary.org/pages/application.css', 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
+<%= javascript_include_tag 'jquery', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min', 'jquery.cookie' %>
+<%= stylesheet_link_tag 'application.css', 'http://reanimationlibrary.org/pages/application.css', 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <%= yield(:head) %>
 </head>
 <body>
 <div id="header">
-
 </div>
 <div id="page">
 <div id="sidebar-menu">
-	<div class="sidebar-menu-item">
-		<% form_tag search_path, :method=>:get, :id=>"search_form" do %>
-			<%= text_field_tag 'q', params[:q], :class=>'sidebar', :value=>params[:q] || "search the catalog" %>&nbsp;
-			<%= link_to 'go', "", :class=>"submit-button" %>
-			<% end %>	
+	<div class="sidebar-menu-item" id="basic-search-options">
+  <%= render :partial => 'search/basic_search' %>
+  <%= link_to 'advanced search options', "#" , :id=>"show-advanced-search"%>
+	</div>
+	<div class="sidebar-menu-item" id="advanced-search-options" style="display:none;">
+  <%= render :partial => 'search/advanced_search' %>
+  <%= link_to 'back to basic search options', "#", :id=>"show-basic-search" %>
 	</div>
 	<div class="sidebar-menu-item">
 		<%= link_to 'browse the catalog by title', items_path %>

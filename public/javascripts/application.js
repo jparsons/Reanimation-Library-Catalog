@@ -48,6 +48,23 @@ $(document).ready(function()
 		$(this).val('');
 	}
   });
+  $('a#show-advanced-search').click(function(){
+	$('#basic-search-options').hide();
+	$('#advanced-search-options').show();
+	$.cookie("search-preference", "advanced");
+	return false;
+	});
+  $('a#show-basic-search').click(function(){
+	$('#advanced-search-options').hide();
+	$('#basic-search-options').show();
+	$.cookie("search-preference", "basic");
+	return false;
+	});
+  
+  if ($.cookie("search-preference") == "advanced") {
+	$('#basic-search-options').hide();
+	$('#advanced-search-options').show();
+}
 });
 
 
