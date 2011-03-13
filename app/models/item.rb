@@ -1,27 +1,27 @@
 class Item < ActiveRecord::Base
   include AASM
-  
+
   def attributes_protected_by_default
       []
   end
-  
-  
+
+
   aasm_column :cataloging_status
   aasm_initial_state :acquired
-  
+
   aasm_state :acquired, :include=>:subjects
   aasm_state :images_added_but_needs_cataloging
   aasm_state :fully_cataloged_but_needs_images
   aasm_state :private
   aasm_state :published, :include=>:subjects
-  
+
   aasm_event :publish do
     transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :private, :published]
   end
   aasm_event :make_private do
     transitions :to => :private, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :private, :published]
   end
-  
+
   default_scope :order => "alphabetical_title"
   named_scope :non_alphanumerical, {:conditions => "not (alphabetical_title like 'a%' or alphabetical_title like 'b%' or alphabetical_title like 'c%' or alphabetical_title like 'd%' or alphabetical_title like 'e%' or alphabetical_title like 'f%' or alphabetical_title like 'g%' or alphabetical_title like 'h%' or alphabetical_title like 'i%' or alphabetical_title like 'j%' or alphabetical_title like 'k%' or alphabetical_title like 'l%' or alphabetical_title like 'm%' or alphabetical_title like 'n%' or alphabetical_title like 'o%' or alphabetical_title like 'p%' or alphabetical_title like 'q%' or alphabetical_title like 'r%' or alphabetical_title like 's%' or alphabetical_title like 't%' or alphabetical_title like 'u%' or alphabetical_title like 'v%' or alphabetical_title like 'w%' or alphabetical_title like 'x%' or alphabetical_title like 'y%' or alphabetical_title like 'z%')", :order => "alphabetical_title"}
   named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
@@ -29,6 +29,7 @@ class Item < ActiveRecord::Base
   named_scope :next, lambda { |item| {:conditions => ["alphabetical_title > ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
   named_scope :no_assets, lambda{ |order| {:conditions =>["digital_assets.id is null AND items.collection_name = ?", "1: Primary"], :include=>:digital_assets, :order=>(order || "call_number DESC") } }
   named_scope :recent, { :limit=>15, :order => "created_at DESC", :include=>:creators }
+  named_scope :by_call_number, { :order=> "call_number ASC", :include=>:creators }
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
   has_many :digital_assets
@@ -38,53 +39,53 @@ class Item < ActiveRecord::Base
   #has_one :vendor
   has_many :creators, :dependent=>:destroy
   has_and_belongs_to_many :works
-  
+
   accepts_nested_attributes_for :subjects, :allow_destroy=>true  
   accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
   accepts_nested_attributes_for :donors, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
 
   accepts_nested_attributes_for :vendor
-  
-  
+
+
   has_attached_file :cover_image, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
   acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
-  
+
   before_save :create_title_for_alphabetizing
-  
+
   def display_title
     "#{title}#{subtitle.blank? ? "" : " " + subtitle}"
   end
   def display_creator
     creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "") 
   end
-  
+
   def image_colors
     digital_assets.map(&:color).join(",")
   end
   def image_types
     digital_assets.map(&:image_type).join(",")
   end
-  
+
   def create_title_for_alphabetizing
     what_to_remove = REMOVE_FROM_BEGINNING_OF_TITLES.map{|w| "^#{w}" }.join("|")
     r = Regexp.new(what_to_remove,true)
     self.alphabetical_title = title.gsub(r, "").strip
   end
-  
+
   def subject_list 
     subjects.map{|s| s.name }.join(",")
   end
-  
+
   def self.search(query = "")
     self.find_with_ferret(query, :include=>[:subjects, :creators])
   end
-  
+
   def is_public_domain
     is_public_domain?.to_s
   end
-  
+
   def is_public_domain?
     if copyright.to_i < 1924 || is_government_document?
       true
@@ -92,7 +93,7 @@ class Item < ActiveRecord::Base
       false
     end
   end
-  
+
 
 end
 

@@ -1,33 +1,34 @@
 ActionController::Routing::Routes.draw do |map|
-  
+
   map.search 'search', :controller=>'search', :action=>'new'
-  
-  
+  map.advanced_search 'advanced_search', :controller=>'search', :action=>'new', :advanced => 'true'
+
+
   map.search_results 'search_results', :controller=>'search', :action=>'show'
-  
+
   map.resources :exhibitions
-  
+
   map.resources :vendors
 
   map.resources :digital_assets, :collection => { :most_recent => :get }
 
   map.resources :works
-  
+
   map.resources :subjects
 
-  map.resources :items, :collection => { :acquired => :get, :need_images => :get, :recent => :get }
+  map.resources :items, :collection => { :acquired => :get, :need_images => :get, :recent => :get, :by_call_number => :get }
 
   map.signup 'signup', :controller => 'users', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.resources :user_sessions
-  
+
   map.resources :digital_asset_ingests
-  
+
   map.resources :users
-  
+
   map.resources :log_entries
-  
+
   map.admin_dashboard 'dashboard', :controller=>'admin_dashboard', :action=>"index"
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -48,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments

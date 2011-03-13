@@ -2,11 +2,13 @@
 <h2><%= yield(:title) %></h2>
 <table id="item-list">
   <tr>
-    <td class="call-number"><%= link_to "Call Number", :sort_by=>"call_number", :sort_order=>determine_sort_order('call_number', params[:sort_by] || 'call_number', params[:sort_order] || 'ASC') %>&nbsp;&nbsp;<%= show_order_image("call_number", params[:sort_by] || 'call_number', params[:sort_order] || 'ASC' ) %></td><td class="title"><%= link_to "Title", :sort_by=>"alphabetical_title", :sort_order=>determine_sort_order('alphabetical_title', params[:sort_by], params[:sort_order]) %>&nbsp;&nbsp;<%= show_order_image("alphabetical_title", params[:sort_by], params[:sort_order]) %></td>
+    <td class="call-number"><%= link_to "Call Number", :sort_by=>"call_number", :sort_order=>determine_sort_order('call_number', params[:sort_by] || 'call_number', params[:sort_order] || 'ASC') %>&nbsp;&nbsp;<%= show_order_image("call_number", params[:sort_by] || 'call_number', params[:sort_order] || 'ASC' ) %></td>
+    <td class="item-id"><%= link_to "Item ID", :sort_by=>"id", :sort_order=>determine_sort_order('id', params[:sort_by] || 'call_number', params[:sort_order] || 'ASC') %>&nbsp;&nbsp;<%= show_order_image("id", params[:sort_by] || 'call_number', params[:sort_order] || 'ASC' ) %></td>
+    <td class="title"><%= link_to "Title", :sort_by=>"alphabetical_title", :sort_order=>determine_sort_order('alphabetical_title', params[:sort_by], params[:sort_order]) %>&nbsp;&nbsp;<%= show_order_image("alphabetical_title", params[:sort_by], params[:sort_order]) %></td>
   </tr>
 <% @items.each do |item| %>
   <tr class="<%= cycle("odd", "even") %>">
-    <td><%= item.call_number.blank? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td><td><%= link_to "continue cataloging", edit_item_path(item) %></td>
+    <td><%= item.id %></td><td><%= item.call_number.blank? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td><td><%= link_to "continue cataloging", edit_item_path(item) %></td>
   </tr>
 <% end %>
 </table>

@@ -18,7 +18,11 @@ class ItemsController < ApplicationController
     end
 
   end
-  
+
+  def by_call_number
+    @items = Item.by_call_number.paginate(:page => params[:page], :per_page => 20)
+  end
+
   def acquired 
     unless params[:sort_by].blank?
       order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
@@ -27,7 +31,7 @@ class ItemsController < ApplicationController
     end
     @items = Item.acquired.all(:order => order)
   end
-  
+
   def need_images
     unless params[:sort_by].blank?
       order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
@@ -36,12 +40,12 @@ class ItemsController < ApplicationController
     end    
     @items = Item.no_assets(order)
   end
-  
+
   def process_images
     d = DigitalAssetIngest.new
     d.process_digital_assets
   end
-  
+
   def recent
     ActiveRecord::Base.include_root_in_json = false
     @items = Item.published.recent
@@ -57,11 +61,11 @@ class ItemsController < ApplicationController
     @previous = Item.previous(@item).first
     @next = Item.next(@item).first
   end
-  
+
   def new
     @item = Item.new
   end
-  
+
   def create
     @item = Item.new(params[:item])
     if @item.save
@@ -71,21 +75,21 @@ class ItemsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @item = Item.find(params[:id])
-    
+
   end
-  
-  
-  
-  
+
+
+
+
   def update
     # I'm not sure why I have to pull out subject_id here, but it wouldn't work otherwise
     # Donors seems to be configured in an identical way, but it works through the normal accepts_nested_attributes 
     # functionality
 
-      
+
     #subject_ids = params[:item][:subject_ids]
     #params[:item].delete(:subject_ids)
     @item = Item.find(params[:id])
@@ -102,7 +106,7 @@ class ItemsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
