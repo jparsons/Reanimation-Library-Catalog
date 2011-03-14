@@ -1,0 +1,14 @@
+<% title "Recently Added Items" %>
+<h2><%= yield(:title) %></h2>
+  <div id="item-list">
+  <% if logged_in? && current_user.is_administrator? %>
+	  <div class="admin-link">
+	    <%= link_to "Add a new item", new_item_path %><br />
+	  </div> 
+	  <%= render :partial => 'admin_item', :collection=>@items %>
+  <% else %>
+    <%= render :partial => 'item', :collection=>@items %>
+  <% end %>	
+
+  </div>
+

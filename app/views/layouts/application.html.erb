@@ -21,6 +21,35 @@ var sc_security="e77d3ad9";
 <script language="JavaScript">
 <!--
 
+$(document).ready(function(){
+  // preload images for rollovers
+  var images = [];
+  $("img.rollover").each(function(index) {
+    images[index] = new Image();
+    images[index].src = "http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon1.jpg";
+  });
+  // set the current page image to the rollover state and remove the rollover class
+  $(".current_page").attr("src", "http://reanimationlibrary.org/V2/images/" + $(".current_page").attr("id") + "icon1.jpg");
+  $(".current_page").removeClass("rollover");
+  // add rollover functionality 
+  $("img.rollover").hover(
+    function() {
+      $(this).attr("src","http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon1.jpg");
+     },
+     function() {
+    	 $(this).attr("src","http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon.jpg");
+     }
+  );
+});
+
+$(function() {
+    $('img[data-hover]').hover(function() {
+        $(this).attr('tmp', $(this).attr('src')).attr('src', $(this).attr('data-hover')).attr('data-hover', $(this).attr('tmp')).removeAttr('tmp');
+    }).each(function() {
+        $('<img />').attr('src', $(this).attr('data-hover'));
+    });;
+});
+
 if (document.images) {
     head1on  = new Image(); head1on.src  = "http://reanimationlibrary.org/V2/images/header1.jpg";
     head1off = new Image(); head1off.src = "http://reanimationlibrary.org/V2/images/header.jpg";
@@ -40,22 +69,6 @@ if (document.images) {
     nav8off  = new Image(); nav8off.src  = "http://reanimationlibrary.org/V2/images/header_address.jpg";
     nav9on   = new Image(); nav9on.src   = "http://reanimationlibrary.org/V2/images/events1.jpg";
     nav9off  = new Image(); nav9off.src  = "http://reanimationlibrary.org/V2/images/events.jpg";
-    icon1on   = new Image(); icon1on.src   = "http://reanimationlibrary.org/V2/images/browseicon1.jpg";
-    icon1off  = new Image(); icon1off.src  = "http://reanimationlibrary.org/V2/images/browseicon1.jpg";
-    icon2on   = new Image(); icon2on.src   = "http://reanimationlibrary.org/V2/images/browsecnicon1.jpg";
-	icon2off  = new Image(); icon2off.src  = "http://reanimationlibrary.org/V2/images/browsecnicon.jpg";
-	icon3on   = new Image(); icon3on.src   = "http://reanimationlibrary.org/V2/images/recentitemsicon1.jpg";
-	icon3off  = new Image(); icon3off.src  = "http://reanimationlibrary.org/V2/images/recentitemsicon.jpg";
-	icon4on   = new Image(); icon4on.src   = "http://reanimationlibrary.org/V2/images/subjectsicon1.jpg";
-    icon4off  = new Image(); icon4off.src  = "http://reanimationlibrary.org/V2/images/subjectsicon.jpg";
-    icon5on   = new Image(); icon5on.src   = "http://reanimationlibrary.org/V2/images/imagearchiveicon1.jpg";
-	icon5off  = new Image(); icon5off.src  = "http://reanimationlibrary.org/V2/images/imagearchiveicon.jpg";
-	icon6on   = new Image(); icon6on.src   = "http://reanimationlibrary.org/V2/images/cdicon1.jpg";
-	icon6off  = new Image(); icon6off.src  = "http://reanimationlibrary.org/V2/images/cdicon.jpg";
-	icon7on   = new Image(); icon7on.src   = "http://reanimationlibrary.org/V2/images/advancedsearchicon1.jpg";
-	icon7off  = new Image(); icon7off.src  = "http://reanimationlibrary.org/V2/images/advancedsearchicon.jpg";
-    button1on   = new Image(); button1on.src   = "http://reanimationlibrary.org/V2/images/sbutton1.jpg";
-	button1off  = new Image(); button1off.src  = "http://reanimationlibrary.org/V2/images/sbutton.jpg";
 
 }
 
@@ -91,26 +104,52 @@ function rollOff(img1){
 <div class="aboutmenu">
 <table class="menu" cellpadding="5">
 <tr>
-<td><a href="<%= items_path %>" onmouseover="rollOn('icon1','icon1 text'); return true;" onmouseout="rollOff('icon1'); return true;"><img name="icon1" src="http://reanimationlibrary.org/V2/images/browseicon1.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;"></a></td>
+<td>
+  <a href="<%= items_path %>">
+    <img id="browse" class="rollover <%= (current_page?(items_path) || current_page?(root_path)) ? "current_page" : "" %>" name="icon1" src="http://reanimationlibrary.org/V2/images/browseicon.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;" />
+  </a></td>
 </tr>
 <tr>
-<td><a href="<%= by_call_number_items_path %>" onmouseover="rollOn('icon2','icon2 text'); return true;" onmouseout="rollOff('icon2'); return true;"><img name="icon2" src="http://reanimationlibrary.org/V2/images/browsecnicon.jpg" alt="browse the collection by call number" width="150" height="25" style="border: none;"></a></td>
-</tr>
-<tr>
-<td><a href="<%= recent_items_path %>" onmouseover="rollOn('icon3','icon3 text'); return true;" onmouseout="rollOff('icon3'); return true;"><img name="icon3" src="http://reanimationlibrary.org/V2/images/recentitemsicon.jpg" alt="view recently added items" width="150" height="25" style="border: none;"></a></td>
-</tr>
-<tr>
-<td><a href="<%= subjects_path %>" onmouseover="rollOn('icon4','icon4 text'); return true;" onmouseout="rollOff('icon4'); return true;"><img name="icon4" src="http://reanimationlibrary.org/V2/im	ages/subjectsicon.jpg" alt="browse subjects" width="150" height="25" style="border: none;"></a></td>
-</tr>
-<tr>
-<td><a href="<%= digital_assets_path %>" onmouseover="rollOn('icon5','icon5 text'); return true;" onmouseout="rollOff('icon5'); return true;"><img name="icon5" src="http://reanimationlibrary.org/V2/images/imagearchiveicon.jpg" alt="browse images" width="150" height="25" style="border: none;"></a>
+<td>
+  <a href="<%= by_call_number_items_path %>">
+    <img id="browsecn" class="rollover <%= current_page?(by_call_number_items_path) ? "current_page" : "" %>" name="icon2" src="http://reanimationlibrary.org/V2/images/browsecnicon.jpg" alt="browse the collection by call number" width="150" height="25" style="border: none;" />
+  </a>
 </td>
 </tr>
 <tr>
-<td><a href="http://reanimationlibrary.org/V2/pages/collectionguide.htm" onmouseover="rollOn('icon6','icon6 text'); return true;" onmouseout="rollOff('icon6'); return true;"><img name="icon6" src="http://reanimationlibrary.org/V2/images/cdicon.jpg" alt="guide to the collections" width="150" height="25" style="border: none;"></a></td>
+<td>
+  <a href="<%= recent_items_path %>">
+    <img id="recentitems" class="rollover <%= current_page?(recent_items_path) ? "current_page" : "" %>" name="icon3" src="http://reanimationlibrary.org/V2/images/recentitemsicon.jpg" alt="view recently added items" width="150" height="25" style="border: none;" />
+  </a>
+</td>
 </tr>
 <tr>
-<td><a href="<%= advanced_search_path %>" onmouseover="rollOn('icon7','icon7 text'); return true;" onmouseout="rollOff('icon7'); return true;"><img name="icon7" src="http://reanimationlibrary.org/V2/images/advancedsearchicon.jpg" alt="advanced search" width="150" height="25" style="border: none;"></a></td>
+<td>
+  <a href="<%= subjects_path %>">
+    <img id="subjects" class="rollover <%= current_page?(subjects_path) ? "current_page" : "" %>" name="icon4" src="http://reanimationlibrary.org/V2/images/subjectsicon.jpg" alt="browse subjects" width="150" height="25" style="border: none;" />
+  </a>
+</td>
+</tr>
+<tr>
+<td>
+  <a href="<%= digital_assets_path %>">
+    <img id="imagearchive" class="rollover <%= current_page?(digital_assets_path) ? "current_page" : "" %>" name="icon5" src="http://reanimationlibrary.org/V2/images/imagearchiveicon.jpg" alt="browse images" width="150" height="25" style="border: none;" />
+  </a>
+</td>
+</tr>
+<tr>
+<td>
+  <a href="http://reanimationlibrary.org/V2/pages/collectionguide.htm">
+    <img id="cd" class="rollover <%= current_page?("http://reanimationlibrary.org/V2/pages/collectionguide.htm") ? "current_page" : "" %>" name="icon6" src="http://reanimationlibrary.org/V2/images/cdicon.jpg" alt="guide to the collections" width="150" height="25" style="border: none;" />
+  </a>
+</td>
+</tr>
+<tr>
+<td>
+  <a href="<%= advanced_search_path %>">
+    <img id="advancedsearch" class="rollover <%= current_page?(advanced_search_path) ? "current_page" : "" %>" name="icon7" src="http://reanimationlibrary.org/V2/images/advancedsearchicon.jpg" alt="advanced search" width="150" height="25" style="border: none;" />
+  </a>
+</td>
 </tr>
 </table>
 </div>

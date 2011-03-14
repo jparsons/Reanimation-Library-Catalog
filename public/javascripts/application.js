@@ -2,7 +2,7 @@ function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".subform").hide();
 }
- 
+
 function insert_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
@@ -17,13 +17,13 @@ function replace_content(link, association, content){
 function remove_field(element, item) {
   element.up(item).remove();
 }
-$(function () {  
-  if ($('.process-log').length > 0) {  
-    setTimeout(update_log_entries, 5000);  
-  }  
-});  
-  
-function update_log_entries() {  
+$(function () {
+  if ($('.process-log').length > 0) {
+    setTimeout(update_log_entries, 5000);
+  }
+});
+
+function update_log_entries() {
   process_log_id = $(".process-log").attr("id");
   after_id = $(".entry:last").attr("id");
   if (after_id == undefined){
@@ -32,12 +32,12 @@ function update_log_entries() {
 	after_id = after_id.replace(/entry-/, "");
   }
   process_log_id = process_log_id.replace(/process-log-/, "");
-  $.getScript('/log_entries.js?process_log_id=' + process_log_id + '&after_id=' + after_id);  
-  setTimeout(update_log_entries, 5000);  
+  $.getScript('/log_entries.js?process_log_id=' + process_log_id + '&after_id=' + after_id);
+  setTimeout(update_log_entries, 5000);
 }
 
-$(document).ready(function() 
-{ 
+$(document).ready(function()
+{
   $(".submit_button").click(function(){
 	  $("#search_form").submit();
 	  return false;
@@ -60,11 +60,8 @@ $(document).ready(function()
 	$.cookie("search-preference", "basic");
 	return false;
 	});
-  
-  if ($.cookie("search-preference") == "advanced") {
-	$('#basic-search-options').hide();
-	$('#advanced-search-options').show();
-}
+
+
 });
 
 
