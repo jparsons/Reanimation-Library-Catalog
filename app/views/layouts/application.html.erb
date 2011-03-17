@@ -162,29 +162,8 @@ function rollOff(img1){
 	</div>
 </div>
 <!--end retarded code 2-->
-<!--<div id="page">
+
 <div id="sidebar-menu">
-	<div class="sidebar-menu-item">
-		<% form_tag search_path, :method=>:get, :id=>"search_form" do %>
-			<%= text_field_tag 'q', params[:q], :class=>'sidebar', :value=>params[:q] || "search the catalog" %>&nbsp;
-			<%= link_to 'go', "", :class=>"submit-button" %>
-			<% end %>	
-	</div>
-	<div class="sidebar-menu-item">
-		<%= link_to 'browse the catalog by title', items_path %>
-	</div>
-	<div class="sidebar-menu-item">	
-		<%= link_to 'browse images', digital_assets_path %>
-	</div>
-	<div class="sidebar-menu-item">
-		<%= link_to 'browse subjects', subjects_path %>
-	</div>
-	<div class="sidebar-menu-item">
-		<%= link_to 'exhibitions', exhibitions_path %>
-	</div>
-	<div class="sidebar-menu-item">
-		<%= link_to 'art works', works_path %>
-	</div>
 	<% if logged_in? && current_user.is_administrator? %>
 	<div class="sidebar-admin-menu">
 		<div class="sidebar-menu-item">
@@ -222,7 +201,7 @@ function rollOff(img1){
 		<%= link_to 'log in', login_path %>
 	</div>
 	<% end %>
-</div>-->
+</div>
 <!--begin retarded code 3-->
 <image src="http://reanimationlibrary.org/V2/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none; align-right;">
 <div class="footerlogo"><img src="http://reanimationlibrary.org/V2/images/footerlogo.gif" width="36" height="36px" style="border: none;"></div>
