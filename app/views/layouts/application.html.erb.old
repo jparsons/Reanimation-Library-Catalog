@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title><%= yield(:title) || "Catalog" %></title>
+<%= javascript_include_tag 'jquery', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min', 'jquery.cookie' %>
+<%= stylesheet_link_tag 'application.css', 'http://reanimationlibrary.org/pages/application.css', 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
+<link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
+<%= yield(:head) %>
+</head>
+<body>
+<div id="header">
+</div>
+<div id="page">
+<div id="sidebar-menu">
+	<div class="sidebar-menu-item" id="basic-search-options">
+  <%= render :partial => 'search/basic_search' %>
+  <%= link_to 'advanced search options', "#" , :id=>"show-advanced-search"%>
+	</div>
+	<div class="sidebar-menu-item" id="advanced-search-options" style="display:none;">
+  <%= render :partial => 'search/advanced_search' %>
+  <%= link_to 'back to basic search options', "#", :id=>"show-basic-search" %>
+	</div>
+	<div class="sidebar-menu-item">
+		<%= link_to 'browse the catalog by title', items_path %>
+	</div>
+	<div class="sidebar-menu-item">	
+		<%= link_to 'browse images', digital_assets_path %>
+	</div>
+	<div class="sidebar-menu-item">
+		<%= link_to 'browse subjects', subjects_path %>
+	</div>
+	<div class="sidebar-menu-item">
+		<%= link_to 'exhibitions', exhibitions_path %>
+	</div>
+	<div class="sidebar-menu-item">
+		<%= link_to 'art works', works_path %>
+	</div>
+	<% if logged_in? && current_user.is_administrator? %>
+	<div class="sidebar-admin-menu">
+		<div class="sidebar-menu-item">
+			<%= link_to "add a new item", new_item_path %>
+		</div>	
+		<div class="sidebar-menu-item">
+			<%= link_to "view items that need cataloging", acquired_items_path %>
+		</div>
+		<div class="sidebar-menu-item">
+			<%= link_to "view items that have no images", need_images_items_path %>
+		</div>
+		<div class="sidebar-menu-item">
+		    <%= link_to "add a new exhibition", new_exhibition_path %>
+		</div>
+		<div class="sidebar-menu-item">
+		    <%= link_to "add a new art work", new_work_path %>
+		</div>		
+		<div class="sidebar-menu-item">
+			<%= link_to "see a list of users", users_path %>
+		</div>
+		<div class="sidebar-menu-item">
+			<%= link_to "add a new user", new_user_path %>
+		</div>	
+		<div class="sidebar-menu-item">
+			<%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
+		</div>		
+	</div>
+	<% end %>
+	<% if logged_in? %>
+	<div class="sidebar-menu-item">
+		<%= link_to 'log out', logout_path %>
+	</div>
+	<% else %>
+	<div class="sidebar-menu-item">
+		<%= link_to 'log in', login_path %>
+	</div>
+	<% end %>
+</div>
+<div id="content">		
+	<%- flash.each do |name, msg| -%>  	
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<%- end -%>
+	<%= yield %>
+</div>
+</div>	
+
+</body>
+</html>
