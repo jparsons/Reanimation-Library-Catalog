@@ -1,16 +1,16 @@
 body {
   font-family: arial, sans-serif;
   font-size: 12px;
-  text-align: left;
+  text-align: center;
   font-weight: 100;
   margin-bottom: 1px;
-  background-color: #1E3147;
-  color:#ffffff;
+  background-color: #FFFFFF;
+  color:#000000;
 }
 
 a {
  text-decoration: none;
- color: #F56A25;
+ color: #BB0706;
 }
 
 a {
@@ -19,11 +19,11 @@ a {
 
 a:hover {
  text-decoration:none;
- color:#F5C544;
+ color:#0521AD;
 }
 
 a.submit-button {
- border:1px solid #F56A25;
+ border:1px solid #000000;
  padding:3px;
 }
 
@@ -35,33 +35,128 @@ label {
 	font-weight:bold;
 }
 
+img {
+ border: 2px solid #303030; 
+}
+
 /* page layout */ 
 
 div#page {
   margin-left:auto;
   margin-right:auto;
-  width:940px;
-  overflow:auto;
+  width:796px;
   min-height:100%;
 }
 div#content {
   float:left;
-  width:699px; 
-  padding-left:20px;
-  border-left: 1px dotted white;
-  min-height:100%;
+  width:616px; 
+  min-height:100%px;
+  margin-top: 10px;
+  margin-left:22px;
 }
 div#sidebar-menu {
-	float:left;
-	width:220px;
-	margin-top:20px;
-	min-height:100%;
+ float:left;
+ width: 160px;
+ height: 400px;
+ padding-right: 0px;
+ padding-top: 14px;
+ background-color: #FFFFFF;
+ margin-top: 39px;
+ margin-bottom: 8px;
+ margin-left: px;
 	
 }
 
 div.pagination {
 	margin-top:1em;
 	margin-bottom:1em;
+	font-weight: bold;
+	margin-left:auto;
+  	margin-right:auto;
+}
+
+div.bigheader {
+ width: 796px;
+ background-color: #FFFFFF;
+ height: 66px;
+ margin-top: 38px;
+}
+
+div.pagebody {
+ margin-left: auto;
+ margin-right: auto;
+ width: 796px;
+ text-align: left;
+ font-family: helveteca, sans-serif;
+}
+
+div.hbreak {
+ width: 796px;
+ height: 0px;
+ color: #D4D4D4;
+ border-bottom-style: solid;
+ border-bottom-width: 0px;
+ 
+ margin-left: auto;
+ margin-right: auto;
+ padding-bottom:15px;
+ padding-top:2px;
+}
+
+div.footer {
+  background-color: #FFFFFF;
+  width: 753;
+  text-align: right;
+  font-size: 11px;
+  font-weight: bold;
+  vertical-align: baseline;
+
+}
+
+div.footerlogo {
+  background-color: #FFFFFF;
+  width: 36;
+  float: right;
+  margin-top: 6px;
+}
+
+
+p.breadcrumb {
+ font-size: 10px;
+ color: #000000;
+}
+
+.breadcrumb a {
+ color: #BB0706;
+}
+
+.breadcrumb a:hover {
+ color: #0521AD;
+}
+
+div.about {
+ margin-top: 10px;
+ float: right;
+ width: 616px;
+ font-size: 12px;
+}
+
+div.aboutmenu {
+ float:left;
+ width: 160px;
+ padding-right: 0px;
+ padding-top: 14px;
+ background-color: #FFFFFF;
+ border-right: 1px dotted #747474;
+ margin-top: 8px;
+ margin-bottom: 8px;
+ margin-left: -7px;
+}
+
+img.header {
+ border: none; 
+ margin-top: 10px;
+ margin-bottom: 1px;
 }
 
 /* rails error styles */
@@ -138,18 +233,28 @@ div.pagination-links {
 }
 div.item {
 	clear:both;
-	margin-bottom:40px;
+	margin-bottom:10px;
+	border: 1px solid #B2B2B2;
+	background-color: #e1dfdf;
 	overflow:auto;
-
 }
 div.item-cover-image-thumb {
 	width:140px;
 	float:left;
 	margin-right:20px;
+	margin-left:20px;
+	margin-top:30px;
 }
+.item-cover-image-thumb a:hover img {
+	      border: 2px solid #BD0703;
+    }
 div.item-data {
-	width:379px;
-	float:left;
+	width:420px;
+	float:right;
+	margin-bottom:20px;
+	margin-top:27px;
+	padding-right:10px;
+
 }
 div.item-title {
 	font-weight:bold;
@@ -178,13 +283,13 @@ div.item-label {
   margin-right:.5em;
 }
 a.digital-asset>img{
-	margin-right:16px;
-	margin-bottom:16px;
-	border:2px solid white;
+	margin-right:10px;
+	margin-bottom:10px;
+	border:2px solid #B2B2B2;
     
 }
 a.digital-asset>img:hover {
-	border:2px solid #F5C544;
+	border:2px solid #BD0703;
 }
 div#works-list>div.work {
 	margin-bottom:1em;
@@ -192,6 +297,10 @@ div#works-list>div.work {
 
 div.sidebar-admin-menu {
 	margin-top:20px;
+	margin-left:10px;
+}
+div.sidebar-menu-item {
+  margin-bottom:10px;
 }
 div.admin-link, a.admin-link{
 	font-size:1.5em;
@@ -228,4 +337,12 @@ table#item-list td.call-number {
 table#item-list td.title {
   text-transform: uppercase;
   font-weight:bold;
+}
+table#item-list td.item-id {
+  text-transform: uppercase;
+  font-weight: bold;
+  width:115px;
+}
+table#item-list td img {
+  border: none;
 }
