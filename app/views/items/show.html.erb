@@ -11,6 +11,17 @@
 	    </div>
 	  <% end %>
 </div>
+Title
+Creator(s)
+Publisher
+Year
+Pages
+Size
+Call Number
+Subject(s)
+Library ID
+Collection
+
 <div class="item-data-show">
 	<div class="item-creators">
 		<span class="label">Creator(s):</span> <%= @item.creators.map{|c| c.display_name }.join("; ")%>
@@ -39,6 +50,28 @@
 	<div class="item-collection">
 		<span class="catalog-label">Collection:</span> <%=h @item.collection_name.split(": ")[1] %>
 	</div>
+	<div class="item-format">
+		<span class="catalog-label">Format:</span> <%=h @item.format %>
+	</div>
+	<div class="item-language">
+		<span class="catalog-label">Language:</span> <%=h @item.language_id.blank? ? '' : item.language.name %>
+	</div>
+	<div class="item-provenance">
+		<span class="catalog-label">Provenance:</span> <%=h @item.provenance %>
+	</div>
+	<div class="item-dedication">
+		<span class="catalog-label">Dedication:</span> <%=h @item.dedication %>	  
+	</div>
+	<div class="item-vendor-location">
+	  <span class="catalog-label">Vendor location:</span> <%=h @item.vendor.city %>, <%=h @item.vendor.state %>
+	</div>
+	<div class="item-acquisition-type">
+		<span class="catalog-label">Acquisition type:</span> <%=h @item.acquisition_type %>
+	</div>
+	<div class="item-donors">
+		<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %>
+	</div>
+	<% if logged_in? && current_user.is_administrator? %>
 	<div class="item-copyright">
 		<span class="catalog-label">Copyright:</span> <%=h @item.copyright %>
 	</div>
@@ -56,9 +89,6 @@
 	</div>
 	<div class="item-isbn-issn">
 		<span class="catalog-label">ISBN/ISSN:</span> <%=h @item.isbn_issn %>
-	</div>
-	<div class="item-language">
-		<span class="catalog-label">Language:</span> <%=h @item.language_id.blank? ? '' : item.language.name %>
 	</div>
 	<div class="item-is-government-document">
 		<span class="catalog-label">Is government document?:</span> <%=h @item.is_government_document %>
@@ -87,18 +117,14 @@
 	<div class="item-price-paid">
 		<span class="catalog-label">Price paid :</span> <%=h number_to_currency(@item.price_paid) %>
 	</div>
-	<div class="item-acquisition-type">
-		<span class="catalog-label">Acquisition type:</span> <%=h @item.acquisition_type %>
-	</div>
+
 	<div class="item-acquisition-notes">
 		<span class="catalog-label">Acquisition notes:</span> <%=h @item.acquisition_note %>
 	</div>
 	<div class="item-acquired-for">
 		<span class="catalog-label">Acquired for:</span> <%=h @item.acquired_for %>
 	</div>
-	<div class="item-donors">
-		<span class="catalog-label">Donors:</span> <%= @item.donors.map {|d| d.name}.join("; ") %>
-	</div>
+	<% end %>
 	<div class="item-images">
 		<h2>
 			Images from this book:
