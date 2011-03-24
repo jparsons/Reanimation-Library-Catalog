@@ -12,7 +12,8 @@
   <%= select "search", "image_color", DigitalAsset.all.map(&:color).compact.uniq, :include_blank=>true %></p>
   <p><label for="image_type">Image type: </label><br />
   <%= select "search", "image_type", DigitalAsset.all.map(&:image_type).compact.uniq, :include_blank=>true %></p>
-
+  <p><label for="collection">Collection:</label><br />
+  <%= select "search", "collection_name", COLLECTIONS.sort, :include_blank=>true %></p>
   <p>  
     <input type="checkbox" name ="is_public_domain" value="true" <%= 'checked="checked"' unless params[:is_public_domain].blank? %>/> &nbsp;Public Domain Only <br />
 </p>

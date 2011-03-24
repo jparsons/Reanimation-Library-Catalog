@@ -1,5 +1,5 @@
 REMOVE_FROM_BEGINNING_OF_TITLES = ["a ", "an ", "the ", "\\["]
-COLLECTIONS = ["1A: Text & Symbol", "1: Primary", "2: Context", "3: Copyright"]
+COLLECTIONS = ["1A: Text & Symbol", "1: Primary", "2: Reference", "3: Copyright"]
 ACQUISITION_TYPES =  ["Gift", "Thrift/Secondhand Store", "Free Book Exchange", "Flea Market", "Used Book Store", "Library Sale", "Internet", "Antique Store", "Found Item", "Street/Stoop/Garage Sale", "Scout Purchase"]
 WORK_TYPES = ["Book", "Collage", "Digital Animation", "Drawing", "Inkjet Print", "Installation", "Mixed Media", "Painting", "Play", "Sculpture", "Weaving"]
 SUBJECT_AUTHORITIES = ["LCSH"]

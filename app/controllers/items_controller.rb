@@ -98,6 +98,7 @@ class ItemsController < ApplicationController
     elsif params[:commit] == UNPUBLISH_TEXT
       @item.cataloging_status = "private"
     end
+    params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f
    # @item.update_attribute(:subject_ids, subject_ids)
     if @item.update_attributes(params[:item])
       flash[:notice] = "Successfully updated item."

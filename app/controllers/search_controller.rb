@@ -25,6 +25,9 @@ class SearchController < ApplicationController
        unless params[:is_public_domain].blank?
          query_parts << "is_public_domain:(#{params[:is_public_domain]})"
        end
+       unless params[:collection_name].blank?
+         query_parts << "collection_name:(#{params[:collection_name]})"
+       end
        @query = query_parts.join(" AND ")
     end
     @items = Item.search(@query)
