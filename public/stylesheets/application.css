@@ -64,6 +64,7 @@ div#sidebar-menu {
  margin-top: 39px;
  margin-bottom: 8px;
  margin-left: px;
+
 	
 }
 
@@ -80,6 +81,7 @@ div.bigheader {
  background-color: #FFFFFF;
  height: 66px;
  margin-top: 38px;
+ margin-bottom: 20px;
 }
 
 div.pagebody {
@@ -144,6 +146,7 @@ div.about {
 div.aboutmenu {
  float:left;
  width: 160px;
+ height: 400px;
  padding-right: 0px;
  padding-top: 14px;
  background-color: #FFFFFF;
@@ -151,6 +154,10 @@ div.aboutmenu {
  margin-top: 8px;
  margin-bottom: 8px;
  margin-left: -7px;
+}
+
+table.menu tr {
+  padding: 18px;
 }
 
 img.header {
@@ -233,9 +240,10 @@ div.pagination-links {
 }
 div.item {
 	clear:both;
+	width:592px;
 	margin-bottom:10px;
-	border: 1px solid #B2B2B2;
-	background-color: #e1dfdf;
+	border: 1px solid #E4E4E4;
+	background-color: #F1F1F1;
 	overflow:auto;
 }
 div.item-cover-image-thumb {
@@ -249,11 +257,18 @@ div.item-cover-image-thumb {
 	      border: 2px solid #BD0703;
     }
 div.item-data {
-	width:420px;
-	float:right;
+	width:380px;
+	float:left;
 	margin-bottom:20px;
 	margin-top:27px;
 	padding-right:10px;
+
+}
+div.item-images {
+	clear:both;
+	width:616px
+	margin-bottom:20px;
+
 
 }
 div.item-title {
@@ -262,7 +277,8 @@ div.item-title {
 div.item-cover-image-large{
 	width:auto;
 	float:left;
-	margin-right:20px;	
+	margin-right:20px;
+	margin-bottom: 20px;
 }
 
 div.item-data>div {
@@ -283,8 +299,8 @@ div.item-label {
   margin-right:.5em;
 }
 a.digital-asset>img{
-	margin-right:10px;
-	margin-bottom:10px;
+	margin-right:8px;
+	margin-bottom:8px;
 	border:2px solid #B2B2B2;
     
 }
@@ -312,7 +328,7 @@ div.subform{
 	margin-bottom:20px;
 }
 div.scrolling-subform {
-	background-color:#334455;
+	background-color:#dadada;
 	padding:10px;
 	margin-bottom:20px;
 	height:250px;

@@ -1,6 +1,10 @@
 class Donor < ActiveRecord::Base
   has_and_belongs_to_many :items
-  default_scope :order=>"name asc"
+  default_scope :order=>"name asc" 
+
+  def display_name
+    name || organization_name
+  end
 end
 
 

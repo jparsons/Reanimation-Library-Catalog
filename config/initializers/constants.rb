@@ -4,6 +4,7 @@ ACQUISITION_TYPES =  ["Gift", "Thrift/Secondhand Store", "Free Book Exchange", "
 WORK_TYPES = ["Book", "Collage", "Digital Animation", "Drawing", "Inkjet Print", "Installation", "Mixed Media", "Painting", "Play", "Sculpture", "Weaving"]
 SUBJECT_AUTHORITIES = ["LCSH"]
 DIGITAL_ASSET_SUBJECT_AUTHORITIES = ["LCSH"]
+FORMATS = ["Bound Collection of Magazines", "Hardcover Book", "Magazine", "Pamphlet", "Paperback Book", "Spiral Bound Book", "Staple Bound Book", "Tape Bound Book", "Unbound"]
 USER_ROLES = ["administrator", "cataloger", "image cataloger", "guest"]
 CATALOGER_ROLES = ["administrator", "cataloger", "image cataloger"]
 SAVE_UNPUBLISHED_TEXT = "save item but don't publish"

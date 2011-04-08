@@ -7,7 +7,7 @@
     </tr>
 	<% @items.each do |item| %>
 	  <tr class="<%= cycle("odd", "even") %>">
-	    <td><%= item.id %></td><td><%= item.call_number.blank? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td>
+	    <td><%= item.id %></td><td><%= item.call_number.blank? ? "[blank]" : item.call_number %></td><td><%= item.display_title %></td><td><%= link_to "add an image", new_digital_asset_path(:item_id=>item.id) %></td>
 	  </tr>
 	<% end %>
 	</table>

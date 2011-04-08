@@ -94,6 +94,10 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def vendor_location
+    vendor.nil? ? '' : vendor.city + ", " + vendor.state
+  end
+
 
 end
 

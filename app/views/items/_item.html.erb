@@ -1,6 +1,6 @@
     <div class="item">
 	  	<div class="item-cover-image-thumb">
-	      <% if item.cover_image.file? %><%= link_to(image_tag(item.cover_image.url(:thumb), :class=>"cover-thumb"), item_path(item)) %><% end %>
+	     <%= link_to(image_tag(item.cover_image.url(:thumb), :class=>"cover-thumb"), item_path(item)) %>
 	      <br />
 	      <br />
 	    </div>
@@ -13,8 +13,15 @@
         <div class="item-size"><span class="item-label">Size:</span> <%=h item.item_size %></div>
         <div class="item-callnumber"><span class="item-label">Call Number:</span> <%=h item.call_number %></div>
         <div class="item-subjects"><div class="item-label">Subject(s):</div> <div class="item-content"><%= item.subjects.map{|s| link_to(s.name, subject_path(s)) }.join("<br />") %></div></div>
-        <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.legacy_id %></div>
+        <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.legacy_record_id %></div>
         <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name.nil? ? '' : item.collection_name.split(": ")[1] %></div>
+        <div class="item-language"><span class="catalog-label">Language:</span> <%=h item.language %></div>
+        <div class="item-provenance"><span class="catalog-label">Provenance:</span> <%=h item.provenance %></div>
+        <div class="item-dedication"><span class="catalog-label">Dedication:</span> <%=h item.dedication %></div>
+        <div class="item-acquisition-type"><span class="catalog-label">Acquisition Type:</span> <%=h item.acquisition_type %></div>
+        <% unless item.donors.empty?  %>
+          <div class="item-donor"><span class="catalog-label">Donor:</span> <%=h item.donors.map(&:display_name).join(", ") %></div>
+        <% end %>
 
 
 	    </div>

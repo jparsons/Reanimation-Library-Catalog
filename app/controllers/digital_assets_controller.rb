@@ -1,18 +1,19 @@
 class DigitalAssetsController < ApplicationController
-    
+
   def index
     @digital_assets = DigitalAsset.all.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
   end
-  
+
   def show
     @digital_asset = DigitalAsset.find(params[:id])
-    
+
   end
-  
+
   def new
     @digital_asset = DigitalAsset.new
+    @digital_asset.item_id = params[:item_id] if params[:item_id]
   end
-  
+
   def create
     digital_asset_subject_ids = params[:digital_asset][:digital_asset_subject_ids]
     params[:digital_asset].delete(:digital_asset_subject_ids)
@@ -22,13 +23,13 @@ class DigitalAssetsController < ApplicationController
         digital_asset_subject_ids << @digital_asset.digital_asset_subjects.first.id
       end
       @digital_asset.update_attribute(:digital_asset_subject_ids, digital_asset_subject_ids)
-      flash[:notice] = "Successfully created digital_asset."
-      redirect_to @digital_asset
+      flash[:notice] = "Image was added successfully. Would you like to add another?"
+      redirect_to new_digital_asset_path(:item_id => @digital_asset.item_id)
     else
       render :action => 'new'
     end
   end
-  
+
   def most_recent
     ActiveRecord::Base.include_root_in_json = false
     @digital_assets = DigitalAsset.most_recent
@@ -36,13 +37,13 @@ class DigitalAssetsController < ApplicationController
       wants.html {   }
       wants.xml { render :xml=>@digital_assets.to_xml }
       wants.json {render_json @digital_assets.to_json(:only=>[:id], :methods=>:mini_url ) }
-    end   
+    end
   end
-  
+
   def edit
     @digital_asset = DigitalAsset.find(params[:id], :include=>[:digital_asset_subjects])
   end
-  
+
   def update
     digital_asset_subject_ids = params[:digital_asset][:digital_asset_subject_ids]
     params[:digital_asset].delete(:digital_asset_subject_ids)
@@ -55,7 +56,7 @@ class DigitalAssetsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @digital_asset = DigitalAsset.find(params[:id])
     @digital_asset.destroy

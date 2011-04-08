@@ -50,7 +50,7 @@ $(document).ready(function(){
   <p><%= f.label :date_acquired %><br />
 	<%= f.text_field :date_acquired %> </p>
   <p><%= f.label :acquisition_type %><br />
-  <%= f.text_field :acquisition_type %></p>
+  <%= f.select :acquisition_type, ACQUISITION_TYPES, :include_blank=> true %></p>
 
   <p><%= f.label :acquired_for %><br />
 	<%= f.text_field :acquired_for %></p>

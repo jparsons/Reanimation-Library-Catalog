@@ -16,7 +16,7 @@ module ItemsHelper
    }
   return content_tag("div", string, :class=>'pagination')
  end
- 
+
  def letter_options
    if logged_in? && current_user.is_administrator?
      (Item.all.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
@@ -24,7 +24,7 @@ module ItemsHelper
      (Item.published.collect!{ |c| c.alphabetical_title.first.upcase }.uniq! || []).sort!
    end
  end
- 
+
   def determine_sort_order(field, current_field, current_order)
     if field == current_field
       if current_order == "ASC"
@@ -36,7 +36,7 @@ module ItemsHelper
       "ASC"
     end
   end
-  
+
   def show_order_image(field, current_field, current_order)
     if field == current_field
       if current_order == "DESC"
@@ -44,6 +44,12 @@ module ItemsHelper
       else
         image_tag("asc.png")
       end
+    end
+  end
+
+  def print_unless_blank(field_value, label)
+    unless field_value.blank?
+      content_tag("div", content_tag("label", label + ":") + field_value, :class=>"item-#{label}")
     end
   end
 
