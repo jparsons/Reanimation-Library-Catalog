@@ -49,7 +49,7 @@ module ItemsHelper
 
   def print_unless_blank(field_value, label)
     unless field_value.blank?
-      content_tag("div", content_tag("label", label + ":") + field_value, :class=>"item-#{label}")
+      content_tag("div", content_tag("div", label + ":", :class=>"item-label") + content_tag("div", field_value, :class=>"item-content"), :class=>"item-#{label}")
     end
   end
 

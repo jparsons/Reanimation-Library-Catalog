@@ -13,35 +13,40 @@
 </div>
 
 <div class="item-data-show">
-	<div class="item-creators">
-		<label>Creator(s):</label> <%= @item.creators.map{|c| c.display_name }.join("; ")%>
-	</div>
+
+  <div class="item-creators">
+    <div class="item-label">
+      Creator(s):
+    </div> 
+    <div class="item-content"><%= @item.creators.map{|c| c.display_name }.join("<br />") %></div>
+  </div>
 	<div class="item-publisher">
-		<label>Publisher:</label> <%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state %>
+		<div class="item-label">Publisher:</div> 
+		<div class="item-content"><%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state %></div>
 	</div>
 	<div class="item-year">
-		<label>Year:</label> <%=h @item.copyright %>
+		<div class="item-label">Year:</div> <div class="item-content"><%=h @item.copyright %></div>
 	</div>
 	<div class="item-pages">
-		<label>Pages:</label> <%=h @item.extent %>
+		<div class="item-label">Pages:</div> <div class="item-content"><%=h @item.extent %></div>
 	</div>
 	<div class="item-size">
-		<label>Size:</label> <%=h @item.item_size %>
+		<div class="item-label">Size:</div> <div class="item-content"><%=h @item.item_size %></div>
 	</div>
 	<div class="item-call-number">
-		<label>Call Number:</label> <%=h @item.call_number %>
+		<div class="item-label">Call Number:</div> <div class="item-content"><%=h @item.call_number %></div>
 	</div>
 	<div class="item-subjects">
-		<label>Subject(s):</label> <%= @item.subjects.map{|s|link_to(s.name, subject_path(s)) }.join(", ") %>
+		<div class="item-label">Subject(s):</div> <div class="item-content"><%= @item.subjects.map{|s|link_to(s.name, subject_path(s)) }.join(", ") %></div>
 	</div>
 	<div class="item-library-id">
-		<label>Library ID:</label> <%=h @item.id %>
+		<div class="item-label">Library ID:</div> <div class="item-content"><%=h @item.id %></div>
 	</div>
 	<div class="item-collection">
-		<label>Collection:</label> <%=h @item.collection_name.split(": ")[1] %>
+		<div class="item-label">Collection:</div> <div class="item-content"><%=h @item.collection_name.split(": ")[1] %></div>
 	</div>
 	<div class="item-format">
-		<label>Format:</label> <%=h @item.physical_format %>
+		<div class="item-label">Format:</div> <div class="item-content"><%=h @item.physical_format %></div>
 	</div>
 
 	<%= print_unless_blank(@item.language, "Language") %>
@@ -53,62 +58,62 @@
 
 	<% unless @item.donors.empty? %>
 	<div class="item-donors">
-		<label>Donors:</label> <%= @item.donors.map {|d| d.name}.join("; ") %>
+		<div class="item-label">Donors:</div> <div class="item-content"><%= @item.donors.map {|d| d.name}.join("; ") %></div>
 	</div>
 	<% end %>
 	
 	<% if logged_in? && current_user.is_administrator? %>
 	<div class="item-copyright">
-		<label>Copyright:</label> <%=h @item.copyright %>
+		<div class="item-label">Copyright:</div><div class="item-content"> <%=h @item.copyright %></div>
 	</div>
 	<div class="item-barcode">
-		<label>Barcode:</label> <%=h @item.barcode %>
+		<div class="item-label">Barcode:</div> <div class="item-content"><%=h @item.barcode %></div>
 	</div>
 	<div class="item-has-marc-record">
-		<label>Has MARC record?:</label> <%=h @item.has_marc_record %>
+		<div class="item-label">Has MARC record?:</div> <div class="item-content"><%=h @item.has_marc_record %></div>
 	</div>
 	<div class="item-metadata-notes">
-		<label>Metadata notes:</label> <%=h @item.metadata_notes %>
+		<div class="item-label">Metadata notes:</div> <div class="item-content"><%=h @item.metadata_notes %></div>
 	</div>
 	<div class="item-corporate-author">
-		<label>Corporate author:</label> <%=h @item.corporate_author %>
+		<div class="item-label">Corporate author:</div> <div class="item-content"><%=h @item.corporate_author %></div>
 	</div>
 	<div class="item-isbn-issn">
-		<label>ISBN/ISSN:</label> <%=h @item.isbn_issn %>
+		<div class="item-label">ISBN/ISSN:</div> <div class="item-content"><%=h @item.isbn_issn %></div>
 	</div>
 	<div class="item-is-government-document">
-		<label>Is government document?:</label> <%=h @item.is_government_document %>
+		<div class="item-label">Is government document?:</div><div class="item-content"> <%=h @item.is_government_document %></div>
 	</div>
 	<div class="item-edition">
-		<label>Edition:</label> <%=h @item.edition %>
+		<div class="item-label">Edition:</div> <div class="item-content"><%=h @item.edition %></div>
 	</div>
 	<div class="item-notes">
-		<label>Notes:</label> <%=h @item.notes %>
+		<div class="item-label">Notes:</div> <div class="item-content"><%=h @item.notes %></div>
 	</div>
 	<div class="item-series-name">
-		<label>Series name:</label> <%=h @item.series_name %>
+		<div class="item-label">Series name:</div> <div class="item-content"><%=h @item.series_name %></div>
 	</div>
 	<div class="item-needs-translation">
-		<label>Needs translation?:</label> <%=h @item.needs_translation %>
+		<div class="item-label">Needs translation?:</div> <div class="item-content"><%=h @item.needs_translation %></div>
 	</div>
 	<div class="item-location">
-		<label>Location:</label> <%=h @item.location %>
+		<div class="item-label">Location:</div> <div class="item-content"><%=h @item.location %></div>
 	</div>
 	<div class="item-vendor">
-		<label>Vendor:</label> <%=h @item.vendor.blank? ? '' : @item.vendor.name %>
+		<div class="item-label">Vendor:</div> <div class="item-content"><%=h @item.vendor.blank? ? '' : @item.vendor.name %></div>
 	</div>
 	<div class="item-date-acquired">
-		<label>Date acquired:</label> <%=h @item.date_acquired.blank? ? "" : @item.date_acquired.strftime("%m/%d/%Y") %>
+		<div class="item-label">Date acquired:</div> <div class="item-content"><%=h @item.date_acquired.blank? ? "" : @item.date_acquired.strftime("%m/%d/%Y") %></div>
 	</div>
 	<div class="item-price-paid">
-		<label>Price paid :</label> <%=h number_to_currency(@item.price_paid) %>
+		<div class="item-label">Price paid :</div> <div class="item-content"><%=h number_to_currency(@item.price_paid) %></div>
 	</div>
 
 	<div class="item-acquisition-notes">
-		<label>Acquisition notes:</label> <%=h @item.acquisition_note %>
+		<div class="item-label">Acquisition notes:</div> <div class="item-content"><%=h @item.acquisition_note %></div>
 	</div>
 	<div class="item-acquired-for">
-		<label>Acquired for:</label> <%=h @item.acquired_for %>
+		<div class="item-label">Acquired for:</div> <div class="item-content"><%=h @item.acquired_for %></div>
 	</div>
 	<% end %>
 	<div class="item-images">

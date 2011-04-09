@@ -87,8 +87,13 @@ $(document).ready(function(){
 		<%= f.text_field :isbn_issn %></p>		
 </div>
 <div id="language">
-	<p><%= f.label :language %><br />
-		<%= f.text_field :language %></p>
+	<p><%= f.label :languages %><br />
+		<div id="item-languages" class="scrolling-subform">
+  	  <% for language in Language.all(:order=>"name") %>
+  	    <div>  		  <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>  		  <%= language.name %>
+  		</div>  	  <% end %>
+
+  	</div>	
 </div>
 <div id="location">
 	<p><%= f.label :location %><br />

@@ -37,6 +37,11 @@ xml_document.search("//row").each {|node|
       s = Subject.find_or_create_by_name_and_authority(subject.inner_html().gsub(/&apos;/, "'").gsub(/&amp;/, "&"), subject_authorities[i].inner_html())
       item.subjects << s
     }
+    languages = node.search("language/data")
+    languages.each {|language|
+      l = Language.find_or_create_by_name(language.inner_html())
+      item.languages << l
+    }
 
     creators_first = node.search("creator_first/data")
     creators_last= node.search("creator_last/data")

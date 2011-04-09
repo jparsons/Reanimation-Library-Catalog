@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110213231035) do
+ActiveRecord::Schema.define(:version => 20110409214127) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(:version => 20110213231035) do
     t.text     "metadata_notes"
     t.string   "corporate_author"
     t.string   "isbn_issn"
-    t.integer  "language_id"
     t.boolean  "is_government_document"
     t.string   "edition"
     t.text     "notes"
@@ -165,8 +164,12 @@ ActiveRecord::Schema.define(:version => 20110213231035) do
     t.string   "cataloging_status"
     t.string   "provenance"
     t.text     "dedication"
-    t.string   "language"
     t.string   "physical_format"
+  end
+
+  create_table "items_languages", :id => false, :force => true do |t|
+    t.integer "item_id"
+    t.integer "language_id"
   end
 
   create_table "items_subjects", :id => false, :force => true do |t|

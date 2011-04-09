@@ -39,6 +39,7 @@ class Item < ActiveRecord::Base
   #has_one :vendor
   has_many :creators, :dependent=>:destroy
   has_and_belongs_to_many :works
+  has_and_belongs_to_many :languages
 
   accepts_nested_attributes_for :subjects, :allow_destroy=>true  
   accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }

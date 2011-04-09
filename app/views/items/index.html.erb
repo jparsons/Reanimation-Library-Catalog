@@ -6,11 +6,9 @@
 	  <div class="admin-link">
 	    <%= link_to "Add a new item", new_item_path %><br />
 	  </div> 
-	  <%= render :partial => 'admin_item', :collection=>@items %>
-  <% else %>
-    <%= render :partial => 'item', :collection=>@items %>
-  <% end %>	
-  
+	  <%= render :partial => 'item', :collection=>@items %>
+  <% end %>
+
 
   </div>
 

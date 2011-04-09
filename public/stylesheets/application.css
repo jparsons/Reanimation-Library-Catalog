@@ -35,9 +35,22 @@ label {
 	font-weight:bold;
 }
 
-img {
- border: 2px solid #303030; 
+td a, td a img {
+  height:25px;
 }
+
+.menu tr {
+  padding: none;
+  margin: none;
+  border:none;
+  font-size:1px;
+  line-height:1px;
+}
+tr#top-menu td { 
+  height:22px;
+  background-color: #afafaf;
+}
+
 
 /* page layout */ 
 
@@ -156,9 +169,6 @@ div.aboutmenu {
  margin-left: -7px;
 }
 
-table.menu tr {
-  padding: 18px;
-}
 
 img.header {
  border: none; 
@@ -264,6 +274,14 @@ div.item-data {
 	padding-right:10px;
 
 }
+div.item-data-show {
+	width:200px;
+	float:left;
+	margin-bottom:20px;
+	margin-top:27px;
+	padding-right:10px;
+
+}
 div.item-images {
 	clear:both;
 	width:616px
@@ -281,19 +299,32 @@ div.item-cover-image-large{
 	margin-bottom: 20px;
 }
 
-div.item-data>div {
-    margin-bottom:.5em;
-    clear:both;
+div.item-data div {
+    margin-bottom:.25em;
     overflow:auto;
+}
+
+div.item-data-show div {
+  margin-bottom:.25em;
+  overflow:auto;
 }
 div.item-data>div>span {
 	font-weight:bold;
 }
-div.item-content {
+div.item-data div.item-content {
   float:left;
-  width:305px;
+  width:250px;
 }
-div.item-label {
+div.item-data-show div.item-content {
+  float:left;
+  width:100px;
+}
+div.item-data-show div.item-label {
+  font-weight:bold;
+  float:left;
+  margin-right:.5em;
+}
+div.item-data div.item-label {
   font-weight:bold;
   float:left;
   margin-right:.5em;
@@ -323,7 +354,7 @@ div.admin-link, a.admin-link{
 	margin-bottom:1em;
 }
 div.subform{
-	background-color:#334455;
+	background-color:#dadada;
 	padding:10px;
 	margin-bottom:20px;
 }
