@@ -197,16 +197,10 @@ function rollOff(img1){
 		</div>	
 		<div class="sidebar-menu-item">
 			<%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
-		</div>		
-	<% end %>
-	<% if logged_in? %>
-	<div class="sidebar-menu-item">
-		<%= link_to 'log out', logout_path %>
-	</div>
-	<% else %>
-	<div class="sidebar-menu-item">
-		<%= link_to 'log in', login_path %>
-	</div>
+		</div>
+		<div class="sidebar-menu-item">
+  		<%= link_to 'log out', logout_path %>
+  	</div>		
 	<% end %>
 	</div>
 </div>
