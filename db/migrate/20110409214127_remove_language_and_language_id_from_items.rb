@@ -13,14 +13,14 @@ class RemoveLanguageAndLanguageIdFromItems < ActiveRecord::Migration
       Language.find_or_create_by_name(l)
     }
 
-    Item.each do {|i|
+    Item.each do |i|
       unless i.language.blank?
         l = Language.find_or_create_by_name(i.language)
         i.languages << l
       end
 
 
-    }
+    end
     remove_column :items, :language
     remove_column :items, :language_id
   end

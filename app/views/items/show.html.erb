@@ -49,7 +49,7 @@
 		<div class="item-label">Format:</div> <div class="item-content"><%=h @item.physical_format %></div>
 	</div>
 
-	<%= print_unless_blank(@item.language, "Language") %>
+	<%= print_unless_blank(@item.languages.map(&:name).join("<br />"), "Languages") %>
 	<%= print_unless_blank(@item.provenance, "Provenance") %>
 	<%= print_unless_blank(@item.dedication, "Dedication") %>
   <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
