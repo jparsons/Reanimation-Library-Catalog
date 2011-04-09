@@ -53,7 +53,7 @@
 	<%= print_unless_blank(@item.provenance, "Provenance") %>
 	<%= print_unless_blank(@item.dedication, "Dedication") %>
   <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
-  <%= print_unless_blank(@item.acquisition_type, "Acquisition type")%>
+  <%= print_unless_blank(@item.acquisition_type, "How acquired:")%>
   <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
 
 	<% unless @item.donors.empty? %>
