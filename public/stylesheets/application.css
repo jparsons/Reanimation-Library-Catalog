@@ -275,7 +275,7 @@ div.item-data {
 
 }
 div.item-data-show {
-	width:200px;
+	width:280px;
 	float:left;
 	margin-bottom:20px;
 	margin-top:27px;
@@ -317,7 +317,7 @@ div.item-data div.item-content {
 }
 div.item-data-show div.item-content {
   float:left;
-  width:100px;
+  width:190px;
 }
 div.item-data-show div.item-label {
   font-weight:bold;

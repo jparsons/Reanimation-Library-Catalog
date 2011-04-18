@@ -4,9 +4,6 @@ $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
 	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
 	});	
-	$("#item_language").autocomplete({
-	    source: <%= Item.all.map(&:language).uniq.compact.sort.to_json %>
-	});
 	$("#item_physical_format").autocomplete({
 		source: <%= Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
 	});
@@ -89,10 +86,9 @@ $(document).ready(function(){
 <div id="language">
 	<p><%= f.label :languages %><br />
 		<div id="item-languages" class="scrolling-subform">
-  	  <% for language in Language.all(:order=>"name") %>
-  	    <div>  		  <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>  		  <%= language.name %>
-  		</div>  	  <% end %>
-
+  	  <% for language in Language.all(:order=>"name") %> 		  
+  	    <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>	<%= language.name %> <br />
+     <% end %>
   	</div>	
 </div>
 <div id="location">

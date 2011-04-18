@@ -53,8 +53,7 @@
 	<%= print_unless_blank(@item.provenance, "Provenance") %>
 	<%= print_unless_blank(@item.dedication, "Dedication") %>
   <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
-  <%= print_unless_blank(@item.acquisition_type, "How acquired:")%>
-  <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
+  <%= print_unless_blank(@item.acquisition_type, "How acquired")%>
 
 	<% unless @item.donors.empty? %>
 	<div class="item-donors">
@@ -116,11 +115,12 @@
 		<div class="item-label">Acquired for:</div> <div class="item-content"><%=h @item.acquired_for %></div>
 	</div>
 	<% end %>
+	</div>
 	<div class="item-images">
 		<h2>
 			Images from this book:
 		</h2>
 		<%= @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
 	</div>
-</div>
+
 
