@@ -23,13 +23,13 @@ class Item < ActiveRecord::Base
   end
 
   default_scope :order => "alphabetical_title"
-  named_scope :non_alphanumerical, {:conditions => "not (alphabetical_title like 'a%' or alphabetical_title like 'b%' or alphabetical_title like 'c%' or alphabetical_title like 'd%' or alphabetical_title like 'e%' or alphabetical_title like 'f%' or alphabetical_title like 'g%' or alphabetical_title like 'h%' or alphabetical_title like 'i%' or alphabetical_title like 'j%' or alphabetical_title like 'k%' or alphabetical_title like 'l%' or alphabetical_title like 'm%' or alphabetical_title like 'n%' or alphabetical_title like 'o%' or alphabetical_title like 'p%' or alphabetical_title like 'q%' or alphabetical_title like 'r%' or alphabetical_title like 's%' or alphabetical_title like 't%' or alphabetical_title like 'u%' or alphabetical_title like 'v%' or alphabetical_title like 'w%' or alphabetical_title like 'x%' or alphabetical_title like 'y%' or alphabetical_title like 'z%')", :order => "alphabetical_title"}
-  named_scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
-  named_scope :previous, lambda { |item| {:conditions => ["alphabetical_title < ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title desc"} }
-  named_scope :next, lambda { |item| {:conditions => ["alphabetical_title > ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
-  named_scope :no_assets, lambda{ |order| {:conditions =>["digital_assets.id is null AND items.collection_name = ?", "1: Primary"], :include=>:digital_assets, :order=>(order || "call_number DESC") } }
-  named_scope :recent, { :limit=>15, :order => "created_at DESC", :include=>:creators }
-  named_scope :by_call_number, { :order=> "call_number ASC", :include=>:creators }
+  scope :non_alphanumerical, {:conditions => "not (alphabetical_title like 'a%' or alphabetical_title like 'b%' or alphabetical_title like 'c%' or alphabetical_title like 'd%' or alphabetical_title like 'e%' or alphabetical_title like 'f%' or alphabetical_title like 'g%' or alphabetical_title like 'h%' or alphabetical_title like 'i%' or alphabetical_title like 'j%' or alphabetical_title like 'k%' or alphabetical_title like 'l%' or alphabetical_title like 'm%' or alphabetical_title like 'n%' or alphabetical_title like 'o%' or alphabetical_title like 'p%' or alphabetical_title like 'q%' or alphabetical_title like 'r%' or alphabetical_title like 's%' or alphabetical_title like 't%' or alphabetical_title like 'u%' or alphabetical_title like 'v%' or alphabetical_title like 'w%' or alphabetical_title like 'x%' or alphabetical_title like 'y%' or alphabetical_title like 'z%')", :order => "alphabetical_title"}
+  scope :starting_with, lambda{|letter|{:conditions => ["alphabetical_title LIKE ?", "#{letter}%"], :order => "alphabetical_title"}}
+  scope :previous, lambda { |item| {:conditions => ["alphabetical_title < ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title desc"} }
+  scope :next, lambda { |item| {:conditions => ["alphabetical_title > ?", item.alphabetical_title], :limit => 1, :order => "alphabetical_title"} }
+  scope :no_assets, lambda{ |order| {:conditions =>["digital_assets.id is null AND items.collection_name = ?", "1: Primary"], :include=>:digital_assets, :order=>(order || "call_number DESC") } }
+  scope :recent, { :limit=>15, :order => "created_at DESC", :include=>:creators }
+  scope :by_call_number, { :order=> "call_number ASC", :include=>:creators }
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
   has_many :digital_assets

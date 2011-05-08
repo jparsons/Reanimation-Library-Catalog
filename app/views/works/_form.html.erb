@@ -1,4 +1,4 @@
-<% form_for @work, :html => {:multipart => true} do |f| %>
+<%= form_for @work, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :title %><br />
@@ -8,7 +8,7 @@
   <p><%=f.label :creators %></p>
   <p>
 	<%= f.label :creators, "select from existing creators" %><br />
-	  <%= f.select "work_creator_ids", WorkCreator.find(:all, :order=>:name).map{|c| [c.name, c.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
+	  <%= f.select "work_creator_ids", WorkCreator.order(:name).map{|c| [c.name, c.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
 	  <p><%= add_child_link "... and / or click here to add new creators", f, :work_creators %></p>
   </p>
   <div id="work-creators">
@@ -33,7 +33,7 @@
   <p><%=f.label :items, "Select the items that were used in this art work" %>
   </p>
   <div id="work-items">
-	 <% for item in Item.find(:all) %>  
+	 <% for item in Item.all %>  
 	     <div>  
 	       <%= check_box_tag "work[item_ids][]", item.id, @work.items.include?(item) %>  
 	       <%= item.title %><%= item.subtitle.blank? ? "" : ": #{item.subtitle}" %>  
@@ -45,7 +45,7 @@
     <% if @work.new_record? %>
        <%= render :partial => 'work_image', :locals => { :form => f, :work_image => @work.work_images.build } %>
        <% else %>
-       <% f.fields_for :work_images do |work_image| %>
+       <%= f.fields_for :work_images do |work_image| %>
 
 	          <% unless work_image.object.new_record? %>
 

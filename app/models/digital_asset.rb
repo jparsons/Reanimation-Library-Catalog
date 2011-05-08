@@ -1,22 +1,22 @@
 class DigitalAsset < ActiveRecord::Base
-  
+
   belongs_to :item
   has_and_belongs_to_many :digital_asset_subjects
   has_and_belongs_to_many :works
-  
+
   accepts_nested_attributes_for :digital_asset_subjects
-  
-  
+
+
   # need to update these sizes
   has_attached_file :scan,
     :styles => {
       :mini=> "59x59#",
       :thumb=> "136x136#",
       :large =>   "400x400>" }
-      
+
   default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
-  
-  named_scope :most_recent, :order=>"created_at DESC", :limit=>30
+
+  scope :most_recent, :order=>"created_at DESC", :limit=>30
 
   def mini_url
     if ActionController::Base.relative_url_root.blank?
@@ -25,7 +25,7 @@ class DigitalAsset < ActiveRecord::Base
       ActionController::Base.relative_url_root + scan.url(:mini)
     end
   end
-  
+
 end
 
 

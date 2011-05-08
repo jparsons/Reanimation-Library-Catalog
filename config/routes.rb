@@ -1,75 +1,39 @@
-ActionController::Routing::Routes.draw do |map|
+ReanimationLibraryCatalog::Application.routes.draw do
+  match 'search' => 'search#new', :as => :search
+  match 'advanced_search' => 'search#new', :as => :advanced_search, :advanced => 'true'
+  match 'search_results' => 'search#show', :as => :search_results
+  resources :exhibitions
+  resources :vendors
+  resources :digital_assets do
+    collection do
+  get :most_recent
+  end
+  
+  
+  end
 
-  map.search 'search', :controller=>'search', :action=>'new'
-  map.advanced_search 'advanced_search', :controller=>'search', :action=>'new', :advanced => 'true'
+  resources :works
+  resources :subjects
+  resources :items do
+    collection do
+  get :acquired
+  get :need_images
+  get :by_call_number
+  get :recent
+  end
+  
+  
+  end
 
-
-  map.search_results 'search_results', :controller=>'search', :action=>'show'
-
-  map.resources :exhibitions
-
-  map.resources :vendors
-
-  map.resources :digital_assets, :collection => { :most_recent => :get }
-
-  map.resources :works
-
-  map.resources :subjects
-
-  map.resources :items, :collection => { :acquired => :get, :need_images => :get, :recent => :get, :by_call_number => :get }
-
-  map.signup 'signup', :controller => 'users', :action => 'new'
-  map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.resources :user_sessions
-
-  map.resources :digital_asset_ingests
-
-  map.resources :users
-
-  map.resources :log_entries
-
-  map.admin_dashboard 'dashboard', :controller=>'admin_dashboard', :action=>"index"
-
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "items"
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  match 'signup' => 'users#new', :as => :signup
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'login' => 'user_sessions#new', :as => :login
+  resources :user_sessions
+  resources :digital_asset_ingests
+  resources :users
+  resources :log_entries
+  match 'dashboard' => 'admin_dashboard#index', :as => :admin_dashboard
+  match '/' => 'items#index'
+  match 'root' => 'items#index'
+  match '/:controller(/:action(/:id))'
 end

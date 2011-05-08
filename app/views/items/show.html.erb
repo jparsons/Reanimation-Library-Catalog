@@ -1,5 +1,5 @@
 
-<% if @previous.nil? %>&lt; previous item<% else %><%= link_to "&lt; previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item &gt;", item_path(@next) %><% end %>
+<% if @previous.nil? %>&lt; previous item<% else %><%= link_to "< previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item >", item_path(@next) %><% end %>
 <h1>
 	<%= "#{@item.title}" %>
 </h1><%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
@@ -18,7 +18,7 @@
     <div class="item-label">
       Creator(s):
     </div> 
-    <div class="item-content"><%= @item.creators.map{|c| c.display_name }.join("<br />") %></div>
+    <div class="item-content"><%= raw @item.creators.map{|c| c.display_name }.join("<br />") %></div>
   </div>
 	<div class="item-publisher">
 		<div class="item-label">Publisher:</div> 
@@ -37,7 +37,7 @@
 		<div class="item-label">Call Number:</div> <div class="item-content"><%=h @item.call_number %></div>
 	</div>
 	<div class="item-subjects">
-		<div class="item-label">Subject(s):</div> <div class="item-content"><%= @item.subjects.map{|s|link_to(s.name, subject_path(s)) }.join(", ") %></div>
+		<div class="item-label">Subject(s):</div> <div class="item-content"><%= raw @item.subjects.map{|s|link_to(s.name, subject_path(s)) }.join(", ") %></div>
 	</div>
 	<div class="item-library-id">
 		<div class="item-label">Library ID:</div> <div class="item-content"><%=h @item.id %></div>
@@ -116,11 +116,13 @@
 	</div>
 	<% end %>
 	</div>
+	<% unless @item.digital_assets.empty? %>
 	<div class="item-images">
 		<h2>
 			Images from this book:
 		</h2>
-		<%= @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
+		<%= raw @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
 	</div>
+	<% end %>
 
 

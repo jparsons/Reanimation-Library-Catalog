@@ -270,11 +270,11 @@ module ActionController
     #
     # or
     #
-    #   <% form_for :message, @message, :url => message_path(@message), :html => {:method => :put} do |f| %>
+    #   <%= form_for :message, @message, :url => message_path(@message), :html => {:method => :put} do |f| %>
     #
     # or
     #
-    #   <% form_for @message do |f| %>
+    #   <%= form_for @message do |f| %>
     #
     # which takes into account whether <tt>@message</tt> is a new record or not and generates the
     # path and method accordingly.
