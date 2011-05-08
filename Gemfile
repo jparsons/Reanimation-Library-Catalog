@@ -5,7 +5,7 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby'
+#gem 'sqlite3-ruby'
 gem 'paperclip'
 gem "authlogic"
 gem "easy_roles"
@@ -34,5 +34,5 @@ gem 'delayed_job'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
  group :development, :test do
-  gem capistrano
+  gem 'capistrano'
  end
