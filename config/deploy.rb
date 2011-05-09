@@ -72,7 +72,7 @@ namespace :db do
     end
     db_config = ERB.new <<-EOF
     development:
-      adapter: mysql2
+      adapter: mysql
       database: andrew_catalog
       username: andrew_webuser
       password: #{database_password} 
@@ -88,7 +88,7 @@ namespace :db do
       timeout: 5000
 
     production:
-      adapter: mysql2
+      adapter: mysql
       database: andrew_catalog
       username: andrew_webuser
       password: #{database_password} 

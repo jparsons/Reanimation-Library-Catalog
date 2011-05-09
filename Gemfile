@@ -13,7 +13,7 @@ gem "aasm"
 gem 'acts_as_ferret', ">=0.5"
 gem 'ferret'
 gem 'delayed_job'
-gem 'mysql2'
+gem 'mysql'
 
 # Use unicorn as the web server
 # gem 'unicorn'
