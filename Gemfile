@@ -10,10 +10,10 @@ gem 'paperclip'
 gem "authlogic"
 gem "easy_roles"
 gem "aasm"
-gem 'acts_as_ferret', ">=0.5"
+gem 'acts_as_ferret', '= 0.5.2', :git => "git://github.com/primerano/acts_as_ferret.git"
 gem 'ferret'
 gem 'delayed_job'
-gem 'mysql'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,4 +36,8 @@ gem 'mysql'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+ end
+ group :production do
+   gem 'mysql' 
  end
