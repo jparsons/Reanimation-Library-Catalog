@@ -61,8 +61,15 @@ namespace :deploy do
 end
 
 before "deploy:setup", :db
-after "deploy:update_code", "db:symlink" 
+after "deploy:update_code", "db:symlink", "bundle:update"
 before "deploy:restart", "deploy:copy_environment_rb"
+
+namespace :bundle do
+  task :update do 
+    run "ln -nfs #{shared_path}/bundle #{release_path}/vendor/bundle"
+    run "cd #{release_path}; bundle install --path vendor/bundle"
+  end
+end
 
 namespace :db do
   desc "Create database yaml in shared path" 
@@ -103,6 +110,5 @@ namespace :db do
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
   end
-  
 
 end
