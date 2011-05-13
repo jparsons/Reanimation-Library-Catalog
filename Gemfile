@@ -36,7 +36,6 @@ gem 'delayed_job'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
  end
  group :production do
    gem 'mysql' 
