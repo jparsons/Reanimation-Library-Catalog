@@ -17,7 +17,7 @@
   <%= content_tag "h2", link_to("#{@digital_asset.item.title} #{@digital_asset.item.subtitle.blank? ? "" : "<br />" + @digital_asset.item.subtitle}", item_path(@digital_asset.item)) %>
 </p>
 <p><strong>Other images from this item:</strong><br /><br />
-<%= @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
+<%= raw @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
 </p>
 
 
