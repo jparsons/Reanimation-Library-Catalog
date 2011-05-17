@@ -16,13 +16,13 @@ $(document).ready(function(){
 	})
 	$("#item_date_acquired").datepicker();
 	$("#item_acquisition_type").autocomplete({
-	    source: <%= ACQUISITION_TYPES.to_json %>
+	    source: <%= raw ACQUISITION_TYPES.to_json %>
 	});
 	$("#item_acquired_for").autocomplete({
-	    source: <%= Item.all.map{|i| i.acquired_for}.uniq.to_json %>
+	    source: <%= raw  Item.all.map{|i| i.acquired_for}.uniq.to_json %>
 	});	
 	$("#item_vendor_attributes_city").autocomplete({
-	    source: <%= Vendor.all.map(&:city).uniq.compact.sort.to_json %>
+	    source: <%= raw Vendor.all.map(&:city).uniq.compact.sort.to_json %>
 	});
 })
 </script>

@@ -11,3 +11,5 @@ SAVE_UNPUBLISHED_TEXT = "save item but don't publish"
 SAVE_PUBLISHED_TEXT = "save item"
 PUBLISH_TEXT = "save and publish"
 UNPUBLISH_TEXT = "save and unpublish"
+IMAGE_COLORS = ["Black &amp; White", "Color", "Mixed Color and Black &amp; White", "Two-Tone"]
+IMAGE_TYPES = ["Architectural Diagrams", "Bowling Diagrams", "Braille", "Cartographic Material", "Chess Game Diagrams", "Color Chart", "Echocardiograph", "Fingerprints", "Golf Diagrams", "Graphic Design Patterns", "Illustration", "Information Graphic", "International Phoentic Alphabet", "Line Drawing", "Logarithmic Table", "Mathematic Notation", "Mathematical Diagrams", "Medical Diagram", "Micrograph", "Musical Notation", "Needlepoint Patterns", "Photograph", "Photo Illustration", "Radiograph", "Sewing Patterns", "Shorthand Notation", "Spectograph", "Technical Diagrams", "Text Only", "Two-Tone", "Typography", "Weather Symbols", "Woodcuts"]

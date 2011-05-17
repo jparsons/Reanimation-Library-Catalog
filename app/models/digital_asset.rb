@@ -19,11 +19,8 @@ class DigitalAsset < ActiveRecord::Base
   scope :most_recent, :order=>"created_at DESC", :limit=>30
 
   def mini_url
-    if ActionController::Base.relative_url_root.blank?
-      scan.url(:mini)
-    else 
-      ActionController::Base.relative_url_root + scan.url(:mini)
-    end
+      RECENT_IMAGES_PATH +  scan.url(:mini)
+
   end
 
 end

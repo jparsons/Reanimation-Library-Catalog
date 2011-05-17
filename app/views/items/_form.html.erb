@@ -2,13 +2,13 @@
 <script>
 $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
-	    source: <%= Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
+	    source: <%= raw Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
 	});	
 	$("#item_physical_format").autocomplete({
-		source: <%= Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
+		source: <%= raw Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
 	});
 	$("#item_series_name").autocomplete({
-		source: <%= Item.all.map(&:series_name).uniq.compact.sort.to_json %>
+		source: <%= raw Item.all.map(&:series_name).uniq.compact.sort.to_json %>
 	});
 })
 </script>

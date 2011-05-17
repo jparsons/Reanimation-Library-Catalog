@@ -35,9 +35,9 @@ label {
 	font-weight:bold;
 }
 
-td a, td a img {
-  height:25px;
-}
+/* td a, td a img {
+  height: 25px;
+} */
 
 .menu tr {
   padding: none;
@@ -318,6 +318,9 @@ div.item-data div.item-content {
 div.item-data-show div.item-content {
   float:left;
   width:190px;
+}
+div.item-vendor-location div.item-content{
+  width: 181px;
 }
 div.item-data-show div.item-label {
   font-weight:bold;
