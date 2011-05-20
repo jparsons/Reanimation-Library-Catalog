@@ -46,9 +46,12 @@ label {
   font-size:1px;
   line-height:1px;
 }
+tr#top-menu {
+  width: 796px;
+}
 tr#top-menu td { 
   height:22px;
-  background-color: #afafaf;
+  /* background-color: #afafaf; */
 }
 
 
