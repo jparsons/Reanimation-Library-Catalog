@@ -35,6 +35,7 @@ class Item < ActiveRecord::Base
   has_many :creators, :dependent=>:destroy
   has_and_belongs_to_many :works
   has_and_belongs_to_many :languages
+  has_and_belongs_to_many :image_colors
 
   accepts_nested_attributes_for :subjects, :allow_destroy=>true  
   accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
@@ -45,7 +46,7 @@ class Item < ActiveRecord::Base
 
   has_attached_file :cover_image, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
-  acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain, :collection_name ]
+  acts_as_ferret :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_types, :is_public_domain, :collection_name ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
 
   before_save :create_title_for_alphabetizing
@@ -77,8 +78,8 @@ class Item < ActiveRecord::Base
     creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "") 
   end
 
-  def image_colors
-    digital_assets.map(&:color).join(",")
+  def image_color_list
+    image_colors.map(&:name).join(",")
   end
   def image_types
     digital_assets.map(&:image_type).join(",")
@@ -90,6 +91,9 @@ class Item < ActiveRecord::Base
     self.alphabetical_title = title.gsub(r, "").strip
   end
 
+  def item_id
+    id.to_s
+  end
   def subject_list 
     subjects.map{|s| s.name }.join(",")
   end

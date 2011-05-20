@@ -4,6 +4,9 @@ class SearchController < ApplicationController
        @query = params[:q]
     else
        query_parts = []
+       unless params[:id].blank?
+         query_parts << "item_id:(#{params[:id]})"
+       end
        unless params[:title].blank?
          query_parts << "display_title:(#{params[:title]})"
        end

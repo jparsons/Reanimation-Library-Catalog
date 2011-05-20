@@ -10,7 +10,7 @@
     <% end %>
   </div>
 	<div class="item-data">
-    <div class="item-title"><%= link_to "#{item.title} #{item.subtitle}", item_path(item) %></div>
+    <div class="item-title"><%= link_to "#{item.title}#{item.subtitle.blank? ? '' : ': ' + item.subtitle}", item_path(item) %></div>
     <div class="item-creators "><div class="item-label">Creator(s):</div> <div class="item-content"><%= raw item.creators.map{|c| c.display_name }.join("<br />")%></div></div>
   	<div class="item-publisher"><span class="item-label">Publisher:</span> <%=h item.publisher_name %><%= item.publisher_city.nil? ? "" : "; " + item.publisher_city %><%=h item.publisher_state.nil? ? "" : ", " + item.publisher_state %></div>
     <div class="item-copyright"><span class="item-label">Year:</span> <%=h item.copyright %></div>

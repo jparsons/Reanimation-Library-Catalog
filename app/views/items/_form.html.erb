@@ -74,6 +74,16 @@ $(document).ready(function(){
 	<p><%= f.label :format %><br />
 		<%= f.select :physical_format, FORMATS, :include_blank => true %></p>
 </div>
+<div id="image-colors" class="scrolling-subform">
+  <h2>Image Colors</h2>
+  <% for image_color in ImageColor.all(:order=>"name") %>
+    <div>
+	  <%= check_box_tag "item[image_color_ids][]", image_color.id, @item.image_colors.include?(image_color) %>
+	  <%= image_color.name %>
+	</div>
+  <% end %>
+
+</div>
 <div id="identifiers">
 	<h2>Identifiers</h2>
 	<p><%= f.label :call_number %><br />
@@ -86,7 +96,7 @@ $(document).ready(function(){
 <div id="language">
 	<p><%= f.label :languages %><br />
 		<div id="item-languages" class="scrolling-subform">
-  	  <% for language in Language.order(:name) %> 		  
+  	  <% for language in Language.order(:name) %>
   	    <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>	<%= language.name %> <br />
      <% end %>
   	</div>	

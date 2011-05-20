@@ -5,12 +5,18 @@
 	<%= raw f.select :item_id, Item.all(:include=>:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.display_name}", i.id]}, {:include_blank=>true} %>  </p>
   <p>
     <%= f.label :color %><br />
-    <%= f.select :color, IMAGE_COLORS, :include_blank => true %>
+    <%= f.select :color, ImageColor.all.map{|ic| [raw(ic.name), ic.id] }, :include_blank => true %>
   </p>
-  <p>
-    <%= f.label :image_type %><br />
-    <%= f.select :image_type, IMAGE_TYPES, :include_blank => true %>
-  </p>
+	<p><%= f.label :image_types %></p>
+	<div id="digital-asset-image-types" class="scrolling-subform">
+	  <% for image_type in ImageType.all(:order=>"name") %>
+	    <div>
+		  <%= check_box_tag "digital_asset[image_type_ids][]", image_type.id, @digital_asset.image_types.include?(image_type) %>
+		  <%= image_type.name %>
+		</div>
+	  <% end %>
+
+	</div>
   <p>
 	<%= f.label :image %><br />
 	<% unless @digital_asset.new_record? %>
@@ -21,10 +27,10 @@
 	<p><%= f.label :subjects %></p>
 	<div id="digital-asset-digital-asset-subjects" class="scrolling-subform">
 	  <% for digital_asset_subject in DigitalAssetSubject.all(:order=>"name") %>
-	    <div>  
-		  <%= check_box_tag "digital_asset[digital_asset_subject_ids][]", digital_asset_subject.id, @digital_asset.digital_asset_subjects.include?(digital_asset_subject) %>  
+	    <div>
+		  <%= check_box_tag "digital_asset[digital_asset_subject_ids][]", digital_asset_subject.id, @digital_asset.digital_asset_subjects.include?(digital_asset_subject) %>
 		  <%= digital_asset_subject.name %>
-		</div>  
+		</div>
 	  <% end %>
 
 	</div>
