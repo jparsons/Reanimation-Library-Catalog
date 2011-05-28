@@ -1,8 +1,8 @@
 require 'hpricot'
 
-Work.destroy_all
-WorkCreator.destroy_all
-WorkImage.destroy_all
+#Work.destroy_all
+#WorkCreator.destroy_all
+#WorkImage.destroy_all
 
 
 xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/works.xml"))
@@ -25,7 +25,7 @@ xml_document.search("//row").each {|node|
   }
 }
 
-xml_document = xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/work_creators.xml"))
+xml_document = xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/works_creators.xml"))
 xml_document.search("//row").each {|node|
   work_ids = node.search("work_id/data")
   work_creators = node.search("work_creator/data")

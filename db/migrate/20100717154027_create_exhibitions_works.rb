@@ -1,6 +1,6 @@
 class CreateExhibitionsWorks < ActiveRecord::Migration
   def self.up
-    create_table :exhibitions_works do |t|
+    create_table :exhibitions_works, :id=>false do |t|
       t.integer :exhibition_id
       t.integer :work_id
       

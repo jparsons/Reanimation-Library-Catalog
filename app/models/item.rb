@@ -1,7 +1,8 @@
 class Item < ActiveRecord::Base
   include AASM
 
-  def attributes_protected_by_default
+
+  def self.attributes_protected_by_default
       []
   end
 

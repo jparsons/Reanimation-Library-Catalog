@@ -5,7 +5,7 @@ xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/donors
 xml_document.search("//row").each {|node|
 
   names = node.search("/donor/data")
-  items = node.search("/item_id")
+  items = node.search("/item_id/data")
   names.each_with_index {|e, i|
     #puts item.first.inner_html
     unless e.inner_html().blank?

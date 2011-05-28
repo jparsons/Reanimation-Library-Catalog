@@ -4,12 +4,12 @@ Item.destroy_all
 Subject.destroy_all
 
 
-xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/item.xml"))
+xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/items.xml"))
 xml_document.search("//row").each {|node|
   legacy_record_id =  node.attributes["recordid"]
   params = {}
   nodes = %w(title subtitle publisher publisher_city publisher_state publisher_country extent copyright item_size call_number collection_number item_id barcode metadata_notes corporate_author isbn_issn edition notes series_name location format)
-  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name id barcode metadata_notes corporate_author isbn_issn edition notes series_name location format)
+  fields = %w(title subtitle publisher_name publisher_city publisher_state publisher_country extent copyright item_size call_number collection_name id barcode metadata_notes corporate_author isbn_issn edition notes series_name location physical_format)
   nodes.each_with_index do |name, i|
     elements = node.search(name+"/data")
     content = elements.inner_html()
@@ -31,6 +31,12 @@ xml_document.search("//row").each {|node|
 
   unless params[:id].blank?
     item = Item.create(params)
+    puts params[:id]
+    puts item.id
+    item.save!
+
+    puts item.id
+
     subjects = node.search("subject_name/data")
     subject_authorities = node.search("subject_authority/data")
     subjects.each_with_index {|subject, i|
@@ -96,11 +102,11 @@ xml_document = Hpricot(File.open("#{RAILS_ROOT}/public/system/legacy_data/donors
 xml_document.search("//row").each {|node|
 
   names = node.search("/donor/data")
-  items = node.search("/item_id")
+  items = node.search("/item_id/data")
   names.each_with_index {|e, i|
     #puts item.first.inner_html
     unless e.inner_html().blank?
-     
+
       item = Item.find(items.first.inner_html())
       donor = Donor.find_or_create_by_name(e.inner_html())
 

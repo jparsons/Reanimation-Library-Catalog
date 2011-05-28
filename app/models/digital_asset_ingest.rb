@@ -1,27 +1,25 @@
 class DigitalAssetIngest < ActiveRecord::Base
   default_scope :order=>"created_at desc"
   has_one :process_log 
-  
+
   def has_images_to_process?
      file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/*.*")
      return file_list.size > 0
   end
-  
+
   def process_digital_assets
      # get a list of all of the images in the DIGITAL_ASSET_UPLOADS folder
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/*.*")
-    
      # if there are no images found, create a status of "no images found" and exit
-    if file_list.size == 0 
+    if file_list.size < 1
       process_log.log_entries << LogEntry.create!(:message=>"No new files found")
-       
     else    # if there are new images found, process them
       process_log.log_entries << LogEntry.create(:message=>"Found #{file_list.size.to_s} new files")
       # each image will be prefixed with the id or legacy id of an item 
       # so, get a list of all the unique prefixes in the folder
-      
-      prefixes = unique_prefixes(file_list)     
-      
+
+      prefixes = unique_prefixes(file_list)
+
 
       prefixes.each do |prefix|
         # for each prefix, check to see if you can find the image by id
@@ -34,13 +32,13 @@ class DigitalAssetIngest < ActiveRecord::Base
         end
       end
     end
-    
+
     self.status = "Complete"
     self.end_time = Time.now()
     self.save!
-    
+
   end
-  
+
   def process_cover_images
     file_list = Dir.glob(File.join(COVER_IMAGE_UPLOADS_DIR, "*.*"))
     file_list.each do |filename|
@@ -55,8 +53,8 @@ class DigitalAssetIngest < ActiveRecord::Base
         FileUtils.move(filename, File.join(COVER_IMAGE_UPLOADS_DIR, "rejects"))
       end
     end 
-    
-    
+
+
   end
 
   private

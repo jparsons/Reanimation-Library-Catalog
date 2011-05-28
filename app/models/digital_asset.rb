@@ -10,10 +10,12 @@ class DigitalAsset < ActiveRecord::Base
 
   # need to update these sizes
   has_attached_file :scan,
+    :whiny => false,
     :styles => {
       :mini=> "59x59#",
       :thumb=> "136x136#",
-      :large =>   "400x400>" }
+      :large =>   "400x400>",
+      }
 
   default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 

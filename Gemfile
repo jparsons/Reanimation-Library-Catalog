@@ -14,7 +14,7 @@ gem 'acts_as_ferret', '= 0.5.2', :git => "git://github.com/primerano/acts_as_fer
 gem 'ferret'
 gem 'delayed_job'
 gem 'will_paginate', '2.3.15'
-
+gem 'hpricot', '0.8.4'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,7 +29,7 @@ gem 'will_paginate', '2.3.15'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
+ gem 'sqlite3-ruby'#, :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to

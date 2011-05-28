@@ -1,6 +1,6 @@
 <% title "Process uploaded images" %>
 <h2><%= yield(:title) %></h2>
-<% unless @digital_asset_ingest.has_images_to_process? %>
+<% if @digital_asset_ingest.has_images_to_process? %>
 <%= form_for @digital_asset_ingest do |f| %>
 <%= f.submit "check for new images and process them"%>
 <% end %>

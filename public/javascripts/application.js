@@ -32,7 +32,7 @@ function update_log_entries() {
 	after_id = after_id.replace(/entry-/, "");
   }
   process_log_id = process_log_id.replace(/process-log-/, "");
-  $.getScript('/log_entries.js?process_log_id=' + process_log_id + '&after_id=' + after_id);
+  $.getScript('/catalog/log_entries.js?process_log_id=' + process_log_id + '&after_id=' + after_id);
   setTimeout(update_log_entries, 5000);
 }
 
