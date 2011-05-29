@@ -26,4 +26,5 @@ ReanimationLibraryCatalog::Application.configure do
   RECENT_IMAGES_PATH = "/catalog"
   DIGITAL_ASSET_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/image_uploads"
   COVER_IMAGE_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/cover_image_uploads"
+  Paperclip.options[:command_path] = '/usr/bin'
 end

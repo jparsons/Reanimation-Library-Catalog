@@ -65,7 +65,7 @@ class DigitalAssetIngest < ActiveRecord::Base
     puts file_list
     file_list.each do |filename|
       file = File.open(filename)
-      asset = DigitalAsset.new
+      asset = DigitalAsset.find_or_create_by_scan_file_name(filename)
       asset.scan = file
       asset.save!
       item.digital_assets << asset
