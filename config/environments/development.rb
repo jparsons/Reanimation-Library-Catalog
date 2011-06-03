@@ -24,8 +24,8 @@ ReanimationLibraryCatalog::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   RECENT_IMAGES_PATH = "/catalog"
-  DIGITAL_ASSET_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/image_uploads"
-  COVER_IMAGE_UPLOADS_DIR = "#{RAILS_ROOT}/public/system/cover_image_uploads"
+  DIGITAL_ASSET_UPLOADS_DIR = "#{::Rails.root.to_s}/public/system/image_uploads"
+  COVER_IMAGE_UPLOADS_DIR = "#{::Rails.root.to_s}/public/system/cover_image_uploads"
 
   Paperclip.options[:command_path] = '/usr/local/bin/'
 

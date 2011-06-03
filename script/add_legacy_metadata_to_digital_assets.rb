@@ -26,7 +26,7 @@ xml_document.search("//row").each {|node|
       digital_asset = DigitalAsset.find_by_scan_file_name(image_name_node.inner_html() + ".jpg")
     end
     if digital_asset
-      digital_asset.update_attribute(:image_type, image_types[i].inner_html().gsub(/&amp;/,"&"))
+      digital_asset.image_types << ImageType.find_or_create_by_name(image_types[i].inner_html().gsub(/&amp;/,"&"))
       puts "#{digital_asset.id} #{image_types[i].inner_html().gsub(/&amp;/,"&")}"
     end
   end

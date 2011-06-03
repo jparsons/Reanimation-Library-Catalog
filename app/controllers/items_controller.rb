@@ -96,7 +96,7 @@ class ItemsController < ApplicationController
     if params[:commit] == PUBLISH_TEXT
       @item.cataloging_status = "published"
     elsif params[:commit] == UNPUBLISH_TEXT
-      @item.cataloging_status = "private"
+      @item.cataloging_status = "unpublished"
     end
     params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f
    # @item.update_attribute(:subject_ids, subject_ids)

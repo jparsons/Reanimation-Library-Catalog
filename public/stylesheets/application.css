@@ -73,7 +73,6 @@ div#content {
 div#sidebar-menu {
  float:left;
  width: 160px;
- height: 400px;
  padding-right: 0px;
  padding-top: 14px;
  background-color: #FFFFFF;
@@ -162,7 +161,7 @@ div.about {
 div.aboutmenu {
  float:left;
  width: 160px;
- height: 400px;
+ min-height:400px;
  padding-right: 0px;
  padding-top: 14px;
  background-color: #FFFFFF;
@@ -398,4 +397,8 @@ table#item-list td.item-id {
 }
 table#item-list td img {
   border: none;
+}
+
+#digital-asset-ingest-list, #digital-asset-ingest {
+  min-height: 100%;
 }

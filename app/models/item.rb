@@ -13,14 +13,14 @@ class Item < ActiveRecord::Base
   aasm_state :acquired, :include=>:subjects
   aasm_state :images_added_but_needs_cataloging
   aasm_state :fully_cataloged_but_needs_images
-  aasm_state :private
+  aasm_state :unpublished
   aasm_state :published, :include=>:subjects
 
   aasm_event :publish do
-    transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :private, :published]
+    transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
   end
-  aasm_event :make_private do
-    transitions :to => :private, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :private, :published]
+  aasm_event :make_unpublished do
+    transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
   end
 
   scope :recent, limit(15).order("created_at DESC").includes(:creators)
@@ -37,6 +37,7 @@ class Item < ActiveRecord::Base
   has_and_belongs_to_many :works
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :image_colors
+  has_and_belongs_to_many :image_types
 
   accepts_nested_attributes_for :subjects, :allow_destroy=>true  
   accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
@@ -47,7 +48,7 @@ class Item < ActiveRecord::Base
 
   has_attached_file :cover_image, :whiny => false, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
-  acts_as_ferret :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_types, :is_public_domain, :collection_name ]
+  acts_as_ferret :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_type_list, :is_public_domain, :collection_name ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
 
   before_save :create_title_for_alphabetizing
@@ -82,8 +83,9 @@ class Item < ActiveRecord::Base
   def image_color_list
     image_colors.map(&:name).join(",")
   end
-  def image_types
-    digital_assets.map(&:image_type).join(",")
+  
+  def image_type_list
+    image_types.map(&:name).join(",")
   end
 
   def create_title_for_alphabetizing
@@ -99,8 +101,12 @@ class Item < ActiveRecord::Base
     subjects.map{|s| s.name }.join(",")
   end
 
-  def self.search(query = "")
-    self.find_with_ferret(query, :include=>[:subjects, :creators])
+  def self.search(query = "", logged_in = false)
+    if logged_in
+      self.find_with_ferret(query, :include=>[:subjects, :creators])
+    else
+       self.published.find_with_ferret(query, :include=>[:subjects, :creators])
+    end
   end
 
   def is_public_domain

@@ -102,9 +102,9 @@ function rollOff(img1){
 </table></div>
 <p class="breadcrumb"><a href="../index.htm">home</a> > catalog</p>
 <div class="aboutmenu">
-<table class="menu" cellpadding="5">
-<tr>
-<td>
+  <table class="menu" cellpadding="5">
+  <tr>
+  <td>
   <a href="<%= items_path %>">
     <img id="browse" class="rollover <%= (current_page?(items_path) || current_page?(root_path)) ? "current_page" : "" %>" name="icon1" src="http://reanimationlibrary.org/V2/images/browseicon.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;" />
   </a></td>
@@ -159,17 +159,6 @@ function rollOff(img1){
 </td>
 </tr>
 </table>
-</div>
-<div class="about"><center><img class="header" src="http://reanimationlibrary.org/V2/images/catalogheader.jpg" width="64" height="20" style="border: none;"></center>
-<div id="content">		
-	<%- flash.each do |name, msg| -%>  	
-		<%= content_tag :div, msg, :id => "flash_#{name}" %>
-	<%- end -%>
-	<%= yield %>
-	</div>
-</div>
-<!--end retarded code 2-->
-
 <div id="sidebar-menu">
   	<div class="sidebar-admin-menu">
 	<% if logged_in? && current_user.is_administrator? %>
@@ -204,6 +193,18 @@ function rollOff(img1){
 	<% end %>
 	</div>
 </div>
+</div>
+<div class="about"><center><img class="header" src="http://reanimationlibrary.org/V2/images/catalogheader.jpg" width="64" height="20" style="border: none;"></center>
+<div id="content">		
+	<%- flash.each do |name, msg| -%>  	
+		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<%- end -%>
+	<%= yield %>
+	</div>
+</div>
+<!--end retarded code 2-->
+
+
 <!--begin retarded code 3-->
 <image src="http://reanimationlibrary.org/V2/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
 <div class="footerlogo"><img src="http://reanimationlibrary.org/V2/images/footerlogo.gif" width="36" height="36px" style="border: none;"></div>

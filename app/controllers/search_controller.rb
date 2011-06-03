@@ -33,7 +33,7 @@ class SearchController < ApplicationController
        end
        @query = query_parts.join(" AND ")
     end
-    @items = Item.search(@query)
+    @items = Item.search(@query, logged_in?)
   end
 
 
