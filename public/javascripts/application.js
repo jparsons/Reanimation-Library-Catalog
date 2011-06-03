@@ -60,6 +60,10 @@ $(document).ready(function()
 	$.cookie("search-preference", "basic");
 	return false;
 	});
+	
+	$("#view-log").click(function() {
+	  $(".process-log").toggle();
+	});
 
 
 });

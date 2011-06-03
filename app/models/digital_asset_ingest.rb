@@ -62,7 +62,7 @@ class DigitalAssetIngest < ActiveRecord::Base
   def match_and_delete(item, prefix)
     
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/#{prefix}*.*")
-    puts file_list
+    # puts file_list
     file_list.each do |filename|
       file = File.open(filename)
       asset = DigitalAsset.find_or_create_by_scan_file_name(filename)
