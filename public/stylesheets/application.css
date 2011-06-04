@@ -65,10 +65,10 @@ div#page {
 }
 div#content {
   float:left;
-  width:616px; 
+  width:606px; 
   min-height:100%px;
   margin-top: 10px;
-  margin-left:22px;
+  margin-left:5px;
 }
 div#sidebar-menu {
  float:left;
@@ -268,6 +268,10 @@ div.item-cover-image-thumb {
 .item-cover-image-thumb a:hover img {
 	      border: 2px solid #BD0703;
     }
+img.cover-thumb {
+		  border: 2px solid #5c5c5c;
+}
+
 div.item-data {
 	width:380px;
 	float:left;
@@ -277,10 +281,9 @@ div.item-data {
 
 }
 div.item-data-show {
-	width:280px;
+	width:270px;
 	float:left;
-	margin-bottom:20px;
-	margin-top:27px;
+	margin-left:10px;
 	padding-right:10px;
 
 }
@@ -297,9 +300,13 @@ div.item-title {
 div.item-cover-image-large{
 	width:auto;
 	float:left;
-	margin-right:20px;
+	margin-right:10px;
 	margin-bottom: 20px;
 }
+
+.item-cover-image-large img {
+	      border: 2px solid #000000;
+    }
 
 div.item-data div {
     margin-bottom:.25em;
@@ -315,14 +322,14 @@ div.item-data>div>span {
 }
 div.item-data div.item-content {
   float:left;
-  width:250px;
+  width: 100%;
 }
 div.item-data-show div.item-content {
   float:left;
-  width:190px;
+  margin-right:.5em;
 }
 div.item-vendor-location div.item-content{
-  width: 175px;
+  margin-right:.5em;
 }
 div.item-data-show div.item-label {
   font-weight:bold;
