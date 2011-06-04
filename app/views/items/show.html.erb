@@ -48,7 +48,8 @@
 	<div class="item-format">
 		<div class="item-label">Format:</div> <div class="item-content"><%=h @item.physical_format %></div>
 	</div>
-
+  <%= print_unless_blank(@item.image_types.map(&:name).join("<br />"), "Image Types") %>
+  <%= print_unless_blank(@item.image_colors.map(&:name).join("<br />"), "Image Colors") %>
 	<%= print_unless_blank(@item.languages.map(&:name).join("<br />"), "Languages") %>
 	<%= print_unless_blank(@item.provenance, "Provenance") %>
 	<%= print_unless_blank(@item.dedication, "Dedication") %>
