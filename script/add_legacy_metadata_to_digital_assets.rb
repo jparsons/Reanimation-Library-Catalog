@@ -8,10 +8,10 @@ xml_document.search("//row").each {|node|
   digital_asset = nil
   image_ids.each_with_index do |image_name_node, i|
     if digital_asset.nil? || digital_asset.scan_file_name != image_name_node.inner_html() + ".jpg"
-      digital_asset = DigitalAsset.find_by_scan_file_name(image_name_node.inner_html() + ".jpg")
+      digital_asset = DigitalAsset.find_by_scan_file_name(image_name_node.inner_html() + ".jpg", )
     end
     if digital_asset
-      digital_asset.update_attribute(:color, colors[i].inner_html().gsub(/&amp;/,"&"))
+      digital_asset.color = colors[i].inner_html().gsub(/&amp;/,"&")
       puts "#{digital_asset.id} #{colors[i].inner_html().gsub(/&amp;/,"&")}" unless colors[i].inner_html().blank?
     end
   end
