@@ -1,6 +1,6 @@
-<% title "Log in" %>
+<%- content_for(:title) { "Reanimation Library - Catalog - Log in" } -%>
 <div id="login" style="height:500px;">
-<%= content_tag 'h2', yield(:title) %>
+<%= content_tag 'h2', "Log in" %>
 <%= form_for @user_session do |f| %>
   <%= f.error_messages %>
   <p>

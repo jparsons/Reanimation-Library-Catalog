@@ -1,5 +1,5 @@
-<% title "Browse by Title" %>
-<h2><%= yield(:title) %></h2>
+<%- content_for(:title) { "Reanimation Library - Catalog" } -%>
+<h2>Browse by Title</h2>
 <%= pagination_links(params[:letter]) %>
   <div id="item-list">
   <% if logged_in? && current_user.is_administrator? %>

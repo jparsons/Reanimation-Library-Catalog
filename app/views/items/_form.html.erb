@@ -51,9 +51,9 @@ $(document).ready(function(){
 <p><%= f.label :city %><br />
     <%= f.text_field :publisher_city %></p>
 <p><%= f.label :state %><br />
-	<%= f.select :publisher_state, STATES %></p>
+	<%= f.select :publisher_state, STATES, :include_blank=>true %></p>
 <p><%= f.label :country %><br />
-	<%= f.select :publisher_country, COUNTRIES %></p>	
+	<%= f.select :publisher_country, COUNTRIES, :include_blank=>true %></p>	
 <p><%= f.label :copyright %><br />
 	<%= f.text_field :copyright %></p>
 <p><%= f.label :corporate_author %><br />

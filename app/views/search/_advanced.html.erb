@@ -1,5 +1,6 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - Advanced Search" } -%>
 <h2>Advanced Search</h2>
-<form method="get" action="<%= search_path %>">
+<form method="get" action="<%= search_path %>#search_results">
   <p><label for="search_id">Item ID:</label><br />
     <input type="text" name="id" value="<%= params[:id] %>" /></p>
   <p><label for="search_title">Title: </label><br />
@@ -11,11 +12,11 @@
   <p><label for="copyright">Copyright year: </label><br />
   <input type="text" name ="copyright" value="<%= params[:copyright] %>"/></p>
   <p><label for="image_color">Image color: </label><br />
-  <%= select "search", "image_color", DigitalAsset.all.map(&:color).compact.uniq, :include_blank=>true %></p>
+  <%= select "search", "image_color", ImageColor.order(:name).map(&:name), :include_blank=>true %></p>
   <p><label for="image_type">Image type: </label><br />
-  <%= select "search", "image_type", DigitalAsset.all.map(&:image_type).compact.uniq, :include_blank=>true %></p>
+  <%= select "search", "image_type", ImageType.order(:name).map(&:name), :include_blank=>true %></p>
   <p><label for="collection">Collection:</label><br />
-  <%= select "search", "collection_name", COLLECTIONS.sort, :include_blank=>true %></p>
+  <%= select "search", "collection_name", DISPLAY_COLLECTIONS, :include_blank=>true %></p>
   <p>  
     <input type="checkbox" name ="is_public_domain" value="true" <%= 'checked="checked"' unless params[:is_public_domain].blank? %>/> &nbsp;Public Domain Only <br />
 </p>

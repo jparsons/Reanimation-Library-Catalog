@@ -1,3 +1,4 @@
+ENV['RAILS_RELATIVE_URL_ROOT'] = "/catalog"
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 

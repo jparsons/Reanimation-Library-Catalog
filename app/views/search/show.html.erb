@@ -1,11 +1,13 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - Search - #{ params[:q] }" -%>
 <% title "Search Results" %>
-<h2><%= yield(:title) %></h2>
+<h2>Search Results</h2>
 
 <% if @items.blank? && params[:q] %>
 	<p>Your search for <em><%= params[:q] %></em> returned no results.</p>
 <% elsif params[:advanced] == "true" %>
   <%= render :partial=>'advanced' %>
 <% end %>
+<a name="search_results" />
 <% unless @items.blank? %>
    <%= render :partial=>"items/item", :collection=>@items%>
 <% end %>

@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   def index
-    @subjects = Subject.all.paginate(:page=>params[:page], :order=>'name')
+    @subjects = Subject.order(:name).paginate(:page=>params[:page])
   end
   
   def show

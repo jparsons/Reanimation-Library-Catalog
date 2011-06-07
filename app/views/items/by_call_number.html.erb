@@ -1,5 +1,6 @@
-<% title "Browse by Call Number" %>
-<h2><%= yield(:title) %></h2>
+<%- content_for(:title) { "Reanimation Library - Catalog" } -%>
+
+<h2>Browse by Call Number</h2>
 <%= will_paginate(@items) %>
   <div id="item-list">
   <% if logged_in? && current_user.is_administrator? %>

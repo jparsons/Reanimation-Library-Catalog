@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def by_call_number
-    @items = Item.by_call_number.paginate(:page => params[:page], :per_page => 20)
+    @items = Item.by_call_number.published.paginate(:page => params[:page], :per_page => 20)
   end
 
   def acquired 
@@ -48,11 +48,13 @@ class ItemsController < ApplicationController
 
   def recent
     ActiveRecord::Base.include_root_in_json = false
-    @items = Item.published.recent
     respond_to do |wants|
-      wants.html {   }
-      wants.xml { render :xml=>@items.to_xml }
-      wants.json {render_json @items.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
+      wants.html { @items = Item.published.order("created_at desc").paginate( :page => params[:page]) }
+      wants.xml {
+        @items = Item.published.order("created_at desc").paginate( :page => params[:page])
+        render :xml=>@items.to_xml
+        }
+      wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
     end
   end
 

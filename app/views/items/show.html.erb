@@ -1,3 +1,4 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - #{ @item.display_title }" } -%>
 
 <% if @previous.nil? %>&lt; previous item<% else %><%= link_to "< previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item >", item_path(@next) %><% end %>
 <h1>
@@ -22,7 +23,7 @@
   </div>
 	<div class="item-publisher">
 		<div class="item-label">Publisher:</div> 
-		<div class="item-content"><%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state %></div>
+		<div class="item-content"><%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state.upcase %></div>
 	</div>
 	<div class="item-year">
 		<div class="item-label">Year:</div> <div class="item-content"><%=h @item.copyright %></div>

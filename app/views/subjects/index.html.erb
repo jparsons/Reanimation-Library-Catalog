@@ -1,5 +1,5 @@
-<% title "Browse the catalog by subject" %>
-<h2><%= yield(:title) %></h2>
+<%- content_for(:title) { "Reanimation Library - Catalog - Subjects" } -%>
+<h2>Browse the catalog by subject</h2>
 <%= will_paginate @subjects %>
 <% @subjects.each do |subject| %>
 	<p><%= link_to "#{subject.name} (#{pluralize(subject.items.count, "item")})", subject_path(subject) %></p>
