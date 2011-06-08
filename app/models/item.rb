@@ -23,7 +23,7 @@ class Item < ActiveRecord::Base
     transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
   end
 
-  scope :recent, limit(15).order("created_at DESC").includes(:creators)
+  scope :recent, published.limit(15).order("created_at DESC").includes(:creators)
   scope :by_call_number, order("call_number ASC").includes(:creators)
   scope :need_cataloging, where("cataloging_status != 'published'")
 

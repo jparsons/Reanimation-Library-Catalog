@@ -26,18 +26,18 @@ $(document).ready(function(){
   var images = [];
   $("img.rollover").each(function(index) {
     images[index] = new Image();
-    images[index].src = "http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon1.jpg";
+    images[index].src = "http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon1.jpg";
   });
   // set the current page image to the rollover state and remove the rollover class
-  $(".current_page").attr("src", "http://reanimationlibrary.org/V2/images/" + $(".current_page").attr("id") + "icon1.jpg");
+  $(".current_page").attr("src", "http://reanimationlibrary.org/images/" + $(".current_page").attr("id") + "icon1.jpg");
   $(".current_page").removeClass("rollover");
   // add rollover functionality 
   $("img.rollover").hover(
     function() {
-      $(this).attr("src","http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon1.jpg");
+      $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon1.jpg");
      },
      function() {
-    	 $(this).attr("src","http://reanimationlibrary.org/V2/images/" + $(this).attr("id") + "icon.jpg");
+    	 $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon.jpg");
      }
   );
 });
@@ -51,24 +51,24 @@ $(function() {
 });
 
 if (document.images) {
-    head1on  = new Image(); head1on.src  = "http://reanimationlibrary.org/V2/images/header1.jpg";
-    head1off = new Image(); head1off.src = "http://reanimationlibrary.org/V2/images/header.jpg";
-    nav1on   = new Image(); nav1on.src   = "http://reanimationlibrary.org/V2/images/catalog1.jpg";
-    nav1off  = new Image(); nav1off.src  = "http://reanimationlibrary.org/V2/images/catalog1.jpg";
-    nav2on   = new Image(); nav2on.src   = "http://reanimationlibrary.org/V2/images/about1.jpg";
-    nav2off  = new Image(); nav2off.src  = "http://reanimationlibrary.org/V2/images/about.jpg";
-    nav3on   = new Image(); nav3on.src   = "http://reanimationlibrary.org/V2/images/news1.jpg";
-    nav3off  = new Image(); nav3off.src  = "http://reanimationlibrary.org/V2/images/news.jpg";
-    nav4on   = new Image(); nav4on.src   = "http://reanimationlibrary.org/V2/images/links1.jpg";
-    nav4off  = new Image(); nav4off.src  = "http://reanimationlibrary.org/V2/images/links.jpg";
-    nav5on   = new Image(); nav5on.src   = "http://reanimationlibrary.org/V2/images/participate1.jpg";
-    nav5off  = new Image(); nav5off.src  = "http://reanimationlibrary.org/V2/images/participate.jpg";
-    nav7on   = new Image(); nav7on.src   = "http://reanimationlibrary.org/V2/images/contact1.jpg";
-    nav7off  = new Image(); nav7off.src  = "http://reanimationlibrary.org/V2/images/contact.jpg";
-    nav8on   = new Image(); nav8on.src   = "http://reanimationlibrary.org/V2/images/header_address1.jpg";
-    nav8off  = new Image(); nav8off.src  = "http://reanimationlibrary.org/V2/images/header_address.jpg";
-    nav9on   = new Image(); nav9on.src   = "http://reanimationlibrary.org/V2/images/events1.jpg";
-    nav9off  = new Image(); nav9off.src  = "http://reanimationlibrary.org/V2/images/events.jpg";
+    head1on  = new Image(); head1on.src  = "http://reanimationlibrary.org/images/header1.jpg";
+    head1off = new Image(); head1off.src = "http://reanimationlibrary.org/images/header.jpg";
+    nav1on   = new Image(); nav1on.src   = "http://reanimationlibrary.org/images/catalog1.jpg";
+    nav1off  = new Image(); nav1off.src  = "http://reanimationlibrary.org/images/catalog1.jpg";
+    nav2on   = new Image(); nav2on.src   = "http://reanimationlibrary.org/images/about1.jpg";
+    nav2off  = new Image(); nav2off.src  = "http://reanimationlibrary.org/images/about.jpg";
+    nav3on   = new Image(); nav3on.src   = "http://reanimationlibrary.org/images/news1.jpg";
+    nav3off  = new Image(); nav3off.src  = "http://reanimationlibrary.org/images/news.jpg";
+    nav4on   = new Image(); nav4on.src   = "http://reanimationlibrary.org/images/links1.jpg";
+    nav4off  = new Image(); nav4off.src  = "http://reanimationlibrary.org/images/links.jpg";
+    nav5on   = new Image(); nav5on.src   = "http://reanimationlibrary.org/images/participate1.jpg";
+    nav5off  = new Image(); nav5off.src  = "http://reanimationlibrary.org/images/participate.jpg";
+    nav7on   = new Image(); nav7on.src   = "http://reanimationlibrary.org/images/contact1.jpg";
+    nav7off  = new Image(); nav7off.src  = "http://reanimationlibrary.org/images/contact.jpg";
+    nav8on   = new Image(); nav8on.src   = "http://reanimationlibrary.org/images/header_address1.jpg";
+    nav8off  = new Image(); nav8off.src  = "http://reanimationlibrary.org/images/header_address.jpg";
+    nav9on   = new Image(); nav9on.src   = "http://reanimationlibrary.org/images/events1.jpg";
+    nav9off  = new Image(); nav9off.src  = "http://reanimationlibrary.org/images/events.jpg";
 
 }
 
@@ -96,9 +96,9 @@ function rollOff(img1){
 <div class="pagebody">
 <div class="bigheader">
 <table class="topnav" border="0" cellpadding="0" cellspacing="0">
-<tr><td rowspan="3" width="52" valign="top"><img src="http://reanimationlibrary.org/V2/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px">
-<tr><td colspan="7"><a href="../index.htm" onmouseover="rollOn('head1','head1 text'); return true;" onmouseout="rollOff('head1'); return true;"><img name="head1" src="http://reanimationlibrary.org/V2/images/header.jpg"  alt="reanimation library" align="left" width="352" height="34" style="border:none; margin-bottom: 5px;" hspace="0"></a></td><td valign="bottom" colspan="3"><a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA" onmouseover="rollOn('nav8','nav8 text'); return true;" onmouseout="rollOff('nav8'); return true;"><img align="right" name="nav8" src="http://reanimationlibrary.org/V2/images/header_address.jpg" alt="543 union street | brooklyn, ny" width="226" height="15" style="border:none; margin-right:1px; margin-bottom: 2px;"></a></td></tr>
-<tr> <td><a href="http://www.reanimationlibrary.org/catalog/items" onmouseover="rollOn('nav1','nav1 text'); return true;" onmouseout="rollOff('nav1'); return true;"><image class="nav" name="nav1" src="http://reanimationlibrary.org/V2/images/catalog1.jpg" alt="catalog" width="61" height="22"></a></td><td><a href="../pages/about.htm" onmouseover="rollOn('nav2','nav2 text'); return true;" onmouseout="rollOff('nav2'); return true;"><image class="nav" name="nav2" src="http://reanimationlibrary.org/V2/images/about.jpg" alt="about" width="48" height="22"></a></td><td><a href="../pages/news.htm" onmouseover="rollOn('nav3','nav3 text'); return true;" onmouseout="rollOff('nav3'); return true;"><image class="nav" name="nav3" src="http://reanimationlibrary.org/V2/images/news.jpg" alt="news" width="39" height="22"></a></td><td><a href="../pages/events.htm" onmouseover="rollOn('nav9','nav9 text'); return true;" onmouseout="rollOff('nav9'); return true;"><image class="nav" name="nav9" src="http://reanimationlibrary.org/V2/images/events.jpg" alt="events" width="53" height="22"></a></td><td><a href="../pages/links.htm" onmouseover="rollOn('nav4','nav4 text'); return true;" onmouseout="rollOff('nav4'); return true;"><image class="nav" name="nav4" src="http://reanimationlibrary.org/V2/images/links.jpg" alt="links" width="46" height="22"></a></td><td><a href="../pages/participate.htm" onmouseover="rollOn('nav5','nav5 text'); return true;" onmouseout="rollOff('nav5'); return true;"><image class="nav" name="nav5" src="http://reanimationlibrary.org/V2/images/participate.jpg" alt="participate" width="89" height="22"></a></td><td><a href="../pages/contact.htm" onmouseover="rollOn('nav7','nav7 text'); return true;" onmouseout="rollOff('nav7'); return true;"><image class="nav" name="nav7" src="http://reanimationlibrary.org/V2/images/contact.jpg" alt="contact" width="62" height="22"></a></td><td><img class="nav" src="http://reanimationlibrary.org/V2/images/topsearchicon.gif" alt="search the catalog" width="106" height="22"></td><td><form method="get" action="http://www.reanimationlibrary.org/catalog/search"><input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'search the catalog':this.value;" value="search the catalog" style="height: 22px; width: 202px; color: #6D6D6D; font-size: 10px; background: #F7F7F7; padding-left: 18px;  border: 2px solid #AFAFAF; float:left; background:url('http://reanimationlibrary.org/V2/images/searchicon.gif') no-repeat left center;"/></td><td width=""><input type="image" class="searchbutton" src="http://reanimationlibrary.org/V2/images/go.gif" style="height: 22px; margin-right: 1px; float: right;" onmouseover="this.src='http://reanimationlibrary.org/V2/images/go1.gif'" height="22" width="16" onmouseout="this.src='http://reanimationlibrary.org/V2/images/go.gif'"/></form></td></tr>
+<tr><td rowspan="3" width="52" valign="top"><img src="http://reanimationlibrary.org/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px">
+<tr><td colspan="7"><a href="../index.htm" onmouseover="rollOn('head1','head1 text'); return true;" onmouseout="rollOff('head1'); return true;"><img name="head1" src="http://reanimationlibrary.org/images/header.jpg"  alt="reanimation library" align="left" width="352" height="34" style="border:none; margin-bottom: 5px;" hspace="0"></a></td><td valign="bottom" colspan="3"><a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA" onmouseover="rollOn('nav8','nav8 text'); return true;" onmouseout="rollOff('nav8'); return true;"><img align="right" name="nav8" src="http://reanimationlibrary.org/images/header_address.jpg" alt="543 union street | brooklyn, ny" width="226" height="15" style="border:none; margin-right:1px; margin-bottom: 2px;"></a></td></tr>
+<tr> <td><a href="http://www.reanimationlibrary.org/catalog/items" onmouseover="rollOn('nav1','nav1 text'); return true;" onmouseout="rollOff('nav1'); return true;"><image class="nav" name="nav1" src="http://reanimationlibrary.org/images/catalog1.jpg" alt="catalog" width="61" height="22"></a></td><td><a href="../pages/about.htm" onmouseover="rollOn('nav2','nav2 text'); return true;" onmouseout="rollOff('nav2'); return true;"><image class="nav" name="nav2" src="http://reanimationlibrary.org/images/about.jpg" alt="about" width="48" height="22"></a></td><td><a href="../pages/news.htm" onmouseover="rollOn('nav3','nav3 text'); return true;" onmouseout="rollOff('nav3'); return true;"><image class="nav" name="nav3" src="http://reanimationlibrary.org/images/news.jpg" alt="news" width="39" height="22"></a></td><td><a href="../pages/events.htm" onmouseover="rollOn('nav9','nav9 text'); return true;" onmouseout="rollOff('nav9'); return true;"><image class="nav" name="nav9" src="http://reanimationlibrary.org/images/events.jpg" alt="events" width="53" height="22"></a></td><td><a href="../pages/links.htm" onmouseover="rollOn('nav4','nav4 text'); return true;" onmouseout="rollOff('nav4'); return true;"><image class="nav" name="nav4" src="http://reanimationlibrary.org/images/links.jpg" alt="links" width="46" height="22"></a></td><td><a href="../pages/participate.htm" onmouseover="rollOn('nav5','nav5 text'); return true;" onmouseout="rollOff('nav5'); return true;"><image class="nav" name="nav5" src="http://reanimationlibrary.org/images/participate.jpg" alt="participate" width="89" height="22"></a></td><td><a href="../pages/contact.htm" onmouseover="rollOn('nav7','nav7 text'); return true;" onmouseout="rollOff('nav7'); return true;"><image class="nav" name="nav7" src="http://reanimationlibrary.org/images/contact.jpg" alt="contact" width="62" height="22"></a></td><td><img class="nav" src="http://reanimationlibrary.org/images/topsearchicon.gif" alt="search the catalog" width="106" height="22"></td><td><form method="get" action="http://www.reanimationlibrary.org/catalog/search"><input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'search the catalog':this.value;" value="search the catalog" style="height: 22px; width: 202px; color: #6D6D6D; font-size: 10px; background: #F7F7F7; padding-left: 18px;  border: 2px solid #AFAFAF; float:left; background:url('http://reanimationlibrary.org/images/searchicon.gif') no-repeat left center;"/></td><td width=""><input type="image" class="searchbutton" src="http://reanimationlibrary.org/images/go.gif" style="height: 22px; margin-right: 1px; float: right;" onmouseover="this.src='http://reanimationlibrary.org/images/go1.gif'" height="22" width="16" onmouseout="this.src='http://reanimationlibrary.org/images/go.gif'"/></form></td></tr>
 </table></div>
 <% yield :breadcrumb || '<p class="breadcrumb"><a href="../index.htm">home</a> > catalog</p>' %>
 <p class="breadcrumb"><a href="../index.htm">home</a> > catalog</p>
@@ -107,55 +107,55 @@ function rollOff(img1){
   <tr>
   <td>
   <a href="<%= items_path %>">
-    <img id="browse" class="rollover <%= (current_page?(items_path) || current_page?(root_path)) ? "current_page" : "" %>" name="icon1" src="http://reanimationlibrary.org/V2/images/browseicon.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;" />
+    <img id="browse" class="rollover <%= (current_page?(items_path) || current_page?(root_path)) ? "current_page" : "" %>" name="icon1" src="http://reanimationlibrary.org/images/browseicon.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;" />
   </a></td>
 </tr>
 <tr>
 <td>
   <a href="<%= by_call_number_items_path %>">
-    <img id="browsecn" class="rollover <%= current_page?(by_call_number_items_path) ? "current_page" : "" %>" name="icon2" src="http://reanimationlibrary.org/V2/images/browsecnicon.jpg" alt="browse the collection by call number" width="150" height="25" style="border: none;" />
+    <img id="browsecn" class="rollover <%= current_page?(by_call_number_items_path) ? "current_page" : "" %>" name="icon2" src="http://reanimationlibrary.org/images/browsecnicon.jpg" alt="browse the collection by call number" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
 <tr>
 <td>
   <a href="<%= recent_items_path %>">
-    <img id="recentitems" class="rollover <%= current_page?(recent_items_path) ? "current_page" : "" %>" name="icon3" src="http://reanimationlibrary.org/V2/images/recentitemsicon.jpg" alt="view recently added items" width="150" height="25" style="border: none;" />
+    <img id="recentitems" class="rollover <%= current_page?(recent_items_path) ? "current_page" : "" %>" name="icon3" src="http://reanimationlibrary.org/images/recentitemsicon.jpg" alt="view recently added items" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
 <tr>
 <td>
   <a href="<%= subjects_path %>">
-    <img id="subjects" class="rollover <%= current_page?(subjects_path) ? "current_page" : "" %>" name="icon4" src="http://reanimationlibrary.org/V2/images/subjectsicon.jpg" alt="browse subjects" width="150" height="25" style="border: none;" />
+    <img id="subjects" class="rollover <%= current_page?(subjects_path) ? "current_page" : "" %>" name="icon4" src="http://reanimationlibrary.org/images/subjectsicon.jpg" alt="browse subjects" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
 <tr>
 <td>
   <a href="<%= digital_assets_path %>">
-    <img id="imagearchive" class="rollover <%= current_page?(digital_assets_path) ? "current_page" : "" %>" name="icon5" src="http://reanimationlibrary.org/V2/images/imagearchiveicon.jpg" alt="browse images" width="150" height="25" style="border: none;" />
+    <img id="imagearchive" class="rollover <%= current_page?(digital_assets_path) ? "current_page" : "" %>" name="icon5" src="http://reanimationlibrary.org/images/imagearchiveicon.jpg" alt="browse images" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
 <tr>
 <td>
-  <a href="http://reanimationlibrary.org/V2/pages/collectionguide.htm">
-    <img id="cd" class="rollover <%= current_page?("http://reanimationlibrary.org/V2/pages/collectionguide.htm") ? "current_page" : "" %>" name="icon6" src="http://reanimationlibrary.org/V2/images/cdicon.jpg" alt="guide to the collections" width="150" height="25" style="border: none;" />
+  <a href="http://reanimationlibrary.org/pages/collectionguide.htm">
+    <img id="cd" class="rollover <%= current_page?("http://reanimationlibrary.org/pages/collectionguide.htm") ? "current_page" : "" %>" name="icon6" src="http://reanimationlibrary.org/images/cdicon.jpg" alt="guide to the collections" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
 <!--<tr>
 <td>
   <a href="<%= advanced_search_path %>">
-    <img id="advancedsearch" class="rollover <%= current_page?(advanced_search_path) ? "current_page" : "" %>" name="icon7" src="http://reanimationlibrary.org/V2/images/advancedsearchicon.jpg" alt="advanced search" width="150" height="25" style="border: none;" />
+    <img id="advancedsearch" class="rollover <%= current_page?(advanced_search_path) ? "current_page" : "" %>" name="icon7" src="http://reanimationlibrary.org/images/advancedsearchicon.jpg" alt="advanced search" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>-->
 <tr>
 <td>
   <a href="<%= login_path %>">
-    <img id="login" class="rollover <%= current_page?(login_path) ? "current_page" : "" %>" name="icon8" src="http://reanimationlibrary.org/V2/images/loginicon.jpg" alt="login" width="150" height="25" style="border: none;" />
+    <img id="login" class="rollover <%= current_page?(login_path) ? "current_page" : "" %>" name="icon8" src="http://reanimationlibrary.org/images/loginicon.jpg" alt="login" width="150" height="25" style="border: none;" />
   </a>
 </td>
 </tr>
@@ -195,7 +195,7 @@ function rollOff(img1){
 	</div>
 </div>
 </div>
-<div class="about"><center><img class="header" src="http://reanimationlibrary.org/V2/images/catalogheader.jpg" width="64" height="20" style="border: none;"></center>
+<div class="about"><center><img class="header" src="http://reanimationlibrary.org/images/catalogheader.jpg" width="64" height="20" style="border: none;"></center>
 <div id="content">		
 	<%- flash.each do |name, msg| -%>  	
 		<%= content_tag :div, msg, :id => "flash_#{name}" %>
@@ -207,12 +207,12 @@ function rollOff(img1){
 
 
 <!--begin retarded code 3-->
-<image src="http://reanimationlibrary.org/V2/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
-<div class="footerlogo"><img src="http://reanimationlibrary.org/V2/images/footerlogo.gif" width="36" height="36px" style="border: none;"></div>
+<image src="http://reanimationlibrary.org/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
+<div class="footerlogo"><img src="http://reanimationlibrary.org/images/footerlogo.gif" width="36" height="36px" style="border: none;"></div>
 <div class="footer">
 <form method="post" action="http://ymlp.com/subscribe.php?YMLPID=geuuusjgmgb" target="_blank">
-Join our email list: &nbsp;<input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" style="height: 20px; width: 201px; color: #6D6D6D; font-size: 11px; padding-left: 22px;  border: none; margin-bottom: 4px; margin-top: 8px; background:url('http://reanimationlibrary.org/V2/images/joinicon.gif') no-repeat left center;"/>
-<input style="height: 16px; margin-left: px;  margin-bottom: 4px; vertical-align: bottom;" type="image" src="http://reanimationlibrary.org/V2/images/join.gif" onmouseover="this.src='http://reanimationlibrary.org/V2/images/join1.gif'" onmouseout="this.src='http://reanimationlibrary.org/V2/images/join.gif'" value="join"/>
+Join our email list: &nbsp;<input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" style="height: 20px; width: 201px; color: #6D6D6D; font-size: 11px; padding-left: 22px;  border: none; margin-bottom: 4px; margin-top: 8px; background:url('http://reanimationlibrary.org/images/joinicon.gif') no-repeat left center;"/>
+<input style="height: 16px; margin-left: px;  margin-bottom: 4px; vertical-align: bottom;" type="image" src="http://reanimationlibrary.org/images/join.gif" onmouseover="this.src='http://reanimationlibrary.org/images/join1.gif'" onmouseout="this.src='http://reanimationlibrary.org/images/join.gif'" value="join"/>
 </br>
 543 Union Street, Brooklyn, NY 11215 | <a href="http://www.facebook.com/reanimationlibrary" target="_blank">Facebook</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">Twitter</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">Tumblr</a></form>
 <br/><br/>
