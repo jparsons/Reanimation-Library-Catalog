@@ -25,6 +25,7 @@ class Item < ActiveRecord::Base
 
   scope :recent, limit(15).order("created_at DESC").includes(:creators)
   scope :by_call_number, order("call_number ASC").includes(:creators)
+  scope :need_cataloging, where("cataloging_status != 'published'")
 
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors

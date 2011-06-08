@@ -19,16 +19,16 @@ class SearchController < ApplicationController
        unless params[:copyright].blank?
          query_parts << "copyright:(#{params[:copyright]})"
        end
-       unless params[:image_colors].blank?
+       unless params[:search][:image_colors].blank?
          query_parts << "copyright:(#{params[:search][:image_colors]})"
        end
-       unless params[:image_types].blank?
+       unless params[:search][:image_types].blank?
          query_parts << "image_types:(#{params[:search][:image_types]})"
        end
        unless params[:is_public_domain].blank?
          query_parts << "is_public_domain:(#{params[:is_public_domain]})"
        end
-       unless params[:collection_name].blank?
+       unless params[:search][:collection_name].blank?
          query_parts << "collection_name:(#{params[:search][:collection_name]})"
        end
        @query = query_parts.join(" AND ")

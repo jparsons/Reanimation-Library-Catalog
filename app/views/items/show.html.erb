@@ -1,4 +1,4 @@
-<%- content_for(:title) { "Reanimation Library - Catalog - #{ @item.display_title }" } -%>
+<%- content_for(:title) { "Reanimation Library - Catalog - #{ @item.title }" } -%>
 
 <% if @previous.nil? %>&lt; previous item<% else %><%= link_to "< previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item >", item_path(@next) %><% end %>
 <h1>

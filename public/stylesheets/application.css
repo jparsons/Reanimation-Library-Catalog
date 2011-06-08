@@ -326,10 +326,11 @@ div.item-data div.item-content {
 }
 div.item-data-show div.item-content {
   float:left;
-  margin-right:.5em;
+  
+  width: 180px;
 }
 div.item-vendor-location div.item-content{
-  margin-right:.5em;
+  width:150px;
 }
 div.item-data-show div.item-label {
   font-weight:bold;
@@ -340,6 +341,9 @@ div.item-data div.item-label {
   font-weight:bold;
   float:left;
   margin-right:.5em;
+}
+img.show-digital-asset {
+  border: 2px solid #000000;
 }
 a.digital-asset>img{
 	margin-right:8px;

@@ -1,9 +1,10 @@
 <%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan_file_name.gsub(/\.jpg/, "") }" } -%>
+<% if @previous.nil? %>&lt; previous image<% else %><%= link_to "< previous image", digital_asset_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next image &gt;<% else %><%= link_to "next image >", digital_asset_path(@next) %><% end %>
 <h2>Image</h2>
 <div id="main-content">
 
 <p>
-  <%= image_tag(@digital_asset.scan.url(:large)) %><br/>
+  <%= image_tag(@digital_asset.scan.url(:large), :class=>"show-digital-asset") %><br/>
 </p>
 <p><strong><%= @digital_asset.scan_file_name.gsub(/\.jpg/, "") %></strong></p>
 <% if logged_in? && current_user.is_administrator? %>

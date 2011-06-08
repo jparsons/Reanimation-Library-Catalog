@@ -26,6 +26,14 @@ class DigitalAsset < ActiveRecord::Base
 
   end
 
+  def self.previous(digital_asset)
+    where("scan_file_name < ?", digital_asset.scan_file_name).limit(1).order("scan_file_name desc")
+  end
+
+  def self.next(digital_asset)
+    where("scan_file_name > ?", digital_asset.scan_file_name).limit(1).order("scan_file_name")
+  end
+
 end
 
 

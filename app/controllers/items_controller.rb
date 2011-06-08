@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
     else 
       order = "call_number ASC"
     end
-    @items = Item.acquired.all(:order => order)
+    @items = Item.need_cataloging.all(:order => order)
   end
 
   def need_images
