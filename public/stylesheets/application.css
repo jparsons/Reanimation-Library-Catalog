@@ -313,9 +313,10 @@ div.item-data div {
     overflow:auto;
 }
 
-div.item-data-show div {
+div.item-data-show div.item-row {
   margin-bottom:.25em;
   overflow:auto;
+  clear:both;
 }
 div.item-data div span {
 	font-weight:bold;
@@ -355,15 +356,15 @@ a.digital-asset img:hover {
 	border:2px solid #BD0703;
 }
 div#works-list div.work {
-	margin-bottom:1em;
+	margin-bottom: 1em;
 }
 
 div.sidebar-admin-menu {
-	margin-top:20px;
-	margin-left:10px;
+	margin-top: 20px;
+	margin-left: 10px;
 }
 div.sidebar-menu-item {
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 div.admin-link, a.admin-link{
 	font-size:1.5em;

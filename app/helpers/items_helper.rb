@@ -49,7 +49,7 @@ module ItemsHelper
 
   def print_unless_blank(field_value, label)
     unless field_value.blank?
-      content_tag("div", content_tag("div", label + ":", :class=>"item-label") + content_tag("div", raw(field_value), :class=>"item-content"), :class=>"item-#{label.downcase.gsub(/ /, "-")}")
+      content_tag("div", content_tag("div", label + ":", :class=>"item-label") + content_tag("div", raw(field_value), :class=>"item-content"), :class=>"item-row item-#{label.downcase.gsub(/ /, "-")}")
     end
   end
 
