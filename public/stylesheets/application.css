@@ -317,7 +317,7 @@ div.item-data-show div {
   margin-bottom:.25em;
   overflow:auto;
 }
-div.item-data>div>span {
+div.item-data div span {
 	font-weight:bold;
 }
 div.item-data div.item-content {
@@ -345,16 +345,16 @@ div.item-data div.item-label {
 img.show-digital-asset {
   border: 2px solid #000000;
 }
-a.digital-asset>img{
+a.digital-asset img{
 	margin-right:8px;
 	margin-bottom:8px;
 	border:2px solid #B2B2B2;
     
 }
-a.digital-asset>img:hover {
+a.digital-asset img:hover {
 	border:2px solid #BD0703;
 }
-div#works-list>div.work {
+div#works-list div.work {
 	margin-bottom:1em;
 }
 
