@@ -4,7 +4,7 @@
 <div id="main-content">
 
 <p>
-  <%= image_tag(@digital_asset.scan.url(:large), :class=>"show-digital-asset") %><br/>
+  <%= link_to image_tag(@digital_asset.scan.url(:large), :class=>"show-digital-asset"), image_path(@digital_asset.scan.url(:original)), :target=>"new" %><br/>
 </p>
 
 <p><strong>Image id: <%= @digital_asset.scan_file_name.gsub(/\.jpg/, "") %></strong></p>
