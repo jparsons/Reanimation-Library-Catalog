@@ -6,7 +6,7 @@
 <p>
   <%= image_tag(@digital_asset.scan.url(:large), :class=>"show-digital-asset") %><br/>
 </p>
-<p><%= link_to "Click here to download a larger copy of this image", @digital_asset.scan.url(:original), :target=>"new" %></p>
+<!--<p><%= link_to "Click here to download a larger copy of this image", @digital_asset.scan.url(:original), :target=>"new" %></p>-->
 
 <p><strong>Image id: <%= @digital_asset.scan_file_name.gsub(/\.jpg/, "") %></strong></p>
 
