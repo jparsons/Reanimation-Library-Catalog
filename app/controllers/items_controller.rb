@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
         @items = Item.published.order("created_at desc").paginate( :page => params[:page])
         render :xml=>@items.to_xml
         }
-      wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_creator]) }
+      wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_title_with_colon, :display_creator]) }
     end
   end
 

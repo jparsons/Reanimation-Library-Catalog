@@ -77,6 +77,11 @@ class Item < ActiveRecord::Base
   def display_title
     "#{title}#{subtitle.blank? ? "" : " " + subtitle}"
   end
+  
+  def display_title_with_colon
+    "#{title}#{subtitle.blank? ? "" : ": " + subtitle}"
+  end
+
   def display_creator
     creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "") 
   end

@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
   include Authentication
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
   
   def cataloger_required 
     logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES) ? true : redirect_to(root_url)
