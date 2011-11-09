@@ -5,7 +5,7 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3-ruby'
+
 gem 'paperclip'
 gem "authlogic"
 gem "easy_roles"
@@ -37,6 +37,7 @@ gem 'hpricot', '0.8.4'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
+  gem 'sqlite3-ruby'
  end
  group :production do
    gem 'mysql' 

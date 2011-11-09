@@ -58,6 +58,7 @@ GEM
     ferret (0.11.6)
       rake (> 0.0.0)
     highline (1.6.1)
+    hpricot (0.8.4)
     i18n (0.5.0)
     jk-ferret (0.11.8.3)
       rake
@@ -105,6 +106,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.27)
+    will_paginate (2.3.15)
 
 PLATFORMS
   ruby
@@ -117,7 +119,9 @@ DEPENDENCIES
   delayed_job
   easy_roles
   ferret
+  hpricot (= 0.8.4)
   mysql
   paperclip
   rails (= 3.0.7)
   sqlite3-ruby
+  will_paginate (= 2.3.15)

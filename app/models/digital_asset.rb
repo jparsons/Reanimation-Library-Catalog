@@ -19,7 +19,7 @@ class DigitalAsset < ActiveRecord::Base
 
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
-  scope :most_recent, :order=>"created_at DESC", :limit=>30
+  scope :most_recent, :order=>"created_at DESC", :limit=>100
 
   def mini_url
       RECENT_IMAGES_PATH +  scan.url(:mini)

@@ -15,3 +15,4 @@ public/system/Archive.zip
 *.doc
 *.txt
 .rvmrc
+public/.DS_Store
