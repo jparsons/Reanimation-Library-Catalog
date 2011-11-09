@@ -97,6 +97,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if params[:commit] == PUBLISH_TEXT
       @item.cataloging_status = "published"
+      @item.published_at = Time.now
     elsif params[:commit] == UNPUBLISH_TEXT
       @item.cataloging_status = "unpublished"
     end
