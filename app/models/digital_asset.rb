@@ -17,25 +17,25 @@ class DigitalAsset < ActiveRecord::Base
       :large =>   "400x400>",
       }
 
-  default_scope :order => "scan_file_name DESC"
-
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
   scope :most_recent, :order=>"created_at DESC", :limit=>100
   scope :published, where("items.cataloging_status='published'").joins(:item)
+  scope :by_scan_file_name, :order => "scan_file_name DESC"
 
   def mini_url
       RECENT_IMAGES_PATH +  scan.url(:mini)
-
   end
 
-  def self.previous(digital_asset)
-    where("scan_file_name > ?", digital_asset.scan_file_name).limit(1).order("scan_file_name desc")
+  def previous()
+    DigitalAsset.published.where("scan_file_name > ?", scan_file_name).limit(1).order("scan_file_name")
   end
 
-  def self.next(digital_asset)
-    where("scan_file_name < ?", digital_asset.scan_file_name).limit(1).order("scan_file_name")
+  def next()
+    DigitalAsset.published.where("scan_file_name < ?", scan_file_name).limit(1).order("scan_file_name desc")
   end
+
+
 
 end
 

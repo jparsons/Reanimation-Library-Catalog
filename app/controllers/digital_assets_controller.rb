@@ -1,7 +1,7 @@
 class DigitalAssetsController < ApplicationController
 
   def index
-    @digital_assets = DigitalAsset.published.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
+    @digital_assets = DigitalAsset.published.by_scan_file_name.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
   end
 
   def show
