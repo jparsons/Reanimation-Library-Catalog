@@ -1,13 +1,13 @@
 class DigitalAssetsController < ApplicationController
 
   def index
-    @digital_assets = DigitalAsset.all.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
+    @digital_assets = DigitalAsset.published.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
   end
 
   def show
     @digital_asset = DigitalAsset.find(params[:id])
-    @previous = DigitalAsset.previous(@digital_asset).first
-    @next = DigitalAsset.next(@digital_asset).first
+    @previous = DigitalAsset.published.previous(@digital_asset).first
+    @next = DigitalAsset.published.next(@digital_asset).first
   end
 
   def new
