@@ -6,8 +6,8 @@ class DigitalAssetsController < ApplicationController
 
   def show
     @digital_asset = DigitalAsset.find(params[:id])
-    @previous = DigitalAsset.published.previous(@digital_asset).first
-    @next = DigitalAsset.published.next(@digital_asset).first
+    @previous = @digital_asset.previous().first
+    @next = @digital_asset.next().first
   end
 
   def new
