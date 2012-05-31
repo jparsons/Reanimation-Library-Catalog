@@ -37,8 +37,8 @@ gem 'hpricot', '0.8.4'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
-  gem 'sqlite3-ruby'
+  #gem 'sqlite3-ruby'
  end
  group :production do
-   gem 'mysql' 
+   gem 'mysql'
  end
