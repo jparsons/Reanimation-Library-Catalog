@@ -17,9 +17,12 @@ class DigitalAsset < ActiveRecord::Base
       :large =>   "400x400>",
       }
 
+  default_scope :order => "created_at DESC"
+
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
   scope :most_recent, :order=>"created_at DESC", :limit=>100
+  scope :published, where("items.cataloging_status='published'").joins(:item)
 
   def mini_url
       RECENT_IMAGES_PATH +  scan.url(:mini)
