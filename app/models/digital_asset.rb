@@ -17,7 +17,7 @@ class DigitalAsset < ActiveRecord::Base
       :large =>   "400x400>",
       }
 
-  default_scope :order => "created_at DESC"
+  default_scope :order => "scan_file_name DESC"
 
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
@@ -30,11 +30,11 @@ class DigitalAsset < ActiveRecord::Base
   end
 
   def self.previous(digital_asset)
-    where("scan_file_name < ?", digital_asset.scan_file_name).limit(1).order("scan_file_name")
+    where("scan_file_name > ?", digital_asset.scan_file_name).limit(1).order("scan_file_name desc")
   end
 
   def self.next(digital_asset)
-    where("scan_file_name > ?", digital_asset.scan_file_name).limit(1).order("scan_file_name desc")
+    where("scan_file_name < ?", digital_asset.scan_file_name).limit(1).order("scan_file_name")
   end
 
 end
