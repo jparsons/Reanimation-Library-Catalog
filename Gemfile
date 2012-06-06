@@ -15,6 +15,7 @@ gem 'ferret'
 gem 'delayed_job'
 gem 'will_paginate', '2.3.15'
 gem 'hpricot', '0.8.4'
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -37,7 +38,7 @@ gem 'hpricot', '0.8.4'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
-  #gem 'sqlite3-ruby'
+  gem 'sqlite3'
  end
  group :production do
    gem 'mysql'

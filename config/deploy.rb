@@ -67,7 +67,7 @@ before "deploy:restart", "deploy:copy_environment_rb"
 namespace :bundle do
   task :update do 
     run "ln -nfs #{shared_path}/bundle #{release_path}/vendor/bundle"
-    run "cd #{release_path}; bundle install -- without development test --path vendor/bundle"
+    run "cd #{release_path}; bundle install --without development --without test --path vendor/bundle"
   end
 end
 
