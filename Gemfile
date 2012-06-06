@@ -38,7 +38,7 @@ gem 'jquery-rails'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano'
-  gem 'sqlite3'
+  #gem 'sqlite3'
  end
  group :production do
    gem 'mysql'
