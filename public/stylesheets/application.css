@@ -395,6 +395,7 @@ table#item-list td {
 }
 table#item-list tr.odd {
   background-color:#334455;
+  color: white;
 }
 table#item-list td.call-number {
   width:115px;
