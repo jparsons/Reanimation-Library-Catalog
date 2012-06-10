@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
- before_filter :only=>[:new, :edit] do |c| c.send(:require_role, :administrator)  end
+ before_filter :cataloger_required, :only=>[:new, :edit]
   def index
     letter = params[:letter] || "1-9"
     if logged_in? && current_user.is_administrator?
@@ -23,10 +23,10 @@ class ItemsController < ApplicationController
     @items = Item.by_call_number.published.paginate(:page => params[:page], :per_page => 20)
   end
 
-  def acquired 
+  def acquired
     unless params[:sort_by].blank?
       order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
-    else 
+    else
       order = "call_number ASC"
     end
     @items = Item.need_cataloging.all(:order => order)
@@ -35,9 +35,9 @@ class ItemsController < ApplicationController
   def need_images
     unless params[:sort_by].blank?
       order = "#{params[:sort_by]} #{params[:sort_order] || 'ASC'}"
-    else 
+    else
       order = "call_number ASC"
-    end    
+    end
     @items = Item.no_assets(order)
   end
 
@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
 
   def update
     # I'm not sure why I have to pull out subject_id here, but it wouldn't work otherwise
-    # Donors seems to be configured in an identical way, but it works through the normal accepts_nested_attributes 
+    # Donors seems to be configured in an identical way, but it works through the normal accepts_nested_attributes
     # functionality
 
 
@@ -116,5 +116,9 @@ class ItemsController < ApplicationController
     @item.destroy
     flash[:notice] = "Successfully destroyed item."
     redirect_to items_url
+  end
+
+  def cataloger_required
+    logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
   end
 end

@@ -173,7 +173,7 @@ function rollOff(img1){
 </table>
 <div id="sidebar-menu">
   	<div class="sidebar-admin-menu">
-	<% if logged_in? && current_user.is_administrator? %>
+	<% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
 
 		<div class="sidebar-menu-item">
 			<%= link_to "add a new item", new_item_path %>
@@ -184,6 +184,9 @@ function rollOff(img1){
 		<div class="sidebar-menu-item">
 			<%= link_to "view items that have no images", need_images_items_path %>
 		</div>
+  <% end %>
+  <% if logged_in? && current_user.is_administrator? %>
+
 		<div class="sidebar-menu-item">
 		    <%= link_to "add a new exhibition", new_exhibition_path %>
 		</div>
@@ -203,6 +206,7 @@ function rollOff(img1){
   		<%= link_to 'log out', logout_path %>
   	</div>		
 	<% end %>
+
 	</div>
 </div>
 </div>
