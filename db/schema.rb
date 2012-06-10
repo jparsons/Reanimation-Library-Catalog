@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109025954) do
+ActiveRecord::Schema.define(:version => 20120610205725) do
 
   create_table "creators", :force => true do |t|
     t.string   "first_name"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20111109025954) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "last_name"
   end
 
   create_table "donors_items", :id => false, :force => true do |t|
