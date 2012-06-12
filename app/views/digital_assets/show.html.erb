@@ -1,4 +1,50 @@
 <%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan_file_name.gsub(/\.jpg/, "") }" } -%>
+<% if logged_in? && (current_user.is_cataloger? || current_user.is_administrator?) %>
+  <%- content_for :head do -%>
+  <script type="text/javascript">
+  $(function() {
+    var availableTags = <%= raw @tags.to_json %>
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+    $( "#digital_asset_tag_list" )
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+          $( this ).data( "autocomplete" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+    });
+  });
+  </script>
+  <%- end -%>
+<% end %>
 <% if @previous.nil? %>&lt; previous image<% else %><%= link_to "< previous image", digital_asset_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next image &gt;<% else %><%= link_to "next image >", digital_asset_path(@next) %><% end %>
 <h2>Image</h2>
 <div id="main-content">
@@ -20,10 +66,26 @@
   <%= link_to "View all images", digital_assets_path %>
 </div>
 <% end %>
+
+<% unless @digital_asset.tags.empty? %>
+  <p>
+    <h2>Tags</h2>
+    <%= raw @digital_asset.tags.sort.collect { |tag| link_to(tag.name, { :action => :tag, :id => tag.name }) }.join(", ") %>
+  </p>
+<% end %>
+<% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?) %>
+  <%= form_for @digital_asset do |f| %>
+    <%= f.label "tag_list", "add/edit tags" %><br />
+    <%= f.text_field :tag_list %>
+    <p><%= f.submit %></p>
+  <% end %>
+<% end %>
 <p>
   <strong>From the item:</strong>
   <%=raw content_tag "h2", link_to(raw("#{@digital_asset.item.title} #{(@digital_asset.item.subtitle.blank? ? "" : "<br />" + @digital_asset.item.subtitle)}"), item_path(@digital_asset.item)) %>
 </p>
+
+
 <p><strong>Other images from this item:</strong><br /><br />
 <%= raw @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
 </p>

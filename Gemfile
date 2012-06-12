@@ -16,6 +16,7 @@ gem 'delayed_job'
 gem 'will_paginate', '2.3.15'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
+gem 'acts-as-taggable-on', '~> 2.3.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'

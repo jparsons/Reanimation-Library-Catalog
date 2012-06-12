@@ -28,7 +28,7 @@ a.submit-button {
 }
 
 a.submit-button:hover {
-  border:1px solid #F5C544;	
+  border:1px solid #F5C544;
 }
 
 label {
@@ -49,14 +49,14 @@ label {
 tr#top-menu {
   width: 796px;
 }
-tr#top-menu td { 
+tr#top-menu td {
   height:22px;
   /* background-color: #afafaf; */
 }
 
 img.nav { border: none;}
 
-/* page layout */ 
+/* page layout */
 
 div#page {
   margin-left:auto;
@@ -66,7 +66,7 @@ div#page {
 }
 div#content {
   float:left;
-  width:606px; 
+  width:606px;
   min-height:100%px;
   margin-top: 10px;
   margin-left:5px;
@@ -81,7 +81,7 @@ div#sidebar-menu {
  margin-bottom: 8px;
  margin-left: px;
 
-	
+
 }
 
 div.pagination {
@@ -114,7 +114,7 @@ div.hbreak {
  color: #D4D4D4;
  border-bottom-style: solid;
  border-bottom-width: 0px;
- 
+
  margin-left: auto;
  margin-right: auto;
  padding-bottom:15px;
@@ -174,7 +174,7 @@ div.aboutmenu {
 
 
 img.header {
- border: none; 
+ border: none;
  margin-top: 10px;
  margin-bottom: 1px;
 }
@@ -328,7 +328,7 @@ div.item-data div.item-content {
 }
 div.item-data-show div.item-content {
   float:left;
-  
+
   width: 180px;
 }
 div.item-vendor-location div.item-content{
@@ -353,7 +353,7 @@ a.digital-asset img{
 	border:2px solid #B2B2B2;
 	height: 136px;
   width: 136px;
-    
+
 }
 a.digital-asset img:hover {
 	border:2px solid #BD0703;
@@ -417,4 +417,10 @@ table#item-list td img {
 
 #digital-asset-ingest-list, #digital-asset-ingest {
   min-height: 100%;
+}
+.ui-menu-item {
+  text-align: left;
+}
+#digital_asset_tag_list {
+  width: 600px;
 }

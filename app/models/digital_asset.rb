@@ -1,5 +1,5 @@
 class DigitalAsset < ActiveRecord::Base
-
+  acts_as_taggable
   belongs_to :item
   has_and_belongs_to_many :digital_asset_subjects
   has_and_belongs_to_many :works

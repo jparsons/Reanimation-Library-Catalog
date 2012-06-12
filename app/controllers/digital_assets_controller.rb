@@ -8,6 +8,9 @@ class DigitalAssetsController < ApplicationController
     @digital_asset = DigitalAsset.find(params[:id])
     @previous = @digital_asset.previous().first
     @next = @digital_asset.next().first
+    if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
+      @tags = ActsAsTaggableOn::Tag.all.map(&:name)
+    end
   end
 
   def new
@@ -43,6 +46,7 @@ class DigitalAssetsController < ApplicationController
 
   def edit
     @digital_asset = DigitalAsset.find(params[:id], :include=>[:digital_asset_subjects])
+    @tags = ActsAsTaggableOn::Tag.all.map(&:name)
   end
 
   def update
@@ -63,5 +67,19 @@ class DigitalAssetsController < ApplicationController
     @digital_asset.destroy
     flash[:notice] = "Successfully destroyed digital_asset."
     redirect_to digital_assets_url
+  end
+
+  def tag_cloud
+    @tags = Post.tag_counts_on(:tags)
+  end
+
+  def tag
+    @tag = params[:id]
+    @digital_assets = DigitalAsset.tagged_with(@tag).paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
+    if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
+      @tags = ActsAsTaggableOn::Tag.all.map(&:name)
+    end
+
+    render :index
   end
 end
