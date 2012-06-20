@@ -14,8 +14,9 @@
 <% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?) %>
 <div class="admin-link">
   <%= link_to "Edit this image", edit_digital_asset_path(@digital_asset) %> |
-  <%= link_to "Permanently remove this image", @digital_asset, :confirm => 'Are you sure you want to permanently remove this image?', :method => :delete %> |
-  <%= link_to "Destroy", digital_asset_path(@digital_asset), :confirm => 'Are you sure?', :method => :delete %>
+  <% if current_user.is_administrator? %>
+    <%= link_to "Permanently remove this image", @digital_asset, :confirm => 'Are you sure you want to permanently remove this image?', :method => :delete %> |
+  <% end %>
   <%= link_to "View all images", digital_assets_path %>
 </div>
 <% end %>
