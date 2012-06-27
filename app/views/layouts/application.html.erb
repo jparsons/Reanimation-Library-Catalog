@@ -185,6 +185,11 @@ function rollOff(img1){
 			<%= link_to "view items that have no images", need_images_items_path %>
 		</div>
   <% end %>
+  <% if logged_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+    <div class="sidebar-menu-item">
+        <%= link_to "edit images", digital_assets_path %>
+    </div>
+  <% end %>
   <% if logged_in? && current_user.is_administrator? %>
 
 		<div class="sidebar-menu-item">
