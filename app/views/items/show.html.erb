@@ -6,7 +6,7 @@
 </h1><%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
 <div class="item-cover-image-large">
 	<%= image_tag(@item.cover_image.url(:large)) %>
-	<% if logged_in? && current_user.is_administrator? %>
+	<% if logged_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
 	    <div class="admin-link">
 	      <%= link_to 'Edit this item', edit_item_path(@item) %>
 	    </div>
@@ -18,11 +18,11 @@
   <div class="item-row item-creators">
     <div class="item-label">
       Creator(s):
-    </div> 
+    </div>
     <div class="item-content"><%= raw @item.creators.map{|c| c.display_name }.join("<br />") %></div>
   </div>
 	<div class="item-row item-publisher">
-		<div class="item-label">Publisher:</div> 
+		<div class="item-label">Publisher:</div>
 		<div class="item-content"><%=h @item.publisher_name %><%= @item.publisher_city.nil? ? "" : "; " + @item.publisher_city %><%=h @item.publisher_state.nil? ? "" : ", " + @item.publisher_state.upcase %></div>
 	</div>
 	<div class="item-row item-year">
@@ -62,8 +62,8 @@
 		<div class="item-label">Donors:</div> <div class="item-content"><%= @item.donors.map {|d| d.name}.join("; ") %></div>
 	</div>
 	<% end %>
-	
-	<% if logged_in? && current_user.is_administrator? %>
+
+	<% if logged_in? && current_user.in_authentication_group?(["cataloger", "administrator"]) %>
 	<div class="item-row item-copyright">
 		<div class="item-label">Copyright:</div><div class="item-content"> <%=h @item.copyright %></div>
 	</div>
