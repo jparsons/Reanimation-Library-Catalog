@@ -1,5 +1,5 @@
 body {
-  font-family: arial, sans-serif;
+  font-family: garamond, serif;
   font-size: 12px;
   text-align: center;
   font-weight: 100;
@@ -32,7 +32,7 @@ a.submit-button:hover {
 }
 
 label {
-	font-weight:bold;
+  font-weight:bold;
 }
 
 /* td a, td a img {
@@ -85,11 +85,12 @@ div#sidebar-menu {
 }
 
 div.pagination {
-	margin-top:1em;
-	margin-bottom:1em;
-	font-weight: bold;
-	margin-left:auto;
-  	margin-right:auto;
+  margin-top:1em;
+  margin-bottom:1em;
+  font-weight: bold;
+  margin-left:auto;
+    margin-right:auto;
+    font-size: 13px;
 }
 
 div.bigheader {
@@ -105,7 +106,7 @@ div.pagebody {
  margin-right: auto;
  width: 796px;
  text-align: left;
- font-family: helveteca, sans-serif;
+ font-family: garamond, serif;
 }
 
 div.hbreak {
@@ -156,7 +157,7 @@ div.about {
  margin-top: 10px;
  float: right;
  width: 616px;
- font-size: 12px;
+ font-size: 14px;
 }
 
 div.aboutmenu {
@@ -178,6 +179,27 @@ img.header {
  margin-top: 10px;
  margin-bottom: 1px;
 }
+
+h1 {
+display: block;
+font-size: 2em;
+-webkit-margin-before: 0.67em;
+-webkit-margin-after: 0.1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
+h2 {
+display: block;
+font-size: 1.5em;
+-webkit-margin-before: 0.1em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+
 
 /* rails error styles */
 
@@ -240,73 +262,73 @@ img.header {
 
 /* sidebar */
 input.sidebar {
-	font-size:.9em;
-	width:120px;
+  font-size:.9em;
+  width:120px;
 }
 
 
 
 /* item list page */
 div.pagination-links {
-	margin-bottom:20px;
-	clear:both;
+  margin-bottom:20px;
+  clear:both;
 }
 div.item {
-	clear:both;
-	width:592px;
-	margin-bottom:10px;
-	border: 1px solid #E4E4E4;
-	background-color: #F1F1F1;
-	overflow:auto;
+  clear:both;
+  width:592px;
+  margin-bottom:10px;
+  border: 1px solid #E4E4E4;
+  background-color: #F1F1F1;
+  overflow:auto;
 }
 div.item-cover-image-thumb {
-	width:140px;
-	float:left;
-	margin-right:20px;
-	margin-left:20px;
-	margin-top:30px;
+  width:140px;
+  float:left;
+  margin-right:20px;
+  margin-left:20px;
+  margin-top:30px;
 }
 .item-cover-image-thumb a:hover img {
-	      border: 2px solid #BD0703;
+        border: 2px solid #BD0703;
     }
 img.cover-thumb {
-		  border: 2px solid #5c5c5c;
+      border: 2px solid #5c5c5c;
 }
 
 div.item-data {
-	width:380px;
-	float:left;
-	margin-bottom:20px;
-	margin-top:27px;
-	padding-right:10px;
+  width:380px;
+  float:left;
+  margin-bottom:20px;
+  margin-top:27px;
+  padding-right:10px;
 
 }
 div.item-data-show {
-	width:270px;
-	float:left;
-	margin-left:10px;
-	padding-right:10px;
+  width:270px;
+  float:left;
+  margin-left:10px;
+  padding-right:10px;
 
 }
 div.item-images {
-	clear:both;
-	width:616px
-	margin-bottom:20px;
+  clear:both;
+  width:616px
+  margin-bottom:20px;
 
 
 }
 div.item-title {
-	font-weight:bold;
+  font-weight:bold;
 }
 div.item-cover-image-large{
-	width:auto;
-	float:left;
-	margin-right:10px;
-	margin-bottom: 20px;
+  width:auto;
+  float:left;
+  margin-right:10px;
+  margin-bottom: 20px;
 }
 
 .item-cover-image-large img {
-	      border: 2px solid #000000;
+        border: 2px solid #000000;
     }
 
 div.item-data div {
@@ -320,7 +342,7 @@ div.item-data-show div.item-row {
   clear:both;
 }
 div.item-data div span {
-	font-weight:bold;
+  font-weight:bold;
 }
 div.item-data div.item-content {
   float:left;
@@ -348,43 +370,43 @@ img.show-digital-asset {
   border: 2px solid #000000;
 }
 a.digital-asset img{
-	margin-right:8px;
-	margin-bottom:8px;
-	border:2px solid #B2B2B2;
-	height: 136px;
+  margin-right:8px;
+  margin-bottom:8px;
+  border:2px solid #B2B2B2;
+  height: 136px;
   width: 136px;
 
 }
 a.digital-asset img:hover {
-	border:2px solid #BD0703;
+  border:2px solid #BD0703;
 }
 div#works-list div.work {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 div.sidebar-admin-menu {
-	margin-top: 20px;
-	margin-left: 10px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 div.sidebar-menu-item {
   margin-bottom: 10px;
 }
 div.admin-link, a.admin-link{
-	font-size:1.5em;
-	margin-bottom:1em;
+  font-size:1.5em;
+  margin-bottom:1em;
 }
 div.subform{
-	background-color:#dadada;
-	padding:10px;
-	margin-bottom:20px;
+  background-color:#dadada;
+  padding:10px;
+  margin-bottom:20px;
 }
 div.scrolling-subform {
-	background-color:#dadada;
-	padding:10px;
-	margin-bottom:20px;
-	height:250px;
-	width:300px;
-	overflow:auto;
+  background-color:#dadada;
+  padding:10px;
+  margin-bottom:20px;
+  height:250px;
+  width:300px;
+  overflow:auto;
 }
 table#item-list {
   border-collapse:collapse;
