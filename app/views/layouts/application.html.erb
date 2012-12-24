@@ -12,7 +12,6 @@
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <%= yield(:head) %>
 </head>
-<!--begin retarded code 1-->
 <!-- Start of StatCounter Code -->
 <script type="text/javascript" language="javascript">
 var sc_project=1031477;
@@ -23,81 +22,10 @@ var sc_security="e77d3ad9";
 
 <script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c10.statcounter.com/counter.php?sc_project=1031477<BODY BGCOLOR="#DBD7D8">amp;java=0<BODY BGCOLOR="#DBD7D8">amp;security=e77d3ad9<BODY BGCOLOR="#DBD7D8">amp;invisible=1 " alt="free geoip" border="0"></a> </noscript>
 <!-- End of StatCounter Code -->
-<script language="JavaScript">
-<!--
 
-$(document).ready(function(){
-  // preload images for rollovers
-  var images = [];
-  $("img.rollover").each(function(index) {
-    images[index] = new Image();
-    images[index].src = "http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon1.jpg";
-  });
-  // set the current page image to the rollover state and remove the rollover class
-  $(".current_page").attr("src", "http://reanimationlibrary.org/images/" + $(".current_page").attr("id") + "icon1.jpg");
-  $(".current_page").removeClass("rollover");
-  // add rollover functionality
-  $("img.rollover").hover(
-    function() {
-      $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon1.jpg");
-     },
-     function() {
-       $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon.jpg");
-     }
-  );
-});
-
-$(function() {
-    $('img[data-hover]').hover(function() {
-        $(this).attr('tmp', $(this).attr('src')).attr('src', $(this).attr('data-hover')).attr('data-hover', $(this).attr('tmp')).removeAttr('tmp');
-    }).each(function() {
-        $('<img />').attr('src', $(this).attr('data-hover'));
-    });;
-});
-
-if (document.images) {
-    head1on  = new Image(); head1on.src  = "http://reanimationlibrary.org/images/header1.jpg";
-    head1off = new Image(); head1off.src = "http://reanimationlibrary.org/images/header.jpg";
-    nav1on   = new Image(); nav1on.src   = "http://reanimationlibrary.org/images/catalog1.jpg";
-    nav1off  = new Image(); nav1off.src  = "http://reanimationlibrary.org/images/catalog1.jpg";
-    nav2on   = new Image(); nav2on.src   = "http://reanimationlibrary.org/images/about1.jpg";
-    nav2off  = new Image(); nav2off.src  = "http://reanimationlibrary.org/images/about.jpg";
-    nav3on   = new Image(); nav3on.src   = "http://reanimationlibrary.org/images/branches1.jpg";
-    nav3off  = new Image(); nav3off.src  = "http://reanimationlibrary.org/images/branches.jpg";
-    nav4on   = new Image(); nav4on.src   = "http://reanimationlibrary.org/images/links1.jpg";
-    nav4off  = new Image(); nav4off.src  = "http://reanimationlibrary.org/images/links.jpg";
-    nav5on   = new Image(); nav5on.src   = "http://reanimationlibrary.org/images/participate1.jpg";
-    nav5off  = new Image(); nav5off.src  = "http://reanimationlibrary.org/images/participate.jpg";
-    nav7on   = new Image(); nav7on.src   = "http://reanimationlibrary.org/images/contact1.jpg";
-    nav7off  = new Image(); nav7off.src  = "http://reanimationlibrary.org/images/contact.jpg";
-    nav8on   = new Image(); nav8on.src   = "http://reanimationlibrary.org/images/header_address1.jpg";
-    nav8off  = new Image(); nav8off.src  = "http://reanimationlibrary.org/images/header_address.jpg";
-    nav9on   = new Image(); nav9on.src   = "http://reanimationlibrary.org/images/events1.jpg";
-    nav9off  = new Image(); nav9off.src  = "http://reanimationlibrary.org/images/events.jpg";
-
-}
-
-function rollOn(img1,text){
-    window.status = text;
-    if (document.images) {
-        document[img1].src=eval(img1 + "on.src");
-    }
-}
-
-function rollOff(img1){
-    window.status = "";
-    if (document.images) {
-    document[img1].src=eval(img1 + "off.src");
-  }
-}
-
-//-->
-</script>
-<!--end retarded code 1-->
 <body>
 <div id="header">
 </div>
-<!--begin retarded code 2-->
 <div class="pagebody">
   <div class="bigheader">
   <img src="../images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px; margin-bottom: 12px; float: left;">
@@ -226,10 +154,6 @@ function rollOff(img1){
   <%= yield %>
   </div>
 </div>
-<!--end retarded code 2-->
-
-
-<!--begin retarded code 3-->
 <div class="hbreak"></div>
 <div class="push"></div>
 <image src="http://reanimationlibrary.org/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
@@ -241,7 +165,7 @@ function rollOff(img1){
 </div>
 </div>
 </div>
-<!--end retarded code 3-->
+
 </div>
 </div>
 </body>
