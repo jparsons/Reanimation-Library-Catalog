@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="http://www.reanimationlibrary.org/pages/application.css" />
 <%= stylesheet_link_tag 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <%= yield(:head) %>
 </head>
 <!--begin retarded code 1-->
@@ -41,7 +42,7 @@ $(document).ready(function(){
       $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon1.jpg");
      },
      function() {
-    	 $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon.jpg");
+       $(this).attr("src","http://reanimationlibrary.org/images/" + $(this).attr("id") + "icon.jpg");
      }
   );
 });
@@ -86,8 +87,8 @@ function rollOn(img1,text){
 function rollOff(img1){
     window.status = "";
     if (document.images) {
-		document[img1].src=eval(img1 + "off.src");
-	}
+    document[img1].src=eval(img1 + "off.src");
+  }
 }
 
 //-->
@@ -98,22 +99,19 @@ function rollOff(img1){
 </div>
 <!--begin retarded code 2-->
 <div class="pagebody">
-<div class="bigheader">
-<table class="topnav" border="0" cellpadding="0" cellspacing="0">
-<tr><td rowspan="3" width="52" valign="top"><img src="http://reanimationlibrary.org/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px">
-<tr><td colspan="7"><a href="/index.htm" onmouseover="rollOn('head1','head1 text'); return true;" onmouseout="rollOff('head1'); return true;"><img name="head1" src="http://reanimationlibrary.org/images/header.jpg"  alt="reanimation library" align="left" width="352" height="34" style="border:none; margin-bottom: 5px;" hspace="0"></a></td><td valign="bottom" colspan="3"><a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA" onmouseover="rollOn('nav8','nav8 text'); return true;" onmouseout="rollOff('nav8'); return true;"><img align="right" name="nav8" src="http://reanimationlibrary.org/images/header_address.jpg" alt="543 union street | brooklyn, ny" width="156" height="15" style="border:none; margin-right:1px; margin-bottom: 2px;"></a></td></tr>
-<tr>
-  <td><a href="http://www.reanimationlibrary.org/catalog/items" onmouseover="rollOn('nav1','nav1 text'); return true;" onmouseout="rollOff('nav1'); return true;"><image class="nav" name="nav1" src="http://reanimationlibrary.org/images/catalog1.jpg" alt="catalog" width="61" height="22"></a></td>
-  <td><a href="/pages/about.htm" onmouseover="rollOn('nav2','nav2 text'); return true;" onmouseout="rollOff('nav2'); return true;"><image class="nav" name="nav2" src="http://reanimationlibrary.org/images/about.jpg" alt="about" width="48" height="22"></a></td>
-  <td><a onmouseout="rollOff('nav3'); return true;" onmouseover="rollOn('nav3','nav3 text'); return true;" href="http://reanimationlibrary.org/pages/branches.htm"><img class="nav" width="68" height="22" alt="news" src="http://reanimationlibrary.org/images/branches.jpg" name="nav3"></a></td>
-  <td><a href="/pages/events.htm" onmouseover="rollOn('nav9','nav9 text'); return true;" onmouseout="rollOff('nav9'); return true;"><image class="nav" name="nav9" src="http://reanimationlibrary.org/images/events.jpg" alt="events" width="53" height="22"></a></td>
-  <td><a href="/pages/links.htm" onmouseover="rollOn('nav4','nav4 text'); return true;" onmouseout="rollOff('nav4'); return true;"><image class="nav" name="nav4" src="http://reanimationlibrary.org/images/links.jpg" alt="links" width="46" height="22"></a></td>
-  <td><a href="/pages/participate.htm" onmouseover="rollOn('nav5','nav5 text'); return true;" onmouseout="rollOff('nav5'); return true;"><image class="nav" name="nav5" src="http://reanimationlibrary.org/images/participate.jpg" alt="participate" width="89" height="22"></a></td>
-  <td><a href="/pages/contact.htm" onmouseover="rollOn('nav7','nav7 text'); return true;" onmouseout="rollOff('nav7'); return true;"><image class="nav" name="nav7" src="http://reanimationlibrary.org/images/contact.jpg" alt="contact" width="62" height="22"></a></td>
-  <td><img class="nav" src="http://reanimationlibrary.org/images/topsearchicon.gif" alt="search the catalog" width="106" height="22"></td>
-  <td><form method="get" action="http://www.reanimationlibrary.org/catalog/search"><input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'search the catalog':this.value;" value="search the catalog" style="height: 22px; width: 173px; color: #6D6D6D; font-size: 10px; background: #F7F7F7; padding-left: 18px;  border: 2px solid #AFAFAF; float:left; background:url('http://reanimationlibrary.org/images/searchicon.gif') no-repeat left center;"/></td><td width=""><input type="image" class="searchbutton" src="http://reanimationlibrary.org/images/go.gif" style="height: 22px; margin-right: 1px; float: right;" onmouseover="this.src='http://reanimationlibrary.org/images/go1.gif'" height="22" width="16" onmouseout="this.src='http://reanimationlibrary.org/images/go.gif'"/></form></td></tr>
-</table></div>
-<p class="breadcrumb"><a href="/index.htm">home</a> > catalog</p>
+  <div class="bigheader">
+  <img src="../images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px; margin-bottom: 12px; float: left;">
+  <div class="headerfont"><a href="../index">REANIMATION LIBRARY</a></div>
+  <div class="headersearch">
+  <form method="get" action="http://www.reanimationlibrary.org/catalog/search">
+  <input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Search the Catalog':this.value;" value="Search the Catalog" style="height: 32px; width: 211px; color: #7A7A7A; font-size: 12px; background: #FBFBFB; padding-left: 6px; border: 2px solid #AFAFAF; float: right; margin-top: -17px; line-height: 1px; font-family: 'helvetica', sans-serif; font-weight: ;"/>
+  </form>
+  </div>
+  <div class="headermenu">
+  <span class="headermenu" style="padding-left: 2px;">CATALOG</span><a href="/pages/about">ABOUT</a><a href="/pages/branches">BRANCHES/SPORES</a><a href="/pages/events">EVENTS</a><a href="pages/links">LINKS</a><a href="pages/participate">PARTICIPATE</a><a href="pages/contact">CONTACT</a>
+  </div>
+  </div>
+<p class="breadcrumb"><a href="/index.htm">home</a> | catalog</p>
 <div class="aboutmenu">
   <table class="menu" cellpadding="5">
   <tr>
@@ -173,18 +171,18 @@ function rollOff(img1){
 </tr>
 </table>
 <div id="sidebar-menu">
-  	<div class="sidebar-admin-menu">
-	<% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
+    <div class="sidebar-admin-menu">
+  <% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
 
-		<div class="sidebar-menu-item">
-			<%= link_to "add a new item", new_item_path %>
-		</div>
-		<div class="sidebar-menu-item">
-			<%= link_to "view items that need cataloging", acquired_items_path %>
-		</div>
-		<div class="sidebar-menu-item">
-			<%= link_to "view items that have no images", need_images_items_path %>
-		</div>
+    <div class="sidebar-menu-item">
+      <%= link_to "add a new item", new_item_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "view items that need cataloging", acquired_items_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "view items that have no images", need_images_items_path %>
+    </div>
   <% end %>
   <% if logged_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
     <div class="sidebar-menu-item">
@@ -193,53 +191,54 @@ function rollOff(img1){
   <% end %>
   <% if logged_in? && current_user.is_administrator? %>
 
-		<div class="sidebar-menu-item">
-		    <%= link_to "add a new exhibition", new_exhibition_path %>
-		</div>
-		<div class="sidebar-menu-item">
-		    <%= link_to "add a new art work", new_work_path %>
-		</div>
-		<div class="sidebar-menu-item">
-			<%= link_to "see a list of users", users_path %>
-		</div>
-		<div class="sidebar-menu-item">
-			<%= link_to "add a new user", new_user_path %>
-		</div>
-		<div class="sidebar-menu-item">
-			<%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
-		</div>
+    <div class="sidebar-menu-item">
+        <%= link_to "add a new exhibition", new_exhibition_path %>
+    </div>
+    <div class="sidebar-menu-item">
+        <%= link_to "add a new art work", new_work_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "see a list of users", users_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "add a new user", new_user_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
+    </div>
   <% end %>
   <% if logged_in? %>
-		<div class="sidebar-menu-item">
-  		<%= link_to 'log out', logout_path %>
-  	</div>
+    <div class="sidebar-menu-item">
+      <%= link_to 'log out', logout_path %>
+    </div>
   <% end %>
 
 
-	</div>
+  </div>
 </div>
 </div>
-<div class="about"><center><img class="header" src="http://reanimationlibrary.org/images/catalogheader.jpg" width="614" height="24" style="border: none;"></center>
+<div class="about">
+  <center><h3 class="header">CATALOG</h3></center>
 <div id="content">
-	<%- flash.each do |name, msg| -%>
-		<%= content_tag :div, msg, :id => "flash_#{name}" %>
-	<%- end -%>
-	<%= yield %>
-	</div>
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+  <%= yield %>
+  </div>
 </div>
 <!--end retarded code 2-->
 
 
 <!--begin retarded code 3-->
+<div class="hbreak"></div>
+<div class="push"></div>
 <image src="http://reanimationlibrary.org/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
-<div class="footerlogo"><img src="http://reanimationlibrary.org/images/footerlogo.gif" width="36" height="36px" style="border: none;"></div>
 <div class="footer">
+<a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA">543 UNION STREET BROOKLYN, NY, 11215</a><span class="joinemail">JOIN OUR EMAIL LIST</span><br/>VISIT THE LIBRARY ON <a href="http://www.facebook.com/reanimationlibrary" target="_blank">FACEBOOK</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">TWITTER</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">TUMBLR</a>
 <form method="post" action="http://ymlp.com/subscribe.php?YMLPID=geuuusjgmgb" target="_blank">
-Join our email list: &nbsp;<input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" style="height: 20px; width: 201px; color: #6D6D6D; font-size: 11px; padding-left: 22px;  border: none; margin-bottom: 4px; margin-top: 8px; background:url('http://reanimationlibrary.org/images/joinicon.gif') no-repeat left center;"/>
-<input style="height: 16px; margin-left: px;  margin-bottom: 4px; vertical-align: bottom;" type="image" src="http://reanimationlibrary.org/images/join.gif" onmouseover="this.src='http://reanimationlibrary.org/images/join1.gif'" onmouseout="this.src='http://reanimationlibrary.org/images/join.gif'" value="join"/>
-</br>
-543 Union Street, Brooklyn, NY 11215 | <a href="http://www.facebook.com/reanimationlibrary" target="_blank">Facebook</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">Twitter</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">Tumblr</a></form>
-<br/><br/>
+<input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" value="" style="height: 18px; float: right; width: 211px; background: #FBFBFB; color: #7A7A7A; font-size: 11px; border: 1px solid #AFAFAF; padding-left: 3px; margin-bottom: px; margin-top: -15px; no-repeat left center;"/>
+</form>
+</div>
 </div>
 </div>
 <!--end retarded code 3-->
