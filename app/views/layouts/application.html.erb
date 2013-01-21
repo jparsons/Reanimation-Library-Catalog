@@ -36,68 +36,43 @@ var sc_security="e77d3ad9";
   </form>
   </div>
   <div class="headermenu">
-  <span class="headermenu" style="padding-left: 2px;">CATALOG</span><a href="/pages/about">ABOUT</a><a href="/pages/branches">BRANCHES/SPORES</a><a href="/pages/events">EVENTS</a><a href="/pages/links">LINKS</a><a href="/pages/participate">PARTICIPATE</a><a href="/pages/contact">CONTACT</a>
+    <span class="headermenu" style="padding-left: 2px;">CATALOG / IMAGE COLLECTION</span><a href="/pages/about">ABOUT</a><a href="/pages/branches">BRANCHES / SPORES</a><a href="/pages/wordprocessor">WORD PROCESSOR</a><a href="/pages/events">EVENTS</a><a href="/pages/links">LINKS</a><a href="/pages/participate">PARTICIPATE</a><a href="/pages/contact">CONTACT</a>
   </div>
   </div>
 <p class="breadcrumb"><a href="/index.htm">home</a> | catalog</p>
 <div class="aboutmenu">
-  <table class="menu" cellpadding="5">
-  <tr>
-  <td>
-  <a href="<%= items_path %>">
-    <img id="browse" class="rollover <%= (current_page?(items_path) || current_page?(root_path)) ? "current_page" : "" %>" name="icon1" src="http://reanimationlibrary.org/images/browseicon.jpg" alt="browse the catalog by title" width="150" height="25" style="border: none;" />
-  </a></td>
-</tr>
-<tr>
-<td>
-  <a href="<%= by_call_number_items_path %>">
-    <img id="browsecn" class="rollover <%= current_page?(by_call_number_items_path) ? "current_page" : "" %>" name="icon2" src="http://reanimationlibrary.org/images/browsecnicon.jpg" alt="browse the collection by call number" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-<tr>
-<td>
-  <a href="<%= recent_items_path %>">
-    <img id="recentitems" class="rollover <%= current_page?(recent_items_path) ? "current_page" : "" %>" name="icon3" src="http://reanimationlibrary.org/images/recentitemsicon.jpg" alt="view recently added items" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-<tr>
-<td>
-  <a href="<%= subjects_path %>">
-    <img id="subjects" class="rollover <%= current_page?(subjects_path) ? "current_page" : "" %>" name="icon4" src="http://reanimationlibrary.org/images/subjectsicon.jpg" alt="browse subjects" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-<tr>
-<td>
-  <a href="<%= digital_assets_path %>">
-    <img id="imagearchive" class="rollover <%= current_page?(digital_assets_path) ? "current_page" : "" %>" name="icon5" src="http://reanimationlibrary.org/images/imagearchiveicon.jpg" alt="browse images" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-<tr>
-<td>
-  <a href="http://reanimationlibrary.org/pages/collectionguide.htm">
-    <img id="cd" class="rollover <%= current_page?("http://reanimationlibrary.org/pages/collectionguide.htm") ? "current_page" : "" %>" name="icon6" src="http://reanimationlibrary.org/images/cdicon.jpg" alt="guide to the collections" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-<!--<tr>
-<td>
-  <a href="<%= advanced_search_path %>">
-    <img id="advancedsearch" class="rollover <%= current_page?(advanced_search_path) ? "current_page" : "" %>" name="icon7" src="http://reanimationlibrary.org/images/advancedsearchicon.jpg" alt="advanced search" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>-->
-<tr>
-<td>
-  <a href="<%= login_path %>">
-    <img id="login" class="rollover <%= current_page?(login_path) ? "current_page" : "" %>" name="icon8" src="http://reanimationlibrary.org/images/loginicon.jpg" alt="login" width="150" height="25" style="border: none;" />
-  </a>
-</td>
-</tr>
-</table>
+<% if current_page? items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br/>BY TITLE</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE CATALOG<br/>BY TITLE"), items_path %></p></div></div>
+<% end %>
+<% if current_page? by_call_number_items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br />BY CALL NUMBER</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE CATALOG<br/>BY CALL NUMBER"), by_call_number_items_path %></p></div></div>
+<% end %>
+<% if current_page? recent_items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">VIEW RECENTLY<br/>ADDED ITEMS</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("VIEW RECENTLY<br/>ADDED ITEMS"), recent_items_path %></p></div></div>
+<% end %>
+<% if current_page? subjects_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE SUBJECTS</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE SUBJECTS"), subjects_path %></p></div></div>
+<% end %>
+<% if current_page? digital_assets_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE THE<br/>IMAGE COLLECTION</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE THE<br/>IMAGE COLLECTION"), digital_assets_path %></p></div></div>
+<% end %>
+<div class="ami1"><div class="ami2"><p class="ami2"><a href="http://reanimationlibrary.org/pages/collectionguide.htm">GUIDE TO THE<BR/>LIBRARY'S COLLECTIONS</a></p></div></div>
+<% if current_page? login_path %>
+<div class="ami1"><div class="ami3"><p class="ami3">LOGIN</p></div></div>
+<% else %>
+  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to "LOGIN", login_path %></p></div></div>
+<% end %>
+
 <div id="sidebar-menu">
     <div class="sidebar-admin-menu">
   <% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
