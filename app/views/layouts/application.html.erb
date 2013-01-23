@@ -29,7 +29,7 @@ var sc_security="e77d3ad9";
 <div class="pagebody">
   <div class="bigheader">
   <img src="http://www.reanimationlibrary.org/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px; margin-bottom: 12px; float: left;">
-  <div class="headerfont"><a href="../index">REANIMATION LIBRARY</a></div>
+  <div class="headerfont"><a href="http://www.reanimationlibrary.org/index">REANIMATION LIBRARY</a></div>
   <div class="headersearch">
   <form method="get" action="http://www.reanimationlibrary.org/catalog/search">
   <input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Search the Catalog':this.value;" value="Search the Catalog" style="height: 32px; width: 211px; color: #7A7A7A; font-size: 12px; background: #FBFBFB; padding-left: 6px; border: 2px solid #AFAFAF; float: right; margin-top: -17px; line-height: 1px; font-family: 'helvetica', sans-serif; font-weight: ;"/>
@@ -44,33 +44,45 @@ var sc_security="e77d3ad9";
 <% if current_page? items_path %>
   <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br/>BY TITLE</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE CATALOG<br/>BY TITLE"), items_path %></p></div></div>
+  <a href="<%= items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE CATALOG<br/>BY TITLE</p></div></div>
+</a>
 <% end %>
 <% if current_page? by_call_number_items_path %>
   <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br />BY CALL NUMBER</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE CATALOG<br/>BY CALL NUMBER"), by_call_number_items_path %></p></div></div>
+  <a href="<%= by_call_number_items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE CATALOG<br/>BY CALL NUMBER</p></div></div>
+</a>
 <% end %>
 <% if current_page? recent_items_path %>
   <div class="ami1"><div class="ami3"><p class="ami3">VIEW RECENTLY<br/>ADDED ITEMS</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("VIEW RECENTLY<br/>ADDED ITEMS"), recent_items_path %></p></div></div>
+  <a href="<%= recent_items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">VIEW RECENTLY<br/>ADDED ITEMS</p></div></div>
+  </a>
 <% end %>
 <% if current_page? subjects_path %>
   <div class="ami1"><div class="ami3"><p class="ami3">BROWSE SUBJECTS</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE SUBJECTS"), subjects_path %></p></div></div>
+  <a href="<%= subjects_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE SUBJECTS</p></div></div>
+  </a>
 <% end %>
 <% if current_page? digital_assets_path %>
   <div class="ami1"><div class="ami3"><p class="ami3">BROWSE THE<br/>IMAGE COLLECTION</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to raw("BROWSE THE<br/>IMAGE COLLECTION"), digital_assets_path %></p></div></div>
+  <a href="<%= digital_assets_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE THE<br/>IMAGE COLLECTION</p></div></div>
+  </a>
 <% end %>
-<div class="ami1"><div class="ami2"><p class="ami2"><a href="http://reanimationlibrary.org/pages/collectionguide.htm">GUIDE TO THE<BR/>LIBRARY'S COLLECTIONS</a></p></div></div>
+<div class="ami1"><div class="ami2"><p class="ami2"><a href="http://reanimationlibrary.org/pages/collectionguide.htm">GUIDE TO THE<br/>LIBRARY'S COLLECTIONS</a></p></div></div>
 <% if current_page? login_path %>
 <div class="ami1"><div class="ami3"><p class="ami3">LOGIN</p></div></div>
 <% else %>
-  <div class="ami1"><div class="ami2"><p class="ami2"><%= link_to "LOGIN", login_path %></p></div></div>
+  <a href="<%= login_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">LOGIN</p></div></div>
+  </a>
 <% end %>
 
 <div id="sidebar-menu">
