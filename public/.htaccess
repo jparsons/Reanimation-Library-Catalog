@@ -1,3 +1,3 @@
 PassengerEnabled on
 PassengerAppRoot /home/andrew/catalog/current
-RailsEnv development
+RailsEnv production
