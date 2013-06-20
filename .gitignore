@@ -16,3 +16,4 @@ public/system/Archive.zip
 *.txt
 .rvmrc
 public/.DS_Store
+public/.htaccess
