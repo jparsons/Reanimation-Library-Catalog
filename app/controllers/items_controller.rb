@@ -19,6 +19,12 @@ class ItemsController < ApplicationController
 
   end
 
+  def by_branch
+    @branches = Item.where("acquired_for is not null AND acquired_for != ''").map(&:acquired_for).uniq.sort
+    @branch = params[:acquired_for] || @branches.first
+    @items = Item.where(:acquired_for => @branch).order(:alphabetical_title)
+  end
+
   def by_call_number
     @items = Item.by_call_number.published.paginate(:page => params[:page], :per_page => 20)
   end

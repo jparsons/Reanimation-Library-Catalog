@@ -21,6 +21,7 @@ ReanimationLibraryCatalog::Application.routes.draw do
     get :need_images
     get :by_call_number
     get :recent
+    get :by_branch
     end
   
   
