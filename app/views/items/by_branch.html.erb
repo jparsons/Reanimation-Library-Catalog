@@ -9,7 +9,7 @@
 <h1><%= @branch %></h1>
 <br />
 <% @items.each do |item| %>
-<a href="http://www.reanimationlibrary.org/catalog/items/101547"><i><%= item.display_title %></i></a><br/>
+<a href="http://www.reanimationlibrary.org/catalog/items/<%= item.id %>"><i><%= item.display_title %></i></a><br/>
 <% end %>
 <script type="text/javascript">
 $(document).ready(function() {
