@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://github.com'
 
 gem 'rails', '3.0.7'
 
@@ -18,7 +17,7 @@ gem 'will_paginate', '2.3.15'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 2.3.1'
-
+gem 'pg'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -41,8 +40,8 @@ gem 'acts-as-taggable-on', '~> 2.3.1'
  group :development, :test do
   gem 'capistrano'
   #gem 'sqlite3'
-  gem 'activerecord-mysql2-adapter'
+  #gem 'activerecord-mysql2-adapter'
  end
  group :production do
-   gem 'pg'
+
  end
