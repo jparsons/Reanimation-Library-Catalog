@@ -8,6 +8,7 @@ GIT
 
 GEM
   remote: http://rubygems.org/
+  remote: http://github.com/
   specs:
     aasm (2.2.0)
     abstract (1.0.0)
