@@ -10,7 +10,7 @@ gem 'paperclip'
 gem "authlogic"
 gem "easy_roles"
 gem "aasm"
-gem 'acts_as_ferret', '= 0.5.2', :git => "git://github.com/primerano/acts_as_ferret.git"
+gem 'acts_as_ferret', '= 0.5.2', :git => "https://github.com/primerano/acts_as_ferret.git"
 gem 'ferret'
 gem 'delayed_job'
 gem 'will_paginate', '2.3.15'
