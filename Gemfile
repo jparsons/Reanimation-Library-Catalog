@@ -44,5 +44,5 @@ gem 'acts-as-taggable-on', '~> 2.3.1'
   gem 'activerecord-mysql2-adapter'
  end
  group :production do
-   gem 'mysql'
+   gem 'pg'
  end
