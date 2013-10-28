@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/primerano/acts_as_ferret.git
+  remote: https://github.com/primerano/acts_as_ferret.git
   revision: 10290cd3200025d586c8b7c722f1743d24e8ea54
   specs:
     acts_as_ferret (0.5.2)
