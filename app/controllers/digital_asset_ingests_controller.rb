@@ -14,6 +14,7 @@ class DigitalAssetIngestsController < ApplicationController
 
     ingest.process_log = ProcessLog.create!
     ingest.send_later(:process_digital_assets)
+    ingest.send_later(:process_cover_images)
     #ingest.process_log.update_attribute(:end_time=>Time.now())
     #ingest.save!
     #BatchImporter.new(Shop.find(1)).send_later(:import_massive_csv, massive_csv)
