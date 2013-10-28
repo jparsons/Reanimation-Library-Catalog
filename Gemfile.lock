@@ -127,6 +127,7 @@ DEPENDENCIES
   ferret
   hpricot (= 0.8.4)
   jquery-rails
+  mysql2
   paperclip
   rails (= 3.0.7)
   will_paginate (= 2.3.15)

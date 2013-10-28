@@ -17,7 +17,7 @@ gem 'will_paginate', '2.3.15'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 2.3.1'
-#gem 'mysql'
+gem 'mysql2'
 gem 'activerecord-mysql2-adapter'
 # Use unicorn as the web server
 # gem 'unicorn'
