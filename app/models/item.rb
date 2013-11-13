@@ -49,7 +49,7 @@ class Item < ActiveRecord::Base
 
   has_attached_file :cover_image, :whiny => false, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
 
-  acts_as_ferret :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_type_list, :is_public_domain, :collection_name ]
+  acts_as_indexed :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_type_list, :is_public_domain, :collection_name ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
 
   before_save :create_title_for_alphabetizing
@@ -109,9 +109,9 @@ class Item < ActiveRecord::Base
 
   def self.search(query = "", logged_in = false)
     if logged_in
-      self.find_with_ferret(query, :include=>[:subjects, :creators])
+      self.find_with_index(query, :include=>[:subjects, :creators])
     else
-       self.published.find_with_ferret(query, :include=>[:subjects, :creators])
+       self.published.find_with_index(query, :include=>[:subjects, :creators])
     end
   end
 
