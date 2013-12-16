@@ -1,0 +1,12 @@
+<% title "Image_type" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @image_type.first_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_image_type_path(@image_type) %> |
+  <%= link_to "Destroy", @image_type, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", image_types_path %>
+</p>

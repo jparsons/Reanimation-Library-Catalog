@@ -28,7 +28,7 @@ module ApplicationHelper
    def association_select_link(name, f, model)
      select_field = new_select_field(f, model.to_sym)
      link_to_function(name, raw("replace_content(this, \"#{model}\", \"#{escape_javascript(select_field)}\");$(\"#add-#{model}-select-link\").hide();$(\"#add-#{model}-entry-link\").show();"), :id=> "add-#{model}-select-link", :class=>"add-child-select-link admin-link", :style=>"display:none")
-   end 
+   end
   def new_vendor_link(name, f)
     fields = new_child_fields(f, :vendor)
     link_to_function(name, raw("replace_content(this, \"vendor\", \"#{escape_javascript(fields)}\");$(\"#add-vendor-select-link\").show();$(\"#add-vendor-entry-link\").hide();"), :id=> "add-vendor-entry-link", :class=>"add-child-form-link admin-link")
@@ -64,5 +64,14 @@ module ApplicationHelper
     form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
       render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
     end
+  end
+
+  def pluralize(string, count)
+    count > 1 ? string.pluralize : string
+  end
+
+  def formatted_publisher_info(item)
+   info = [item.publisher_name, item.publisher_city].reject(&:blank?).join("; ")
+   [info, item.publisher_state.try(:upcase)].reject(&:blank?).join(", ")
   end
 end

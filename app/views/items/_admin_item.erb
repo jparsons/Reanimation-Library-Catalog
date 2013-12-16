@@ -11,8 +11,8 @@
   </div>
 	<div class="item-data">
     <div class="item-title"><%= link_to "#{admin_item.title} #{admin_item.subtitle}", item_path(admin_item) %></div>
-  	  <div class="item-creators "><div class="item-label">Creator(s):</div> <div class="item-content"><%= admin_item.creators.map{|c| c.display_name }.join("<br />")%></div></div>
-	  <div class="item-publisher"><span class="item-label">Publisher:</span> <%=h admin_item.publisher_name %><%= admin_item.publisher_city.nil? ? "" : "; " + admin_item.publisher_city %><%=h admin_item.publisher_state.nil? ? "" : ", " + admin_item.publisher_state %></div>
+  	  <div class="item-creators "><div class="item-label"><%= pluralize("Creator", admin_item.creator_count) %>:</div> <div class="item-content"><%= (admin_item.creators.map{|c| c.display_name } + [item.corporate_author]).compact.join("<br />")</div></div>
+	  <div class="item-publisher"><span class="item-label">Publisher:</span> <%= formatted_publisher_info(admin_item) %></div>
   <div class="item-copyright"><span class="item-label">Year:</span> <%=h admin_item.copyright %></div>
   <div class="item-extent"><span class="item-label">Pages:</span> <%=h admin_item.extent %></div>
   <div class="item-size"><span class="item-label">Size:</span> <%=h admin_item.item_size %></div>

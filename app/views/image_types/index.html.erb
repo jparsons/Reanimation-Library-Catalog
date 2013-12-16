@@ -1,0 +1,17 @@
+<% title "Image Types" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for image_type in @image_types %>
+    <tr>
+      <td><%=h image_type.name %></td>
+      <td><%= link_to "Show", image_type %></td>
+      <td><%= link_to "Edit", edit_image_type_path(image_type) %></td>
+      <td><%= link_to "Destroy", image_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Image Type", new_image_type_path %></p>

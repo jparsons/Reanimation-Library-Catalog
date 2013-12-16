@@ -13,7 +13,7 @@
 	</p>
 	<p>
 	  <%= f.label :type, "Creator type" %><br />
-	  <%= f.select :creator_type, Creator.all.map{|c| c.creator_type}.uniq.sort %>
+	  <%= f.collection_select :creator_type_id, CreatorType.all, :id, :name, :prompt => true %>
 	</p>
 	<p> <%= remove_child_link "remove this creator", f %></p>
 	<br />

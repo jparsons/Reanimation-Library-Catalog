@@ -1,4 +1,6 @@
 ReanimationLibraryCatalog::Application.routes.draw do
+  resources :creator_types
+
   scope "/catalog" do
     match 'search' => 'search#new', :as => :search
     match 'advanced_search' => 'search#new', :as => :advanced_search, :advanced => 'true'
@@ -9,12 +11,14 @@ ReanimationLibraryCatalog::Application.routes.draw do
       collection do
     get :most_recent
     end
-  
-  
-    end
 
+
+    end
+    resources :donors
     resources :works
     resources :subjects
+    resources :image_types
+
     resources :items do
       collection do
     get :acquired
@@ -23,8 +27,8 @@ ReanimationLibraryCatalog::Application.routes.draw do
     get :recent
     get :by_branch
     end
-  
-  
+
+
     end
 
     match 'signup' => 'users#new', :as => :signup

@@ -101,13 +101,13 @@ class ItemsController < ApplicationController
     #subject_ids = params[:item][:subject_ids]
     #params[:item].delete(:subject_ids)
     @item = Item.find(params[:id])
-    if params[:commit] == PUBLISH_TEXT
+    if params[:commit] == PUBLISH_TEXT || params[:commit] == SHORT_PUBLISH_TEXT
       @item.cataloging_status = "published"
       @item.published_at = Time.now
-    elsif params[:commit] == UNPUBLISH_TEXT
+    elsif params[:commit] == UNPUBLISH_TEXT || params[:commit] == SHORT_UNPUBLISH_TEXT
       @item.cataloging_status = "unpublished"
     end
-    params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f
+    params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f if (params && params[:item])
    # @item.update_attribute(:subject_ids, subject_ids)
     if @item.update_attributes(params[:item])
       flash[:notice] = "Successfully updated item."

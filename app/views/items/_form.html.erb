@@ -54,7 +54,7 @@ $(document).ready(function(){
 	<%= f.select :publisher_state, STATES, :include_blank=>true %></p>
 <p><%= f.label :country %><br />
 	<%= f.select :publisher_country, COUNTRIES, :include_blank=>true %></p>	
-<p><%= f.label :copyright %><br />
+<p><%= f.label :copyright, "Copyright Year" %><br />
 	<%= f.text_field :copyright %></p>
 <p><%= f.label :corporate_author %><br />
 	<%= f.text_field :corporate_author %>

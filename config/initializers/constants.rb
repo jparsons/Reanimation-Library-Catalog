@@ -1,5 +1,5 @@
 REMOVE_FROM_BEGINNING_OF_TITLES = ["a ", "an ", "the ", "\\["]
-COLLECTIONS = ["1A: Text & Symbol", "1: Primary", "2: Reference", "3: Copyright"]
+COLLECTIONS = ["Text & Symbol", "Primary", "Reference", "Copyright"]
 DISPLAY_COLLECTIONS = ["Text & Symbol", "Primary", "Reference", "Copyright"]
 ACQUISITION_TYPES =  ["Gift", "Thrift/Secondhand Store", "Free Book Exchange", "Flea Market", "Used Book Store", "Library Sale", "Internet", "Antique Store", "Found Item", "Street/Stoop/Garage Sale", "Scout Purchase"]
 WORK_TYPES = ["Book", "Collage", "Digital Animation", "Drawing", "Inkjet Print", "Installation", "Mixed Media", "Painting", "Play", "Sculpture", "Weaving"]
@@ -12,5 +12,7 @@ SAVE_UNPUBLISHED_TEXT = "save item but don't publish"
 SAVE_PUBLISHED_TEXT = "save item"
 PUBLISH_TEXT = "save and publish"
 UNPUBLISH_TEXT = "save and unpublish"
+SHORT_PUBLISH_TEXT = "publish this item"
+SHORT_UNPUBLISH_TEXT = "unpublish this item"
 IMAGE_COLORS = ["Black &amp; White", "Color", "Mixed Color and Black &amp; White", "Two-Tone"]
-IMAGE_TYPES = ["Architectural Diagrams", "Bowling Diagrams", "Braille", "Cartographic Material", "Chess Game Diagrams", "Color Chart", "Echocardiograph", "Fingerprints", "Golf Diagrams", "Graphic Design Patterns", "Illustration", "Information Graphic", "International Phoentic Alphabet", "Line Drawing", "Logarithmic Table", "Mathematic Notation", "Mathematical Diagrams", "Medical Diagram", "Micrograph", "Musical Notation", "Needlepoint Patterns", "Photograph", "Photo Illustration", "Radiograph", "Sewing Patterns", "Shorthand Notation", "Spectograph", "Technical Diagrams", "Text Only", "Two-Tone", "Typography", "Weather Symbols", "Woodcuts"]
+IMAGE_TYPES = ["Architectural Diagrams", "Braille", "Cartographic Material", "Chess Game Diagrams", "Color Chart", "Echocardiograph", "Fingerprints", "Graphic Design Patterns", "Illustration", "Information Graphic", "Line Drawing", "Logarithmic Table", "Mathematic Notation", "Mathematical Diagrams", "Medical Diagram", "Micrograph", "Musical Notation", "Needlepoint Patterns", "Photograph", "Photo Illustration", "Radiograph", "Sewing Patterns", "Shorthand Notation", "Spectograph", "Technical Diagrams", "Two-Tone", "Typography", "Weather Symbols", "Woodcuts"]

@@ -1,9 +1,12 @@
 class Creator < ActiveRecord::Base
   belongs_to :item
+  belongs_to :creator_type
+
   def display_name
-    first_name + (middle_name.blank? ? "" : " " + middle_name) + " " + last_name + " (" + creator_type + ")"
+    name = first_name + (middle_name.blank? ? "" : " " + middle_name) + " " + last_name
+    name += " (#{creator_type.name})" if creator_type
+    return name
   end
-  
 end
 
 # == Schema Information

@@ -2,14 +2,12 @@
 
 <table>
   <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
+    <th>Name</th>
     <th>Organization Name</th>
   </tr>
   <% for donor in @donors %>
     <tr>
-      <td><%=h donor.first_name %></td>
-      <td><%=h donor.last_name %></td>
+      <td><%=h donor.name %></td>
       <td><%=h donor.organization_name %></td>
       <td><%= link_to "Show", donor %></td>
       <td><%= link_to "Edit", edit_donor_path(donor) %></td>

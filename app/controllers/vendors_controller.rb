@@ -48,7 +48,7 @@ class VendorsController < ApplicationController
     respond_to do |format|
       if @vendor.save
         flash[:notice] = 'Vendor was successfully created.'
-        format.html { redirect_to(@vendor) }
+        format.html { redirect_to vendors_path }
         format.xml  { render :xml => @vendor, :status => :created, :location => @vendor }
       else
         format.html { render :action => "new" }
@@ -60,13 +60,12 @@ class VendorsController < ApplicationController
   # PUT /vendors/1
   # PUT /vendors/1.xml
   def update
-    params[:vendor][:work_ids] ||= []  
     @vendor = Vendor.find(params[:id])
 
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
         flash[:notice] = 'Vendor was successfully updated.'
-        format.html { redirect_to(@vendor) }
+        format.html { redirect_to vendors_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

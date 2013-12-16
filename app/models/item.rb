@@ -71,7 +71,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.no_assets(order)
-    where("digital_assets.id is null AND items.collection_name = ?", "1: Primary").includes(:digital_assets).order(order)
+    where("digital_assets.id is null AND items.collection_name = ?", "Primary").includes(:digital_assets).order(order)
   end
 
   def display_title
@@ -129,6 +129,12 @@ class Item < ActiveRecord::Base
 
   def vendor_location
     vendor.nil? ? '' : vendor.city + ", " + vendor.state
+  end
+
+  def creator_count
+    count = self.creators.count
+    count += 1 unless self.corporate_author.blank?
+    return count
   end
 
 
