@@ -18,6 +18,8 @@ ReanimationLibraryCatalog::Application.routes.draw do
     resources :works
     resources :subjects
     resources :image_types
+    resources :creator_types
+    resources :creators
 
     resources :items do
       collection do

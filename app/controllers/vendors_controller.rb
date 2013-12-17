@@ -5,7 +5,7 @@ class VendorsController < ApplicationController
   # GET /vendors
   # GET /vendors.xml
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb

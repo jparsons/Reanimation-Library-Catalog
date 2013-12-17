@@ -4,7 +4,7 @@ class CreatorTypesController < ApplicationController
   # GET /creator_types
   # GET /creator_types.xml
   def index
-    @creator_types = CreatorType.all
+    @creator_types = CreatorType.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb

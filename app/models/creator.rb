@@ -7,6 +7,10 @@ class Creator < ActiveRecord::Base
     name += " (#{creator_type.name})" if creator_type
     return name
   end
+
+  def old_creator_type
+    self[:creator_type]
+  end
 end
 
 # == Schema Information

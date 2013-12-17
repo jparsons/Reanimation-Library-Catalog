@@ -5,19 +5,17 @@
     <th>Name</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @creator_types.each do |creator_type| %>
   <tr>
     <td><%= creator_type.name %></td>
-    <td><%= link_to 'Show', creator_type %></td>
-    <td><%= link_to 'Edit', edit_creator_type_path(creator_type) %></td>
-    <td><%= link_to 'Destroy', creator_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_creator_type_path(creator_type), :class => 'btn' %></td>
+    <td><%= link_to 'Destroy', creator_type, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Creator type', new_creator_type_path %>
+<%= link_to 'New Creator type', new_creator_type_path, :class => 'btn' %>

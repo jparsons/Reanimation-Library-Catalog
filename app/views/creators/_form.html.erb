@@ -1,0 +1,20 @@
+<%= form_for @creator do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :suffix %><br />
+    <%= f.text_field :suffix %>
+  </p>
+  <p>
+    <%= f.label :creator_type %><br />
+    <%= f.collection_select CreatorType.all, [:id, :name] %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

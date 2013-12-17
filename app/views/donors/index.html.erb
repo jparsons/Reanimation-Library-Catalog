@@ -4,16 +4,17 @@
   <tr>
     <th>Name</th>
     <th>Organization Name</th>
+    <th></th>
+    <th></th>
   </tr>
   <% for donor in @donors %>
     <tr>
       <td><%=h donor.name %></td>
       <td><%=h donor.organization_name %></td>
-      <td><%= link_to "Show", donor %></td>
-      <td><%= link_to "Edit", edit_donor_path(donor) %></td>
-      <td><%= link_to "Destroy", donor, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Edit", edit_donor_path(donor), :class => 'btn' %></td>
+      <td><%= link_to "Destroy", donor, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Donor", new_donor_path %></p>
+<p><%= link_to "New Donor", new_donor_path, :class => 'btn' %></p>
