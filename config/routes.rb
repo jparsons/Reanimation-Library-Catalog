@@ -1,5 +1,4 @@
 ReanimationLibraryCatalog::Application.routes.draw do
-  resources :creator_types
 
   scope "/catalog" do
     match 'search' => 'search#new', :as => :search
@@ -9,10 +8,8 @@ ReanimationLibraryCatalog::Application.routes.draw do
     resources :vendors
     resources :digital_assets do
       collection do
-    get :most_recent
-    end
-
-
+        get :most_recent
+      end
     end
     resources :donors
     resources :works
