@@ -9,12 +9,12 @@
     <%= f.text_field :last_name %>
   </p>
   <p>
-    <%= f.label :suffix %><br />
-    <%= f.text_field :suffix %>
+    <%= f.label :name_suffix %><br />
+    <%= f.text_field :name_suffix %>
   </p>
   <p>
     <%= f.label :creator_type %><br />
-    <%= f.collection_select CreatorType.all, [:id, :name] %>
+    <%= f.select :creator_type_id, CreatorType.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true } %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

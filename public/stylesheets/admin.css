@@ -1,0 +1,29 @@
+.sidebar-menu-item a {
+	color: #BB0708;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: left;
+	line-height: 1;
+	text-transform: uppercase;
+}
+a.btn {
+	padding: 5px 8px;
+    color: #FFF;
+    margin: 5px;
+    display:block;
+    float: left;
+    font-family: 'Roboto Condensed', sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+a.btn-edit {
+  background-color: #3faaba;
+}
+a.btn-destroy{
+  background-color: #b83837;
+}
+a.btn-new{ background-color: #3767b8;}

@@ -9,10 +9,10 @@
   <% for image_type in @image_types %>
     <tr>
       <td><%=h image_type.name %></td>
-      <td><%= link_to "Edit", edit_image_type_path(image_type), :class => 'btn' %></td>
-      <td><%= link_to "Destroy", image_type, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
+      <td><%= link_to "Edit", edit_image_type_path(image_type), :class => 'btn btn-edit' %></td>
+      <td><%= link_to "Destroy", image_type, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-destroy' %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Image Type", new_image_type_path, :class => 'btn' %></p>
+<p><%= link_to "New Image Type", new_image_type_path, :class => 'btn btn-new' %></p>

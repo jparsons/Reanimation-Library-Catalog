@@ -2,14 +2,20 @@ class Creator < ActiveRecord::Base
   belongs_to :item
   belongs_to :creator_type
 
+  validate :presence_of_name
+
   def display_name
-    name = first_name + (middle_name.blank? ? "" : " " + middle_name) + " " + last_name
-    name += " (#{creator_type.name})" if creator_type
+    name = [first_name, middle_name, last_name].join(" ")
+    name += " (#{creator_type.try(:name)})" if (creator_type && name)
     return name
   end
 
   def old_creator_type
     self[:creator_type]
+  end
+
+  def presence_of_name
+      errors.add :base, "Name fields cannot all be blank" if display_name.blank?
   end
 end
 

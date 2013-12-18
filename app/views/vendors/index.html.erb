@@ -13,10 +13,10 @@
       <td><%=h vendor.name %></td>
       <td><%=h vendor.city %></td>
       <td><%=h vendor.state %></td>
-      <td><%= link_to "Edit", edit_vendor_path(vendor), :class => 'btn' %></td>
-      <td><%= link_to "Destroy", vendor, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
+      <td><%= link_to "Edit", edit_vendor_path(vendor), :class => 'btn btn-edit' %></td>
+      <td><%= link_to "Destroy", vendor, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-destroy' %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Vendor", new_vendor_path, :class => 'btn' %></p>
+<p><%= link_to "New Vendor", new_vendor_path, :class => 'btn btn-new' %></p>

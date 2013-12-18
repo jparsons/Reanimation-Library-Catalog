@@ -7,7 +7,7 @@
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="http://www.reanimationlibrary.org/pages/application.css" />
-<%= stylesheet_link_tag 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom' %>
+<%= stylesheet_link_tag 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom', 'admin' %>
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
@@ -81,8 +81,10 @@ var sc_security="e77d3ad9";
 
 <div id="sidebar-menu">
     <div class="sidebar-admin-menu">
-  <% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
 
+  <% if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
+      <h2>ADMIN TOOLS</h2>
+      <br />
     <div class="sidebar-menu-item">
       <%= link_to "add a new item", new_item_path %>
     </div>

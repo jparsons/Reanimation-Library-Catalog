@@ -6,6 +6,8 @@
     <th>Last Name</th>
     <th>Suffix</th>
     <th>Creator Type</th>
+    <th></th>
+    <th></th>
   </tr>
   <% for creator in @creators %>
     <tr>
@@ -13,10 +15,10 @@
       <td><%= creator.last_name %></td>
       <td><%= creator.name_suffix %></td>
       <td><%= creator.creator_type.try(:name) %></td>
-      <td><%= link_to "Edit", edit_creator_path(creator), :class => 'btn' %></td>
-      <td><%= link_to "Destroy", creator, :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %></td>
+      <td><%= link_to "Edit", edit_creator_path(creator), :class => 'btn btn-edit' %></td>
+      <td><%= link_to "Destroy", creator, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-destroy' %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Creator", new_creator_path, :class => 'btn' %></p>
+<p><%= link_to "New Creator", new_creator_path, :class => 'btn btn-new' %></p>
