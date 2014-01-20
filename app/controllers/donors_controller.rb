@@ -1,8 +1,16 @@
 class DonorsController < ApplicationController
-  before_filter do |c| c.send(:require_role, :administrator) end
+  before_filter do |c| 
+    c.send(:require_role, :administrator) unless request.format.json?
+  end
 
   def index
   	@donors = Donor.order(:last_name)
+
+    ActiveRecord::Base.include_root_in_json = false
+    respond_to do |wants|
+      wants.html { @donors = Donor.order(:last_name) }
+      wants.json {render_json Donor.order(:last_name).to_json(:only=>[:id], :methods => [:display_name]) }
+    end
   end
 
   def edit

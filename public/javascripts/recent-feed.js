@@ -1,6 +1,7 @@
 	$(document).ready(function() {
 	  getRecentImages();
 	  getRecentItems();
+    getDonors();
 	});
 function getRecentImages(){
   $.getJSON('http://reanimationlibrary.org/catalog/digital_assets/most_recent.json?callback=?', function(data) {
@@ -31,6 +32,20 @@ function getRecentItems(){
       html: items.join('')
     }).appendTo('#recent-acquisitions');
   });
+}
+function getDonors() {
+  $.getJSON('http://localhost:3000/catalog/donors.json?callback=?', function(data){
+    var donors = [];
+    $.each(data, function(key, val){
+      donors.push('<div>' + val.display_name + '</div>');
+    });
+
+    $('<div/>', {
+      'class': 'donors-content',
+      html: donors.join('')
+    }).appendTo('#donors');
+  });
+
 }
 function randOrd(){
   return (Math.round(Math.random())-0.5); 
