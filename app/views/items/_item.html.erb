@@ -19,7 +19,7 @@
     <div class="item-callnumber"><span class="item-label">Call Number:</span> <%=h item.call_number %></div>
     <div class="item-subjects"><div class="item-label"><%= pluralize("Subject", item.subjects.count) %>:</div> <div class="item-content"><%= raw item.subjects.map{|s| link_to(s.name, subject_path(s)) }.join("<br />") %></div></div>
     <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.id %></div>
-    <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name.nil? ? '' : item.collection_name.split(": ")[1] %></div>
+    <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name %></div>
 
 
   </div>
