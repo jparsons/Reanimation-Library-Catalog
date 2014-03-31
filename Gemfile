@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 2.3.1'
 gem 'mysql2'
 gem 'activerecord-mysql2-adapter'
+gem 'american_date'
 # Use unicorn as the web server
 # gem 'unicorn'
 

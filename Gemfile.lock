@@ -34,6 +34,7 @@ GEM
     acts-as-taggable-on (2.3.1)
       rails (~> 3.0)
     acts_as_indexed (0.8.3)
+    american_date (1.1.0)
     arel (2.0.9)
     authlogic (3.0.2)
       activerecord (~> 3.0.7)
@@ -109,6 +110,7 @@ DEPENDENCIES
   activerecord-mysql2-adapter
   acts-as-taggable-on (~> 2.3.1)
   acts_as_indexed
+  american_date
   authlogic
   capistrano
   delayed_job
