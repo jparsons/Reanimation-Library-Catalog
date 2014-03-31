@@ -1,11 +1,11 @@
 class Item < ActiveRecord::Base
   include AASM
 
+  before_save :strip_dollar_signs
 
   def self.attributes_protected_by_default
       []
   end
-
 
   aasm_column :cataloging_status
   aasm_initial_state :acquired
@@ -138,6 +138,12 @@ class Item < ActiveRecord::Base
   end
 
 
+end
+
+private
+
+def strip_dollar_signs
+  self.price_paid = self.price_paid.to_s.gsub(/\$/, '').to_f
 end
 
 
