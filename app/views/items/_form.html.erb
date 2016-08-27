@@ -16,9 +16,10 @@ $(document).ready(function(){
 <%= form_for @item, :html => { :multipart => true } do |f| %>
 
 <p><%= f.label :title %><br />
-	<%= f.text_field :title %></p>
+	<%= f.text_field :title, size: 75 %></p>
 <p><%= f.label :subtitle %><br />
-	<%= f.text_field :subtitle %></p>
+	<%= f.text_field :subtitle, size: 75 %></p>
+  <!-- add title translation - should be added to search index -->
 	<p><%= f.label :cover_image %></p>
 	<%= image_tag(@item.cover_image.url(:thumb)) if @item.cover_image.file? %>
 	<p>Upload a new cover image<br />
@@ -46,7 +47,7 @@ $(document).ready(function(){
 
 <div id ="publisher">
 <h2>Publication Information</h2>
-<p><%= f.label :name %><br />
+<p><%= f.label :publisher_name %><br />
 	<%= f.text_field :publisher_name %></p>
 <p><%= f.label :city %><br />
     <%= f.text_field :publisher_city %></p>
@@ -133,6 +134,7 @@ $(document).ready(function(){
   <%= render :partial => 'subject', :locals => {:f => subject_form} %>
 <% end %>
 <p><%= add_child_link "... click here to add new subjects", f, :subjects, "$('.new-subject-textbox').autocomplete({ source: #{Subject.all.map(&:name).uniq.compact.sort.to_json}  });" %></p>
+<!-- can we match just the start of subjects -->
 <div id="subjects">
 
 </div>

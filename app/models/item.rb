@@ -6,21 +6,21 @@ class Item < ActiveRecord::Base
   def self.attributes_protected_by_default
       []
   end
+  aasm :column => :cataloging_status, :enum => true do
+    state :acquired, initial: true
 
-  aasm_column :cataloging_status
-  aasm_initial_state :acquired
+    state :acquired, :include=>:subjects
+    state :images_added_but_needs_cataloging
+    state :fully_cataloged_but_needs_images
+    state :unpublished
+    state :published, :include=>:subjects
 
-  aasm_state :acquired, :include=>:subjects
-  aasm_state :images_added_but_needs_cataloging
-  aasm_state :fully_cataloged_but_needs_images
-  aasm_state :unpublished
-  aasm_state :published, :include=>:subjects
-
-  aasm_event :publish do
-    transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
-  end
-  aasm_event :make_unpublished do
-    transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+    event :publish do
+      transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+    end
+    event :make_unpublished do
+      transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+    end
   end
 
   scope :recent, published.limit(15).order("published_at DESC").includes(:creators)
@@ -63,11 +63,11 @@ class Item < ActiveRecord::Base
   end
 
   def self.previous(item)
-    where("alphabetical_title < ?", item.alphabetical_title).limit(1).order("alphabetical_title desc")
+    published.where("alphabetical_title < ?", item.alphabetical_title).limit(1).order("alphabetical_title desc")
   end
 
   def self.next(item)
-    where("alphabetical_title > ?", item.alphabetical_title).limit(1).order("alphabetical_title")
+    published.where("alphabetical_title > ?", item.alphabetical_title).limit(1).order("alphabetical_title")
   end
 
   def self.no_assets(order)
@@ -128,7 +128,7 @@ class Item < ActiveRecord::Base
   end
 
   def vendor_location
-    vendor.nil? ? '' : vendor.city + ", " + vendor.state
+    vendor.nil? ? '' : [vendor.city, vendor.state.try(:upcase)].join(", ")
   end
 
   def creator_count

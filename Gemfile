@@ -41,7 +41,7 @@ gem 'american_date'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
  group :development, :test do
-  gem 'capistrano'
+  gem 'capistrano', '2.6.0'
   #gem 'sqlite3'
   #gem 'activerecord-mysql2-adapter'
  end

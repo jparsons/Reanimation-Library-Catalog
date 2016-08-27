@@ -2,7 +2,7 @@
 <p><strong><%= @exhibition.exhibition_venue.name %></strong></p>
 <p><%= @exhibition.exhibition_venue.address_line_one %><br />
 <%= "#{@exhibition.exhibition_venue.address_line_two}<br />" unless @exhibition.exhibition_venue.address_line_two.blank? %>
-<%= @exhibition.exhibition_venue.city %>,<%= " #{@exhibition.exhibition_venue.state}" unless @exhibition.exhibition_venue.state.blank? %><%= " #{@exhibition.exhibition_venue.zipcode}" unless @exhibition.exhibition_venue.zipcode.blank?  %>
+<%= @exhibition.exhibition_venue.city %>,<%= " #{@exhibition.exhibition_venue.state.upcase}" unless @exhibition.exhibition_venue.state.blank? %><%= " #{@exhibition.exhibition_venue.zipcode}" unless @exhibition.exhibition_venue.zipcode.blank?  %>
 <%= "<br />#{@exhibition.exhibition_venue.country}" unless @exhibition.exhibition_venue.country.blank? %>
 </p>
 <h3>Art works in this exhibition</h3>

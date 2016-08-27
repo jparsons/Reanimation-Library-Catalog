@@ -65,7 +65,7 @@
 
 	<% unless @item.donors.empty? %>
 	<div class="item-row item-donors">
-		<div class="item-label"><%= pluralize("Donor", @item.donors.count) %></div> <div class="item-content"><%= @item.donors.map {|d| d.name}.join("; ") %></div>
+		<div class="item-label"><%= pluralize("Donor", @item.donors.count) %>:</div> <div class="item-content"><%= @item.donors.map {|d| d.name}.join("; ") %></div>
 	</div>
 	<% end %>
 

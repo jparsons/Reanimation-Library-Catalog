@@ -21,6 +21,7 @@ $(document).ready(function(){
 	$("#item_acquired_for").autocomplete({
 	    source: <%= raw  Item.all.map{|i| i.acquired_for}.uniq.to_json %>
 	});	
+
 	$("#item_vendor_attributes_city").autocomplete({
 	    source: <%= raw Vendor.all.map(&:city).uniq.compact.sort.to_json %>
 	});
@@ -54,11 +55,16 @@ $(document).ready(function(){
 
   <p><%= f.label :acquired_for %><br />
 	<%= f.text_field :acquired_for %></p>
+  <!-- add included in - make it just like acquired_for -->
   <p><%= f.label :price_paid %><br />
 	<%= f.text_field :price_paid, :value=>number_to_currency(@item.price_paid) %></p>
   <p><%= f.label :acquisition_note %><br />
 	<%= f.text_area :acquisition_note %></p>
-  <p><%= f.label :provenance %><br />
-	<%= f.text_field :provenance %></p>
-  <p><%= f.label :dedication %><br />
-	<%= f.text_area :dedication %></p>
+  <% unless @item.new_record? %>
+    <p><%= f.label :provenance %><br />
+  	<%= f.text_field :provenance %></p>
+    <p><%= f.label :dedication %><br />
+  	<%= f.text_area :dedication %></p>
+<!-- add inscription here -->
+<!-- add link here - link should be nested form with link and description -->
+  <% end %>
