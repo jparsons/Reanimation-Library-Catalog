@@ -6,21 +6,21 @@ class Item < ActiveRecord::Base
   def self.attributes_protected_by_default
       []
   end
-  aasm :column => :cataloging_status, :enum => true do
-    state :acquired, initial: true
 
-    state :acquired, :include=>:subjects
-    state :images_added_but_needs_cataloging
-    state :fully_cataloged_but_needs_images
-    state :unpublished
-    state :published, :include=>:subjects
+  aasm_column :cataloging_status
+  aasm_initial_state :acquired
 
-    event :publish do
-      transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
-    end
-    event :make_unpublished do
-      transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
-    end
+  aasm_state :acquired, :include=>:subjects
+  aasm_state :images_added_but_needs_cataloging
+  aasm_state :fully_cataloged_but_needs_images
+  aasm_state :unpublished
+  aasm_state :published, :include=>:subjects
+
+  aasm_event :publish do
+    transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+  end
+  aasm_event :make_unpublished do
+    transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
   end
 
   scope :recent, published.limit(15).order("published_at DESC").includes(:creators)
@@ -48,7 +48,6 @@ class Item < ActiveRecord::Base
 
 
   has_attached_file :cover_image, :whiny => false, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
-  validates_attachment :cover_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   acts_as_indexed :fields => [ :item_id, :display_title, :display_creator, :subject_list, :copyright, :image_color_list, :image_type_list, :is_public_domain, :collection_name ]
   #acts_as_ferret :fields => [ :display_title, :display_creator, :subject_list, :copyright, :image_colors, :image_types, :is_public_domain ]
@@ -64,11 +63,11 @@ class Item < ActiveRecord::Base
   end
 
   def self.previous(item)
-    published.where("alphabetical_title < ?", item.alphabetical_title).limit(1).order("alphabetical_title desc")
+    where("alphabetical_title < ?", item.alphabetical_title).limit(1).order("alphabetical_title desc")
   end
 
   def self.next(item)
-    published.where("alphabetical_title > ?", item.alphabetical_title).limit(1).order("alphabetical_title")
+    where("alphabetical_title > ?", item.alphabetical_title).limit(1).order("alphabetical_title")
   end
 
   def self.no_assets(order)
@@ -129,7 +128,7 @@ class Item < ActiveRecord::Base
   end
 
   def vendor_location
-    vendor.nil? ? '' : [vendor.city, vendor.state.try(:upcase)].join(", ")
+    vendor.nil? ? '' : vendor.city + ", " + vendor.state
   end
 
   def creator_count

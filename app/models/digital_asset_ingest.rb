@@ -17,10 +17,10 @@ class DigitalAssetIngest < ActiveRecord::Base
       process_log.log_entries << LogEntry.create(:message=>"Found #{file_list.size.to_s} new files")
       # each image will be prefixed with the id or legacy id of an item 
       # so, get a list of all the unique prefixes in the folder
-
       prefixes = unique_prefixes(file_list)
 
 
+      puts "prefixes: #{prefixes}"
       prefixes.each do |prefix|
         # for each prefix, check to see if you can find the image by id
         item = Item.find_by_id(prefix)
@@ -60,9 +60,7 @@ class DigitalAssetIngest < ActiveRecord::Base
   private
   
   def match_and_delete(item, prefix)
-    
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/#{prefix}*.*")
-    # puts file_list
     file_list.each do |filename|
       file = File.open(filename)
       asset = DigitalAsset.find_or_create_by_scan_file_name(filename)
@@ -89,7 +87,7 @@ class DigitalAssetIngest < ActiveRecord::Base
   end
   
   def unique_prefixes(dir_list)
-    
+    puts "hi"    
     prefixes = []
     dir_list.each do |filename|
       name = File.basename(filename)

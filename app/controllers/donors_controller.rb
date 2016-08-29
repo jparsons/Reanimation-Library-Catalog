@@ -13,8 +13,6 @@ class DonorsController < ApplicationController
     end
   end
 
-  #  api for donor list
-
   def edit
     @donor = Donor.find(params[:id])
   end

@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
       logged_in? && group.include?(current_user.role.downcase) ? true : redirect_to(root_url)
   end
 
-  def authorized_user
-    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES)
-  end
-
   protected
       def render_json(json, options={})
         callback, variable = params[:callback], params[:variable]

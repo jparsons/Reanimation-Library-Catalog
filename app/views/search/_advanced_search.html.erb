@@ -9,11 +9,11 @@
       <p><label for="copyright">Copyright year: </label><br />
       <input type="text" name ="copyright" value="<%= params[:copyright] %>"/></p>
       <p><label for="image_color">Image color: </label><br />
-      <%= select_tag "image_color", DigitalAsset.all.map(&:color).compact.uniq.sort, :include_blank=>true %></p>
+      <%= select "search", "image_color", DigitalAsset.all.map(&:color).compact.uniq.sort, :include_blank=>true %></p>
       <p><label for="image_type">Image type: </label><br />
-      <%= select_tag "image_type", DigitalAsset.all.map(&:image_type).compact.uniq.sort, :include_blank=>true %></p>
+      <%= select "search", "image_type", DigitalAsset.all.map(&:image_type).compact.uniq.sort, :include_blank=>true %></p>
       <p><label for="collection">Collection:</label><br />
-      <%= select_tag "collection_name", DISPLAY_COLLECTIONS.sort, :include_blank=>true %></p>    
+      <%= select "search", "collection_name", DISPLAY_COLLECTIONS.sort, :include_blank=>true %></p>    
       <p>  
         <input type="checkbox" name ="is_public_domain" value="true" <%= 'checked="checked"' unless params[:is_public_domain].blank? %>/> &nbsp;Public Domain Books Only <br />
     </p>

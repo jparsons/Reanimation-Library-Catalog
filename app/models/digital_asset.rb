@@ -17,7 +17,6 @@ class DigitalAsset < ActiveRecord::Base
       :large =>   "400x400>",
       }
 
-  validates_attachment :scan, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
   scope :most_recent, :order=>"created_at DESC", :limit=>100

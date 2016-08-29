@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_filter :cataloger_required, :only=>[:new, :edit]
+ before_filter :cataloger_required, :only=>[:new, :edit]
   def index
     letter = params[:letter] || "1-9"
     if logged_in? && current_user.is_administrator?
@@ -63,13 +63,9 @@ class ItemsController < ApplicationController
       wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_title_with_colon, :display_creator]) }
     end
   end
-  #  add item_count api
 
   def show
-    @item = Item.find_by_id(params[:id])
-    if @item.blank? || (@item.unpublished? && !authorized_user)
-      not_found
-    end
+    @item = Item.find(params[:id])
     @previous = Item.previous(@item).first
     @next = Item.next(@item).first
   end
@@ -128,11 +124,7 @@ class ItemsController < ApplicationController
     redirect_to items_url
   end
 
-  # def cataloger_required
-  #   logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
-  # end
-
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
+  def cataloger_required
+    logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
   end
 end
