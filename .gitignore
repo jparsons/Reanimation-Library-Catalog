@@ -18,3 +18,5 @@ public/system/Archive.zip
 public/.DS_Store
 public/.htaccess
 public/live_system/**/*
+.powrc
+.ruby-version
