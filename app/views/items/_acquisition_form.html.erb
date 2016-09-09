@@ -7,11 +7,11 @@ $(document).ready(function(){
 		  style = 'form';
 		}else {
 		  $(this).text("... or click here to add a new vendor");
-		  style = 'dropdown'	
+		  style = 'dropdown'
 		}
 		$.ajax({
 	      url: '<%= new_vendor_path %>?style=' + style, type: 'get', dataType: 'script'
-	    });	
+	    });
 		return false;
 	})
 	$("#item_date_acquired").datepicker();
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	});
 	$("#item_acquired_for").autocomplete({
 	    source: <%= raw  Item.all.map{|i| i.acquired_for}.uniq.to_json %>
-	});	
+	});
 
 	$("#item_vendor_attributes_city").autocomplete({
 	    source: <%= raw Vendor.all.map(&:city).uniq.compact.sort.to_json %>
@@ -34,7 +34,7 @@ $(document).ready(function(){
   <p>
 	<%= f.label :donors, "select from existing donors" %><br />
 	  <%= f.select "donor_ids", Donor.all.map{|d| [d.name, d.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
-	  <p><%= add_child_link "... and / or click here to add new donors", f, :donors %></p>
+	  <p><%= link_to "... and / or click here to add new donors", "#" %></p>
   </p>
   <div id="donors">
 
@@ -45,8 +45,8 @@ $(document).ready(function(){
   <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
 
   </p>
-  <p><%= new_association_link "... or click here to add new vendor", f, "vendor", "$('#item_vendor_attributes_city').autocomplete({ source: #{Vendor.all.map(&:city).uniq.compact.sort.to_json}  });" %></p>
- <p><%= association_select_link "... or click here to select an existing vendor", f, "vendor" %></p>
+  <p><%= link_to "... or click here to add new vendor", "#" %></p>
+ <p><%= link_to "... or click here to select an existing vendor", "#" %></p>
 
   <p><%= f.label :date_acquired %><br />
 	<%= f.text_field :date_acquired %> </p>

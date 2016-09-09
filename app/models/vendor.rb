@@ -1,6 +1,6 @@
 class Vendor < ActiveRecord::Base
   has_many :items
-  default_scope order(:name)
+  default_scope { order(:name) }
   validates :name, :presence => true
 end
 
@@ -23,4 +23,3 @@ end
 #  updated_at :datetime
 #  legacy_id  :integer
 #
-

@@ -1,26 +1,28 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '4.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
 gem 'paperclip'
-gem "authlogic"
+gem "devise"
+gem "devise-encryptable"
 gem "easy_roles"
 gem "aasm"
 #gem 'acts_as_ferret', '= 0.5.2', :git => "https://github.com/primerano/acts_as_ferret.git"
 #gem 'ferret'
 gem 'acts_as_indexed'
 gem 'delayed_job'
-gem 'will_paginate', '2.3.15'
+gem 'will_paginate', '~> 3.1.0'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
-gem 'acts-as-taggable-on', '~> 2.3.1'
-gem 'mysql2', '0.3.14'
-gem 'activerecord-mysql2-adapter'
+gem 'acts-as-taggable-on'
+gem 'mysql2', '0.3.17'
 gem 'american_date'
+
+gem 'rake', '11.2.2'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -42,6 +44,7 @@ gem 'american_date'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem 'capistrano', '2.6.0'
-  #gem 'sqlite3'
+  gem 'sqlite3'
+  gem 'yaml_db'
   #gem 'activerecord-mysql2-adapter'
  end

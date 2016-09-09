@@ -3,7 +3,7 @@
 <h2><%= yield(:title) %></h2>
 
 <%= form_for @item do |f| %>
-  <%= f.error_messages %>
+  <%= f.object.errors.full_messages %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -15,7 +15,7 @@
   </p>
   <p>
     <%= f.label :collection %><br />
-    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>	
+    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>
   </p>
 <%= render :partial => 'acquisition_form', :locals=>{:f=>f} %>
   <p><%= f.submit "Submit" %></p>

@@ -10,12 +10,12 @@ class RemoveLanguageAndLanguageIdFromItems < ActiveRecord::Migration
     Hindi 	Spanish
     Irish-Gaelic 	Vietnamese
     English Esperanto).sort.each {|l|
-      Language.find_or_create_by_name(l)
+      Language.find_or_create_by(name: l)
     }
 
-    Item.each do |i|
+    Item.all.each do |i|
       unless i.language.blank?
-        l = Language.find_or_create_by_name(i.language)
+        l = Language.find_or_create_by(name: i.language)
         i.languages << l
       end
 

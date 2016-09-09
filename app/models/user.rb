@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
-  
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :encryptable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   def method_missing(method)
     begin
       super
@@ -12,11 +15,11 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
+
   def in_authentication_group?(roles)
     roles.include? role
   end
- 
+
 
 end
 
@@ -35,4 +38,3 @@ end
 #  updated_at        :datetime
 #  role              :string(255)
 #
-

@@ -1,5 +1,5 @@
 <%- content_for(:title) { "Reanimation Library - Image Archive" } -%>
-<%- if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?) %>
+<%- if user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?) %>
   <%- content_for :head do -%>
   <script type="text/javascript">
   $(function() {

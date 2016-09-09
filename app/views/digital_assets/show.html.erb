@@ -1,5 +1,5 @@
 <%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan_file_name.gsub(/\.jpg/, "") }" } -%>
-<% if logged_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
   <%- content_for :head do -%>
   <script type="text/javascript">
   $(function() {
@@ -57,7 +57,7 @@
 
 <p><%= link_to "Click here to download a larger copy of this image", image_path(@digital_asset.scan.url(:original)), :target=>"new" %></p>
 
-<% if logged_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
 <div class="admin-link">
   <%= link_to "Edit this image", edit_digital_asset_path(@digital_asset) %> |
   <% if current_user.is_administrator? %>
@@ -75,7 +75,7 @@
 
   </p>
 <% end %>
-<% if logged_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
   <%= form_for @digital_asset do |f| %>
     <%= f.label "tag_list", "add/edit tags" %><br />
     <%= f.text_field :tag_list %>

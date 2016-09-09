@@ -1,8 +1,8 @@
 class CreateProcessLogs < ActiveRecord::Migration
   def self.up
     create_table :process_logs do |t|
-      t.date_time :start_time
-      t.date_time :end_time
+      t.datetime :start_time
+      t.datetime :end_time
       t.timestamps
     end
   end

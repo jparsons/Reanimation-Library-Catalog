@@ -3,12 +3,12 @@
 	<div class="fields">
 	<p>
 	  <%= f.label :name, "Donor name" %><br />
-	  <%= f.text_field :name %> 
+	  <%= f.text_field :name %>
 	</p>
 	<p>
 	  <%= f.label :organization_name, "Donor organization name" %><br />
 	  <%= f.text_field :organization_name %> <br />
 	</p>
-	<p> <%= remove_child_link "remove this donor", f %></p>
+	<p> <%= link_to "remove this donor", "#" %></p>
 	</div>
 </div>

@@ -20,9 +20,9 @@ class DigitalAsset < ActiveRecord::Base
   validates_attachment :scan, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
-  scope :most_recent, :order=>"created_at DESC", :limit=>100
-  scope :published, where("items.cataloging_status='published'").joins(:item)
-  scope :by_scan_file_name, :order => "scan_file_name DESC"
+  scope :most_recent, -> { order("created_at DESC").limit(20) }
+  scope :published, -> { where("items.cataloging_status='published'").joins(:item) }
+  scope :by_scan_file_name, -> { order("scan_file_name DESC") }
 
   def mini_url
       RECENT_IMAGES_PATH +  scan.url(:mini)
@@ -58,4 +58,3 @@ end
 #  is_marked         :boolean
 #  page              :string(255)
 #
-

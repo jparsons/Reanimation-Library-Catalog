@@ -2,24 +2,23 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  include Authentication
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
-  def cataloger_required 
-    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES) ? true : redirect_to(root_url)
+
+  def cataloger_required
+    user_signed_in? && current_user.in_authentication_group?(CATALOGER_ROLES) ? true : redirect_to(root_url)
   end
-  
+
   def require_role(role)
-      logged_in? && current_user.send("is_#{role.to_s}?") ? true : redirect_to(root_url)
+      user_signed_in? && current_user.send("is_#{role.to_s}?") ? true : redirect_to(root_url)
   end
-  
+
   def require_group(group)
-      logged_in? && group.include?(current_user.role.downcase) ? true : redirect_to(root_url)
+      user_signed_in? && group.include?(current_user.role.downcase) ? true : redirect_to(root_url)
   end
 
   def authorized_user
-    logged_in? && current_user.in_authentication_group?(CATALOGER_ROLES)
+    user_signed_in? && current_user.in_authentication_group?(CATALOGER_ROLES)
   end
 
   protected
@@ -37,6 +36,6 @@ class ApplicationController < ActionController::Base
           end
         end
         render({:content_type => :js, :text => response}.merge(options))
-      end  
-  
+      end
+
 end

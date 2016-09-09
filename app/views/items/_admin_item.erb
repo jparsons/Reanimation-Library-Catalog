@@ -3,7 +3,7 @@
     <% if admin_item.cover_image.file? %><%= link_to(image_tag(admin_item.cover_image.url(:thumb), :class=>"cover-thumb"), item_path(admin_item)) %><% end %>
     <br />
     <br />
-    <% if logged_in? && current_user.is_administrator? %>
+    <% if user_signed_in? && current_user.is_administrator? %>
     <div class="admin-link">
       <%= link_to 'Edit this item', edit_item_path(admin_item) %>
     </div>

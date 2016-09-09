@@ -1,31 +1,31 @@
 class Item < ActiveRecord::Base
-  include AASM
+#  include AASM
 
   before_save :strip_dollar_signs
 
   def self.attributes_protected_by_default
       []
   end
-  aasm :column => :cataloging_status, :enum => true do
-    state :acquired, initial: true
-
-    state :acquired, :include=>:subjects
-    state :images_added_but_needs_cataloging
-    state :fully_cataloged_but_needs_images
-    state :unpublished
-    state :published, :include=>:subjects
-
-    event :publish do
-      transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
-    end
-    event :make_unpublished do
-      transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
-    end
-  end
-
-  scope :recent, published.limit(15).order("published_at DESC").includes(:creators)
-  scope :by_call_number, order("call_number ASC").includes(:creators)
-  scope :need_cataloging, where("cataloging_status != 'published'")
+  # aasm :column => :cataloging_status, :enum => true do
+  #   state :acquired, initial: true
+  #
+  #   state :acquired, :include=>:subjects
+  #   state :images_added_but_needs_cataloging
+  #   state :fully_cataloged_but_needs_images
+  #   state :unpublished
+  #   state :published, :include=>:subjects
+  #
+  #   event :publish do
+  #     transitions :to => :published, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+  #   end
+  #   event :make_unpublished do
+  #     transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
+  #   end
+  # end
+  scope :published, -> { where("cataloging_status != 'published'") }
+  scope :recent, -> { published.limit(15).order("published_at DESC").includes(:creators) }
+  scope :by_call_number, -> { order("call_number ASC").includes(:creators) }
+  scope :need_cataloging, -> { where("cataloging_status != 'published'") }
 
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :donors
@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
   has_and_belongs_to_many :image_colors
   has_and_belongs_to_many :image_types
 
-  accepts_nested_attributes_for :subjects, :allow_destroy=>true  
+  accepts_nested_attributes_for :subjects, :allow_destroy=>true
   accepts_nested_attributes_for :creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
   accepts_nested_attributes_for :donors, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
 
@@ -78,19 +78,19 @@ class Item < ActiveRecord::Base
   def display_title
     "#{title}#{subtitle.blank? ? "" : " " + subtitle}"
   end
-  
+
   def display_title_with_colon
     "#{title}#{subtitle.blank? ? "" : ": " + subtitle}"
   end
 
   def display_creator
-    creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "") 
+    creators.blank? ? "" : creators.first.display_name + (creators.size > 1 ? " et al." : "")
   end
 
   def image_color_list
     image_colors.map(&:name).join(",")
   end
-  
+
   def image_type_list
     image_types.map(&:name).join(",")
   end
@@ -104,7 +104,7 @@ class Item < ActiveRecord::Base
   def item_id
     id.to_s
   end
-  def subject_list 
+  def subject_list
     subjects.map{|s| s.name }.join(",")
   end
 
@@ -198,4 +198,3 @@ end
 #  language                    :string(255)
 #  format                      :string(255)
 #
-

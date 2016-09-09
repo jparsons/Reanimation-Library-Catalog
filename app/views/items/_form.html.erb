@@ -3,7 +3,7 @@
 $(document).ready(function(){
 	$("#item_publisher_name").autocomplete({
 	    source: <%= raw Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
-	});	
+	});
 	$("#item_physical_format").autocomplete({
 		source: <%= raw Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
 	});
@@ -26,15 +26,15 @@ $(document).ready(function(){
 	<%= f.file_field :cover_image %></p>
   <p>
     <%= f.label :collection %><br />
-    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>	
+    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>
   </p>
   <p>
     <%= f.label :series %><br />
-    <%= f.text_field :series_name %>	
+    <%= f.text_field :series_name %>
   </p>
   <p>
     <%= f.label :edition %><br />
-    <%= f.text_field :edition %>	
+    <%= f.text_field :edition %>
   </p>
 <p><%=f.label :creators %>
 </p>
@@ -43,7 +43,7 @@ $(document).ready(function(){
     <%= render :partial => 'creator', :locals => {:f => creator_form} %>
   <% end %>
 </div>
-<p><%= add_child_link "click here to add a new creator", f, :creators %>  </p>
+<p><%= link "click here to add a new creator", "#" %>  </p>
 
 <div id ="publisher">
 <h2>Publication Information</h2>
@@ -54,7 +54,7 @@ $(document).ready(function(){
 <p><%= f.label :state %><br />
 	<%= f.select :publisher_state, STATES, :include_blank=>true %></p>
 <p><%= f.label :country %><br />
-	<%= f.select :publisher_country, COUNTRIES, :include_blank=>true %></p>	
+	<%= f.select :publisher_country, COUNTRIES, :include_blank=>true %></p>
 <p><%= f.label :copyright, "Copyright Year" %><br />
 	<%= f.text_field :copyright %></p>
 <p><%= f.label :corporate_author %><br />
@@ -65,7 +65,7 @@ $(document).ready(function(){
 </p>
 
 
-</div>	
+</div>
 <div id="physical_description">
 	<h2>Physical Description</h2>
 	<p><%= f.label :extent %><br />
@@ -102,7 +102,7 @@ $(document).ready(function(){
 	<p><%= f.label :barcode %><br />
 		<%= f.text_field :barcode %></p>
 	<p><%= f.label :isbn_issn, "ISBN / ISSN" %><br />
-		<%= f.text_field :isbn_issn %></p>		
+		<%= f.text_field :isbn_issn %></p>
 </div>
 <div id="language">
 	<p><%= f.label :languages %><br />
@@ -110,7 +110,7 @@ $(document).ready(function(){
   	  <% for language in Language.order(:name) %>
   	    <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>	<%= language.name %> <br />
      <% end %>
-  	</div>	
+  	</div>
 </div>
 <div id="location">
 	<p><%= f.label :location %><br />

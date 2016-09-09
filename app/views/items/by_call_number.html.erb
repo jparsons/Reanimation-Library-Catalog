@@ -3,7 +3,7 @@
 <h2>Browse by Call Number</h2>
 <%= will_paginate(@items) %>
   <div id="item-list">
-  <% if logged_in? && current_user.is_administrator? %>
+  <% if user_signed_in? && current_user.is_administrator? %>
 	  <div class="admin-link">
 	    <%= link_to "Add a new item", new_item_path %><br />
 	  </div> 

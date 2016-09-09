@@ -5,14 +5,14 @@
 	<%= "#{@item.title}" %>
 </h1>
 <%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
-<% if logged_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
+<% if user_signed_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
 <% form_for @item do |f| %>
 <% if @item.published? %><%= f.submit SHORT_UNPUBLISH_TEXT %>&nbsp;&nbsp;<% else %><%= f.submit SHORT_PUBLISH_TEXT %><% end %>
 <% end %>
 <% end %>
 <div class="item-cover-image-large">
 	<%= image_tag(@item.cover_image.url(:large)) %>
-	<% if logged_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
+	<% if user_signed_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
 	    <div class="admin-link">
 	      <%= link_to 'Edit this item', edit_item_path(@item) %>
 	    </div>
@@ -69,7 +69,7 @@
 	</div>
 	<% end %>
 
-	<% if logged_in? && current_user.in_authentication_group?(["cataloger", "administrator"]) %>
+	<% if user_signed_in? && current_user.in_authentication_group?(["cataloger", "administrator"]) %>
 	<div class="item-row item-copyright">
 		<div class="item-label">Copyright Year:</div><div class="item-content"> <%=h @item.copyright %></div>
 	</div>

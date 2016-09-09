@@ -1,14 +1,14 @@
 class DigitalAssetsController < ApplicationController
 
   def index
-    @digital_assets = DigitalAsset.published.by_scan_file_name.paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
+    @digital_assets = DigitalAsset.published.by_scan_file_name.paginate(:page=>params[:page], :per_page=>52).includes(:item).order("items.alphabetical_title, scan_file_name")
   end
 
   def show
     @digital_asset = DigitalAsset.find(params[:id])
     @previous = @digital_asset.previous().first
     @next = @digital_asset.next().first
-    if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
+    if user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?)
       @tags = ActsAsTaggableOn::Tag.all.map(&:name)
     end
   end
@@ -76,7 +76,7 @@ class DigitalAssetsController < ApplicationController
   def tag
     @tag = params[:id]
     @digital_assets = DigitalAsset.tagged_with(@tag).paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
-    if logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
+    if user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?)
       @tags = ActsAsTaggableOn::Tag.all.map(&:name)
     end
 

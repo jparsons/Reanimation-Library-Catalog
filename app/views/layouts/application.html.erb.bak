@@ -32,7 +32,7 @@ var sc_security="e77d3ad9";
   <img src="http://www.reanimationlibrary.org/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px; margin-bottom: 12px; float: left;">
   <div class="headerfont"><a href="http://www.reanimationlibrary.org/index">REANIMATION LIBRARY</a></div>
   <div class="headersearch">
-  <form method="get" action="/catalog/search">
+  <form method="get" action="http://www.reanimationlibrary.org/catalog/search">
   <input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Search the Catalog':this.value;" value="Search the Catalog" style="height: 32px; width: 211px; color: #7A7A7A; font-size: 12px; background: #FBFBFB; padding-left: 6px; border: 2px solid #AFAFAF; float: right; margin-top: -17px; line-height: 1px; font-family: 'helvetica', sans-serif; font-weight: ;"/>
   </form>
   </div>
@@ -127,9 +127,6 @@ var sc_security="e77d3ad9";
       <%= link_to "image types", image_types_path %>
     </div>
     <div class="sidebar-menu-item">
-      <%= link_to "languages", languages_path %>
-    </div>
-    <div class="sidebar-menu-item">
       <%= link_to "subjects", subjects_path %>
     </div>
     <div class="sidebar-menu-item">
@@ -138,7 +135,7 @@ var sc_security="e77d3ad9";
   <% end %>
   <% if user_signed_in? %>
     <div class="sidebar-menu-item">
-      <%= link_to 'log out', logout_path, method: :delete %>
+      <%= link_to 'log out', logout_path %>
     </div>
   <% end %>
 
@@ -159,7 +156,7 @@ var sc_security="e77d3ad9";
 <div class="push"></div>
 <image src="http://reanimationlibrary.org/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
 <div class="footer">
-<a target="blank" href="https://www.google.com/maps/place/Queens+Museum/@40.745666,-73.8465009,17z/data=!3m1!4b1!4m2!3m1!1s0x89c25fd006096399:0x380dca2c1bba2e6">QUEENS MUSEUM | STUDIO #5 | NEW YORK CITY BUILDING | FLUSHING MEADOWS CORONA PARK, QUEENS NY 11368</a><span class="joinemail">JOIN OUR EMAIL LIST</span><br/>VISIT THE LIBRARY ON <a href="http://www.facebook.com/reanimationlibrary" target="_blank">FACEBOOK</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">TWITTER</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">TUMBLR</a>
+<a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA">543 UNION STREET BROOKLYN, NY, 11215</a><span class="joinemail">JOIN OUR EMAIL LIST</span><br/>VISIT THE LIBRARY ON <a href="http://www.facebook.com/reanimationlibrary" target="_blank">FACEBOOK</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">TWITTER</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">TUMBLR</a>
 <form method="post" action="http://ymlp.com/subscribe.php?YMLPID=geuuusjgmgb" target="_blank">
 <input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" value="" style="height: 18px; float: right; width: 211px; background: #FBFBFB; color: #7A7A7A; font-size: 11px; border: 1px solid #AFAFAF; padding-left: 3px; margin-bottom: px; margin-top: -15px; no-repeat left center;"/>
 </form>

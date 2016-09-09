@@ -1,9 +1,17 @@
 ReanimationLibraryCatalog::Application.routes.draw do
 
   scope "/catalog" do
-    match 'search' => 'search#new', :as => :search
-    match 'advanced_search' => 'search#new', :as => :advanced_search, :advanced => 'true'
-    match 'search_results' => 'search#show', :as => :search_results
+    devise_for :users
+
+    as :user do
+      delete "/logout" => "devise/sessions#destroy", as: 'logout'
+    end
+
+    resources :users
+
+    get 'search' => 'search#new', :as => :search
+    get 'advanced_search' => 'search#new', :as => :advanced_search, :advanced => 'true'
+    get 'search_results' => 'search#show', :as => :search_results
     resources :exhibitions
     resources :vendors
     resources :digital_assets do
@@ -30,17 +38,12 @@ ReanimationLibraryCatalog::Application.routes.draw do
 
 
     end
-
-    match 'signup' => 'users#new', :as => :signup
-    match 'logout' => 'user_sessions#destroy', :as => :logout
-    match 'login' => 'user_sessions#new', :as => :login
-    resources :user_sessions
     resources :digital_asset_ingests
-    resources :users
     resources :log_entries
-    match 'dashboard' => 'admin_dashboard#index', :as => :admin_dashboard
-    match '/' => 'items#index'
-    match 'root' => 'items#index'
-    match '/:controller(/:action(/:id))'
+    get 'dashboard' => 'admin_dashboard#index', :as => :admin_dashboard
+    get '/' => 'items#index'
+    get '/:controller(/:action(/:id))'
+    root 'items#index'
+
   end
 end

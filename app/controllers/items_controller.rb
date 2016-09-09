@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_filter :cataloger_required, :only=>[:new, :edit]
   def index
     letter = params[:letter] || "1-9"
-    if logged_in? && current_user.is_administrator?
+    if user_signed_in? && current_user.is_administrator?
       if letter == "1-9"
         @items = Item.non_alphanumerical
       else
@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
         @items = Item.starting_with(letter).published
       end
     end
+    @items.includes(creators: :creator_type ).includes(:subjects)
 
   end
 
@@ -26,7 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def by_call_number
-    @items = Item.by_call_number.published.paginate(:page => params[:page], :per_page => 20)
+    @items = Item.by_call_number.published.paginate(:page => params[:page], :per_page => 20).includes(creators: :creator_type ).includes(:subjects)
   end
 
   def acquired
@@ -57,7 +58,7 @@ class ItemsController < ApplicationController
     respond_to do |wants|
       wants.html { @items = Item.published.order("created_at desc").paginate( :page => params[:page]) }
       wants.xml {
-        @items = Item.published.order("created_at desc").paginate( :page => params[:page])
+        @items = Item.published.order("created_at desc").paginate( :page => params[:page]).includes(creators: :creator_type ).includes(:subjects)
         render :xml=>@items.to_xml
         }
       wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_title_with_colon, :display_creator]) }
@@ -129,7 +130,7 @@ class ItemsController < ApplicationController
   end
 
   # def cataloger_required
-  #   logged_in? && (current_user.is_administrator? || current_user.is_cataloger?)
+  #   user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?)
   # end
 
   def not_found

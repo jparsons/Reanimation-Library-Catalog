@@ -6,7 +6,7 @@ class Donor < ActiveRecord::Base
   validates :name, uniqueness: { case_sensitive: false }
   validates :organization_name, uniqueness: { case_sensitive: false }
 
-  default_scope :order=>"last_name asc"
+  default_scope { order("last_name asc") }
 
   def display_name
     name || organization_name
@@ -35,4 +35,3 @@ end
 #  updated_at        :datetime
 #  name              :string(255)
 #
-
