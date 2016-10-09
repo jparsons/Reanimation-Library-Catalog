@@ -1,33 +1,32 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.2.1'
-ruby '2.1.10'
+gem 'mime-types', '< 3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem 'paperclip'
-gem "devise"
+gem 'paperclip', '4.3.7'
+gem "devise", '3.5.10'
 gem "devise-encryptable"
 gem "easy_roles"
-gem "aasm"
-#gem 'acts_as_ferret', '= 0.5.2', :git => "https://github.com/primerano/acts_as_ferret.git"
-#gem 'ferret'
+# gem "aasm"
+# #gem 'acts_as_ferret', '= 0.5.2', :git => "https://github.com/primerano/acts_as_ferret.git"
+# #gem 'ferret'
 gem 'acts_as_indexed'
 gem 'delayed_job'
 gem 'will_paginate', '~> 3.1.0'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '3.5.0'
 gem 'mysql2', '0.3.17'
 gem 'american_date'
-
+#
 gem 'nested_form'
 gem "select2-rails"
 
-gem 'rake', '11.2.2'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -48,8 +47,9 @@ gem 'rake', '11.2.2'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
  group :development, :test do
-  gem 'capistrano', '2.6.0'
-  gem 'sqlite3'
-  gem 'yaml_db'
+   gem 'net-ssh', '2.0.14'
+   gem 'capistrano', '2.6.0'
+   gem 'sqlite3'
+   gem 'yaml_db'
   #gem 'activerecord-mysql2-adapter'
  end
