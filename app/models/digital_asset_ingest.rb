@@ -1,6 +1,6 @@
 class DigitalAssetIngest < ActiveRecord::Base
-  default_scope :order=>"created_at desc"
-  has_one :process_log 
+  default_scope {order("created_at desc") }
+  has_one :process_log
 
   def has_images_to_process?
      file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/*.*")
@@ -15,7 +15,7 @@ class DigitalAssetIngest < ActiveRecord::Base
       process_log.log_entries << LogEntry.create!(:message=>"No new files found")
     else    # if there are new images found, process them
       process_log.log_entries << LogEntry.create(:message=>"Found #{file_list.size.to_s} new files")
-      # each image will be prefixed with the id or legacy id of an item 
+      # each image will be prefixed with the id or legacy id of an item
       # so, get a list of all the unique prefixes in the folder
 
       prefixes = unique_prefixes(file_list)
@@ -49,18 +49,18 @@ class DigitalAssetIngest < ActiveRecord::Base
         item.save!
         #File.delete(filename)
         FileUtils.move(filename, File.join(COVER_IMAGE_UPLOADS_DIR, "deletes"))
-      else 
+      else
         FileUtils.move(filename, File.join(COVER_IMAGE_UPLOADS_DIR, "rejects"))
       end
-    end 
+    end
 
 
   end
 
   private
-  
+
   def match_and_delete(item, prefix)
-    
+
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/#{prefix}*.*")
     # puts file_list
     file_list.each do |filename|
@@ -72,11 +72,11 @@ class DigitalAssetIngest < ActiveRecord::Base
       File.delete(filename)
       process_log.log_entries << LogEntry.new(:message=>"Matched #{filename} with #{item.display_title}")
       #FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/deletes/")
-      
+
     end
-    
+
   end
-  
+
   def move_to_reject_folder(prefix)
     FileUtils.mkdir_p(DIGITAL_ASSET_UPLOADS_DIR + "/rejects/")
     file_list = Dir.glob(DIGITAL_ASSET_UPLOADS_DIR + "/#{prefix}*.*")
@@ -85,23 +85,23 @@ class DigitalAssetIngest < ActiveRecord::Base
       process_log.log_entries << LogEntry.new(:message=>"Could not find a match for #{filename}. It has been moved to the rejects folder")
       FileUtils.move(filename, DIGITAL_ASSET_UPLOADS_DIR + "/rejects/")
     end
-    
+
   end
-  
+
   def unique_prefixes(dir_list)
-    
+
     prefixes = []
     dir_list.each do |filename|
       name = File.basename(filename)
       prefix, suffix  = name.split("_")
       prefixes << prefix
     end
-    
+
     return prefixes.uniq
 
   end
 
-  
+
 end
 
 
@@ -116,4 +116,3 @@ end
 #  start_time :datetime
 #  end_time   :datetime
 #
-

@@ -4,7 +4,7 @@ class Donor < ActiveRecord::Base
 
   validate :presence_of_name_or_organization_name
   validates :name, uniqueness: { case_sensitive: false }
-  validates :organization_name, uniqueness: { case_sensitive: false }
+  validates :organization_name, uniqueness: { case_sensitive: false }, allow_blank: true
 
   default_scope { order("last_name asc") }
 

@@ -1,5 +1,7 @@
 <%= form_for @donor do |f| %>
-  <%= f.error_messages %>
+  <% @donor.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>

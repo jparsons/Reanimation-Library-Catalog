@@ -22,7 +22,7 @@ class Item < ActiveRecord::Base
   #     transitions :to => :unpublished, :from => [:acquired, :images_added_but_needs_images, :fully_cataloged_but_needs_images, :unpublished, :published]
   #   end
   # end
-  scope :published, -> { where("cataloging_status != 'published'") }
+  scope :published, -> { where("cataloging_status = 'published'") }
   scope :recent, -> { published.limit(15).order("published_at DESC").includes(:creators) }
   scope :by_call_number, -> { order("call_number ASC").includes(:creators) }
   scope :need_cataloging, -> { where("cataloging_status != 'published'") }
@@ -138,13 +138,22 @@ class Item < ActiveRecord::Base
     return count
   end
 
+  def unpublished?
+    !published?
+  end
 
-end
+  def published?
+    cataloging_status == 'published'
+  end
 
-private
 
-def strip_dollar_signs
-  self.price_paid = self.price_paid.to_s.gsub(/\$/, '').to_f
+
+  private
+
+  def strip_dollar_signs
+    self.price_paid = self.price_paid.to_s.gsub(/\$/, '').to_f
+  end
+
 end
 
 

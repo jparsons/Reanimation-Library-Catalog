@@ -1,19 +1,33 @@
-<%= form_for @work, :html => {:multipart => true} do |f| %>
-  <%= f.error_messages %>
+<%= nested_form_for @work, :html => {:multipart => true} do |f| %>
+  <% @work.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
 
   <p><%=f.label :creators %></p>
+
   <p>
 	<%= f.label :creators, "select from existing creators" %><br />
 	  <%= f.select "work_creator_ids", WorkCreator.order(:name).map{|c| [c.name, c.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
-	  <p><%= add_child_link "... and / or click here to add new creators", f, :work_creators %></p>
+    <%= f.fields_for :work_creators do |work_creator_form| %>
+      <% if work_creator_form.object.new_record? %>
+      	<div class="fields subform">
+      		<h2>Add a new creator</h2>
+        	<p>
+        	  <%= work_creator_form.label :name %><br />
+        	  <%= work_creator_form.text_field :name %>
+        	</p>
+        	<p><%= work_creator_form.link_to_remove "Remove this creator" %></p>
+      	</div>
+      <% end %>
+    <% end %>
   </p>
-  <div id="work-creators">
+  <p><%= f.link_to_add "... and / or click here to add new creator", :work_creators %></p>
 
-  </div>
+
   <p>
     <%= f.label :medium %><br />
     <%= f.text_field :medium %>
@@ -33,36 +47,29 @@
   <p><%=f.label :items, "Select the items that were used in this art work" %>
   </p>
   <div id="work-items">
-	 <% for item in Item.all %>  
-	     <div>  
-	       <%= check_box_tag "work[item_ids][]", item.id, @work.items.include?(item) %>  
-	       <%= item.title %><%= item.subtitle.blank? ? "" : ": #{item.subtitle}" %>  
-	     </div>  
-	 <% end %>
+    <%= f.select :items, Item.order(:alphabetical_title).map{|i| [i.title, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple'}%></p>
   </div>
   <%= f.label :work_images, "Images" %>
   <div id="work-images">
-    <% if @work.new_record? %>
-       <%= render :partial => 'work_image', :locals => { :form => f, :work_image => @work.work_images.build } %>
-       <% else %>
-       <%= f.fields_for :work_images do |work_image| %>
+    <div>
+      <%= f.fields_for :work_images do |work_image_form| %>
+        <div class="work-image">
+          <p>
+            <%= work_image_form.file_field :image %>
+          </p>
+        </div>
+	      <% unless work_image_form.object.new_record? %>
+	        <div class="work-image-thumbnail">
+	          <%= link_to( image_tag(work_image_form.object.image.url(:thumb)), work_image_form.object.image.url(:original) ) %>
+	          <%= work_image_form.check_box :_destroy %> remove and destroy
+	        </div>
 
-	          <% unless work_image.object.new_record? %>
-
-	                <div class="work-image-thumbnail">
-	                        <%= link_to( image_tag(work_image.object.image.url(:thumb)), work_image.object.image.url(:original) ) %>
-	                        <%= work_image.check_box :_destroy %> remove and destroy
-	                </div>
-
-	          <% end %>        
-
-	     <% end %>
-	
-    <% end %>
-
-	
+        <% end %>
+	    <% end %>
+    </div>
   </div>
-  <%= add_object_link("Add more images", f, @work.work_images.build, "work_image", "#work-images") %>
+  <br />
+  <p><%= f.link_to_add "click here to add another image", :work_images %></p>
 
 
 

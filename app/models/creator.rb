@@ -33,4 +33,3 @@ end
 #  creator_type :string(255)
 #  item_id      :integer
 #
-

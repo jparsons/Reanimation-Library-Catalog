@@ -42,7 +42,7 @@ class CreatorsController < ApplicationController
   # POST /creators
   # POST /creators.xml
   def create
-    @creator = Creator.new(params[:creator])
+    @creator = Creator.new(creator_params)
 
     respond_to do |format|
       if @creator.save
@@ -61,7 +61,7 @@ class CreatorsController < ApplicationController
     @creator = Creator.find(params[:id])
 
     respond_to do |format|
-      if @creator.update_attributes(params[:creator])
+      if @creator.update_attributes(creator_params)
         format.html { redirect_to(creators_path, :notice => 'Creator type was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -82,4 +82,16 @@ class CreatorsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private
+
+  def creator_params
+    params.require(:creator).permit(
+      :first_name,
+      :last_name,
+      :name_suffix,
+      :creator_type_id
+    )
+  end
+
 end

@@ -1,7 +1,7 @@
 class VendorsController < ApplicationController
-  
+
   before_filter do |c| c.send(:require_role, :administrator) end
-  
+
   # GET /vendors
   # GET /vendors.xml
   def index
@@ -43,7 +43,7 @@ class VendorsController < ApplicationController
   # POST /vendors
   # POST /vendors.xml
   def create
-    @vendor = Vendor.new(params[:vendor])
+    @vendor = Vendor.new(vendor_params)
 
     respond_to do |format|
       if @vendor.save
@@ -63,7 +63,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find(params[:id])
 
     respond_to do |format|
-      if @vendor.update_attributes(params[:vendor])
+      if @vendor.update_attributes(vendor_params)
         flash[:notice] = 'Vendor was successfully updated.'
         format.html { redirect_to vendors_path }
         format.xml  { head :ok }
@@ -84,5 +84,22 @@ class VendorsController < ApplicationController
       format.html { redirect_to(vendors_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def vendor_params
+    params.require(:vendor).permit(
+      :id,
+      :name,
+      :street,
+      :city,
+      :state,
+      :zip,
+      :country,
+      :url,
+      :phone,
+      :notes
+    )
   end
 end

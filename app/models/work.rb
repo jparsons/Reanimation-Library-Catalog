@@ -4,14 +4,18 @@ class Work < ActiveRecord::Base
   has_many :work_images, :dependent => :destroy
   has_and_belongs_to_many :work_creators
   has_attached_file :textfile
-  default_scope :order=>"year_created desc, title asc"
-  
-  
+  validates_attachment :textfile, content_type: { content_type: "application/pdf" }
+  validates_attachment :textfile, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+
+  default_scope { order('year_created desc, title asc') }
+
+
   accepts_nested_attributes_for :work_creators, :allow_destroy=>true, :reject_if=> proc { |attributes| attributes.all? {|k,v| v.blank?} }
-  
+
   accepts_nested_attributes_for :work_images, :allow_destroy=>true
-  
-  def creator_name 
+
+  def creator_name
     work_creator.nil? ? "Unknown" : work_creator.display_name
   end
 end
@@ -36,4 +40,3 @@ end
 #  textfile_file_size    :integer
 #  textfile_updated_at   :datetime
 #
-

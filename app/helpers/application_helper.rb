@@ -2,7 +2,7 @@
 module ApplicationHelper
   include ActsAsTaggableOn::TagsHelper
   def link_to_if_user_is_admin(condition, name, options = {}, html_options = {}, &block)
-    if @current_user && @current_user.is_administrator? 
+    if @current_user && @current_user.is_administrator?
       link_to(condition, name, options, html_options, &block)
     else
       ''
@@ -18,7 +18,8 @@ module ApplicationHelper
   end
   # copied from http://github.com/ryanb/complex-form-examples
   def remove_child_link(name, f)
-    f.hidden_field(:_destroy, :value=>"0") + link_to_function(name, "remove_fields(this)", :class=>"admin-link")
+    f.hidden_field(:_destroy, :value=>"0")
+    link_to(name, "javascript:void(0)", :class=>"admin-link remove-link")
   end
    # need to have a way to replace the dropdown with the new child form and vice versa ...
    def new_association_link(name, f, model, additional_javascript = "")

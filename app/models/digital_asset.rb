@@ -1,11 +1,11 @@
 class DigitalAsset < ActiveRecord::Base
   acts_as_taggable
   belongs_to :item
-  has_and_belongs_to_many :digital_asset_subjects
+  has_and_belongs_to_many :digital_asset_subjects, join_table: 'digital_asset_subjects_digital_assets'
   has_and_belongs_to_many :works
   has_and_belongs_to_many :image_types
 
-  accepts_nested_attributes_for :digital_asset_subjects
+  accepts_nested_attributes_for :digital_asset_subjects, reject_if: proc { |attributes| attributes['name'].blank? }
 
 
   # need to update these sizes
@@ -18,7 +18,6 @@ class DigitalAsset < ActiveRecord::Base
       }
 
   validates_attachment :scan, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
-  #default_scope :joins=>:item, :order=>"items.alphabetical_title, legacy_id"
 
   scope :most_recent, -> { order("created_at DESC").limit(20) }
   scope :published, -> { where("items.cataloging_status='published'").joins(:item) }

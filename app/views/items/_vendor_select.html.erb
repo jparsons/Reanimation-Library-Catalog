@@ -1,2 +1,2 @@
 	<label>select an existing vendor ...</label><br />
-	<%= select :item,  :vendor_id, Vendor.all.map{|v| ["#{v.name} #{v.city} #{v.state}", v.id]}, {:include_blank=>true} %>
+	<%= select :item,  :vendor_id, Vendor.order(:name).map{|v| ["#{v.name} #{v.city} #{v.state}", v.id]}, {:include_blank=>true}, {class: 'select2', data: {placeholder: 'Enter vendor name'}} %>

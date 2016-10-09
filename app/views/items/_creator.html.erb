@@ -1,21 +1,18 @@
-<div class="subform">
-
-	<div class="fields">
-	<p>
-	  <%= f.label :first_name, "Creator first name" %><br />
-	  <%= f.text_field :first_name %> <br />
-	  <%= f.label :middle_name, "Creator middle name" %><br />
-	  <%= f.text_field :middle_name %> <br />
-	  <%= f.label :last_name, "Creator last name" %><br />
-	  <%= f.text_field :last_name %> <br />
-	  <%= f.label :name_suffix, "Creator name suffix" %><br />
-	  <%= f.text_field :name_suffix %><br />
-	</p>
-	<p>
-	  <%= f.label :type, "Creator type" %><br />
-	  <%= f.collection_select :creator_type_id, CreatorType.all, :id, :name, :prompt => true %>
-	</p>
-	<p> <%= remove_child_link "remove this creator", f %></p>
-	<br />
-	</div>
+<div class="fields subform">
+<p>
+  <%= f.label :first_name, "Creator first name" %><br />
+  <%= f.text_field :first_name %> <br />
+  <%= f.label :middle_name, "Creator middle name" %><br />
+  <%= f.text_field :middle_name %> <br />
+  <%= f.label :last_name, "Creator last name" %><br />
+  <%= f.text_field :last_name %> <br />
+  <%= f.label :name_suffix, "Creator name suffix" %><br />
+  <%= f.text_field :name_suffix %><br />
+</p>
+<p>
+  <%= f.label :type, "Creator type" %><br />
+  <%= f.collection_select :creator_type_id, CreatorType.all, :id, :name, :prompt => true %>
+</p>
+<p> <%= f.link_to_remove "remove this creator" %></p>
+<br />
 </div>

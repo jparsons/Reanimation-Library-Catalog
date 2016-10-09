@@ -2,12 +2,12 @@
 <html>
 <head>
 <title><%= yield(:title) || "Catalog" %></title>
-<%= javascript_include_tag 'jquery', 'jquery_ujs', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min' %>
+<%= javascript_include_tag 'application' %>
+<%= stylesheet_link_tag "application" %>
 <!--[if lt IE 8]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="http://www.reanimationlibrary.org/pages/application.css" />
-<%= stylesheet_link_tag 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom', 'admin' %>
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>

@@ -2,9 +2,11 @@
 <% title "New Item Acquisition" %>
 <h2><%= yield(:title) %></h2>
 
-<%= form_for @item do |f| %>
-  <%= f.object.errors.full_messages %>
-  <p>
+<%= nested_form_for @item do |f| %>
+<% @item.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+ <% end %>
+ <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>

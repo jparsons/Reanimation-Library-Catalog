@@ -1,5 +1,7 @@
 <%= form_for @user do |f| %>
-  <%= f.error_messages %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
@@ -14,7 +16,7 @@
   </p>
   <p>
     <%= f.label :password_confirmation, "Confirm Password" %><br />
-    <%= f.password_field :password_confirmation %> 
+    <%= f.password_field :password_confirmation %>
   </p>
   <% if user_signed_in? && current_user.is_administrator? %>
   <p>

@@ -18,9 +18,13 @@ gem 'delayed_job'
 gem 'will_paginate', '~> 3.1.0'
 gem 'hpricot', '0.8.4'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'acts-as-taggable-on'
 gem 'mysql2', '0.3.17'
 gem 'american_date'
+
+gem 'nested_form'
+gem "select2-rails"
 
 gem 'rake', '11.2.2'
 # Use unicorn as the web server

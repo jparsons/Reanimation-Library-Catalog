@@ -16,3 +16,5 @@ SHORT_PUBLISH_TEXT = "publish this item"
 SHORT_UNPUBLISH_TEXT = "unpublish this item"
 IMAGE_COLORS = ["Black &amp; White", "Color", "Mixed Color and Black &amp; White", "Two-Tone"]
 IMAGE_TYPES = ["Architectural Diagrams", "Braille", "Cartographic Material", "Chess Game Diagrams", "Color Chart", "Echocardiograph", "Fingerprints", "Graphic Design Patterns", "Illustration", "Information Graphic", "Line Drawing", "Logarithmic Table", "Mathematic Notation", "Mathematical Diagrams", "Medical Diagram", "Micrograph", "Musical Notation", "Needlepoint Patterns", "Photograph", "Photo Illustration", "Radiograph", "Sewing Patterns", "Shorthand Notation", "Spectograph", "Technical Diagrams", "Two-Tone", "Typography", "Weather Symbols", "Woodcuts"]
+DIGITAL_ASSET_UPLOADS_DIR = "#{Rails.root}/public/system/image_uploads"
+COVER_IMAGE_UPLOADS_DIR = "#{Rails.root}/public/system/cover_image_uploads"

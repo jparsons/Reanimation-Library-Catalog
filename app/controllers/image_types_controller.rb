@@ -1,7 +1,7 @@
 class ImageTypesController < ApplicationController
-  
+
   before_filter do |c| c.send(:require_role, :administrator) end
-  
+
   # GET /image_types
   # GET /image_types.xml
   def index
@@ -43,7 +43,7 @@ class ImageTypesController < ApplicationController
   # POST /image_types
   # POST /image_types.xml
   def create
-    @image_type = ImageType.new(params[:image_type])
+    @image_type = ImageType.new(image_type_params)
 
     respond_to do |format|
       if @image_type.save
@@ -63,7 +63,7 @@ class ImageTypesController < ApplicationController
     @image_type = ImageType.find(params[:id])
 
     respond_to do |format|
-      if @image_type.update_attributes(params[:image_type])
+      if @image_type.update_attributes(image_type_params)
         flash[:notice] = 'ImageType was successfully updated.'
         format.html { redirect_to image_types_path }
         format.xml  { head :ok }
@@ -84,5 +84,13 @@ class ImageTypesController < ApplicationController
       format.html { redirect_to(image_types_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def image_type_params
+    params.require(:image_type).permit(
+      :name
+    )
   end
 end

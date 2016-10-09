@@ -2,7 +2,9 @@
 <div id="login" style="height:500px;">
 <%= content_tag 'h2', "Log in" %>
 <%= form_for @user_session do |f| %>
-  <%= f.error_messages %>
+  <% @user_sessions.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>

@@ -1,5 +1,4 @@
-<div class="subform">
-	<div class="fields">
+<div class="fields subform">
 	<p>
 	  <%= f.label :name, "Subject name" %><br />
 	  <%= f.text_field :name, size: 75, :class=>"new-subject-textbox" %>
@@ -8,6 +7,5 @@
 	  <%= f.label :authority, "Subject authority" %><br />
 	  <%= f.select :authority, SUBJECT_AUTHORITIES %> <br />
 	</p>
-	<p> <%= remove_child_link "remove this subject", f %></p>
-	</div>
+	<p> <%= f.link_to_remove "remove this subject" %></p>
 </div>

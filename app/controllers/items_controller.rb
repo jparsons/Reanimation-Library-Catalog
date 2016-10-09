@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     else
       order = "call_number ASC"
     end
-    @items = Item.need_cataloging.all(:order => order)
+    @items = Item.need_cataloging.all.order(order)
   end
 
   def need_images
@@ -80,7 +80,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params[:item])
+    @item = Item.new(item_params)
     if @item.save
       flash[:notice] = "Successfully created item."
       redirect_to @item
@@ -114,7 +114,7 @@ class ItemsController < ApplicationController
     end
     params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f if (params && params[:item])
    # @item.update_attribute(:subject_ids, subject_ids)
-    if @item.update_attributes(params[:item])
+    if @item.update_attributes(item_params)
       flash[:notice] = "Successfully updated item."
       redirect_to @item
     else
@@ -135,5 +135,58 @@ class ItemsController < ApplicationController
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(
+      :title,
+      :subtitle,
+      :publisher_name,
+      :publisher_city,
+      :publisher_state,
+      :publisher_country,
+      :extent,
+      :copyright,
+      :item_size,
+      :call_number,
+      :collection_name,
+      :legacy_id,
+      :cover_image_file_name,
+      :barcode,
+      :has_marc_record,
+      :metadata_notes,
+      :corporate_author,
+      :isbn_issn,
+      :is_government_document,
+      :edition,
+      :notes,
+      :series_name,
+      :needs_translation,
+      :location,
+      :is_marked,
+      :vendor_id,
+      :date_acquired,
+      :price_paid,
+      :acquisition_type,
+      :acquisition_note,
+      :acquired_for,
+      :legacy_record_id,
+      :cataloging_status,
+      :provenance,
+      :dedication,
+      :physical_format,
+      :published_at,
+      :cover_image,
+      donor_ids: [],
+      image_color_ids: [],
+      language_ids: [],
+      image_type_ids: [],
+      subjects_attributes: [:id, :name, :authority, :_destroy],
+      donors_attributes: [:id, :name, :organization_name, :_destroy],
+      vendor_attributes: [:id, :name, :street, :city, :state, :zip, :country, :url, :_destroy],
+      creators_attributes: [:id, :first_name, :last_name, :middle_name, :name_suffix, :creator_type_id, :_destroy],
+    )
   end
 end

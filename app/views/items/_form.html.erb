@@ -1,19 +1,5 @@
-<%- content_for :head do -%>
-<script>
-$(document).ready(function(){
-	$("#item_publisher_name").autocomplete({
-	    source: <%= raw Item.all.map{|i| i.publisher_name}.uniq.compact.sort.to_json %>
-	});
-	$("#item_physical_format").autocomplete({
-		source: <%= raw Item.all.map(&:physical_format).uniq.compact.sort.to_json %>
-	});
-	$("#item_series_name").autocomplete({
-		source: <%= raw Item.all.map(&:series_name).uniq.compact.sort.to_json %>
-	});
-})
-</script>
-<%- end -%>
-<%= form_for @item, :html => { :multipart => true } do |f| %>
+
+<%= nested_form_for @item, :html => { :multipart => true } do |f| %>
 
 <p><%= f.label :title %><br />
 	<%= f.text_field :title, size: 75 %></p>
@@ -30,7 +16,8 @@ $(document).ready(function(){
   </p>
   <p>
     <%= f.label :series %><br />
-    <%= f.text_field :series_name %>
+		<%= f.select :series_name, Item.all.order(:series_name).map{|i| [i.series_name, i.series_name]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
+
   </p>
   <p>
     <%= f.label :edition %><br />
@@ -43,12 +30,12 @@ $(document).ready(function(){
     <%= render :partial => 'creator', :locals => {:f => creator_form} %>
   <% end %>
 </div>
-<p><%= link "click here to add a new creator", "#" %>  </p>
+<p><%= f.link_to_add "click here to add a new creator", :creators %>  </p>
 
 <div id ="publisher">
 <h2>Publication Information</h2>
 <p><%= f.label :publisher_name %><br />
-	<%= f.text_field :publisher_name %></p>
+	<%= f.select :publisher_name, Item.all.order(:publisher_name).map{|i| [i.publisher_name, i.publisher_name]}.uniq.compact, {include_blank: true}, {class: 'select2'} %></p>
 <p><%= f.label :city %><br />
     <%= f.text_field :publisher_city %></p>
 <p><%= f.label :state %><br />
@@ -73,28 +60,16 @@ $(document).ready(function(){
 	<p><%= f.label :item_size %><br />
 		<%= f.text_field :item_size %></p>
 	<p><%= f.label :format %><br />
-		<%= f.select :physical_format, FORMATS, :include_blank => true %></p>
+		<%= f.select :physical_format, Item.all.order(:physical_format).map{|i| [i.physical_format, i.physical_format]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
 </div>
-<div id="image-colors" class="scrolling-subform">
-  <h2>Image Colors</h2>
-  <% for image_color in ImageColor.all(:order=>"name") %>
-    <div>
-	  <%= check_box_tag "item[image_color_ids][]", image_color.id, @item.image_colors.include?(image_color) %>
-	  <%= raw(image_color.name) %>
-	</div>
-  <% end %>
-
-</div>
-<div id="image-types" class="scrolling-subform">
-  <h2>Image Types</h2>
-  <% for image_type in ImageType.all(:order=>"name") %>
-    <div>
-	  <%= check_box_tag "item[image_type_ids][]", image_type.id, @item.image_types.include?(image_type) %>
-	  <%= raw(image_type.name) %>
-	</div>
-  <% end %>
-
-</div>
+<p><%= f.label :image_colors %></p>
+<p>
+  <%= f.select :image_color_ids, ImageColor.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter image color names'}}%></p>
+</p>
+<p><%= f.label :image_types %></p>
+<p>
+  <%= f.select :image_type_ids, ImageType.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter image type names'}}%></p>
+</p>
 <div id="identifiers">
 	<h2>Identifiers</h2>
 	<p><%= f.label :call_number %><br />
@@ -104,14 +79,10 @@ $(document).ready(function(){
 	<p><%= f.label :isbn_issn, "ISBN / ISSN" %><br />
 		<%= f.text_field :isbn_issn %></p>
 </div>
-<div id="language">
-	<p><%= f.label :languages %><br />
-		<div id="item-languages" class="scrolling-subform">
-  	  <% for language in Language.order(:name) %>
-  	    <%= check_box_tag "item[language_ids][]", language.id, @item.languages.include?(language) %>	<%= language.name %> <br />
-     <% end %>
-  	</div>
-</div>
+<p><%= f.label :languages %></p>
+<p>
+  <%= f.select :language_ids, Language.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter language names'}}%></p>
+</p>
 <div id="location">
 	<p><%= f.label :location %><br />
 		<%= f.text_field :location %></p>
@@ -133,7 +104,7 @@ $(document).ready(function(){
 <%= f.fields_for :subjects do |subject_form| %>
   <%= render :partial => 'subject', :locals => {:f => subject_form} %>
 <% end %>
-<p><%= add_child_link "... click here to add new subjects", f, :subjects, "$('.new-subject-textbox').autocomplete({ source: #{Subject.all.map(&:name).uniq.compact.sort.to_json}  });" %></p>
+<p><%= f.link_to_add "... click here to add new subjects",  :subjects %></p>
 <!-- can we match just the start of subjects -->
 <div id="subjects">
 

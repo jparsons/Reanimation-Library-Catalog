@@ -45,7 +45,7 @@ class DigitalAssetsController < ApplicationController
   end
 
   def edit
-    @digital_asset = DigitalAsset.find(params[:id], :include=>[:digital_asset_subjects])
+    @digital_asset = DigitalAsset.includes(:digital_asset_subjects).find(params[:id])
     @tags = ActsAsTaggableOn::Tag.all.map(&:name)
   end
 
@@ -53,8 +53,8 @@ class DigitalAssetsController < ApplicationController
     digital_asset_subject_ids = params[:digital_asset][:digital_asset_subject_ids]
     params[:digital_asset].delete(:digital_asset_subject_ids)
     @digital_asset = DigitalAsset.find(params[:id])
-    @digital_asset.update_attribute(:digital_asset_subject_ids, digital_asset_subject_ids)
-    if @digital_asset.update_attributes(params[:digital_asset])
+#    @digital_asset.update_attribute(:digital_asset_subject_ids, digital_asset_subject_ids)
+    if @digital_asset.update_attributes(digital_asset_params)
       flash[:notice] = "Successfully updated digital_asset."
       redirect_to @digital_asset
     else
@@ -81,5 +81,17 @@ class DigitalAssetsController < ApplicationController
     end
 
     render :index
+  end
+
+  private
+
+  def digital_asset_params
+    params.require(:digital_asset).permit(
+      :item_id,
+      :color,
+      :tag_list,
+      :scan,
+      digital_asset_subjects_attributes: [:name, :authority]
+    )
   end
 end
