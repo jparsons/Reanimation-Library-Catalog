@@ -177,6 +177,7 @@ DEPENDENCIES
   net-ssh (= 2.0.14)
   paperclip (= 4.3.7)
   rails (= 4.2.1)
+  rake (= 11.3.0)
   select2-rails
   sqlite3
   will_paginate (~> 3.1.0)
