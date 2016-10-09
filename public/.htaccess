@@ -1,4 +1,5 @@
 PassengerEnabled on
 PassengerAppRoot /home4/reanima2/catalog/current
+PassengerRuby /home4/reanima2/ruby/bin/ruby
 RailsEnv production
-SetEnv GEM_HOME /home4/reanima2/ruby/gems
+SetEnv GEM_HOME /home4/reanima2/ruby/gems/2.1.10
