@@ -15,7 +15,7 @@ gem "easy_roles"
 # gem "aasm"
 # #gem 'acts_as_ferret', '= 0.5.2', :git => "https://github.com/primerano/acts_as_ferret.git"
 # #gem 'ferret'
-gem 'acts_as_indexed'
+gem 'acts_as_indexed', git: 'https://github.com/rekotan/acts_as_indexed.git'
 gem 'delayed_job'
 gem 'will_paginate', '~> 3.1.0'
 gem 'hpricot', '0.8.4'
@@ -28,6 +28,7 @@ gem 'american_date'
 #
 gem 'nested_form'
 gem "select2-rails"
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

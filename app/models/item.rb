@@ -110,9 +110,9 @@ class Item < ActiveRecord::Base
 
   def self.search(query = "", logged_in = false)
     if logged_in
-      self.find_with_index(query, :include=>[:subjects, :creators])
+      self.includes(:subjects, :creators).find_with_index(query)
     else
-       self.published.find_with_index(query, :include=>[:subjects, :creators])
+       self.includes(:subjects, :creators).find_with_index(query)
     end
   end
 
