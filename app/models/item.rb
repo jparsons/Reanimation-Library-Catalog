@@ -110,9 +110,9 @@ class Item < ActiveRecord::Base
 
   def self.search(query = "", logged_in = false)
     if logged_in
-      self.includes(:subjects, :creators).find_with_index(query)
+      self.includes(:subjects, :creators, :image_types, :image_colors).find_with_index(query)
     else
-       self.includes(:subjects, :creators).find_with_index(query)
+       self.includes(:subjects, :creators, :image_types, :image_colors).find_with_index(query)
     end
   end
 
