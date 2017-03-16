@@ -1,5 +1,6 @@
 class DigitalAssetsController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token, :only => [:most_recent]
+  
   def index
     @digital_assets = DigitalAsset.published.by_scan_file_name.paginate(:page=>params[:page], :per_page=>52).includes(:item).order("items.alphabetical_title, scan_file_name")
   end

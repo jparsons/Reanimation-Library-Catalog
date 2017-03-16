@@ -1,5 +1,7 @@
 class DonorsController < ApplicationController
-  before_filter do |c| 
+  skip_before_filter :verify_authenticity_token, :only => [:index]
+  
+  before_filter do |c|
     c.send(:require_role, :administrator) unless request.format.json?
   end
 

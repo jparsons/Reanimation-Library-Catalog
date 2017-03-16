@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token, :only => [:recent]
   before_filter :cataloger_required, :only=>[:new, :edit]
   def index
     letter = params[:letter] || "1-9"
