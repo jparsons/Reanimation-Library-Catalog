@@ -4,7 +4,7 @@
     getDonors();
 	});
 function getRecentImages(){
-  $.getJSON('http://reanimationlibrary.org/catalog/digital_assets/most_recent.json?callback=?', function(data) {
+  $.getJSON('http://reanimationlibrary.org/catalog/digital_assets/most_recent.json', function(data) {
     var items = [];
     data.sort( randOrd );
     data = data.slice(0, 9);
@@ -19,11 +19,11 @@ function getRecentImages(){
   });
 }
 function getRecentItems(){
-  $.getJSON('http://reanimationlibrary.org/catalog/items/recent.json?callback=?', function(data) {
+  $.getJSON('http://reanimationlibrary.org/catalog/items/recent.json', function(data) {
     var items = [];
 
     $.each(data, function(key, val) {
-    
+
       items.push('<div id="item_' + key + '"><a href="http://reanimationlibrary.org/catalog/items/' + val.id + '">' + val.display_title_with_colon + '</a></div>');
     });
 
@@ -34,7 +34,7 @@ function getRecentItems(){
   });
 }
 function getDonors() {
-  $.getJSON('http://localhost:3000/catalog/donors.json?callback=?', function(data){
+  $.getJSON('http://reanimationlibrary.org/catalog/donors.json', function(data){
     var donors = [];
     $.each(data, function(key, val){
       donors.push('<div>' + val.display_name + '</div>');
@@ -48,7 +48,7 @@ function getDonors() {
 
 }
 function randOrd(){
-  return (Math.round(Math.random())-0.5); 
+  return (Math.round(Math.random())-0.5);
 }
 
 function getCreator(data) {
