@@ -4,7 +4,7 @@
     getDonors();
 	});
 function getRecentImages(){
-  $.getJSON('http://reanimationlibrary.org/catalog/digital_assets/most_recent.json', function(data) {
+  $.getJSON('/catalog/digital_assets/most_recent.json', function(data) {
     var items = [];
     data.sort( randOrd );
     data = data.slice(0, 9);
@@ -19,7 +19,7 @@ function getRecentImages(){
   });
 }
 function getRecentItems(){
-  $.getJSON('http://reanimationlibrary.org/catalog/items/recent.json', function(data) {
+  $.getJSON('/catalog/items/recent.json', function(data) {
     var items = [];
 
     $.each(data, function(key, val) {
