@@ -1,4 +1,4 @@
-REMOVE_FROM_BEGINNING_OF_TITLES = ["a ", "an ", "the ", "\\[", "los", "la", "lo", "los", "der", "die", "das"]
+REMOVE_FROM_BEGINNING_OF_TITLES = ["a ", "an ", "the ", "\\[", "las", "la", "lo", "los", "der", "die", "das", "sa"]
 COLLECTIONS = ["Text & Symbol", "Primary", "Reference", "Copyright"]
 DISPLAY_COLLECTIONS = ["Text & Symbol", "Primary", "Reference", "Copyright"]
 ACQUISITION_TYPES =  ["Gift", "Thrift/Secondhand Store", "Free Book Exchange", "Flea Market", "Used Book Store", "Library Sale", "Internet", "Antique Store", "Found Item", "Street/Stoop/Garage Sale", "Scout Purchase"]

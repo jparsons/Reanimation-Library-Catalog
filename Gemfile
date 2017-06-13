@@ -28,6 +28,7 @@ gem 'american_date'
 #
 gem 'nested_form'
 gem "select2-rails"
+gem "nokogiri", "<1.7.0"
 
 
 # Use unicorn as the web server
@@ -50,7 +51,8 @@ gem "select2-rails"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
  group :development, :test do
-   gem 'net-ssh', '2.0.14'
+   gem 'net-ssh', '2.9.1'
+   gem 'backports', :require => false
    gem 'capistrano', '2.6.0'
    gem 'sqlite3'
    gem 'yaml_db'
