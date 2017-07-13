@@ -30,6 +30,7 @@ gem 'nested_form'
 gem "select2-rails"
 gem "nokogiri", "<1.7.0"
 gem 'uglifier'
+gem 'therubyracer'
 
 
 # Use unicorn as the web server
