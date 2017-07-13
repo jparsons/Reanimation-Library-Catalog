@@ -72,6 +72,7 @@ GEM
       devise (>= 2.1.0)
     easy_roles (1.2.0)
     erubis (2.7.0)
+    execjs (2.7.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     highline (1.7.8)
@@ -155,6 +156,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
     will_paginate (3.1.6)
@@ -188,6 +191,7 @@ DEPENDENCIES
   rake (= 11.3.0)
   select2-rails
   sqlite3
+  uglifier
   will_paginate (~> 3.1.0)
   yaml_db
 

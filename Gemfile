@@ -29,6 +29,7 @@ gem 'american_date'
 gem 'nested_form'
 gem "select2-rails"
 gem "nokogiri", "<1.7.0"
+gem 'uglifier'
 
 
 # Use unicorn as the web server
