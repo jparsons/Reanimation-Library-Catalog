@@ -12,6 +12,7 @@
 <link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<%= csrf_meta_tags %>
 <%= yield(:head) %>
 </head>
 <!-- Start of StatCounter Code -->
@@ -139,7 +140,7 @@ var sc_security="e77d3ad9";
   <% end %>
   <% if user_signed_in? %>
     <div class="sidebar-menu-item">
-      <%= link_to 'log out', logout_path, method: :delete %>
+      <%= link_to('Logout', logout_path, method: :delete) %>
     </div>
   <% end %>
 
