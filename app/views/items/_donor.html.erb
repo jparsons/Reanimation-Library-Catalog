@@ -1,5 +1,5 @@
 <p><%= f.label :donors %></p>
-<p><%= f.select 'donor_ids', Donor.all.map{ |d| [d.name, d.id]}, {include_blank: true}, {size: 5, multiple: true } %>
+<p><%= f.select 'donor_ids', Donor.all.map{ |d| [d.display_name, d.id]}, {include_blank: true}, {size: 5, multiple: true } %>
 <%= f.fields_for :donors do |donor_form| %>
 	<% if donor_form.object.new_record? %>
 
