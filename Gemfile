@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'acts-as-taggable-on', '3.5.0'
 #gem 'mysql2', '0.3.17'
-gem 'mysql2'
+gem 'mysql'
 gem 'american_date'
 #
 gem 'nested_form'
