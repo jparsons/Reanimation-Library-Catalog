@@ -9,7 +9,7 @@ class Donor < ActiveRecord::Base
   default_scope { order("last_name asc") }
 
   def display_name
-    name || organization_name
+    name.blank? ? organization_name : name
   end
 
 private
