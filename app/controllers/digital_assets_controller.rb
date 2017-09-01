@@ -1,6 +1,6 @@
 class DigitalAssetsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:most_recent]
-  
+
   def index
     @digital_assets = DigitalAsset.published.by_scan_file_name.paginate(:page=>params[:page], :per_page=>52).includes(:item).order("items.alphabetical_title, scan_file_name")
   end
@@ -41,7 +41,7 @@ class DigitalAssetsController < ApplicationController
     respond_to do |wants|
       wants.html {   }
       wants.xml { render :xml=>@digital_assets.to_xml }
-      wants.json {render_json @digital_assets.to_json(:only=>[:id], :methods=>:mini_url ) }
+      wants.json {render json: @digital_assets.to_json(:only=>[:id], :methods=>:mini_url ) }
     end
   end
 
@@ -76,7 +76,7 @@ class DigitalAssetsController < ApplicationController
 
   def tag
     @tag = params[:id]
-    @digital_assets = DigitalAsset.tagged_with(@tag).paginate(:page=>params[:page], :per_page=>52, :include=>"items", :order=>"items.alphabetical_title, scan_file_name")
+    @digital_assets = DigitalAsset.tagged_with(@tag).paginate(:page=>params[:page], :per_page=>52, :includes=>"items", :order=>"items.alphabetical_title, scan_file_name")
     if user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?)
       @tags = ActsAsTaggableOn::Tag.all.map(&:name)
     end
