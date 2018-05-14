@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:recent]
   before_filter :cataloger_required, :only=>[:new, :edit]
+  before_filter :handle_new_subjects, only: [:update]
+
   def index
     letter = params[:letter] || "1-9"
     if user_signed_in? && current_user.is_administrator?
@@ -105,6 +107,7 @@ class ItemsController < ApplicationController
 
     #subject_ids = params[:item][:subject_ids]
     #params[:item].delete(:subject_ids)
+
     @item = Item.find(params[:id])
     if params[:commit] == PUBLISH_TEXT || params[:commit] == SHORT_PUBLISH_TEXT
       @item.cataloging_status = "published"
@@ -115,6 +118,15 @@ class ItemsController < ApplicationController
     params[:item][:price_paid] = params[:item][:price_paid].sub(/\$/, "").to_f if (params && params[:item])
    # @item.update_attribute(:subject_ids, subject_ids)
     if @item.update_attributes(item_params)
+      @new_subjects.each do |k,v|
+        subject = Subject.find_by(name: v['name'])
+        if subject
+          @item.subjects << subject
+        else
+          subject = Subject.create(name: v['name'], authority: v['authority'])
+          @item.subjects << subject
+        end
+      end
       flash[:notice] = "Successfully updated item."
       redirect_to @item
     else
@@ -138,6 +150,11 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def handle_new_subjects
+    @new_subjects = params[:item][:subjects_attributes].select{|k,v| v['id'].nil?}
+    params[:item][:subjects_attributes].reject!{|k,v| v['id'].nil?}
+  end
 
   def item_params
     params.require(:item).permit(

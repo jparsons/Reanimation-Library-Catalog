@@ -1,7 +1,8 @@
 <div class="fields subform">
 	<p>
 	  <%= f.label :name, "Subject name" %><br />
-	  <%= f.text_field :name, size: 75, :class=>"new-subject-textbox" %>
+		<%= f.select :name, Subject.all.order(:name).map{|i| [i.name, i.name]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
+
 	</p>
 	<p>
 	  <%= f.label :authority, "Subject authority" %><br />
