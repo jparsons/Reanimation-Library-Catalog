@@ -152,8 +152,12 @@ class ItemsController < ApplicationController
   private
 
   def handle_new_subjects
-    @new_subjects = params[:item][:subjects_attributes].select{|k,v| v['id'].nil?}
-    params[:item][:subjects_attributes].reject!{|k,v| v['id'].nil?}
+    if params[:item][:subjects_attributes]
+      @new_subjects = params[:item][:subjects_attributes].select{|k,v| v['id'].nil?}
+      params[:item][:subjects_attributes].reject!{|k,v| v['id'].nil?}
+    else
+      @new_subjects = []
+    end
   end
 
   def item_params
