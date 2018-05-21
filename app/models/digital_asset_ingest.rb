@@ -23,7 +23,7 @@ class DigitalAssetIngest < ActiveRecord::Base
 
       prefixes.each do |prefix|
         # for each prefix, check to see if you can find the image by id
-        item = Item.find_by_id(prefix)
+        item = Item.find_by(id: prefix)
         # if not, try the legacy id
         if item.nil?  # if you don't find a matching item then put the images into a reject folder
           move_to_reject_folder(prefix)
@@ -65,7 +65,7 @@ class DigitalAssetIngest < ActiveRecord::Base
     # puts file_list
     file_list.each do |filename|
       file = File.open(filename)
-      asset = DigitalAsset.find_or_create_by_scan_file_name(filename)
+      asset = DigitalAsset.find_or_create_by(scan_file_name: filename)
       asset.scan = file
       asset.save!
       item.digital_assets << asset
