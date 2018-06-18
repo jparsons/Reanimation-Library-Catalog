@@ -60,6 +60,7 @@
 	<%= raw(print_unless_blank(@item.languages.map(&:name).join("<br />"), "Languages")) %>
 	<%= print_unless_blank(@item.provenance, "Provenance") %>
 	<%= print_unless_blank(@item.dedication, "Dedication") %>
+	<%= print_unless_blank(@item.inscription, "Inscription") %>
   <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
   <%= print_unless_blank(@item.acquisition_type, "Acquisition Type")%>
 

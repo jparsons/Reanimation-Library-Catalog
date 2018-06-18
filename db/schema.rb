@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905144322) do
+ActiveRecord::Schema.define(version: 20180618192652) do
 
   create_table "creator_types", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -205,6 +205,53 @@ ActiveRecord::Schema.define(version: 20160905144322) do
     t.string   "cataloging_status",           limit: 255
     t.string   "provenance",                  limit: 255
     t.text     "dedication",                  limit: 65535
+    t.string   "physical_format",             limit: 255
+    t.datetime "published_at"
+    t.text     "inscription",                 limit: 65535
+  end
+
+  create_table "items2", force: :cascade do |t|
+    t.string   "title",                       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "alphabetical_title",          limit: 255
+    t.string   "subtitle",                    limit: 255
+    t.string   "publisher_name",              limit: 255
+    t.string   "publisher_city",              limit: 255
+    t.string   "publisher_state",             limit: 255
+    t.string   "publisher_country",           limit: 255
+    t.string   "extent",                      limit: 255
+    t.string   "copyright",                   limit: 255
+    t.string   "item_size",                   limit: 255
+    t.string   "call_number",                 limit: 255
+    t.string   "collection_name",             limit: 255
+    t.integer  "legacy_id",                   limit: 4
+    t.string   "cover_image_file_name",       limit: 255
+    t.string   "cover_image_content_type",    limit: 255
+    t.integer  "cover_image_image_file_size", limit: 4
+    t.datetime "cover_image_updated_at"
+    t.string   "barcode",                     limit: 255
+    t.boolean  "has_marc_record",             limit: 1
+    t.text     "metadata_notes",              limit: 16777215
+    t.string   "corporate_author",            limit: 255
+    t.string   "isbn_issn",                   limit: 255
+    t.boolean  "is_government_document",      limit: 1
+    t.string   "edition",                     limit: 255
+    t.text     "notes",                       limit: 16777215
+    t.string   "series_name",                 limit: 255
+    t.boolean  "needs_translation",           limit: 1
+    t.string   "location",                    limit: 255
+    t.boolean  "is_marked",                   limit: 1
+    t.integer  "vendor_id",                   limit: 4
+    t.date     "date_acquired"
+    t.decimal  "price_paid",                                   precision: 8, scale: 2
+    t.string   "acquisition_type",            limit: 255
+    t.text     "acquisition_note",            limit: 16777215
+    t.string   "acquired_for",                limit: 255
+    t.integer  "legacy_record_id",            limit: 4
+    t.string   "cataloging_status",           limit: 255
+    t.string   "provenance",                  limit: 255
+    t.text     "dedication",                  limit: 16777215
     t.string   "physical_format",             limit: 255
     t.datetime "published_at"
   end
