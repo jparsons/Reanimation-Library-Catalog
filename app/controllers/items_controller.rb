@@ -197,6 +197,7 @@ class ItemsController < ApplicationController
       :cataloging_status,
       :provenance,
       :dedication,
+      :inscription,
       :physical_format,
       :published_at,
       :cover_image,
