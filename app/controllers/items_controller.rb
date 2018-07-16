@@ -63,8 +63,8 @@ class ItemsController < ApplicationController
         @items = Item.published.order("created_at desc").paginate( :page => params[:page]).includes(creators: :creator_type ).includes(:subjects)
         render :xml=>@items.to_xml
         }
-      # wants.json {render_json Item.recent.map{|i| [i.id, i.display_title.force_encoding('utf-8'), i.display_title_with_colon.force_encoding('utf-8'), i.display_creator]}.to_json }
-      wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_title_with_colon, :display_creator]) }
+      wants.json { render_json Item.recent.map{|i| [i.id, i.display_title.force_encoding('utf-8'), i.display_title_with_colon.force_encoding('utf-8'), i.display_creator]}.to_json }
+      #wants.json {render_json Item.recent.to_json(:only=>[:id], :methods=>[:display_title, :display_title_with_colon, :display_creator]) }
     end
   end
   #  add item_count api
