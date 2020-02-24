@@ -1,0 +1,79 @@
+<%- content_for :head do -%>
+
+<%- end -%>
+
+  <p><%= f.label :donors %></p>
+	<p><%= f.select 'donor_ids', Donor.all.map{ |d| [d.name, d.id]}, {include_blank: true}, {size: 5, multiple: true } %>
+  <%= f.fields_for :donors do |donor_form| %>
+	  <% if donor_form.object.new_record? %>
+
+			<div class="fields subform">
+				<p>
+				  <%= donor_form.label :name, "Donor name" %><br />
+				  <%= donor_form.text_field :name %>
+				</p>
+				<p>
+				  <%= donor_form.label :organization_name, "Donor organization name" %><br />
+				  <%= donor_form.text_field :organization_name %> <br />
+				</p>
+				<p><%= donor_form.link_to_remove "Remove this donor" %></p>
+			</div>
+		<% end %>
+	<% end %>
+	<p><%= f.link_to_add "... and / or click here to add new donors", :donors %></p>
+
+  <p><%= f.label :vendor %></p>
+  <p id="vendor">
+    <%= render :partial => 'vendor_select', :locals=>{:f=>f} %>
+  </p>
+	<%= f.fields_for :vendor do |vendor_form| %>
+		<% if vendor_form.object.new_record? %>
+			<div class="fields subform">
+			<p>
+				<%= vendor_form.label :name, "Vendor name" %><br />
+				<%= vendor_form.text_field "name" %> <br />
+				<%= vendor_form.label :street, "Vendor street" %><br />
+				<%= vendor_form.text_field :street %> <br />
+				<%= vendor_form.label :city, "Vendor city" %><br />
+				<%= vendor_form.text_field :city %> <br />
+				<%= vendor_form.label :state, "Vendor state" %><br />
+				<%= vendor_form.select :state, STATES, :include_blank=>true %><br />
+				<%= vendor_form.label :zip, "Vendor zip" %><br />
+				<%= vendor_form.text_field :zip %><br />
+				<%= vendor_form.label :country, "Vendor country" %><br />
+				<%= vendor_form.select :country, COUNTRIES, :include_blank=>true %><br />
+				<%= vendor_form.label :url, "Vendor URL" %><br />
+				<%= vendor_form.text_field :url %><br />
+				<!-- move acquisition type here. Migrate data over. Check for inconsisitencies -->
+
+			</p>
+			<p><%= vendor_form.link_to_remove "Remove this vendor" %></p>
+			<br />
+			</div>
+		<% end %>
+	<% end %>
+	<p><%= f.link_to_add "... and / or click here to add new vendor", :vendor %></p>
+
+
+  <p><%= f.label :date_acquired %><br />
+	<%= f.text_field :date_acquired, value: f.object.date_acquired.try(:strftime, '%m/%d/%Y')%> </p>
+  <p><%= f.label :acquisition_type %><br />
+  <%= f.select :acquisition_type, ACQUISITION_TYPES, :include_blank=> true %></p>
+
+  <p><%= f.label :acquired_for %><br />
+	<%= f.text_field :acquired_for %></p>
+  <!-- add included in - make it just like acquired_for -->
+  <p><%= f.label :price_paid %><br />
+	<%= f.text_field :price_paid, :value=>number_to_currency(@item.price_paid) %></p>
+  <p><%= f.label :acquisition_note %><br />
+	<%= f.text_area :acquisition_note %></p>
+  <% unless @item.new_record? %>
+    <p><%= f.label :provenance %><br />
+  	<%= f.text_field :provenance %></p>
+    <p><%= f.label :dedication %><br />
+  	<%= f.text_area :dedication %></p>
+    <p><%= f.label :inscription %><br />
+    <%= f.text_area :inscription %></p>
+<!-- add inscription here -->
+<!-- add link here - link should be nested form with link and description -->
+  <% end %>

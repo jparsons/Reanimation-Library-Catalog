@@ -1,0 +1,105 @@
+<%- content_for :head do -%>
+  <script type="text/javascript">
+  $(function() {
+    var availableTags = <%= raw @tags.to_json %>
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+    $( "#digital_asset_tag_list" )
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+          $( this ).data( "autocomplete" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+    });
+  });
+  </script>
+<%- end -%>
+<%= nested_form_for @digital_asset, :html => { :multipart => true } do |f| %>
+  <% @digital_asset.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+   <% end %>
+  <p>
+    <%= f.label :item, "From the item" %><br />
+	<%= raw f.select :item_id, Item.all.includes(:creators).map{|i| ["#{truncate(i.title)} #{i.creators.first.nil? ? '' : 'by ' + i.creators.first.display_name}", i.id]}, {:include_blank=>true} %>  </p>
+  <p>
+    <%= f.label :color %><br />
+    <%= f.select :color, ImageColor.all.map{|ic| [raw(ic.name), ic.id] }, :include_blank => true %>
+  </p>
+	<p><%= f.label :image_types %></p>
+	<div id="digital-asset-image-types" class="scrolling-subform">
+	  <% for image_type in ImageType.all.order(:name) %>
+	    <div>
+		  <%= check_box_tag "digital_asset[image_type_ids][]", image_type.id, @digital_asset.image_types.include?(image_type) %>
+		  <%= image_type.name %>
+		</div>
+	  <% end %>
+
+	</div>
+  <p>
+	<%= f.label :image %><br />
+	<% unless @digital_asset.new_record? %>
+	  <%= image_tag(@digital_asset.scan.url(:thumb)) %><br/>
+	<% end %>
+	<p>upload a new image<br />
+	<%= f.file_field :scan %></p>
+	<p><%= f.label :subjects %></p>
+	<div id="digital-asset-digital-asset-subjects" class="scrolling-subform">
+	  <% for digital_asset_subject in DigitalAssetSubject.all.order(:name) %>
+	    <div>
+		  <%= check_box_tag "digital_asset[digital_asset_subject_ids][]", digital_asset_subject.id, @digital_asset.digital_asset_subjects.include?(digital_asset_subject) %>
+		  <%= digital_asset_subject.name %>
+		</div>
+	  <% end %>
+
+	</div>
+  <%= f.fields_for :digital_asset_subjects do |subject_form| %>
+  <% if subject_form.object.new_record? %>
+    <div class='fields'>
+      <p>
+        <%= subject_form.label :name, "Subject name" %><br />
+        <%= subject_form.text_field :name %>
+      </p>
+      <p>
+        <%= subject_form.label :authority, "Subject authority" %><br />
+        <%= subject_form.select :authority, DIGITAL_ASSET_SUBJECT_AUTHORITIES %> <br />
+      </p>
+      <p><%= subject_form.link_to_remove "Remove this subject" %></p>
+    </div>
+  <% end %>
+<% end %>
+<p><%= f.link_to_add "... and / or click here to add new subjects", :digital_asset_subjects %></p>
+
+  <div id ="tags">
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+  <p><%= f.submit %></p>
+<% end %>

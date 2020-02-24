@@ -1,0 +1,20 @@
+<form method="get" action="<%=by_branch_items_path %>" id="select_branch_form">
+	<select name="branch" id="select_branch">
+	<option value="">Select a branch</option>
+	<% @branches.each do |branch| %>
+	  <option value="<%=branch %>" <%="selected" if @branch==branch %>><%=branch %></option>
+	<% end %>
+</select>
+</form>
+<h1><%= @branch %></h1>
+<br />
+<% @items.each do |item| %>
+<a href="http://www.reanimationlibrary.org/catalog/items/<%= item.id %>"><i><%= item.display_title_with_colon %></i></a><br/>
+<% end %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#select_branch').change(function() {
+  $('#select_branch_form').submit();
+});
+});
+</script>

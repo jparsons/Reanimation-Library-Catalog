@@ -1,0 +1,10 @@
+<%- content_for(:title) { "Reanimation Library - Catalog" } -%>
+<h2>Browse by Title</h2>
+<div id="item-list">
+
+<div class="admin-link">
+  <%= link_to "Add a new item", new_item_path %><br />
+</div>
+<%= pagination_links(params[:letter]) %>
+<%= render :partial => 'item', :collection=>@items %>
+</div>

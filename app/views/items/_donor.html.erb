@@ -1,0 +1,19 @@
+<p><%= f.label :donors %></p>
+<p><%= f.select 'donor_ids', Donor.all.map{ |d| [d.display_name, d.id]}, {include_blank: true}, {size: 5, multiple: true } %>
+<%= f.fields_for :donors do |donor_form| %>
+	<% if donor_form.object.new_record? %>
+
+		<div class="fields subform">
+			<p>
+				<%= donor_form.label :name, "Donor name" %><br />
+				<%= donor_form.text_field :name %>
+			</p>
+			<p>
+				<%= donor_form.label :organization_name, "Donor organization name" %><br />
+				<%= donor_form.text_field :organization_name %> <br />
+			</p>
+			<p><%= donor_form.link_to_remove "Remove this donor" %></p>
+		</div>
+	<% end %>
+<% end %>
+<p><%= f.link_to_add "... and / or click here to add new donors", :donors %></p>

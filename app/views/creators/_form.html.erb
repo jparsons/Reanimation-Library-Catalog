@@ -1,0 +1,22 @@
+<%= form_for @creator do |f| %>
+  <% @creator.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :name_suffix %><br />
+    <%= f.text_field :name_suffix %>
+  </p>
+  <p>
+    <%= f.label :creator_type %><br />
+    <%= f.select :creator_type_id, CreatorType.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true } %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

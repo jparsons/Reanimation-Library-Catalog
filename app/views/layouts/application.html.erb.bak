@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<title><%= yield(:title) || "Catalog" %></title>
+<%= javascript_include_tag 'jquery', 'jquery_ujs', 'jquery-ui-1.8.2.custom.min', 'application', 'jquery.colorbox-min' %>
+<!--[if lt IE 8]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://www.reanimationlibrary.org/pages/application.css" />
+<%= stylesheet_link_tag 'colorbox', 'ui-lightness/jquery-ui-1.8.2.custom', 'admin' %>
+<link rel="shortcut icon" href="<%= image_path "nav/logo.ico"%>">
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+<%= yield(:head) %>
+</head>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+var sc_project=1031477;
+var sc_invisible=1;
+var sc_partition=9;
+var sc_security="e77d3ad9";
+</script>
+
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c10.statcounter.com/counter.php?sc_project=1031477<BODY BGCOLOR="#DBD7D8">amp;java=0<BODY BGCOLOR="#DBD7D8">amp;security=e77d3ad9<BODY BGCOLOR="#DBD7D8">amp;invisible=1 " alt="free geoip" border="0"></a> </noscript>
+<!-- End of StatCounter Code -->
+
+<body>
+<div id="header">
+</div>
+<div class="pagebody">
+  <div class="bigheader">
+  <img src="http://www.reanimationlibrary.org/images/logo.jpg" alt="logo" width="62" height="62" style="border:none; margin-right: 12px; margin-bottom: 12px; float: left;">
+  <div class="headerfont"><a href="http://www.reanimationlibrary.org/index">REANIMATION LIBRARY</a></div>
+  <div class="headersearch">
+  <form method="get" action="http://www.reanimationlibrary.org/catalog/search">
+  <input type="text" name="q" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Search the Catalog':this.value;" value="Search the Catalog" style="height: 32px; width: 211px; color: #7A7A7A; font-size: 12px; background: #FBFBFB; padding-left: 6px; border: 2px solid #AFAFAF; float: right; margin-top: -17px; line-height: 1px; font-family: 'helvetica', sans-serif; font-weight: ;"/>
+  </form>
+  </div>
+  <div class="headermenu">
+    <span class="headermenu" style="padding-left: 2px;">CATALOG / IMAGE COLLECTION</span><a href="/pages/about">ABOUT</a><a href="/pages/branches">BRANCHES / SPORES</a><a href="/pages/wordprocessor">WORD PROCESSOR</a><a href="/pages/events">EVENTS</a><a href="/pages/links">LINKS</a><a href="/pages/participate">PARTICIPATE</a><a href="/pages/contact">CONTACT</a>
+  </div>
+  </div>
+<p class="breadcrumb"><a href="/index.htm">home</a> | catalog</p>
+<div class="aboutmenu">
+<% if current_page? items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br/>BY TITLE</p></div></div>
+<% else %>
+  <a href="<%= items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE CATALOG<br/>BY TITLE</p></div></div>
+</a>
+<% end %>
+<% if current_page? by_call_number_items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE CATALOG<br />BY CALL NUMBER</p></div></div>
+<% else %>
+  <a href="<%= by_call_number_items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE CATALOG<br/>BY CALL NUMBER</p></div></div>
+</a>
+<% end %>
+<% if current_page? recent_items_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">VIEW RECENTLY<br/>ADDED ITEMS</p></div></div>
+<% else %>
+  <a href="<%= recent_items_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">VIEW RECENTLY<br/>ADDED ITEMS</p></div></div>
+  </a>
+<% end %>
+<% if current_page? subjects_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE SUBJECTS</p></div></div>
+<% else %>
+  <a href="<%= subjects_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE SUBJECTS</p></div></div>
+  </a>
+<% end %>
+<% if current_page? digital_assets_path %>
+  <div class="ami1"><div class="ami3"><p class="ami3">BROWSE THE<br/>IMAGE COLLECTION</p></div></div>
+<% else %>
+  <a href="<%= digital_assets_path %>">
+    <div class="ami1"><div class="ami2"><p class="ami2">BROWSE THE<br/>IMAGE COLLECTION</p></div></div>
+  </a>
+<% end %>
+<div class="ami1"><div class="ami2"><p class="ami2"><a href="http://reanimationlibrary.org/pages/collectionguide.htm">GUIDE TO THE<br/>LIBRARY'S COLLECTIONS</a></p></div></div>
+
+<div id="sidebar-menu">
+    <div class="sidebar-admin-menu">
+
+  <% if user_signed_in? && (current_user.is_administrator? || current_user.is_cataloger?)  %>
+      <h2>ADMIN TOOLS</h2>
+      <br />
+    <div class="sidebar-menu-item">
+      <%= link_to "add a new item", new_item_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "view items that need cataloging", acquired_items_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "view items that have no images", need_images_items_path %>
+    </div>
+  <% end %>
+  <% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+    <div class="sidebar-menu-item">
+        <%= link_to "edit images", digital_assets_path %>
+    </div>
+  <% end %>
+  <% if user_signed_in? && current_user.is_administrator? %>
+
+    <div class="sidebar-menu-item">
+        <%= link_to "add a new exhibition", new_exhibition_path %>
+    </div>
+    <div class="sidebar-menu-item">
+        <%= link_to "add a new art work", new_work_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "see a list of users", users_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "add a new user", new_user_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "check for and process uploaded images", digital_asset_ingests_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "creators", creators_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "creator types", creator_types_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "image types", image_types_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "subjects", subjects_path %>
+    </div>
+    <div class="sidebar-menu-item">
+      <%= link_to "vendors", vendors_path %>
+    </div>
+  <% end %>
+  <% if user_signed_in? %>
+    <div class="sidebar-menu-item">
+      <%= link_to 'log out', logout_path %>
+    </div>
+  <% end %>
+
+
+  </div>
+</div>
+</div>
+<div class="about">
+  <center><h3 class="header">CATALOG</h3></center>
+<div id="content">
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+  <%= yield %>
+  </div>
+</div>
+<div class="hbreak"></div>
+<div class="push"></div>
+<image src="http://reanimationlibrary.org/images/footerbreak.jpg" alt="footer" width="796" height="4" style="border: none;">
+<div class="footer">
+<a target="blank" href="http://maps.google.com/maps?oe=utf-8&rls=org.mozilla:en-US:official&client=firefox-a&q=543+union+street+brooklyn&um=1&ie=UTF-8&hq=&hnear=543+Union+St,+Brooklyn,+NY+11231&gl=us&ei=gKIKTOjOFsOBlAfckOSZDg&sa=X&oi=geocode_result&ct=title&resnum=1&ved=0CBoQ8gEwAA">543 UNION STREET BROOKLYN, NY, 11215</a><span class="joinemail">JOIN OUR EMAIL LIST</span><br/>VISIT THE LIBRARY ON <a href="http://www.facebook.com/reanimationlibrary" target="_blank">FACEBOOK</a> | <a target="blank" href="http://www.twitter.com/reanimationlib">TWITTER</a> | <a target="blank" href="http://reanimationlibrary.tumblr.com/">TUMBLR</a>
+<form method="post" action="http://ymlp.com/subscribe.php?YMLPID=geuuusjgmgb" target="_blank">
+<input type="text" name="YMP0" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'':this.value;" value="" style="height: 18px; float: right; width: 211px; background: #FBFBFB; color: #7A7A7A; font-size: 11px; border: 1px solid #AFAFAF; padding-left: 3px; margin-bottom: px; margin-top: -15px; no-repeat left center;"/>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

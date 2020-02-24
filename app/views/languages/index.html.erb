@@ -1,0 +1,19 @@
+<% title "Languages" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+  <% for language in @languages %>
+    <tr>
+      <td><%=h language.name %></td>
+      <td><%= link_to "Edit", edit_language_path(language), :class => 'btn btn-edit' %></td>
+      <td><%= link_to "Destroy", language, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-destroy' %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Language", new_language_path, :class => 'btn btn-new' %></p>

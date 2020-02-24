@@ -1,0 +1,2 @@
+<label>select an existing creator ...</label><br />
+<%= select :work, :work_creator_id, WorkCreator.all.map{|c| ["#{c.name}", c.id]}, {:include_blank=>true} %>

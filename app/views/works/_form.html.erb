@@ -1,0 +1,77 @@
+<%= nested_form_for @work, :html => {:multipart => true} do |f| %>
+  <% @work.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p><%=f.label :creators %></p>
+
+  <p>
+	<%= f.label :creators, "select from existing creators" %><br />
+	  <%= f.select "work_creator_ids", WorkCreator.order(:name).map{|c| [c.name, c.id]}, {:include_blank=>true}, :size=>5, :multiple=>true %>
+    <%= f.fields_for :work_creators do |work_creator_form| %>
+      <% if work_creator_form.object.new_record? %>
+      	<div class="fields subform">
+      		<h2>Add a new creator</h2>
+        	<p>
+        	  <%= work_creator_form.label :name %><br />
+        	  <%= work_creator_form.text_field :name %>
+        	</p>
+        	<p><%= work_creator_form.link_to_remove "Remove this creator" %></p>
+      	</div>
+      <% end %>
+    <% end %>
+  </p>
+  <p><%= f.link_to_add "... and / or click here to add new creator", :work_creators %></p>
+
+
+  <p>
+    <%= f.label :medium %><br />
+    <%= f.text_field :medium %>
+  </p>
+  <p>
+    <%= f.label :size %><br />
+    <%= f.text_field :size %>
+  </p>
+  <p>
+    <%= f.label :year_created %><br />
+    <%= f.text_field :year_created %>
+  </p>
+  <p>
+    <%= f.label :work_type %><br />
+    <%= f.select :work_type, WORK_TYPES %>
+  </p>
+  <p><%=f.label :items, "Select the items that were used in this art work" %>
+  </p>
+  <div id="work-items">
+    <%= f.select :items, Item.order(:alphabetical_title).map{|i| [i.title, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple'}%></p>
+  </div>
+  <%= f.label :work_images, "Images" %>
+  <div id="work-images">
+    <div>
+      <%= f.fields_for :work_images do |work_image_form| %>
+        <div class="work-image">
+          <p>
+            <%= work_image_form.file_field :image %>
+          </p>
+        </div>
+	      <% unless work_image_form.object.new_record? %>
+	        <div class="work-image-thumbnail">
+	          <%= link_to( image_tag(work_image_form.object.image.url(:thumb)), work_image_form.object.image.url(:original) ) %>
+	          <%= work_image_form.check_box :_destroy %> remove and destroy
+	        </div>
+
+        <% end %>
+	    <% end %>
+    </div>
+  </div>
+  <br />
+  <p><%= f.link_to_add "click here to add another image", :work_images %></p>
+
+
+
+  <p><%= f.submit %></p>
+<% end %>

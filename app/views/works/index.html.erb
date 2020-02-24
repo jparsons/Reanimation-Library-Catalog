@@ -1,0 +1,12 @@
+<% title "Art works made from the collection" %>
+<h2><%= yield(:title) %></h2>
+<div id="works-list">
+<%= will_paginate @works %>
+<% @works.each do |work| %>
+<div class="work">
+<strong><%= link_to(work.title + " (" + work.year_created.to_s + ")", work_path(work)) %></strong> by <%= work.work_creators.map{|c| c.name }.join(", ") %>
+</div>
+<% end %>
+<%= will_paginate @works %>
+</div>
+

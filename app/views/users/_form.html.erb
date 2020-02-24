@@ -1,0 +1,28 @@
+<%= form_for @user do |f| %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %> <%= "(Leave these boxes blank if you don't want to change the password)" unless @user.new_record? %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <% if user_signed_in? && current_user.is_administrator? %>
+  <p>
+	<%= f.label :role, "Authorization level" %><br />
+	<%= f.select :role, USER_ROLES, :include_blank=>true %>
+  </p>
+  <% end %>
+  <p><%= f.submit %></p>
+<% end %>

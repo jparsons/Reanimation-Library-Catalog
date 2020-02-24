@@ -1,0 +1,31 @@
+
+<% content_for :title do %>
+  New Item Acquisition
+<% end %>
+<h2><%= yield(:title) %></h2>
+
+<%= nested_form_for @item do |f| %>
+<% @item.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+ <% end %>
+ <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :subtitle, "Sub-Title" %><br />
+    <%= f.text_field :subtitle %>
+  </p>
+  <p>
+    <%= f.label :collection %><br />
+    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>
+  </p>
+  <%= render :partial => 'acquisition_form', :locals=>{:f=>f} %>
+  <p>
+    <%= f.label :cover_image, 'Cover Image' %>
+    <%= f.file_field :cover_image %>
+    <%= f.hidden_field :cover_image_cache %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

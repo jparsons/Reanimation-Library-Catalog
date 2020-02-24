@@ -1,0 +1,113 @@
+
+<%= nested_form_for @item, :html => { :multipart => true } do |f| %>
+
+<p><%= f.label :title %><br />
+	<%= f.text_field :title, size: 75 %></p>
+<p><%= f.label :subtitle %><br />
+	<%= f.text_field :subtitle, size: 75 %></p>
+  <!-- add title translation - should be added to search index -->
+	<p><%= f.label :cover_image %></p>
+	<%= image_tag(@item.cover_image.url(:thumb)) if @item.cover_image? %>
+	<p>Upload a new cover image<br />
+	<%= f.file_field :cover_image %></p>
+  <p>
+    <%= f.label :collection %><br />
+    <%= f.select :collection_name, COLLECTIONS, :include_blank=>true %>
+  </p>
+  <p>
+    <%= f.label :series %><br />
+		<%= f.select :series_name, Item.all.order(:series_name).map{|i| [i.series_name, i.series_name]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
+
+  </p>
+  <p>
+    <%= f.label :edition %><br />
+    <%= f.text_field :edition %>
+  </p>
+<p><%=f.label :creators %>
+</p>
+<div id="creators">
+  <%= f.fields_for :creators do |creator_form| %>
+    <%= render :partial => 'creator', :locals => {:f => creator_form} %>
+  <% end %>
+</div>
+<p><%= f.link_to_add "click here to add a new creator", :creators %>  </p>
+
+<div id ="publisher">
+<h2>Publication Information</h2>
+<p><%= f.label :publisher_name %><br />
+	<%= f.select :publisher_name, Item.all.order(:publisher_name).map{|i| [i.publisher_name, i.publisher_name]}.uniq.compact, {include_blank: true}, {class: 'select2'} %></p>
+<p><%= f.label :city %><br />
+    <%= f.text_field :publisher_city %></p>
+<p><%= f.label :state %><br />
+	<%= f.select :publisher_state, STATES, :include_blank=>true %></p>
+<p><%= f.label :country %><br />
+	<%= f.select :publisher_country, COUNTRIES, :include_blank=>true %></p>
+<p><%= f.label :copyright, "Copyright Year" %><br />
+	<%= f.text_field :copyright %></p>
+<p><%= f.label :corporate_author %><br />
+	<%= f.text_field :corporate_author %>
+	</p>
+<p><%= f.label :is_government_document, "Is government document?" %><br />
+	<%= f.select :is_government_document, {"no"=>"false", "yes"=>"true" } %>
+</p>
+
+
+</div>
+<div id="physical_description">
+	<h2>Physical Description</h2>
+	<p><%= f.label :extent %><br />
+		<%= f.text_field :extent %></p>
+	<p><%= f.label :item_size %><br />
+		<%= f.text_field :item_size %></p>
+	<p><%= f.label :format %><br />
+		<%= f.select :physical_format, Item.all.order(:physical_format).map{|i| [i.physical_format, i.physical_format]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
+</div>
+<p><%= f.label :image_colors %></p>
+<p>
+  <%= f.select :image_color_ids, ImageColor.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter image color names'}}%></p>
+</p>
+<p><%= f.label :image_types %></p>
+<p>
+  <%= f.select :image_type_ids, ImageType.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter image type names'}}%></p>
+</p>
+<div id="identifiers">
+	<h2>Identifiers</h2>
+	<p><%= f.label :call_number %><br />
+		<%= f.text_field :call_number %></p>
+	<p><%= f.label :barcode %><br />
+		<%= f.text_field :barcode %></p>
+	<p><%= f.label :isbn_issn, "ISBN / ISSN" %><br />
+		<%= f.text_field :isbn_issn %></p>
+</div>
+<p><%= f.label :languages %></p>
+<p>
+  <%= f.select :language_ids, Language.order(:name).map{|i| [i.name.html_safe, i.id]}, {include_blank: true}, {class: 'select2', multiple: 'multiple', data: {placeholder: 'Enter language names'}}%></p>
+</p>
+<div id="location">
+	<p><%= f.label :location %><br />
+		<%= f.text_field :location %></p>
+</div>
+<div id="metadata">
+	<h2>Metadata</h2>
+	<p><%= f.label :has_marc_record, "Has a MARC record?" %><br />
+		<%= f.select :has_marc_record, {"no"=>"false", "yes"=>"true"} %>
+	</p>
+	<p><%= f.label :needs_translation, "Needs Translation?" %><br />
+		<%= f.select :needs_translation, {"no"=>"false", "yes"=>"true"} %>
+	</p>
+	<p><%= f.label :metadata_notes %><br />
+		<%= f.text_area :metadata_notes %>
+	</p>
+</div>
+<%= render :partial=>'acquisition_form', :locals=>{:f=>f}%>
+<p><%= f.label :subjects %></p>
+<%= f.fields_for :subjects do |subject_form| %>
+  <%= render :partial => 'subject', :locals => {:f => subject_form} %>
+<% end %>
+<p><%= f.link_to_add "... click here to add new subjects",  :subjects %></p>
+<!-- can we match just the start of subjects -->
+<div id="subjects">
+
+</div>
+<% unless @item.published? %><%= f.submit SAVE_UNPUBLISHED_TEXT %>&nbsp;&nbsp;<%= f.submit PUBLISH_TEXT %><% else %><%= f.submit SAVE_PUBLISHED_TEXT %>&nbsp;&nbsp;<%= f.submit UNPUBLISH_TEXT %><% end %>
+<% end %>

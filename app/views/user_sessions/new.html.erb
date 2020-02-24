@@ -1,0 +1,18 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - Log in" } -%>
+<div id="login" style="height:500px;">
+<%= content_tag 'h2', "Log in" %>
+<%= form_for @user_session do |f| %>
+  <% @user_sessions.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p><%= f.submit "Log in" %></p>
+<% end %>
+</div>

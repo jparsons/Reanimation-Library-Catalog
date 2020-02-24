@@ -1,0 +1,3 @@
+<% @log_entries.each do |log_entry| %>
+$(".process-log").append("<%= escape_javascript(render(:partial=>"log_entry", :locals=>{:entry=>log_entry})) %>")
+<% end %>

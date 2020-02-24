@@ -1,0 +1,20 @@
+<% title "Donor" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @donor.name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%=h @donor.last_name %>
+</p>
+<p>
+  <strong>Organization Name:</strong>
+  <%=h @donor.organization_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_donor_path(@donor) %> |
+  <%= link_to "Destroy", @donor, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", donors_path %>
+</p>

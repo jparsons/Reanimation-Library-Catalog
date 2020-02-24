@@ -1,0 +1,5 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - Subjects - #{ @subject.name }" } -%>
+<div id="main-content">
+	<h2><%= link_to "Subjects", subjects_path %> &gt; <%= @subject.name %></h2>
+    <%= render :partial => 'items/item', :collection=>@subject.items %>
+</div>

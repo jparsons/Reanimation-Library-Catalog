@@ -1,0 +1,10 @@
+<% content_for :title do %>
+  Edit Item
+<% end %>
+<h2><%= yield(:title) %></h2>
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", @item %> |
+  <%= link_to "View All", items_path %>
+</p>

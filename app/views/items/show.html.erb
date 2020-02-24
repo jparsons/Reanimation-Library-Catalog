@@ -1,0 +1,129 @@
+<%- content_for(:title) { "Reanimation Library - Catalog - #{ @item.title }" } -%>
+
+<% if @previous.nil? %>&lt; previous item<% else %><%= link_to "< previous item", item_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next item &gt;<% else %><%= link_to "next item >", item_path(@next) %><% end %>
+<h1>
+	<%= "#{@item.title}" %>
+</h1>
+<%= content_tag 'h2', "#{@item.subtitle}" unless @item.subtitle.blank? %>
+<% if user_signed_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
+<% form_for @item do |f| %>
+<% if @item.published? %><%= f.submit SHORT_UNPUBLISH_TEXT %>&nbsp;&nbsp;<% else %><%= f.submit SHORT_PUBLISH_TEXT %><% end %>
+<% end %>
+<% end %>
+<div class="item-cover-image-large">
+	<%= image_tag(@item.cover_image.url(:large)) %>
+	<% if user_signed_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
+	    <div class="admin-link">
+	      <%= link_to 'Edit this item', edit_item_path(@item) %>
+	    </div>
+	  <% end %>
+</div>
+
+<div class="item-data-show">
+
+  <div class="item-row item-creators">
+    <div class="item-label">
+      <%= pluralize(@item.creators.count, "Creator") %>:
+    </div>
+    <div class="item-content"><%= raw (@item.creators.map(&:display_name) + [@item.corporate_author]).compact.join("<br />") %></div>
+  </div>
+	<div class="item-row item-publisher">
+		<div class="item-label">Publisher:</div>
+		<div class="item-content"><%=h formatted_publisher_info(@item) %></div>
+	</div>
+	<div class="item-row item-year">
+		<div class="item-label">Year:</div> <div class="item-content"><%=h @item.copyright %></div>
+	</div>
+	<div class="item-row item-pages">
+		<div class="item-label">Pages:</div> <div class="item-content"><%=h @item.extent %></div>
+	</div>
+	<div class="item-row item-size">
+		<div class="item-label">Size:</div> <div class="item-content"><%=h @item.item_size %></div>
+	</div>
+	<div class="item-row item-call-number">
+		<div class="item-label">Call Number:</div> <div class="item-content"><%=h @item.call_number %></div>
+	</div>
+	<div class="item-row item-subjects">
+		<div class="item-label"><%= pluralize(@item.subjects.count, "Subject") %>:</div> <div class="item-content"><%= raw @item.subjects.map{|s|link_to(s.name, subject_path(s)) }.join(", ") %></div>
+	</div>
+	<div class="item-row item-library-id">
+		<div class="item-label">Library ID:</div> <div class="item-content"><%=h @item.id %></div>
+	</div>
+	<div class="item-row item-collection">
+		<div class="item-label">Collection:</div> <div class="item-content"><%=h @item.collection_name %></div>
+	</div>
+	<div class="item-row item-format">
+		<div class="item-label">Format:</div> <div class="item-content"><%=h @item.physical_format %></div>
+	</div>
+  <%= raw(print_unless_blank(@item.image_types.map(&:name).join("<br />"), "Image Types")) %>
+  <%= raw(print_unless_blank(@item.image_colors.map(&:name).join("<br />"), "Image Colors")) %>
+	<%= raw(print_unless_blank(@item.languages.map(&:name).join("<br />"), "Languages")) %>
+	<%= print_unless_blank(@item.provenance, "Provenance") %>
+	<%= print_unless_blank(@item.dedication, "Dedication") %>
+	<%= print_unless_blank(@item.inscription, "Inscription") %>
+  <%= print_unless_blank(@item.vendor_location, "Vendor location")%>
+  <%= print_unless_blank(@item.acquisition_type, "Acquisition Type")%>
+
+	<% unless @item.donors.empty? %>
+	<div class="item-row item-donors">
+		<div class="item-label"><%= pluralize(@item.donors.count, "Donor") %>:</div> <div class="item-content"><%= @item.donors.map {|d| d.display_name}.join("; ") %></div>
+	</div>
+	<% end %>
+
+	<% if user_signed_in? && current_user.in_authentication_group?(["cataloger", "administrator"]) %>
+	<div class="item-row item-copyright">
+		<div class="item-label">Copyright Year:</div><div class="item-content"> <%=h @item.copyright %></div>
+	</div>
+	<div class="item-row item-barcode">
+		<div class="item-label">Barcode:</div> <div class="item-content"><%=h @item.barcode %></div>
+	</div>
+	<div class="item-row item-has-marc-record">
+		<div class="item-label">Has MARC record?:</div> <div class="item-content"><%=h @item.has_marc_record %></div>
+	</div>
+	<div class="item-row item-metadata-notes">
+		<div class="item-label">Metadata notes:</div> <div class="item-content"><%=h @item.metadata_notes %></div>
+	</div>
+	<div class="item-row item-isbn-issn">
+		<div class="item-label">ISBN/ISSN:</div> <div class="item-content"><%=h @item.isbn_issn %></div>
+	</div>
+	<div class="item-row item-is-government-document">
+		<div class="item-label">Is government document?:</div><div class="item-content"> <%=h @item.is_government_document %></div>
+	</div>
+	<div class="item-row item-edition">
+		<div class="item-label">Edition:</div> <div class="item-content"><%=h @item.edition %></div>
+	</div>
+	<div class="item-row item-notes">
+		<div class="item-label">Notes:</div> <div class="item-content"><%=h @item.notes %></div>
+	</div>
+	<div class="item-row item-series-name">
+		<div class="item-label">Series name:</div> <div class="item-content"><%=h @item.series_name %></div>
+	</div>
+	<div class="item-row item-needs-translation">
+		<div class="item-label">Needs translation?:</div> <div class="item-content"><%=h @item.needs_translation %></div>
+	</div>
+	<div class="item-row item-location">
+		<div class="item-label">Location:</div> <div class="item-content"><%=h @item.location %></div>
+	</div>
+	<div class="item-row item-vendor">
+		<div class="item-label">Vendor:</div> <div class="item-content"><%=h @item.vendor.blank? ? '' : @item.vendor.name %></div>
+	</div>
+	<div class="item-row item-date-acquired">
+		<div class="item-label">Date acquired:</div> <div class="item-content"><%=h @item.date_acquired.blank? ? "" : @item.date_acquired.strftime("%m/%d/%Y") %></div>
+	</div>
+	<div class="item-row item-price-paid">
+		<div class="item-label">Price paid:</div> <div class="item-content"><%=h number_to_currency(@item.price_paid) %></div>
+	</div>
+
+	<div class="item-row item-acquisition-notes">
+		<div class="item-label">Acquisition notes:</div> <div class="item-content"><%=h @item.acquisition_note %></div>
+	</div>
+	<div class="item-row item-acquired-for">
+		<div class="item-label">Acquired for:</div> <div class="item-content"><%=h @item.acquired_for %></div>
+	</div>
+	<% end %>
+	</div>
+<% unless @item.digital_assets.empty? %>
+	<div class="item-images">
+		<%= raw @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
+	</div>
+<% end %>

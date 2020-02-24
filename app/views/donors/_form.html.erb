@@ -1,0 +1,18 @@
+<%= form_for @donor do |f| %>
+  <% @donor.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :organization_name %><br />
+    <%= f.text_field :organization_name %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

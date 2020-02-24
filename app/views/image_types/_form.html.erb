@@ -1,0 +1,11 @@
+<%= form_for @image_type do |f| %>
+  <% @image_type.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>

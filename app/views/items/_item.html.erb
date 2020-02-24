@@ -1,0 +1,26 @@
+<div class="item">
+	<div class="item-cover-image-thumb">
+   <%= link_to(image_tag(item.cover_image&.url(:thumb), :class=>"cover-thumb"), item_path(item)) %>
+    <br />
+    <br />
+    <% if user_signed_in? && current_user.is_administrator? %>
+      <div class="admin-link">
+        <%= link_to 'Edit this item', edit_item_path(item) %>
+      </div>
+    <% end %>
+  </div>
+	<div class="item-data">
+    <div class="item-title"><%= link_to "#{item.title}#{item.subtitle.blank? ? '' : ': ' + item.subtitle}", item_path(item) %></div>
+    <div class="item-creators "><div class="item-label"><%= pluralize(item.creator_count, "Creator") %>:</div> <div class="item-content"><%= raw (item.creators.map(&:display_name) + [item.corporate_author]).compact.join("<br />")%></div></div>
+  	<div class="item-publisher"><span class="item-label">Publisher:</span> <%= formatted_publisher_info(item) %></div>
+    <div class="item-copyright"><span class="item-label">Year:</span> <%=h item.copyright %></div>
+    <div class="item-extent"><span class="item-label">Pages:</span> <%=h item.extent %></div>
+    <div class="item-size"><span class="item-label">Size:</span> <%=h item.item_size %></div>
+    <div class="item-callnumber"><span class="item-label">Call Number:</span> <%=h item.call_number %></div>
+    <div class="item-subjects"><div class="item-label"><%= pluralize(item.subjects.count, "Subject") %>:</div> <div class="item-content"><%= raw item.subjects.map{|s| link_to(s.name, subject_path(s)) }.join("<br />") %></div></div>
+    <div class="item-legacy_id"><span class="item-label">Library ID:</span> <%=h item.id %></div>
+    <div class="item-collection"><span class="catalog-label">Collection:</span> <%=h item.collection_name %></div>
+
+
+  </div>
+</div>

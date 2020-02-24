@@ -1,0 +1,96 @@
+<%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan.file.filename.gsub(/\.jpg/, "") }" } -%>
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+  <%- content_for :head do -%>
+  <script type="text/javascript">
+  $(function() {
+    var availableTags = <%= raw @tags.to_json %>
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+    $( "#digital_asset_tag_list" )
+      // don't navigate away from the field on tab when selecting an item
+      .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+          $( this ).data( "autocomplete" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+      .autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+            availableTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+    });
+  });
+  </script>
+  <%- end -%>
+<% end %>
+<% if @previous.nil? %>&lt; previous image<% else %><%= link_to "< previous image", digital_asset_path(@previous) %><% end %>&nbsp;&nbsp;&nbsp;<% if @next.nil? %>next image &gt;<% else %><%= link_to "next image >", digital_asset_path(@next) %><% end %>
+<h2>Image</h2>
+<div id="main-content">
+
+<p>
+  <%= link_to image_tag(@digital_asset.scan.large.url, :class=>"show-digital-asset"), image_path(@digital_asset.scan.url), :target=>"new" %><br/>
+</p>
+
+<p><strong>Image id: <%= @digital_asset.scan.file.filename.gsub(/\.jpg/, "") %></strong></p>
+
+<p><%= link_to "Click here to download a larger copy of this image", image_path(@digital_asset.scan.url), :target=>"new" %></p>
+
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+<div class="admin-link">
+  <%= link_to "Edit this image", edit_digital_asset_path(@digital_asset) %> |
+  <% if current_user.is_administrator? %>
+    <%= link_to "Permanently remove this image", @digital_asset, :confirm => 'Are you sure you want to permanently remove this image?', :method => :delete %> |
+  <% end %>
+  <%= link_to "View all images", digital_assets_path %>
+</div>
+<% end %>
+
+<% unless @digital_asset.tags.empty? %>
+  <p>
+    <h2>Tags</h2>
+
+    <%= raw @digital_asset.tags.sort{|a,b| a.name <=> b.name}.collect { |tag| link_to(tag.name, { :action => :tag, :id => tag.name }) }.join(", ") %>
+
+  </p>
+<% end %>
+<% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
+  <%= form_for @digital_asset do |f| %>
+    <%= f.label "tag_list", "add/edit tags" %><br />
+    <%= f.text_field :tag_list %>
+    <p><%= f.submit %></p>
+  <% end %>
+<% end %>
+<p>
+  <strong>From the item:</strong>
+  <%=raw content_tag "h2", link_to(raw("#{@digital_asset.item.title} #{(@digital_asset.item.subtitle.blank? ? "" : "<br />" + @digital_asset.item.subtitle)}"), item_path(@digital_asset.item)) %>
+</p>
+
+
+<p><strong>Other images from this item:</strong><br /><br />
+<%= raw @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
+</p>
+
+
+</div>

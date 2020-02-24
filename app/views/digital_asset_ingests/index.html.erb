@@ -1,0 +1,17 @@
+<% title "Process uploaded images" %>
+<h2><%= yield(:title) %></h2>
+<div id="digital-asset-ingest-list">
+<% if @digital_asset_ingest.has_images_to_process? %>
+  <%= form_for @digital_asset_ingest do |f| %>
+    <%= f.submit "check for new images and process them" %>
+  <% end %>
+<% else %>
+  <p> There are no images to process at this time </p>
+<% end %>
+<%= will_paginate @digital_asset_ingests %>
+<h3>Previous Ingests</h3>
+<% @digital_asset_ingests.each  do |digital_asset_ingest| %>
+  <%= link_to digital_asset_ingest.created_at.strftime("%m/%d/%Y"), digital_asset_ingest_path(digital_asset_ingest.id) %><br />
+<% end %>
+<%= will_paginate @digital_asset_ingests %>
+</div>

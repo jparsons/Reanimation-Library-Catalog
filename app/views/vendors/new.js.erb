@@ -1,0 +1,8 @@
+<% if params[:style] == "form" %>
+var content = $('#vendor_fields_template').html();
+var regexp = new RegExp('new_vendor', 'g');
+var new_id = new Date().getTime();
+$("p#vendor").html(content.replace(regexp, new_id));
+<% else %>
+$("p#vendor").html("<%= escape_javascript(render(:partial=>"items/vendor_select")) %>");
+<% end %>

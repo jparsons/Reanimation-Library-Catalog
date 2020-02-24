@@ -1,0 +1,12 @@
+<% title "Image Processing Log" %>
+  <h2><%= yield(:title) %></h2>
+  <div id="digital-asset-ingest">
+  <p><strong>Date Processed:</strong> <%= @ingest.start_time.strftime("%m/%d/%Y %I:%M") %></p>
+  <p><strong>Status</strong> - <%= @ingest.status %></p>
+  <p><a href="#" id="view-log"> View / Hide Log</a></p>
+  <div class="process-log" id="process-log-<%= @ingest.process_log.id %>" style="display:none" >
+  	<% @ingest.process_log.log_entries.each do |entry| %>
+  	 <%= render :partial=>"log_entries/log_entry", :locals=>{:entry=>entry }%>
+  	<% end %>
+  </div>
+</div>

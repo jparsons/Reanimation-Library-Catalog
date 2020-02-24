@@ -1,0 +1,33 @@
+<%- content_for :head do -%>
+<script>
+$(document).ready(function(){
+	$(".work-image").colorbox();
+	
+})
+</script>
+<%- end -%><% title "Art Work" %>
+<div id="main-content">
+
+<h1><%= yield(:title) %></h1>
+<p class="art-work-title"><%= @work.title %></p>
+<p class="art-work-creator-name"><% @work.work_creators.each do |creator| %><%= creator.name %><br /><% end %></p>
+<p class="art-work-year-created"><%= @work.year_created %></p>
+
+<p class="art-work-description"><%= @work.work_type %><%= @work.medium.blank? ? "" : ", " + @work.medium %></p>
+<p class="art-work-size"><%= @work.size %></p>
+<p>
+	<% @work.work_images.each do |work_image| %>
+	<%= link_to image_tag(work_image.image.url(:thumb)), work_image.image.url(:large), :class=>"work-image" %>
+	<% end %>
+</p>
+<p><strong>Items from the collection used in creating this art work:</strong></p>
+<% @work.items.each do |item| %>
+<p><%= link_to "#{item.display_title}, #{item.display_creator}", item_path(item) %></p>
+<% end %>
+
+<p>
+  <%= link_to "Edit", edit_work_path(@work) %> |
+  <%= link_to "Destroy", @work, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", works_path %>
+</p>
+</div>

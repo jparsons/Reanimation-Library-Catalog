@@ -1,0 +1,38 @@
+<div class="subform">
+	<div class="fields">
+		<h2>Add a new exhibition venue</h2>
+	<p>
+	  <%= f.label :name %><br />
+	  <%= f.text_field "name" %> <br />
+	  <%= f.label :address_line_one %><br />
+	  <%= f.text_field :address_line_one %> <br />
+	  <%= f.label :address_line_two %><br />
+	  <%= f.text_field :address_line_two %> <br />
+	  <%= f.label :city %><br />
+	  <%= f.text_field :city %> <br />
+	  <%= f.label :state %><br />
+	  <%= f.select :state, STATES %><br />
+	  <%= f.label :zipcode %><br />
+	  <%= f.text_field :zipcode %><br />
+	  <%= f.label :country %><br />
+	  <%= f.select :country, COUNTRIES %><br />
+	  <%= f.label :website %><br />
+	  <%= f.text_field :website %><br />
+	  <%= f.label :contact_first_name %><br />
+	  <%= f.text_field :contact_first_name %> <br />
+	  <%= f.label :contact_last_name %><br />
+	  <%= f.text_field :contact_last_name %> <br />
+	  <%= f.label :contact_position %><br />
+	  <%= f.text_field :contact_position %> <br />
+	  <%= f.label :contact_email %><br />
+	  <%= f.text_field :contact_email %> <br />
+
+	  <%= f.label :notes %><br />
+	  <%= f.text_area :notes %> <br />
+	
+
+
+	</p>
+	<br />
+	</div>
+</div>

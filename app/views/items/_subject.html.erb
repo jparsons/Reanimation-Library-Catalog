@@ -1,0 +1,12 @@
+<div class="fields subform">
+	<p>
+	  <%= f.label :name, "Subject name" %><br />
+		<%= f.select :name, Subject.all.order(:name).map{|i| [i.name, i.name]}.uniq.compact, {include_blank: true}, {class: 'select2'}%></p>
+
+	</p>
+	<p>
+	  <%= f.label :authority, "Subject authority" %><br />
+	  <%= f.select :authority, SUBJECT_AUTHORITIES %> <br />
+	</p>
+	<p> <%= f.link_to_remove "remove this subject" %></p>
+</div>

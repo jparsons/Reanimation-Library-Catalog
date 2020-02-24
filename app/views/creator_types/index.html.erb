@@ -1,0 +1,21 @@
+<h1>Listing creator_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @creator_types.each do |creator_type| %>
+  <tr>
+    <td><%= creator_type.name %></td>
+    <td><%= link_to 'Edit', edit_creator_type_path(creator_type), :class => 'btn btn-edit' %></td>
+    <td><%= link_to 'Destroy', creator_type, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-destroy' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Creator type', new_creator_type_path, :class => 'btn btn-new' %>
