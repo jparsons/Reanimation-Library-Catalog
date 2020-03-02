@@ -52,15 +52,19 @@ gem 'mini_magick'
 gem 'nested_form'
 gem "select2-rails"
 gem "nokogiri"
+gem 'dotenv'
+gem 'fog-aws'
+
 gem 'rails_12factor', group: :production
- group :development, :test do
-   gem 'net-ssh'
-   gem 'backports', :require => false
-   gem 'yaml_db'
-   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-   gem 'pry'
+
+group :development, :test do
+  gem 'net-ssh'
+  gem 'backports', :require => false
+  gem 'yaml_db'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
   #gem 'activerecord-mysql2-adapter'
- end
+end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
