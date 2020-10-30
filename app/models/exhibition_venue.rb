@@ -1,4 +1,7 @@
 class ExhibitionVenue < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   has_many :exhibitions
 end
 

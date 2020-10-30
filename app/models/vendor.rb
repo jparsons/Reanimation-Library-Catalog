@@ -1,4 +1,7 @@
 class Vendor < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   has_many :items
   default_scope { order(:name) }
   validates :name, :presence => true

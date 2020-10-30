@@ -1,4 +1,7 @@
 class SeriesPart < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   belongs_to :series
   belongs_to :item
 end

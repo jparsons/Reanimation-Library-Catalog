@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "creator_types", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "creators", id: :serial, force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "middle_name"
-    t.string "name_suffix"
+    t.string "first_name", limit: 510
+    t.string "last_name", limit: 510
+    t.string "middle_name", limit: 510
+    t.string "name_suffix", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "item_id"
@@ -61,14 +61,13 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string "locked_by"
+    t.string "locked_by", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "digital_asset_ingests", id: :serial, force: :cascade do |t|
-    t.string "status"
+    t.string "status", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_time"
@@ -76,16 +75,16 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "digital_asset_subject_authorities", id: :serial, force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "name", limit: 510
   end
 
   create_table "digital_asset_subjects", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "authority"
+    t.string "authority", limit: 510
   end
 
   create_table "digital_asset_subjects_digital_assets", id: false, force: :cascade do |t|
@@ -94,17 +93,17 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "digital_assets", id: :serial, force: :cascade do |t|
-    t.integer "item_id"
-    t.string "color"
-    t.string "image_type"
-    t.string "legacy_id"
-    t.boolean "is_marked"
+    t.string "color", limit: 510
+    t.string "image_type", limit: 510
+    t.string "legacy_id", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "scan_file_name"
-    t.string "scan_content_type"
+    t.string "scan_file_name", limit: 510
+    t.string "scan_content_type", limit: 510
     t.integer "scan_file_size"
-    t.string "page"
+    t.integer "item_id"
+    t.boolean "is_marked"
+    t.string "page", limit: 510
     t.string "scan"
   end
 
@@ -119,11 +118,11 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "donors", id: :serial, force: :cascade do |t|
-    t.string "organization_name"
+    t.string "organization_name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "name"
-    t.string "last_name"
+    t.string "name", limit: 510
+    t.string "last_name", limit: 510
   end
 
   create_table "donors_items", id: false, force: :cascade do |t|
@@ -132,26 +131,26 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "exhibition_venues", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "address_line_one"
-    t.string "address_line_two"
-    t.string "city"
-    t.string "state"
-    t.string "zipcode"
-    t.string "country"
-    t.string "phone"
-    t.string "contact_first_name"
-    t.string "contact_last_name"
-    t.string "contact_position"
-    t.string "contact_email"
-    t.string "website"
-    t.string "notes"
+    t.string "name", limit: 510
+    t.string "address_line_one", limit: 510
+    t.string "address_line_two", limit: 510
+    t.string "city", limit: 510
+    t.string "state", limit: 510
+    t.string "zipcode", limit: 510
+    t.string "country", limit: 510
+    t.string "phone", limit: 510
+    t.string "contact_first_name", limit: 510
+    t.string "contact_last_name", limit: 510
+    t.string "contact_position", limit: 510
+    t.string "contact_email", limit: 510
+    t.string "website", limit: 510
+    t.string "notes", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "exhibitions", id: :serial, force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 510
     t.date "start_date"
     t.date "end_date"
     t.integer "exhibition_venue_id"
@@ -165,7 +164,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "image_colors", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,7 +175,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "image_types", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -187,51 +186,97 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "items", id: :serial, force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "alphabetical_title"
-    t.string "subtitle"
-    t.string "publisher_name"
-    t.string "publisher_city"
-    t.string "publisher_state"
-    t.string "publisher_country"
-    t.string "extent"
-    t.string "copyright"
-    t.string "item_size"
-    t.string "call_number"
-    t.string "collection_name"
+    t.string "alphabetical_title", limit: 510
+    t.string "subtitle", limit: 510
+    t.string "publisher_name", limit: 510
+    t.string "publisher_city", limit: 510
+    t.string "publisher_state", limit: 510
+    t.string "publisher_country", limit: 510
+    t.string "extent", limit: 510
+    t.string "copyright", limit: 510
+    t.string "item_size", limit: 510
+    t.string "call_number", limit: 510
+    t.string "collection_name", limit: 510
     t.integer "legacy_id"
-    t.string "cover_image_file_name"
-    t.string "cover_image_content_type"
-    t.integer "cover_image_file_size"
+    t.string "cover_image_file_name", limit: 510
+    t.string "cover_image_content_type", limit: 510
+    t.integer "cover_image_image_file_size"
     t.datetime "cover_image_updated_at"
-    t.string "barcode"
+    t.string "barcode", limit: 510
     t.boolean "has_marc_record"
     t.text "metadata_notes"
-    t.string "corporate_author"
-    t.string "isbn_issn"
+    t.string "corporate_author", limit: 510
+    t.string "isbn_issn", limit: 510
     t.boolean "is_government_document"
-    t.string "edition"
+    t.string "edition", limit: 510
     t.text "notes"
-    t.string "series_name"
+    t.string "series_name", limit: 510
     t.boolean "needs_translation"
-    t.string "location"
+    t.string "location", limit: 510
     t.boolean "is_marked"
     t.integer "vendor_id"
     t.date "date_acquired"
     t.decimal "price_paid", precision: 8, scale: 2
-    t.string "acquisition_type"
+    t.string "acquisition_type", limit: 510
     t.text "acquisition_note"
-    t.string "acquired_for"
+    t.string "acquired_for", limit: 510
     t.integer "legacy_record_id"
-    t.string "cataloging_status"
-    t.string "provenance"
+    t.string "cataloging_status", limit: 510
+    t.string "provenance", limit: 510
     t.text "dedication"
-    t.string "physical_format"
+    t.string "physical_format", limit: 510
     t.datetime "published_at"
     t.text "inscription"
     t.string "cover_image"
+  end
+
+  create_table "items2", id: :serial, force: :cascade do |t|
+    t.string "title", limit: 510
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "alphabetical_title", limit: 510
+    t.string "subtitle", limit: 510
+    t.string "publisher_name", limit: 510
+    t.string "publisher_city", limit: 510
+    t.string "publisher_state", limit: 510
+    t.string "publisher_country", limit: 510
+    t.string "extent", limit: 510
+    t.string "copyright", limit: 510
+    t.string "item_size", limit: 510
+    t.string "call_number", limit: 510
+    t.string "collection_name", limit: 510
+    t.integer "legacy_id"
+    t.string "cover_image_file_name", limit: 510
+    t.string "cover_image_content_type", limit: 510
+    t.integer "cover_image_image_file_size"
+    t.datetime "cover_image_updated_at"
+    t.string "barcode", limit: 510
+    t.boolean "has_marc_record"
+    t.text "metadata_notes"
+    t.string "corporate_author", limit: 510
+    t.string "isbn_issn", limit: 510
+    t.boolean "is_government_document"
+    t.string "edition", limit: 510
+    t.text "notes"
+    t.string "series_name", limit: 510
+    t.boolean "needs_translation"
+    t.string "location", limit: 510
+    t.boolean "is_marked"
+    t.integer "vendor_id"
+    t.date "date_acquired"
+    t.decimal "price_paid", precision: 8, scale: 2
+    t.string "acquisition_type", limit: 510
+    t.text "acquisition_note"
+    t.string "acquired_for", limit: 510
+    t.integer "legacy_record_id"
+    t.string "cataloging_status", limit: 510
+    t.string "provenance", limit: 510
+    t.text "dedication"
+    t.string "physical_format", limit: 510
+    t.datetime "published_at"
   end
 
   create_table "items_languages", id: false, force: :cascade do |t|
@@ -250,7 +295,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "languages", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -269,7 +314,7 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
   end
 
   create_table "series", id: :serial, force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -278,87 +323,85 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
     t.integer "item_id"
     t.integer "series_id"
     t.integer "position"
-    t.string "volume_identifier"
+    t.string "volume_identifier", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subject_authorities", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subjects", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "authority"
+    t.string "authority", limit: 510
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
-    t.string "taggable_type"
     t.integer "taggable_id"
-    t.string "tagger_type"
+    t.string "taggable_type", limit: 510
     t.integer "tagger_id"
-    t.string "context", limit: 128
+    t.string "tagger_type", limit: 510
+    t.string "context", limit: 256
     t.datetime "created_at"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
   end
 
   create_table "tags", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.string "name", limit: 510
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "persistence_token"
-    t.string "encrypted_password"
-    t.string "password_salt"
+    t.string "username", limit: 510
+    t.string "email", limit: 510
+    t.string "persistence_token", limit: 510
+    t.string "encrypted_password", limit: 510
+    t.string "password_salt", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "role"
-    t.string "confirmation_token", limit: 255
+    t.string "role", limit: 510
+    t.string "confirmation_token", limit: 510
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "reset_password_token", limit: 255
+    t.string "unconfirmed_email", limit: 510
+    t.string "reset_password_token", limit: 510
     t.datetime "reset_password_sent_at"
-    t.string "remember_token", limit: 255
+    t.string "remember_token", limit: 510
     t.datetime "remember_created_at"
-    t.string "unlock_token", limit: 255
+    t.string "unlock_token", limit: 510
     t.datetime "locked_at"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+    t.string "current_sign_in_ip", limit: 510
+    t.string "last_sign_in_ip", limit: 510
     t.integer "failed_attempts"
     t.integer "sign_in_count"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+    t.index ["confirmation_token"], name: "users_confirmation_token_key", unique: true
+    t.index ["reset_password_token"], name: "users_reset_password_token_key", unique: true
+    t.index ["unlock_token"], name: "users_unlock_token_key", unique: true
   end
 
   create_table "vendors", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "street"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
-    t.string "country"
-    t.string "url"
-    t.string "phone"
-    t.string "notes"
+    t.string "name", limit: 510
+    t.string "street", limit: 510
+    t.string "city", limit: 510
+    t.string "state", limit: 510
+    t.string "zip", limit: 510
+    t.string "country", limit: 510
+    t.string "url", limit: 510
+    t.string "phone", limit: 510
+    t.string "notes", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "legacy_id"
   end
 
   create_table "work_creators", id: :serial, force: :cascade do |t|
-    t.string "name"
+    t.string "name", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -368,28 +411,28 @@ ActiveRecord::Schema.define(version: 2019_12_15_204557) do
     t.integer "work_creator_id"
   end
 
-  create_table "work_images", force: :cascade do |t|
+  create_table "work_images", id: :serial, force: :cascade do |t|
     t.integer "work_id"
-    t.string "image_file_name"
-    t.string "image_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "image_file_name", limit: 510
+    t.string "image_content_type", limit: 510
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "works", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.string "medium"
-    t.string "size"
+    t.string "title", limit: 510
+    t.string "medium", limit: 510
+    t.string "size", limit: 510
     t.integer "year_created"
-    t.string "work_type"
+    t.string "work_type", limit: 510
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "creator_id"
     t.integer "legacy_id"
-    t.string "textfile_file_name"
-    t.string "textfile_content_type"
+    t.string "textfile_file_name", limit: 510
+    t.string "textfile_content_type", limit: 510
     t.integer "textfile_file_size"
     t.datetime "textfile_updated_at"
   end

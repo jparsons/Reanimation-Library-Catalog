@@ -1,4 +1,7 @@
 class WorkImage < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   belongs_to :work
   mount_uploader :image, ImageUploader
 

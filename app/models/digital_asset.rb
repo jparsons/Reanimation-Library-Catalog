@@ -1,4 +1,7 @@
 class DigitalAsset < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   acts_as_taggable
   belongs_to :item
   has_and_belongs_to_many :digital_asset_subjects, join_table: 'digital_asset_subjects_digital_assets'

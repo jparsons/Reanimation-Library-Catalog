@@ -1,4 +1,7 @@
 class Exhibition < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   belongs_to :exhibition_venue
   has_and_belongs_to_many :works
 

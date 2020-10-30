@@ -1,4 +1,7 @@
 class Subject < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   has_and_belongs_to_many :items
 
   validates :name, uniqueness: { case_sensitive: false }

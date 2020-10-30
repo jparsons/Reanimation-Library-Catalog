@@ -45,15 +45,15 @@ gem 'hpricot'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'acts-as-taggable-on'
-#gem 'mysql2', '0.3.17'
 gem 'american_date'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'nested_form'
 gem "select2-rails"
 gem "nokogiri"
-gem 'dotenv'
 gem 'fog-aws'
+
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails_12factor', group: :production
 
@@ -63,6 +63,7 @@ group :development, :test do
   gem 'yaml_db'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
+  gem 'seed_dump'
   #gem 'activerecord-mysql2-adapter'
 end
 

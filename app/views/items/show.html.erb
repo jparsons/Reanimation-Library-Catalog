@@ -11,7 +11,7 @@
 <% end %>
 <% end %>
 <div class="item-cover-image-large">
-	<%= image_tag(@item.cover_image.url(:large)) %>
+	<%= image_tag((@item.cover_image_url(:large) || 'missing_thumb_cover_image.png')) %>
 	<% if user_signed_in? && current_user.in_authentication_group?(["administrator", "cataloger"]) %>
 	    <div class="admin-link">
 	      <%= link_to 'Edit this item', edit_item_path(@item) %>
@@ -124,6 +124,6 @@
 	</div>
 <% unless @item.digital_assets.empty? %>
 	<div class="item-images">
-		<%= raw @item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
+		<%= raw @item.digital_assets.map {|a| link_to(image_tag((a.scan_url(:thumb) || 'missing_thumb_cover_image.png')), digital_asset_path(a), :class=>"digital-asset") }.join("") %>
 	</div>
 <% end %>

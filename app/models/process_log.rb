@@ -1,4 +1,7 @@
 class ProcessLog < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   belongs_to :digital_asset_ingest
   has_many :log_entries
 end

@@ -1,4 +1,7 @@
 class Work < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   has_and_belongs_to_many :items
   has_and_belongs_to_many :exhibitions
   has_many :work_images, :dependent => :destroy
@@ -7,7 +10,7 @@ class Work < ActiveRecord::Base
   mount_uploader :textfile, TextfileUploader
 
   validates :textfile, presence: true
-  
+
 
   default_scope { order('year_created desc, title asc') }
 

@@ -1,4 +1,7 @@
 class Series < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   has_many :series_parts
   has_many :items, :through=>:series_parts
 end

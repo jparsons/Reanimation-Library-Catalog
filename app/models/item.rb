@@ -1,4 +1,7 @@
 class Item < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
 #  include AASM
 
   before_save :strip_dollar_signs

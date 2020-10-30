@@ -1,4 +1,7 @@
 class DigitalAssetIngest < ActiveRecord::Base
+  def attributes_protected_by_default
+    ['type']
+  end
   default_scope {order("created_at desc") }
   has_one :process_log
 

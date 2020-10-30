@@ -100,7 +100,10 @@ GEM
       warden (~> 1.2.3)
     devise-encryptable (0.2.0)
       devise (>= 2.1.0)
-    dotenv (2.7.5)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.8.0)
     excon (0.71.1)
     execjs (2.7.0)
@@ -224,6 +227,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    seed_dump (3.3.1)
+      activerecord (>= 4)
+      activesupport (>= 4)
     select2-rails (4.0.3)
       thor (~> 0.14)
     selenium-webdriver (3.142.3)
@@ -284,7 +290,7 @@ DEPENDENCIES
   delayed_job
   devise
   devise-encryptable
-  dotenv
+  dotenv-rails
   fog-aws
   hpricot
   jbuilder (~> 2.5)
@@ -301,6 +307,7 @@ DEPENDENCIES
   rails (~> 5.2.2)
   rails_12factor
   sass-rails (~> 5.0)
+  seed_dump
   select2-rails
   selenium-webdriver
   spring
