@@ -18,8 +18,7 @@ class ItemsController < ApplicationController
         @items = Item.starting_with(letter).published
       end
     end
-    @items.includes(creators: :creator_type ).includes(:subjects)
-
+    @items = @items.includes(:subjects, creators: :creator_type )
   end
 
   def by_branch

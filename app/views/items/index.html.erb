@@ -6,5 +6,5 @@
   <%= link_to "Add a new item", new_item_path %><br />
 </div>
 <%= pagination_links(params[:letter]) %>
-<%= render :partial => 'item', :collection=>@items %>
+<%= render partial: 'item', collection: @items %>
 </div>

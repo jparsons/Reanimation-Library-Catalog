@@ -18,7 +18,7 @@ module ItemsHelper
  end
 
  def letter_options
-   if user_signed_in? && current_user.is_administrator?
+   @letter_options ||= if user_signed_in? && current_user.is_administrator?
      (Item.all.map{|c| c.alphabetical_title.first.upcase }.uniq || []).sort!
    else
      (Item.published.map{ |c| c.alphabetical_title.first.upcase }.uniq || []).sort!
