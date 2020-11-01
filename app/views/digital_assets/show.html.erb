@@ -1,4 +1,4 @@
-<%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan.file.filename.gsub(/\.jpg/, "") }" } -%>
+<%- content_for(:title) { "Reanimation Library - Image Archive - #{ @digital_asset.scan.file&.filename&.gsub(/\.jpg/, "") }" } -%>
 <% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
   <%- content_for :head do -%>
   <script type="text/javascript">
@@ -50,12 +50,12 @@
 <div id="main-content">
 
 <p>
-  <%= link_to image_tag(@digital_asset.scan.large.url, :class=>"show-digital-asset"), image_path(@digital_asset.scan.url), :target=>"new" %><br/>
+  <%= link_to image_tag((@digital_asset.scan&.large&.url || 'missing_thumb_cover_image.png'), :class=>"show-digital-asset"), image_path((@digital_asset&.scan&.url || 'missing_thumb_cover_image.png')), :target=>"new" %><br/>
 </p>
 
-<p><strong>Image id: <%= @digital_asset.scan.file.filename.gsub(/\.jpg/, "") %></strong></p>
+<p><strong>Image id: <%= @digital_asset.scan.file&.filename&.gsub(/\.jpg/, "") %></strong></p>
 
-<p><%= link_to "Click here to download a larger copy of this image", image_path(@digital_asset.scan.url), :target=>"new" %></p>
+<p><%= link_to "Click here to download a larger copy of this image", image_path(@digital_asset.scan.url  || 'missing_thumb_cover_image.png'), :target=>"new" %></p>
 
 <% if user_signed_in? && current_user.in_authentication_group?(['administrator', 'image cataloger']) %>
 <div class="admin-link">
@@ -89,7 +89,7 @@
 
 
 <p><strong>Other images from this item:</strong><br /><br />
-<%= raw @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan.url(:thumb)), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
+<%= raw @digital_asset.item.digital_assets.map {|a| link_to(image_tag(a.scan_url(:thumb)  || 'missing_thumb_cover_image.png'), digital_asset_path(a), :class=>"digital-asset") unless a==@digital_asset  }.join(" &nbsp; ") %><br />
 </p>
 
 

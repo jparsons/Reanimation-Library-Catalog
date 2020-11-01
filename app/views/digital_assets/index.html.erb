@@ -49,7 +49,7 @@
 
 <%= raw will_paginate @digital_assets %>
 <% @digital_assets.each do |asset| %>
-<%= link_to image_tag(asset.scan.thumb.url), digital_asset_path(asset), :class=>"digital-asset" %>
+<%= link_to image_tag(asset.scan.thumb.url  || 'missing_thumb_cover_image.png' ), digital_asset_path(asset), :class=>"digital-asset" %>
 <% end %>
 <br style="clear:both" />
 <%= raw will_paginate @digital_assets %>
