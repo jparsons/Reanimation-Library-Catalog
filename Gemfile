@@ -28,7 +28,7 @@ gem 'american_date'
 #
 gem 'nested_form'
 gem "select2-rails"
-gem "nokogiri", "<1.7.0"
+gem "nokogiri", "<1.11.0"
 gem 'uglifier'
 gem 'therubyracer'
 
