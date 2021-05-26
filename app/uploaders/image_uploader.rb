@@ -3,16 +3,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::Compatibility::Paperclip
 
 
-  # if Rails.env.development? || Rails.env.test?
-  #   storage :file
-  # else
-  storage :fog
-  # end
+  if Rails.env.development? || Rails.env.test?
+   storage :file
+  else
+   storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{model.class.to_s.underscore}/#{mounted_as.to_s}/#{model.id}"
+    "#{model.class.to_s.underscore}/#{mounted_as.to_s}/:id_partition"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

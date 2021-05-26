@@ -10,7 +10,7 @@ class DigitalAsset < ActiveRecord::Base
 
   accepts_nested_attributes_for :digital_asset_subjects, reject_if: proc { |attributes| attributes['name'].blank? }
 
-  mount_uploader :scan, ScanUploader
+  mount_uploader :scan, ScanUploader, mount_on: :scan_file_name
 
 
   # # need to update these sizes

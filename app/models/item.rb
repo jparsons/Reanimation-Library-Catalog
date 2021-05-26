@@ -34,7 +34,8 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :vendor
 
-  mount_uploader :cover_image, CoverImageUploader
+  mount_uploader :cover_image, CoverImageUploader, mount_on: :cover_image_file_name
+  
   validates_presence_of :cover_image
   #has_one_attached :cover_image#, :whiny => false, :styles => { :thumb => "140x300>", :large =>"300x700>" }, :default_url => "/catalog/images/missing_:style_cover_image.png"
   #validates_attachment :cover_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }

@@ -4,17 +4,22 @@ class ScanUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include CarrierWave::Compatibility::Paperclip
 
-  # if Rails.env.development? || Rails.env.test?
-  #   storage :file
-  # else
-  storage :fog
-  # end
+  if Rails.env.development? || Rails.env.test?
+    storage :file
+  else
+   storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "#{model.class.to_s.underscore}/#{mounted_as.to_s}/#{model.id}"
-  end
+  # def store_dir
+  #   "#{model.class.to_s.underscore}/#{mounted_as.to_s}/#{model.id}"
+  # end
+
+    # The :id_partition symbol will trigger a proc in the Paperclip compatibility module that will build out the properly partition directory structure
+    def store_dir
+      "#{model.class.to_s.underscore}/#{mounted_as.to_s}/#{model.id}"
+    end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
